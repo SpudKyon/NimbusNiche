@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
  * </p>
  *
  * @author spud
- * @since 2024-01-23
+ * @since 2024-01-24
  */
 @RestController
 @RequestMapping("/nimbus_user/user")

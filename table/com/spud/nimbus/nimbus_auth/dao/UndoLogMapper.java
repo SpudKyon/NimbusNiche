@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Mapper;
  * </p>
  *
  * @author spud
- * @since 2024-01-23
+ * @date 2024-01-23
  */
 @Mapper
 public interface UndoLogMapper extends BaseMapper<UndoLog> {

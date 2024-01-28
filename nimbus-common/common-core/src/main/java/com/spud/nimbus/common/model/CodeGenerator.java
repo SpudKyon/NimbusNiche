@@ -10,6 +10,10 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 
 import java.util.Collections;
 
+/**
+ * @author spud
+ * @date 2021/1/23
+ */
 public class CodeGenerator {
   public static void main(String[] args) {
 

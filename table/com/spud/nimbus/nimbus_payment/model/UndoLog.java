@@ -17,7 +17,7 @@ import lombok.experimental.Accessors;
  * </p>
  *
  * @author spud
- * @since 2024-01-23
+ * @date 2024-01-23
  */
 @Getter
 @Setter
