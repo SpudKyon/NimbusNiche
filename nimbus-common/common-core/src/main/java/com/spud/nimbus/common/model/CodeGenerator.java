@@ -11,6 +11,7 @@ import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import java.util.Collections;
 
 /**
+ * mybatis-plus代码生成器
  * @author spud
  * @date 2021/1/23
  */

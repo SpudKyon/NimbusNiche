@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 /**
+ * feign httpclient配置
  * @author spud
  * @date 2024/1/25
  */

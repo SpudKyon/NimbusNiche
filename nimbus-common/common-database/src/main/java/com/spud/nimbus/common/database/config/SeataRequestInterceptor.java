@@ -6,8 +6,7 @@ import feign.RequestInterceptor;
 import feign.RequestTemplate;
 import io.seata.core.context.RootContext;
 import io.seata.spring.annotation.GlobalTransactional;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.stereotype.Component;
 
@@ -15,11 +14,10 @@ import org.springframework.stereotype.Component;
  * @author spud
  * @date 2024/1/25
  */
+@Slf4j
 @Component
 @ConditionalOnClass({RequestInterceptor.class, GlobalTransactional.class})
 public class SeataRequestInterceptor implements RequestInterceptor {
-
-    private static final Logger logger = LoggerFactory.getLogger(SeataRequestInterceptor.class);
 
     @Override
     public void apply(RequestTemplate template) {

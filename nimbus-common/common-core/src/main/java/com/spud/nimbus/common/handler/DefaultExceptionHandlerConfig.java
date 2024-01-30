@@ -62,9 +62,8 @@ public class DefaultExceptionHandlerConfig {
   }
 
   @ExceptionHandler(NimbusException.class)
-  public ResponseEntity<Result<Object>> mall4cloudExceptionHandler(NimbusException e) {
-    log.error("mall4cloudExceptionHandler", e);
-
+  public ResponseEntity<Result<Object>> nimbusExceptionHandler(NimbusException e) {
+    log.error("nimbusExceptionHandler", e);
     ResultCode responseEnum = e.getResultCode();
     // 失败返回失败消息 + 状态码
     if (responseEnum != null) {
