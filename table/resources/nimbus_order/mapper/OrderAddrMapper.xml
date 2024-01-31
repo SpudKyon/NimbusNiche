@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spud.nimbus.nimbus_order.dao.OrderAddrMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spud.nimbus.nimbus_order.model.OrderAddr">
+        <id column="order_addr_id" property="orderAddrId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="user_id" property="userId" />
+        <result column="consignee" property="consignee" />
+        <result column="province_id" property="provinceId" />
+        <result column="province" property="province" />
+        <result column="city_id" property="cityId" />
+        <result column="city" property="city" />
+        <result column="area_id" property="areaId" />
+        <result column="area" property="area" />
+        <result column="addr" property="addr" />
+        <result column="post_code" property="postCode" />
+        <result column="mobile" property="mobile" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        order_addr_id, create_time, update_time, user_id, consignee, province_id, province, city_id, city, area_id, area, addr, post_code, mobile, lng, lat
+    </sql>
+
+</mapper>

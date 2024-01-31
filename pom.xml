@@ -9,6 +9,7 @@
         <module>nimbus-api</module>
         <module>nimbus-api/api-auth</module>
         <module>nimbus-api/api-leaf</module>
+        <module>nimbus-user</module>
     </modules>
 
     <parent>
@@ -52,6 +53,7 @@
         <fastjson.version>1.2.83</fastjson.version>
         <fastjson2.version>2.0.38</fastjson2.version>
         <spring-javaformat.version>0.0.22</spring-javaformat.version>
+        <lombok.version>1.18.30</lombok.version>
     </properties>
 
     <dependencyManagement>

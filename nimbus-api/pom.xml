@@ -13,6 +13,7 @@
     <modules>
         <module>api-auth</module>
         <module>api-leaf</module>
+        <module>api-user</module>
     </modules>
     <packaging>pom</packaging>
 

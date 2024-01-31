@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spud.nimbus.nimbus_user.dao.UserAddrMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.spud.nimbus.nimbus_user.model.UserAddr">
+        <id column="addr_id" property="addrId" />
+        <result column="create_time" property="createTime" />
+        <result column="update_time" property="updateTime" />
+        <result column="user_id" property="userId" />
+        <result column="mobile" property="mobile" />
+        <result column="is_default" property="isDefault" />
+        <result column="consignee" property="consignee" />
+        <result column="province_id" property="provinceId" />
+        <result column="province" property="province" />
+        <result column="city_id" property="cityId" />
+        <result column="city" property="city" />
+        <result column="area_id" property="areaId" />
+        <result column="area" property="area" />
+        <result column="post_code" property="postCode" />
+        <result column="addr" property="addr" />
+        <result column="lng" property="lng" />
+        <result column="lat" property="lat" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        addr_id, create_time, update_time, user_id, mobile, is_default, consignee, province_id, province, city_id, city, area_id, area, post_code, addr, lng, lat
+    </sql>
+
+</mapper>

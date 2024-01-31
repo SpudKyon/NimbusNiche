@@ -2,13 +2,14 @@ package com.spud.nimbus.common.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * @author spud
  * @date 2024/1/28
  */
-public class BaseVO {
+public class BaseVO implements Serializable {
 
   /**
    * 创建时间

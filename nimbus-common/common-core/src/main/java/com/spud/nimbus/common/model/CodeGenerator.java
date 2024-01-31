@@ -37,7 +37,7 @@ public class CodeGenerator {
       全局配置
      */
     String projectPath = System.getProperty("user.dir"); //获取项目路径
-    String filePath = projectPath + "/table";  //java下的文件路径
+    String filePath = projectPath + "/table-1";  //java下的文件路径
     GlobalConfig global = new GlobalConfig.Builder()
             .outputDir(filePath)//生成的输出路径
             .author("spud")//生成的作者名字
@@ -61,7 +61,7 @@ public class CodeGenerator {
             .service("service")//service层包名
             .serviceImpl("service.impl")//service实现类包名
             .other("output")//输出自定义文件时的包名
-            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath + "/src/main/resources/mapper")) //路径配置信息,就是配置各个文件模板的路径信息,这里以mapper.xml为例
+            .pathInfo(Collections.singletonMap(OutputFile.mapperXml, projectPath + "/table/resources/" + schema + "/mapper")) //路径配置信息,就是配置各个文件模板的路径信息,这里以mapper.xml为例
             .build();
     /*
       模板配置
