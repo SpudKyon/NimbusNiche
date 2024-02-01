@@ -16,6 +16,7 @@
         <module>common-database</module>
         <module>common-order</module>
         <module>common-cache</module>
+        <module>common-security</module>
     </modules>
 
     <properties>

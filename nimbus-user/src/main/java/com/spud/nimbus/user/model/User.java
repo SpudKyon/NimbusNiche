@@ -4,8 +4,11 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
+
+import com.spud.nimbus.common.model.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -22,45 +25,35 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @TableName("user")
-public class User implements Serializable {
+public class User extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * ID
-     */
-    @TableId(value = "user_id", type = IdType.AUTO)
-    private Long userId;
+  public static final String DISTRIBUTED_ID_KEY = "nimbus-user";
 
-    /**
-     * 注册时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
+  /**
+   * ID
+   */
+  @TableId(value = "user_id", type = IdType.AUTO)
+  private Long userId;
 
-    /**
-     * 修改时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
+  /**
+   * 用户昵称
+   */
+  @TableField("nick_name")
+  private String nickName;
 
-    /**
-     * 用户昵称
-     */
-    @TableField("nick_name")
-    private String nickName;
+  /**
+   * 头像图片路径
+   */
+  @TableField("pic")
+  private String pic;
 
-    /**
-     * 头像图片路径
-     */
-    @TableField("pic")
-    private String pic;
-
-    /**
-     * 状态 1 正常 0 无效
-     */
-    @TableField("status")
-    private Integer status;
+  /**
+   * 状态 1 正常 0 无效
+   */
+  @TableField("status")
+  private Integer status;
 
 
 }

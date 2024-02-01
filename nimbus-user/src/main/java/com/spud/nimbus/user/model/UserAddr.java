@@ -4,9 +4,12 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+
+import com.spud.nimbus.common.model.BaseModel;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.experimental.Accessors;
@@ -23,111 +26,100 @@ import lombok.experimental.Accessors;
 @Setter
 @Accessors(chain = true)
 @TableName("user_addr")
-public class UserAddr implements Serializable {
+public class UserAddr extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+  private static final long serialVersionUID = 1L;
 
-    /**
-     * ID
-     */
-    @TableId(value = "addr_id", type = IdType.AUTO)
-    private Long addrId;
+  public static final Integer DEFAULT_ADDR = 1;
+  public static final Integer NOT_DEFAULT_ADDR = 0;
 
-    /**
-     * 建立时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
+  /**
+   * ID
+   */
+  @TableId(value = "addr_id", type = IdType.AUTO)
+  private Long addrId;
 
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
+  /**
+   * 用户ID
+   */
+  @TableField("user_id")
+  private Long userId;
 
-    /**
-     * 用户ID
-     */
-    @TableField("user_id")
-    private Long userId;
+  /**
+   * 手机
+   */
+  @TableField("mobile")
+  private String mobile;
 
-    /**
-     * 手机
-     */
-    @TableField("mobile")
-    private String mobile;
+  /**
+   * 是否默认地址 1是
+   */
+  @TableField("is_default")
+  private Integer isDefault;
 
-    /**
-     * 是否默认地址 1是
-     */
-    @TableField("is_default")
-    private Integer isDefault;
+  /**
+   * 收货人
+   */
+  @TableField("consignee")
+  private String consignee;
 
-    /**
-     * 收货人
-     */
-    @TableField("consignee")
-    private String consignee;
+  /**
+   * 省ID
+   */
+  @TableField("province_id")
+  private Long provinceId;
 
-    /**
-     * 省ID
-     */
-    @TableField("province_id")
-    private Long provinceId;
+  /**
+   * 省
+   */
+  @TableField("province")
+  private String province;
 
-    /**
-     * 省
-     */
-    @TableField("province")
-    private String province;
+  /**
+   * 城市ID
+   */
+  @TableField("city_id")
+  private Long cityId;
 
-    /**
-     * 城市ID
-     */
-    @TableField("city_id")
-    private Long cityId;
+  /**
+   * 城市
+   */
+  @TableField("city")
+  private String city;
 
-    /**
-     * 城市
-     */
-    @TableField("city")
-    private String city;
+  /**
+   * 区ID
+   */
+  @TableField("area_id")
+  private Long areaId;
 
-    /**
-     * 区ID
-     */
-    @TableField("area_id")
-    private Long areaId;
+  /**
+   * 区
+   */
+  @TableField("area")
+  private String area;
 
-    /**
-     * 区
-     */
-    @TableField("area")
-    private String area;
+  /**
+   * 邮编
+   */
+  @TableField("post_code")
+  private String postCode;
 
-    /**
-     * 邮编
-     */
-    @TableField("post_code")
-    private String postCode;
+  /**
+   * 地址
+   */
+  @TableField("addr")
+  private String addr;
 
-    /**
-     * 地址
-     */
-    @TableField("addr")
-    private String addr;
+  /**
+   * 经度
+   */
+  @TableField("lng")
+  private BigDecimal lng;
 
-    /**
-     * 经度
-     */
-    @TableField("lng")
-    private BigDecimal lng;
-
-    /**
-     * 纬度
-     */
-    @TableField("lat")
-    private BigDecimal lat;
-
-
+  /**
+   * 纬度
+   */
+  @TableField("lat")
+  private BigDecimal lat;
 }
