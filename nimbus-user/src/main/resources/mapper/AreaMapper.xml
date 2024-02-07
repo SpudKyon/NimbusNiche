@@ -16,12 +16,12 @@
         <result column="pname"  property="areaName"/>
         <result column="ppid"  property="parentId"/>
         <result column="plevel"  property="level"/>
-        <collection property="areas" ofType="com.mall4j.cloud.api.user.vo.AreaVO">
+        <collection property="areas" ofType="com.spud.nimbus.api.user.vo.AreaVO">
             <id column="cid" property="areaId"/>
             <result column="cname"  property="areaName"/>
             <result column="cpid"  property="parentId"/>
             <result column="clevel"  property="level"/>
-            <collection property="areas" ofType="com.mall4j.cloud.api.user.vo.AreaVO">
+            <collection property="areas" ofType="com.spud.nimbus.api.user.vo.AreaVO">
                 <id column="area_id"  property="areaId"/>
                 <result column="area_name"  property="areaName"/>
                 <result column="parent_id"  property="parentId"/>
