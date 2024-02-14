@@ -33,17 +33,33 @@
             <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.anji-plus</groupId>
-            <artifactId>captcha</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
+            <groupId>com.spud.nimbus</groupId>
+            <artifactId>common-database</artifactId>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>com.spud.nimbus</groupId>
-            <artifactId>api-auth</artifactId>
+            <artifactId>common-cache</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.spud.nimbus</groupId>
+            <artifactId>common-security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.spud.nimbus</groupId>
+            <artifactId>api-platform</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.spud.nimbus</groupId>
+            <artifactId>api-biz</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.anji-plus</groupId>
+            <artifactId>captcha</artifactId>
         </dependency>
     </dependencies>
 

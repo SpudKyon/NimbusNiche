@@ -10,6 +10,7 @@
         <module>nimbus-api/api-auth</module>
         <module>nimbus-api/api-leaf</module>
         <module>nimbus-user</module>
+        <module>nimbus-product</module>
     </modules>
 
     <parent>

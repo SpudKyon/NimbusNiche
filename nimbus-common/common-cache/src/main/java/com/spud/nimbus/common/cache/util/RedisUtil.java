@@ -24,17 +24,18 @@ import java.util.stream.Collectors;
 @Slf4j
 public class RedisUtil {
 
+  public static final StringRedisTemplate STRING_REDIS_TEMPLATE = SpringContextUtils.getBean("stringRedisTemplate",
+          StringRedisTemplate.class);
   @SuppressWarnings("unchecked")
   private static final RedisTemplate<String, Object> REDIS_TEMPLATE = SpringContextUtils.getBean("redisTemplate",
           RedisTemplate.class);
 
-  public static final StringRedisTemplate STRING_REDIS_TEMPLATE = SpringContextUtils.getBean("stringRedisTemplate",
-          StringRedisTemplate.class);
-
   // =============================common============================
+
   /**
    * 指定缓存失效时间
-   * @param key 键
+   *
+   * @param key  键
    * @param time 时间(秒)
    * @return 是否成功
    */
@@ -47,8 +48,7 @@ public class RedisUtil {
         REDIS_TEMPLATE.expire(key, time, TimeUnit.SECONDS);
       }
       return Boolean.TRUE;
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       log.error("Set expire error: {}", e.getMessage());
       return Boolean.FALSE;
     }
@@ -56,6 +56,7 @@ public class RedisUtil {
 
   /**
    * 根据key 获取过期时间
+   *
    * @param key 键 不能为null
    * @return 时间(秒) 返回-1代表为永久有效 失效时间为0，说明该主键未设置失效时间（失效时间默认为-1）
    */
@@ -68,6 +69,7 @@ public class RedisUtil {
 
   /**
    * 判断key是否存在
+   *
    * @param key 键
    * @return true 存在 false 不存在
    */
@@ -77,8 +79,7 @@ public class RedisUtil {
     }
     try {
       return REDIS_TEMPLATE.hasKey(key);
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       log.error("Error getting hasKey: {}", e.getMessage());
       return Boolean.FALSE;
     }
@@ -86,6 +87,7 @@ public class RedisUtil {
 
   /**
    * 删除缓存
+   *
    * @param key 可以传一个值 或多个
    */
   @SuppressWarnings("unchecked")
@@ -99,16 +101,17 @@ public class RedisUtil {
 
       if (key.length == 1) {
         REDIS_TEMPLATE.delete(key[0]);
-      }
-      else {
+      } else {
         REDIS_TEMPLATE.delete(Arrays.asList(key));
       }
     }
   }
 
   // ============================String=============================
+
   /**
    * 普通缓存获取
+   *
    * @param key 键
    * @return 值
    */
@@ -122,9 +125,10 @@ public class RedisUtil {
 
   /**
    * 普通缓存放入并设置时间
-   * @param key 键
+   *
+   * @param key   键
    * @param value 值
-   * @param time 时间(秒) time要大于0 如果time小于等于0 将设置无限期
+   * @param time  时间(秒) time要大于0 如果time小于等于0 将设置无限期
    * @return true成功 false 失败
    */
   public static boolean set(String key, Object value, long time) {
@@ -134,13 +138,11 @@ public class RedisUtil {
     try {
       if (time > 0) {
         REDIS_TEMPLATE.opsForValue().set(key, value, time, TimeUnit.SECONDS);
-      }
-      else {
+      } else {
         REDIS_TEMPLATE.opsForValue().set(key, value);
       }
       return true;
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       log.error("Redis opsForValue error: {}", e.getMessage());
       return false;
     }
@@ -148,7 +150,8 @@ public class RedisUtil {
 
   /**
    * 递增 此时value值必须为int类型 否则报错
-   * @param key 键
+   *
+   * @param key   键
    * @param delta 要增加几(大于0)
    * @return 自增后的值
    */
@@ -164,7 +167,8 @@ public class RedisUtil {
 
   /**
    * 递减
-   * @param key 键
+   *
+   * @param key   键
    * @param delta 要减少几(小于0)
    * @return 自减后的值
    */
@@ -185,13 +189,11 @@ public class RedisUtil {
     try {
       if (time > 0) {
         STRING_REDIS_TEMPLATE.opsForValue().set(key, String.valueOf(value), time, TimeUnit.SECONDS);
-      }
-      else {
+      } else {
         STRING_REDIS_TEMPLATE.opsForValue().set(key, String.valueOf(value));
       }
       return true;
-    }
-    catch (Exception e) {
+    } catch (Exception e) {
       log.error("setLongValue() error: {}", e.getMessage());
       return false;
     }
@@ -199,6 +201,7 @@ public class RedisUtil {
 
   /**
    * 普通缓存获取
+   *
    * @param key 键
    * @return 值
    */
@@ -218,6 +221,7 @@ public class RedisUtil {
 
   /**
    * 批量删除缓存
+   *
    * @param keys
    */
   public static void deleteBatch(List<String> keys) {
@@ -234,6 +238,7 @@ public class RedisUtil {
 
   /**
    * 批量删除缓存
+   *
    * @param cacheName 缓存名
    * @param cacheKeys 缓存key
    */
@@ -255,6 +260,7 @@ public class RedisUtil {
 
   /**
    * 比较和删除标记，原子性
+   *
    * @return 是否成功
    */
   public static boolean cad(String key, String value) {

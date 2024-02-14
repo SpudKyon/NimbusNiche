@@ -1,6 +1,7 @@
 package com.spud.nimbus.common.database.dto;
 
 import com.github.pagehelper.IPage;
+import com.spud.nimbus.common.dto.BaseDTO;
 import com.spud.nimbus.common.util.PrincipalUtil;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotNull;
@@ -11,7 +12,7 @@ import java.util.Arrays;
  * @author spud
  * @date 2024/1/28
  */
-public class PageDTO implements IPage {
+public class PageDTO extends BaseDTO implements IPage {
 
   public static final String ASC = "ASC";
 

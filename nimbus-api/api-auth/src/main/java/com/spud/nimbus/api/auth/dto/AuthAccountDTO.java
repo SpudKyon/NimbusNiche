@@ -1,5 +1,6 @@
 package com.spud.nimbus.api.auth.dto;
 
+import com.spud.nimbus.common.dto.BaseDTO;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
@@ -11,7 +12,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class AuthAccountDTO {
+public class AuthAccountDTO extends BaseDTO {
 
   /**
    * 用户名

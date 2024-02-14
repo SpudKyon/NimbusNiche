@@ -1,12 +1,13 @@
 package com.spud.nimbus.api.auth.vo;
 
+import com.spud.nimbus.common.vo.BaseVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 
 /**
  * @author spud
  * @date 2024/1/28
  */
-public class AuthAccountVO {
+public class AuthAccountVO extends BaseVO {
   /**
    * 全平台用户唯一id
    */

@@ -28,6 +28,7 @@ public class ShopCartVO {
 
   @Schema(description = "商品总值", requiredMode = Schema.RequiredMode.REQUIRED)
   private Long total;
+
   @Schema(description = "数量", requiredMode = Schema.RequiredMode.REQUIRED)
   private Integer totalCount;
 }
