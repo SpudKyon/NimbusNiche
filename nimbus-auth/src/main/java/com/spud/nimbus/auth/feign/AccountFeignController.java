@@ -10,11 +10,13 @@ import com.spud.nimbus.api.auth.vo.TokenInfoVO;
 import com.spud.nimbus.api.leaf.feign.SegmentFeignClient;
 import com.spud.nimbus.auth.manage.TokenStore;
 import com.spud.nimbus.auth.mapper.AuthAccountMapper;
+import com.spud.nimbus.auth.model.AuthAccount;
 import com.spud.nimbus.common.exception.NimbusException;
 import com.spud.nimbus.common.response.Result;
 import com.spud.nimbus.common.response.ResultCode;
 import com.spud.nimbus.common.security.AuthUserContext;
 import com.spud.nimbus.common.security.bo.AuthAccountInVerifyBO;
+import com.spud.nimbus.common.security.constant.InputUserNameEnum;
 import com.spud.nimbus.common.util.BeanUtil;
 import com.spud.nimbus.common.util.PrincipalUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +72,7 @@ public class AccountFeignController implements AccountFeignClient {
       return Result.transform(verify);
     }
     authAccountMapper.updateAccountInfo(verify.getData());
-    return Result.success();
+    return Result.success(null);
   }
 
   @Override
@@ -141,7 +143,7 @@ public class AccountFeignController implements AccountFeignClient {
     if (res != 1) {
       throw new NimbusException("用户信息错误，更新失败");
     }
-    return Result.success();
+    return Result.success(null);
   }
 
   @Override

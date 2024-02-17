@@ -16,7 +16,7 @@ public class AuthAccount extends BaseModel {
   /**
    * 全平台用户唯一id
    */
-  @DistributedId("mall4cloud-auth-account")
+  @DistributedId("nimbus-auth-account")
   private Long uid;
 
   /**

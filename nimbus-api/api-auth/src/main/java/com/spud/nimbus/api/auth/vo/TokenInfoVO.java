@@ -1,6 +1,8 @@
 package com.spud.nimbus.api.auth.vo;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import lombok.Data;
+import lombok.ToString;
 
 /**
  * token信息，该信息用户返回给前端，前端请求携带accessToken进行用户校验
@@ -8,6 +10,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @author spud
  * @date 2024/1/28
  */
+@Data
+@ToString
 public class TokenInfoVO {
 
   @Schema(description = "accessToken")

@@ -3,6 +3,7 @@ package com.spud.nimbus.common.security.config;
 import cn.hutool.core.util.ArrayUtil;
 import com.spud.nimbus.common.security.adapter.AuthConfigAdapter;
 import com.spud.nimbus.common.security.adapter.DefaultAuthConfigAdapter;
+import com.spud.nimbus.common.security.filter.AuthFilter;
 import jakarta.servlet.DispatcherType;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;

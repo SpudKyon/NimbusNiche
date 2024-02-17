@@ -2,6 +2,7 @@ package com.spud.nimbus.auth.feign;
 
 import com.spud.nimbus.api.auth.bo.UserInfoInTokenBO;
 import com.spud.nimbus.api.auth.feign.TokenFeignClient;
+import com.spud.nimbus.auth.manage.TokenStore;
 import com.spud.nimbus.common.response.Result;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +24,9 @@ public class TokenFeignController implements TokenFeignClient {
     Result<UserInfoInTokenBO> userInfoByAccessTokenResponse = tokenStore
             .getUserInfoByAccessToken(accessToken, true);
     if (!userInfoByAccessTokenResponse.isSuccess()) {
-      return ServerResponseEntity.transform(userInfoByAccessTokenResponse);
+      return Result.transform(userInfoByAccessTokenResponse);
     }
-    return ServerResponseEntity.success(userInfoByAccessTokenResponse.getData());
+    return Result.success(userInfoByAccessTokenResponse.getData());
   }
 
 }

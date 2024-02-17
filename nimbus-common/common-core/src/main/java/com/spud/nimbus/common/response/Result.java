@@ -70,6 +70,12 @@ public class Result<T> implements Serializable {
     return result;
   }
 
+  /**
+   * 转换
+   *
+   * @param oldResult 旧的结果
+   * @return Result
+   */
   public static <T> Result<T> transform(Result<?> oldResult) {
     Result<T> result = new Result<>();
     result.setMsg(oldResult.getMsg());

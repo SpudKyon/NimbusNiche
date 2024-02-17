@@ -36,6 +36,16 @@
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-crypto</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.spud.nimbus</groupId>
+            <artifactId>common-cache</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.spud.nimbus</groupId>
+            <artifactId>api-rbac</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
 </project>

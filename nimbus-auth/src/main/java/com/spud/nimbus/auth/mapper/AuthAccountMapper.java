@@ -1,5 +1,6 @@
 package com.spud.nimbus.auth.mapper;
 
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.spud.nimbus.api.auth.vo.AuthAccountVO;
 import com.spud.nimbus.auth.model.AuthAccount;
 import com.spud.nimbus.common.security.bo.AuthAccountInVerifyBO;
@@ -9,7 +10,7 @@ import org.apache.ibatis.annotations.Param;
  * @author spud
  * @date 2024/2/9
  */
-public interface AuthAccountMapper {
+public interface AuthAccountMapper extends BaseMapper<AuthAccount> {
 
   /**
    * 根据输入的用户名及用户名类型获取用户信息
@@ -72,6 +73,7 @@ public interface AuthAccountMapper {
 
   /**
    * 根据用户名和系统类型获取用户信息
+   *
    * @param validAccount
    * @param systemType
    * @return uid
@@ -80,6 +82,7 @@ public interface AuthAccountMapper {
 
   /**
    * 根据用户名和系统类型获取用户信息
+   *
    * @param username
    * @param sysType
    * @return
@@ -88,6 +91,7 @@ public interface AuthAccountMapper {
 
   /**
    * 根据用户id更新租户id
+   *
    * @param authAccount
    * @param userId
    * @param sysType
@@ -97,6 +101,7 @@ public interface AuthAccountMapper {
 
   /**
    * 根据租户id获取商家信息
+   *
    * @param tenantId
    * @return
    */

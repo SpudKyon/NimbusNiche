@@ -5,10 +5,13 @@ import cn.hutool.core.util.StrUtil;
 import com.spud.nimbus.api.auth.bo.UserInfoInTokenBO;
 import com.spud.nimbus.api.auth.constant.SysTypeEnum;
 import com.spud.nimbus.api.auth.feign.TokenFeignClient;
+import com.spud.nimbus.api.rbac.constant.HttpMethodEnum;
+import com.spud.nimbus.api.rbac.feign.PermissionFeignClient;
 import com.spud.nimbus.common.constant.Auth;
 import com.spud.nimbus.common.feign.FeignInsideAuthConfig;
 import com.spud.nimbus.common.handler.HttpHandler;
 import com.spud.nimbus.common.response.Result;
+import com.spud.nimbus.common.response.ResultCode;
 import com.spud.nimbus.common.security.AuthUserContext;
 import com.spud.nimbus.common.security.adapter.AuthConfigAdapter;
 import com.spud.nimbus.common.util.IpHelper;
@@ -56,7 +59,7 @@ public class AuthFilter implements Filter {
     HttpServletResponse resp = (HttpServletResponse) response;
 
     if (!feignRequestCheck(req)) {
-      httpHandler.printServerResponseToWeb(Result.fail(ResponseEnum.UNAUTHORIZED));
+      httpHandler.printServerResponseToWeb(Result.fail(ResultCode.UNAUTHORIZED, null));
       return;
     }
 
@@ -82,7 +85,7 @@ public class AuthFilter implements Filter {
     String accessToken = req.getHeader("Authorization");
 
     if (StrUtil.isBlank(accessToken)) {
-      httpHandler.printServerResponseToWeb(Result.fail(ResponseEnum.UNAUTHORIZED));
+      httpHandler.printServerResponseToWeb(Result.fail(ResultCode.UNAUTHORIZED, null));
       return;
     }
 
@@ -90,15 +93,15 @@ public class AuthFilter implements Filter {
     Result<UserInfoInTokenBO> userInfoInTokenVoResult = tokenFeignClient
             .checkToken(accessToken);
     if (!userInfoInTokenVoResult.isSuccess()) {
-      httpHandler.printServerResponseToWeb(Result.fail(ResponseEnum.UNAUTHORIZED));
+      httpHandler.printServerResponseToWeb(Result.fail(ResultCode.UNAUTHORIZED, null));
       return;
     }
 
     UserInfoInTokenBO userInfoInToken = userInfoInTokenVoResult.getData();
 
     // 需要用户角色权限，就去根据用户角色权限判断是否
-    if (!checkRbac(userInfoInToken,req.getRequestURI(), req.getMethod())) {
-      httpHandler.printServerResponseToWeb(Result.fail(ResponseEnum.UNAUTHORIZED));
+    if (!checkRbac(userInfoInToken, req.getRequestURI(), req.getMethod())) {
+      httpHandler.printServerResponseToWeb(Result.fail(ResultCode.UNAUTHORIZED, null));
       return;
     }
 
@@ -107,8 +110,7 @@ public class AuthFilter implements Filter {
       AuthUserContext.set(userInfoInToken);
 
       chain.doFilter(req, resp);
-    }
-    finally {
+    } finally {
       AuthUserContext.clean();
     }
 
@@ -122,7 +124,7 @@ public class AuthFilter implements Filter {
     String feignInsideSecret = req.getHeader(feignInsideAuthConfig.getKey());
 
     // 校验feign 请求携带的key 和 value是否正确
-    if (StrUtil.isBlank(feignInsideSecret) || !Objects.equals(feignInsideSecret,feignInsideAuthConfig.getSecret())) {
+    if (StrUtil.isBlank(feignInsideSecret) || !Objects.equals(feignInsideSecret, feignInsideAuthConfig.getSecret())) {
       return false;
     }
     // ip白名单
@@ -140,6 +142,7 @@ public class AuthFilter implements Filter {
 
   /**
    * 用户角色权限校验
+   *
    * @param uri uri
    * @return 是否校验成功
    */
@@ -150,7 +153,7 @@ public class AuthFilter implements Filter {
     }
 
     Result<Boolean> booleanResult = permissionFeignClient
-            .checkPermission(userInfoInToken.getUserId(), userInfoInToken.getSysType(),uri,userInfoInToken.getIsAdmin(),HttpMethodEnum.valueOf(method.toUpperCase()).value() );
+            .checkPermission(userInfoInToken.getUserId(), userInfoInToken.getSysType(), uri, userInfoInToken.getIsAdmin(), HttpMethodEnum.valueOf(method.toUpperCase()).value());
 
     if (!booleanResult.isSuccess()) {
       return false;
