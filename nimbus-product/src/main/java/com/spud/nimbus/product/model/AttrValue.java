@@ -37,18 +37,6 @@ public class AttrValue extends BaseModel implements Serializable {
     private Long attrValueId;
 
     /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * 属性ID
      */
     @TableField("attr_id")

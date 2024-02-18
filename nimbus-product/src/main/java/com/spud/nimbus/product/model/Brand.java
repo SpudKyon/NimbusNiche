@@ -37,18 +37,6 @@ public class Brand extends BaseModel implements Serializable {
     private Long brandId;
 
     /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * 品牌名称
      */
     @TableField("name")

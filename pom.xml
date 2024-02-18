@@ -11,6 +11,7 @@
         <module>nimbus-api/api-leaf</module>
         <module>nimbus-user</module>
         <module>nimbus-product</module>
+        <module>nimbus-biz</module>
     </modules>
 
     <parent>

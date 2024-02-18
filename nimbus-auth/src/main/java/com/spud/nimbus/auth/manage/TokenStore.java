@@ -14,8 +14,7 @@ import com.spud.nimbus.common.response.Result;
 import com.spud.nimbus.common.response.ResultCode;
 import com.spud.nimbus.common.security.bo.TokenInfoBO;
 import com.spud.nimbus.common.util.PrincipalUtil;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.data.redis.core.RedisCallback;
@@ -37,11 +36,10 @@ import java.util.concurrent.TimeUnit;
  * @author FrozenWatermelon
  * @date 2020/7/2
  */
+@Slf4j
 @Component
 @RefreshScope
 public class TokenStore {
-
-  private static final Logger logger = LoggerFactory.getLogger(TokenStore.class);
 
   private final RedisTemplate<Object, Object> redisTemplate;
 
@@ -142,7 +140,7 @@ public class TokenStore {
       expiresIn = expiresIn * 24 * 30;
     }
     // 系统管理员的token过期时间 2小时
-    if (Objects.equals(sysType, SysTypeEnum.MULTISHOP.value()) || Objects.equals(sysType, SysTypeEnum.PLATFORM.value())) {
+    else if (Objects.equals(sysType, SysTypeEnum.MULTISHOP.value()) || Objects.equals(sysType, SysTypeEnum.PLATFORM.value())) {
       expiresIn = expiresIn * 24 * 30;
     }
     return expiresIn;
@@ -263,7 +261,7 @@ public class TokenStore {
         return Result.showFailMsg("token 格式有误");
       }
     } catch (Exception e) {
-      logger.error(e.getMessage());
+      log.error(e.getMessage());
       return Result.showFailMsg("token 格式有误");
     }
 
@@ -302,7 +300,7 @@ public class TokenStore {
     }
     String uidKey = getUidToAccessKey(getApprovalKey(appId, uid));
     Set<String> tokenInfoBoList = stringRedisTemplate.opsForSet().members(uidKey);
-    if (tokenInfoBoList == null || tokenInfoBoList.size() == 0) {
+    if (tokenInfoBoList == null || tokenInfoBoList.isEmpty()) {
       throw new NimbusException(ResultCode.UNAUTHORIZED);
     }
     for (String accessTokenWithRefreshToken : tokenInfoBoList) {

@@ -1,4 +1,4 @@
-package com.spud.nimbus.product.model;
+package com.spud.nimbus.biz.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableField;
@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 品牌分类关联信息
+ * 
  * </p>
  *
  * @author spud
@@ -25,25 +25,31 @@ import lombok.experimental.Accessors;
 @Data
 @ToString
 @Accessors(chain = true)
-@TableName("category_brand")
-public class CategoryBrand extends BaseModel implements Serializable {
+@TableName("attach_file_group")
+public class AttachFileGroup extends BaseModel implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+    @TableId(value = "attach_file_group_id", type = IdType.AUTO)
+    private Long attachFileGroupId;
 
     /**
-     * 品牌id
+     * 店铺id
      */
-    @TableField("brand_id")
-    private Long brandId;
+    @TableField("shop_id")
+    private Long shopId;
 
     /**
-     * 分类id
+     * 分组名称
      */
-    @TableField("category_id")
-    private Long categoryId;
+    @TableField("name")
+    private String name;
+
+    /**
+     * 1:图片 2:视频 3:文件
+     */
+    @TableField("type")
+    private Integer type;
 
 
 }

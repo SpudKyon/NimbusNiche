@@ -37,18 +37,6 @@ public class Category extends BaseModel implements Serializable {
     private Long categoryId;
 
     /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * 店铺id
      */
     @TableField("shop_id")

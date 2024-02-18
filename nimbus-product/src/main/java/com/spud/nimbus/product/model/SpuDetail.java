@@ -38,18 +38,6 @@ public class SpuDetail extends BaseModel implements Serializable {
   private Long spuId;
 
   /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
-
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
-
-  /**
    * 商品详情
    */
   @TableField("detail")

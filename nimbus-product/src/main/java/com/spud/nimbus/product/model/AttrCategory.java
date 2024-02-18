@@ -37,18 +37,6 @@ public class AttrCategory extends BaseModel implements Serializable {
     private Long attrCategoryId;
 
     /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * 分类id
      */
     @TableField("category_id")

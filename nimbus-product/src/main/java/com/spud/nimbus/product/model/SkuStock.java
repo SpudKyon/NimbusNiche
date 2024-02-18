@@ -37,18 +37,6 @@ public class SkuStock extends BaseModel implements Serializable {
     private Long stockId;
 
     /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * SKU ID
      */
     @TableField("sku_id")

@@ -38,18 +38,6 @@ public class Sku extends BaseModel implements Serializable {
     private Long skuId;
 
     /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * SPU id
      */
     @TableField("spu_id")

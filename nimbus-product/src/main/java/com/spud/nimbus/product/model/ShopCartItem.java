@@ -37,18 +37,6 @@ public class ShopCartItem extends BaseModel implements Serializable {
     private Long cartItemId;
 
     /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
-
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
-
-    /**
      * 店铺ID
      */
     @TableField("shop_id")
