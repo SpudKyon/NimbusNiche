@@ -12,6 +12,7 @@
         <module>nimbus-user</module>
         <module>nimbus-product</module>
         <module>nimbus-biz</module>
+        <module>nimbus-rbac</module>
     </modules>
 
     <parent>
