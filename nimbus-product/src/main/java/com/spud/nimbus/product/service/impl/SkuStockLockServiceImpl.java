@@ -69,8 +69,8 @@ public class SkuStockLockServiceImpl extends ServiceImpl<SkuStockLockMapper, Sku
   }
 
   @Override
-  public void save(SkuStockLock skuStockLock) {
-    skuStockLockMapper.save(skuStockLock);
+  public boolean save(SkuStockLock skuStockLock) {
+    return super.save(skuStockLock);
   }
 
   @Override

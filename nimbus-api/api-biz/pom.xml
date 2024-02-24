@@ -17,12 +17,12 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <dependecies>
+    <dependencies>
         <dependency>
             <groupId>com.spud.nimbus</groupId>
             <artifactId>common-core</artifactId>
             <version>${project.version}</version>
         </dependency>
-    </dependecies>
+    </dependencies>
 
 </project>

@@ -7,12 +7,11 @@
         <module>nimbus-common</module>
         <module>nimbus-auth</module>
         <module>nimbus-api</module>
-        <module>nimbus-api/api-auth</module>
-        <module>nimbus-api/api-leaf</module>
         <module>nimbus-user</module>
         <module>nimbus-product</module>
         <module>nimbus-biz</module>
         <module>nimbus-rbac</module>
+        <module>nimbus-leaf</module>
     </modules>
 
     <parent>
