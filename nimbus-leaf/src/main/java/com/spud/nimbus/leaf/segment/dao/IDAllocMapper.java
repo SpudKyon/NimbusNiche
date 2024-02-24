@@ -1,10 +1,7 @@
 package com.spud.nimbus.leaf.segment.dao;
 
 import com.spud.nimbus.leaf.segment.model.LeafAlloc;
-import org.apache.ibatis.annotations.Result;
-import org.apache.ibatis.annotations.Results;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
+import org.apache.ibatis.annotations.*;
 
 import java.util.List;
 

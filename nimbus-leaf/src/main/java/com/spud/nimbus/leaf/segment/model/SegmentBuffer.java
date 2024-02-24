@@ -131,15 +131,17 @@ public class SegmentBuffer {
 
   @Override
   public String toString() {
-    return "SegmentBuffer{" + "key='" + key + '\'' +
-            ", segments=" + Arrays.toString(segments) +
-            ", currentPos=" + currentPos +
-            ", nextReady=" + nextReady +
-            ", initOk=" + initOk +
-            ", threadRunning=" + threadRunning +
-            ", step=" + step +
-            ", minStep=" + minStep +
-            ", updateTimestamp=" + updateTimestamp +
-            '}';
+    final StringBuilder sb = new StringBuilder("SegmentBuffer{");
+    sb.append("key='").append(key).append('\'');
+    sb.append(", segments=").append(Arrays.toString(segments));
+    sb.append(", currentPos=").append(currentPos);
+    sb.append(", nextReady=").append(nextReady);
+    sb.append(", initOk=").append(initOk);
+    sb.append(", threadRunning=").append(threadRunning);
+    sb.append(", step=").append(step);
+    sb.append(", minStep=").append(minStep);
+    sb.append(", updateTimestamp=").append(updateTimestamp);
+    sb.append('}');
+    return sb.toString();
   }
 }

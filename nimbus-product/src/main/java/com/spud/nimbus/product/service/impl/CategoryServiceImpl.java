@@ -39,7 +39,7 @@ public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> i
   public CategoryVO getById(Long categoryId) {
     CategoryVO category = categoryMapper.getById(categoryId);
     if (Objects.isNull(category)) {
-//            throw new mall4cloudException("分类不存在，请刷新后重试");
+//            throw new NimbusException("分类不存在，请刷新后重试");
       return category;
     }
     List<CategoryVO> paths = new ArrayList<>();

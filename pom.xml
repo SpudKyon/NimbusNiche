@@ -12,6 +12,7 @@
         <module>nimbus-biz</module>
         <module>nimbus-rbac</module>
         <module>nimbus-leaf</module>
+        <module>nimbus-multishop</module>
     </modules>
 
     <parent>

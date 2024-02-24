@@ -34,15 +34,15 @@ public class IDAllocDaoImpl implements IDAllocDao {
 	@Override
 	public List<LeafAlloc> getAllLeafAllocs() {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(false)) {
-			return sqlSession.selectList("com.mall4j.cloud.leaf.segment.dao.IDAllocMapper.getAllLeafAllocs");
+			return sqlSession.selectList("com.spud.nimbus.leaf.segment.dao.IDAllocMapper.getAllLeafAllocs");
 		}
 	}
 
 	@Override
 	public LeafAlloc updateMaxIdAndGetLeafAlloc(String tag) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-			sqlSession.update("com.mall4j.cloud.leaf.segment.dao.IDAllocMapper.updateMaxId", tag);
-			LeafAlloc result = sqlSession.selectOne("com.mall4j.cloud.leaf.segment.dao.IDAllocMapper.getLeafAlloc", tag);
+			sqlSession.update("com.spud.nimbus.leaf.segment.dao.IDAllocMapper.updateMaxId", tag);
+			LeafAlloc result = sqlSession.selectOne("com.spud.nimbus.leaf.segment.dao.IDAllocMapper.getLeafAlloc", tag);
 			sqlSession.commit();
 			return result;
 		}
@@ -51,8 +51,8 @@ public class IDAllocDaoImpl implements IDAllocDao {
 	@Override
 	public LeafAlloc updateMaxIdByCustomStepAndGetLeafAlloc(LeafAlloc leafAlloc) {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession()) {
-			sqlSession.update("com.mall4j.cloud.leaf.segment.dao.IDAllocMapper.updateMaxIdByCustomStep", leafAlloc);
-			LeafAlloc result = sqlSession.selectOne("com.mall4j.cloud.leaf.segment.dao.IDAllocMapper.getLeafAlloc",
+			sqlSession.update("com.spud.nimbus.leaf.segment.dao.IDAllocMapper.updateMaxIdByCustomStep", leafAlloc);
+			LeafAlloc result = sqlSession.selectOne("com.spud.nimbus.leaf.segment.dao.IDAllocMapper.getLeafAlloc",
 					leafAlloc.getKey());
 			sqlSession.commit();
 			return result;
@@ -62,7 +62,7 @@ public class IDAllocDaoImpl implements IDAllocDao {
 	@Override
 	public List<String> getAllTags() {
 		try (SqlSession sqlSession = sqlSessionFactory.openSession(false)) {
-			return sqlSession.selectList("com.mall4j.cloud.leaf.segment.dao.IDAllocMapper.getAllTags");
+			return sqlSession.selectList("com.spud.nimbus.leaf.segment.dao.IDAllocMapper.getAllTags");
 		}
 	}
 

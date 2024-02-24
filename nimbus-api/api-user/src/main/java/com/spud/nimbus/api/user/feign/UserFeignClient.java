@@ -13,7 +13,7 @@ import java.util.List;
  * @author spud
  * @date 2024/1/31
  */
-@FeignClient(value = "mall4cloud-user",contextId = "user")
+@FeignClient(value = "nimbus-user",contextId = "user")
 public interface UserFeignClient {
 
   /**

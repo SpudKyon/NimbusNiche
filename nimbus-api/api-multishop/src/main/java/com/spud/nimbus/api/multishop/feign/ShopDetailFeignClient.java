@@ -14,7 +14,7 @@ import java.util.List;
  * @author spud
  * @date 2024/2/9
  */
-@FeignClient(value = "mall4cloud-multishop",contextId = "shopDetail")
+@FeignClient(value = "nimbus-multishop",contextId = "shopDetail")
 public interface ShopDetailFeignClient {
 
 

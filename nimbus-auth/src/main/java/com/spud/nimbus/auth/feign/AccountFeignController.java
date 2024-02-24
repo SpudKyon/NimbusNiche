@@ -48,7 +48,7 @@ public class AccountFeignController implements AccountFeignClient {
   @Override
   @Transactional(rollbackFor = Exception.class)
   public Result<Long> save(AuthAccountDTO authAccountDTO) {
-    Result<Long> segmentIdResponse = segmentFeignClient.getSegmentId("mall4cloud-auth-account");
+    Result<Long> segmentIdResponse = segmentFeignClient.getSegmentId("nimbus-auth-account");
     if (!segmentIdResponse.isSuccess()) {
       throw new NimbusException(ResultCode.EXCEPTION);
     }
