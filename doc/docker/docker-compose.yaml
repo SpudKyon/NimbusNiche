@@ -13,6 +13,10 @@ services:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/conf.d:/etc/mysql/conf.d
       - ./mysql/initdb:/docker-entrypoint-initdb.d
+    networks:
+      default:
+        ipv4_address: 172.20.0.10
+
 
   nimbus-minio:
     image: minio/minio:RELEASE.2021-06-17T00-10-46Z
@@ -26,6 +30,9 @@ services:
     environment:
       - MINIO_ROOT_USER=admin
       - MINIO_ROOT_PASSWORD=admin123456
+    networks:
+      default:
+        ipv4_address: 172.20.0.20
 
   nimbus-redis:
     image: redis:6.2
@@ -33,7 +40,9 @@ services:
     restart: always
     ports:
       - 6379:6379
-
+    networks:
+      default:
+        ipv4_address: 172.20.0.30
 
   nimbus-nacos:
     image: nacos/nacos-server:v2.2.0-slim
@@ -51,13 +60,15 @@ services:
       - MODE=standalone
       - PREFER_HOST_MODE=hostname
       - SPRING_DATASOURCE_PLATFORM=mysql
-      - MYSQL_SERVICE_HOST=nimbus-mysql
+      - MYSQL_SERVICE_HOST=172.20.0.10
       - MYSQL_SERVICE_DB_NAME=nimbus_nacos
       - MYSQL_SERVICE_USER=root
       - MYSQL_SERVICE_PASSWORD=root
     volumes:
       - ./nacos/logs:/home/nacos/logs
-
+    networks:
+      default:
+        ipv4_address: 172.20.0.40
 
 
   nimbus-seata:
@@ -74,6 +85,9 @@ services:
       - SEATA_IP=127.0.0.1
     volumes:
       - ./seata/application.yml:/seata-server/resources/application.yml
+    networks:
+      default:
+        ipv4_address: 172.20.0.50
 
   nimbus-elasticsearch:
     image: elasticsearch:7.17.5
@@ -89,6 +103,9 @@ services:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
       - ./elasticsearch/data:/usr/share/elasticsearch/data
       - ./elasticsearch/plugins:/usr/share/elasticsearch/plugins
+    networks:
+      default:
+        ipv4_address: 172.20.0.60
 
   nimbus-kibana:
     image: kibana:7.17.5
@@ -100,6 +117,9 @@ services:
       - nimbus-elasticsearch:elasticsearch
     depends_on:
       - nimbus-elasticsearch
+    networks:
+      default:
+        ipv4_address: 172.20.0.70
 
   nimbus-canal:
     image: canal/canal-server:v1.1.6
@@ -111,6 +131,9 @@ services:
       - ./canal/conf/example:/home/admin/canal-server/conf/example
       - ./canal/conf/canal.properties:/home/admin/canal-server/conf/canal.properties
       - ./canal/logs:/home/admin/canal-server/logs
+    networks:
+      default:
+        ipv4_address: 172.20.0.80
 
 
   nimbus-rocketmq-namesrv:
@@ -129,6 +152,8 @@ services:
       rocketmq:
         aliases:
           - nimbus-rocketmq-namesrv
+      default:
+        ipv4_address: 172.20.1.10
 
   nimbus-rocketmq-broker:
     image: apache/rocketmq:4.9.4
@@ -150,6 +175,8 @@ services:
       rocketmq:
         aliases:
           - nimbus-rocketmq-broker
+      default:
+        ipv4_address: 172.20.1.20
 
 
   nimbus-rocketmq-dashboard:
@@ -166,9 +193,16 @@ services:
       rocketmq:
         aliases:
           - nimbus-rocketmq-console
+      default:
+        ipv4_address: 172.20.1.30
 
 
 networks:
   rocketmq:
     name: rocketmq
     driver: bridge
+  default:
+    name: nimbus_net
+    driver: bridge
+
+# $ docker network create --subnet=172.20.0.0/16 nimbus_net
