@@ -1,6 +1,7 @@
 package com.spud.nimbus.common.order.vo;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.spud.nimbus.common.vo.BaseVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
@@ -15,7 +16,7 @@ import java.util.Date;
  */
 @Data
 @ToString
-public class ShopCartItemVO implements Serializable {
+public class ShopCartItemVO extends BaseVO {
 
   @Schema(description = "加入购物车时间", requiredMode = Schema.RequiredMode.REQUIRED)
   private Date createTime;

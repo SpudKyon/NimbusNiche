@@ -13,6 +13,8 @@
         <module>nimbus-rbac</module>
         <module>nimbus-leaf</module>
         <module>nimbus-multishop</module>
+        <module>nimbus-platform</module>
+        <module>nimbus-order</module>
     </modules>
 
     <parent>
