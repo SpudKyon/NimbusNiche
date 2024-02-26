@@ -15,6 +15,9 @@
         <module>nimbus-multishop</module>
         <module>nimbus-platform</module>
         <module>nimbus-order</module>
+        <module>nimbus-payment</module>
+        <module>nimbus-search</module>
+        <module>nimbus-gateway</module>
     </modules>
 
     <parent>

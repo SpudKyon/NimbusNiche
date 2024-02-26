@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>api-order</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -20,7 +21,7 @@
     <dependencies>
         <dependency>
             <groupId>com.spud.nimbus</groupId>
-            <artifactId>common-core</artifactId>
+            <artifactId>common-order</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

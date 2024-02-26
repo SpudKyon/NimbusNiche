@@ -11,7 +11,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class EsPageDTO{
+public class EsPageDTO {
 
   public static final String ASC = "ASC";
 
@@ -26,16 +26,16 @@ public class EsPageDTO{
    * 当前页
    */
   @NotNull(message = "pageNum 不能为空")
-  @Schema(description = "当前页" , requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(description = "当前页", requiredMode = Schema.RequiredMode.REQUIRED)
   private Integer pageNum;
 
   @NotNull(message = "pageSize 不能为空")
-  @Schema(description = "每页大小" , requiredMode = Schema.RequiredMode.REQUIRED)
+  @Schema(description = "每页大小", requiredMode = Schema.RequiredMode.REQUIRED)
   private Integer pageSize;
 
-  @Schema(description = "排序字段数组，用逗号分割" )
+  @Schema(description = "排序字段数组，用逗号分割")
   private String[] columns;
 
-  @Schema(description = "排序字段方式，用逗号分割，ASC正序，DESC倒序" )
+  @Schema(description = "排序字段方式，用逗号分割，ASC正序，DESC倒序")
   private String[] orders;
 }

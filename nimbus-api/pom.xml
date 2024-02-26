@@ -10,6 +10,8 @@
     </parent>
 
     <artifactId>nimbus-api</artifactId>
+    <packaging>pom</packaging>
+
     <modules>
         <module>api-auth</module>
         <module>api-leaf</module>
@@ -22,7 +24,6 @@
         <module>api-platform</module>
         <module>api-biz</module>
     </modules>
-    <packaging>pom</packaging>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
