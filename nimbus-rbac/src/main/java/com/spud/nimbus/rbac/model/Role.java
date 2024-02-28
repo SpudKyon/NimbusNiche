@@ -28,55 +28,54 @@ import lombok.experimental.Accessors;
 @ToString
 public class Role implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 角色id
-   */
-  @TableId(value = "role_id", type = IdType.AUTO)
-  private Long roleId;
+	/**
+	 * 角色id
+	 */
+	@TableId(value = "role_id", type = IdType.AUTO)
+	private Long roleId;
 
-  /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * 角色名称
-   */
-  @TableField("role_name")
-  private String roleName;
+	/**
+	 * 角色名称
+	 */
+	@TableField("role_name")
+	private String roleName;
 
-  /**
-   * 备注
-   */
-  @TableField("remark")
-  private String remark;
+	/**
+	 * 备注
+	 */
+	@TableField("remark")
+	private String remark;
 
-  /**
-   * 创建者ID
-   */
-  @TableField("create_user_id")
-  private Long createUserId;
+	/**
+	 * 创建者ID
+	 */
+	@TableField("create_user_id")
+	private Long createUserId;
 
-  /**
-   * 业务类型 1 店铺菜单 2平台菜单
-   */
-  @TableField("biz_type")
-  private Integer bizType;
+	/**
+	 * 业务类型 1 店铺菜单 2平台菜单
+	 */
+	@TableField("biz_type")
+	private Integer bizType;
 
-  /**
-   * 所属租户
-   */
-  @TableField("tenant_id")
-  private Long tenantId;
-
+	/**
+	 * 所属租户
+	 */
+	@TableField("tenant_id")
+	private Long tenantId;
 
 }

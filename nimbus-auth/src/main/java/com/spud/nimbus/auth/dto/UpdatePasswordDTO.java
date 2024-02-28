@@ -15,11 +15,12 @@ import lombok.ToString;
 @ToString
 public class UpdatePasswordDTO extends BaseDTO {
 
-  @NotBlank(message = "oldPassword NotBlank")
-  @Schema(description = "旧密码", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String oldPassword;
+	@NotBlank(message = "oldPassword NotBlank")
+	@Schema(description = "旧密码", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String oldPassword;
 
-  @NotNull(message = "newPassword NotNull")
-  @Schema(description = "新密码", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String newPassword;
+	@NotNull(message = "newPassword NotNull")
+	@Schema(description = "新密码", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String newPassword;
+
 }

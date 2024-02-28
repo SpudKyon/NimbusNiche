@@ -10,6 +10,7 @@ import java.util.List;
 
 /**
  * 省市区地区信息VO
+ *
  * @author spud
  * @date 2024/1/30
  */
@@ -17,28 +18,30 @@ import java.util.List;
 @Data
 @ToString
 public class AreaVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  private Long areaId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "地址")
-  private String areaName;
+	private Long areaId;
 
-  @Schema(description = "上级地址")
-  private Long parentId;
+	@Schema(description = "地址")
+	private String areaName;
 
-  @Schema(description = "等级（从1开始）")
-  private Integer level;
+	@Schema(description = "上级地址")
+	private Long parentId;
 
-  private Integer check;
+	@Schema(description = "等级（从1开始）")
+	private Integer level;
 
-  /**
-   * 下级地址集合
-   */
-  private List<AreaVO> areas;
+	private Integer check;
 
-  /**
-   * 下级地址的areaId
-   */
-  private List<Long> areaIds;
+	/**
+	 * 下级地址集合
+	 */
+	private List<AreaVO> areas;
+
+	/**
+	 * 下级地址的areaId
+	 */
+	private List<Long> areaIds;
+
 }

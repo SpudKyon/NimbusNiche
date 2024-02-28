@@ -26,45 +26,44 @@ import lombok.experimental.Accessors;
 @TableName("leaf_alloc")
 public class LeafAlloc implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  private String key;
+	private String key;
 
-  /**
-   * 区分业务
-   */
-  @TableId(value = "biz_tag", type = IdType.AUTO)
-  private String bizTag;
+	/**
+	 * 区分业务
+	 */
+	@TableId(value = "biz_tag", type = IdType.AUTO)
+	private String bizTag;
 
-  /**
-   * 该biz_tag目前所被分配的ID号段的最大值
-   */
-  @TableField("max_id")
-  private Long maxId;
+	/**
+	 * 该biz_tag目前所被分配的ID号段的最大值
+	 */
+	@TableField("max_id")
+	private Long maxId;
 
-  /**
-   * 每次分配的号段长度
-   */
-  @TableField("step")
-  private Integer step;
+	/**
+	 * 每次分配的号段长度
+	 */
+	@TableField("step")
+	private Integer step;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * 描述
-   */
-  @TableField("description")
-  private String description;
+	/**
+	 * 描述
+	 */
+	@TableField("description")
+	private String description;
 
-  /**
-   * 每次getid时随机增加的长度，这样就不会有连续的id了
-   */
-  @TableField("random_step")
-  private Integer randomStep;
-
+	/**
+	 * 每次getid时随机增加的长度，这样就不会有连续的id了
+	 */
+	@TableField("random_step")
+	private Integer randomStep;
 
 }

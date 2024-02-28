@@ -28,98 +28,100 @@ import lombok.experimental.Accessors;
 @TableName("user_addr")
 public class UserAddr extends BaseModel implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  public static final Integer DEFAULT_ADDR = 1;
-  public static final Integer NOT_DEFAULT_ADDR = 0;
+	public static final Integer DEFAULT_ADDR = 1;
 
-  /**
-   * ID
-   */
-  @TableId(value = "addr_id", type = IdType.AUTO)
-  private Long addrId;
+	public static final Integer NOT_DEFAULT_ADDR = 0;
 
-  /**
-   * 用户ID
-   */
-  @TableField("user_id")
-  private Long userId;
+	/**
+	 * ID
+	 */
+	@TableId(value = "addr_id", type = IdType.AUTO)
+	private Long addrId;
 
-  /**
-   * 手机
-   */
-  @TableField("mobile")
-  private String mobile;
+	/**
+	 * 用户ID
+	 */
+	@TableField("user_id")
+	private Long userId;
 
-  /**
-   * 是否默认地址 1是
-   */
-  @TableField("is_default")
-  private Integer isDefault;
+	/**
+	 * 手机
+	 */
+	@TableField("mobile")
+	private String mobile;
 
-  /**
-   * 收货人
-   */
-  @TableField("consignee")
-  private String consignee;
+	/**
+	 * 是否默认地址 1是
+	 */
+	@TableField("is_default")
+	private Integer isDefault;
 
-  /**
-   * 省ID
-   */
-  @TableField("province_id")
-  private Long provinceId;
+	/**
+	 * 收货人
+	 */
+	@TableField("consignee")
+	private String consignee;
 
-  /**
-   * 省
-   */
-  @TableField("province")
-  private String province;
+	/**
+	 * 省ID
+	 */
+	@TableField("province_id")
+	private Long provinceId;
 
-  /**
-   * 城市ID
-   */
-  @TableField("city_id")
-  private Long cityId;
+	/**
+	 * 省
+	 */
+	@TableField("province")
+	private String province;
 
-  /**
-   * 城市
-   */
-  @TableField("city")
-  private String city;
+	/**
+	 * 城市ID
+	 */
+	@TableField("city_id")
+	private Long cityId;
 
-  /**
-   * 区ID
-   */
-  @TableField("area_id")
-  private Long areaId;
+	/**
+	 * 城市
+	 */
+	@TableField("city")
+	private String city;
 
-  /**
-   * 区
-   */
-  @TableField("area")
-  private String area;
+	/**
+	 * 区ID
+	 */
+	@TableField("area_id")
+	private Long areaId;
 
-  /**
-   * 邮编
-   */
-  @TableField("post_code")
-  private String postCode;
+	/**
+	 * 区
+	 */
+	@TableField("area")
+	private String area;
 
-  /**
-   * 地址
-   */
-  @TableField("addr")
-  private String addr;
+	/**
+	 * 邮编
+	 */
+	@TableField("post_code")
+	private String postCode;
 
-  /**
-   * 经度
-   */
-  @TableField("lng")
-  private BigDecimal lng;
+	/**
+	 * 地址
+	 */
+	@TableField("addr")
+	private String addr;
 
-  /**
-   * 纬度
-   */
-  @TableField("lat")
-  private BigDecimal lat;
+	/**
+	 * 经度
+	 */
+	@TableField("lng")
+	private BigDecimal lng;
+
+	/**
+	 * 纬度
+	 */
+	@TableField("lat")
+	private BigDecimal lat;
+
 }

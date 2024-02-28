@@ -13,29 +13,30 @@ import lombok.ToString;
 @ToString
 public class EsPageDTO {
 
-  public static final String ASC = "ASC";
+	public static final String ASC = "ASC";
 
-  public static final String DESC = "DESC";
+	public static final String DESC = "DESC";
 
-  /**
-   * 最大分页大小，如果分页大小大于500，则用500作为分页的大小。防止有人直接传入一个较大的数，导致服务器内存溢出宕机
-   */
-  public static final Integer MAX_PAGE_SIZE = 500;
+	/**
+	 * 最大分页大小，如果分页大小大于500，则用500作为分页的大小。防止有人直接传入一个较大的数，导致服务器内存溢出宕机
+	 */
+	public static final Integer MAX_PAGE_SIZE = 500;
 
-  /**
-   * 当前页
-   */
-  @NotNull(message = "pageNum 不能为空")
-  @Schema(description = "当前页", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Integer pageNum;
+	/**
+	 * 当前页
+	 */
+	@NotNull(message = "pageNum 不能为空")
+	@Schema(description = "当前页", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Integer pageNum;
 
-  @NotNull(message = "pageSize 不能为空")
-  @Schema(description = "每页大小", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Integer pageSize;
+	@NotNull(message = "pageSize 不能为空")
+	@Schema(description = "每页大小", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Integer pageSize;
 
-  @Schema(description = "排序字段数组，用逗号分割")
-  private String[] columns;
+	@Schema(description = "排序字段数组，用逗号分割")
+	private String[] columns;
 
-  @Schema(description = "排序字段方式，用逗号分割，ASC正序，DESC倒序")
-  private String[] orders;
+	@Schema(description = "排序字段方式，用逗号分割，ASC正序，DESC倒序")
+	private String[] orders;
+
 }

@@ -15,9 +15,10 @@ import java.util.List;
 @ToString
 public class MenuWithPermissionIdDTO extends BaseDTO {
 
-  @Schema(description = "菜单id")
-  private Long menuId;
+	@Schema(description = "菜单id")
+	private Long menuId;
 
-  @Schema(description = "菜单下的权限id列表")
-  private List<Long> permissionIds;
+	@Schema(description = "菜单下的权限id列表")
+	private List<Long> permissionIds;
+
 }

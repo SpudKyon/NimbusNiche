@@ -31,59 +31,59 @@ import java.util.Objects;
 @Tag(name = "文件管理")
 public class OssController {
 
-  /**
-   * 上传的文件夹(根据时间确定)
-   */
-  public static final String NORM_DAY_PATTERN = "yyyy/MM/dd";
-  private static final Logger log = LoggerFactory.getLogger(OssController.class);
-  @Autowired
-  private OssConfig ossConfig;
-  @Autowired
-  private MinioTemplate minioTemplate;
+	/**
+	 * 上传的文件夹(根据时间确定)
+	 */
+	public static final String NORM_DAY_PATTERN = "yyyy/MM/dd";
 
+	private static final Logger log = LoggerFactory.getLogger(OssController.class);
 
-  @GetMapping(value = "/info")
-  @Operation(summary = "token", description = "获取文件上传需要的token")
-  @Parameter(name = "fileNum", description = "需要获取token的文件数量")
-  public Result<OssVO> info(@RequestParam("fileNum") Integer fileNum) {
-    OssVO ossVO = new OssVO();
-    // minio文件上传
-    if (Objects.equals(ossConfig.getOssType(), OssType.MINIO.value())) {
-      fillMinIoInfo(ossVO, fileNum);
-    }
-    return Result.success(ossVO);
-  }
+	@Autowired
+	private OssConfig ossConfig;
 
-  private void fillMinIoInfo(OssVO ossVo, Integer fileNum) {
-    List<OssVO> ossVOList = new ArrayList<>();
-    for (int i = 0; i < fileNum; i++) {
-      OssVO oss = loadOssVO(new OssVO());
-      String actionUrl = minioTemplate.getPresignedObjectUrl(oss.getDir() + oss.getFileName());
-      oss.setActionUrl(actionUrl);
-      ossVOList.add(oss);
-    }
-    ossVo.setOssList(ossVOList);
-  }
+	@Autowired
+	private MinioTemplate minioTemplate;
 
-  private OssVO loadOssVO(OssVO ossVo) {
-    String dir = DateUtil.format(new Date(), NORM_DAY_PATTERN) + "/";
-    String fileName = IdUtil.simpleUUID();
-    ossVo.setDir(dir);
-    ossVo.setFileName(fileName);
-    return ossVo;
-  }
+	@GetMapping(value = "/info")
+	@Operation(summary = "token", description = "获取文件上传需要的token")
+	@Parameter(name = "fileNum", description = "需要获取token的文件数量")
+	public Result<OssVO> info(@RequestParam("fileNum") Integer fileNum) {
+		OssVO ossVO = new OssVO();
+		// minio文件上传
+		if (Objects.equals(ossConfig.getOssType(), OssType.MINIO.value())) {
+			fillMinIoInfo(ossVO, fileNum);
+		}
+		return Result.success(ossVO);
+	}
 
+	private void fillMinIoInfo(OssVO ossVo, Integer fileNum) {
+		List<OssVO> ossVOList = new ArrayList<>();
+		for (int i = 0; i < fileNum; i++) {
+			OssVO oss = loadOssVO(new OssVO());
+			String actionUrl = minioTemplate.getPresignedObjectUrl(oss.getDir() + oss.getFileName());
+			oss.setActionUrl(actionUrl);
+			ossVOList.add(oss);
+		}
+		ossVo.setOssList(ossVOList);
+	}
 
-  @PostMapping("/upload_minio")
-  @Operation(summary = "文件上传接口", description = "上传文件，返回文件路径与域名")
-  public Result<OssVO> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-    if (file.isEmpty()) {
-      return Result.success(null);
-    }
-    OssVO oss = loadOssVO(new OssVO());
-    minioTemplate.uploadMinio(file.getBytes(), oss.getDir() + oss.getFileName(), file.getContentType());
-    return Result.success(oss);
-  }
+	private OssVO loadOssVO(OssVO ossVo) {
+		String dir = DateUtil.format(new Date(), NORM_DAY_PATTERN) + "/";
+		String fileName = IdUtil.simpleUUID();
+		ossVo.setDir(dir);
+		ossVo.setFileName(fileName);
+		return ossVo;
+	}
 
+	@PostMapping("/upload_minio")
+	@Operation(summary = "文件上传接口", description = "上传文件，返回文件路径与域名")
+	public Result<OssVO> uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
+		if (file.isEmpty()) {
+			return Result.success(null);
+		}
+		OssVO oss = loadOssVO(new OssVO());
+		minioTemplate.uploadMinio(file.getBytes(), oss.getDir() + oss.getFileName(), file.getContentType());
+		return Result.success(oss);
+	}
 
 }

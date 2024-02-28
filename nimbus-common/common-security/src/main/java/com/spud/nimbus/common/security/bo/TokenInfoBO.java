@@ -12,17 +12,18 @@ import lombok.ToString;
 @ToString
 public class TokenInfoBO {
 
-  /**
-   * 保存在token信息里面的用户信息
-   */
-  private UserInfoInTokenBO userInfoInToken;
+	/**
+	 * 保存在token信息里面的用户信息
+	 */
+	private UserInfoInTokenBO userInfoInToken;
 
-  private String accessToken;
+	private String accessToken;
 
-  private String refreshToken;
+	private String refreshToken;
 
-  /**
-   * 在多少秒后过期
-   */
-  private Integer expiresIn;
+	/**
+	 * 在多少秒后过期
+	 */
+	private Integer expiresIn;
+
 }

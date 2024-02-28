@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author spud
  * @date 2024/1/25
  */
-@FeignClient(value = "nimbus-auth",contextId ="token")
+@FeignClient(value = "nimbus-auth", contextId = "token")
 public interface TokenFeignClient {
 
 	/**

@@ -20,14 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "app-属性信息")
 public class AttrController {
 
-  @Autowired
-  private AttrService attrService;
+	@Autowired
+	private AttrService attrService;
 
+	@GetMapping
+	@Operation(summary = "获取属性信息", description = "根据attrId获取属性信息")
+	public Result<AttrVO> getByAttrId(@RequestParam Long attrId) {
+		return Result.success(attrService.getByAttrId(attrId));
+	}
 
-
-  @GetMapping
-  @Operation(summary = "获取属性信息" , description = "根据attrId获取属性信息")
-  public Result<AttrVO> getByAttrId(@RequestParam Long attrId) {
-    return Result.success(attrService.getByAttrId(attrId));
-  }
 }

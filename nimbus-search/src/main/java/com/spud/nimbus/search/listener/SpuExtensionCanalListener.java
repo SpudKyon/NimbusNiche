@@ -28,47 +28,49 @@ import java.io.IOException;
 @Component
 public class SpuExtensionCanalListener extends BaseCanalBinlogEventProcessor<SpuExtensionBO> {
 
-  @Autowired
-  private CacheManagerUtil cacheManagerUtil;
+	@Autowired
+	private CacheManagerUtil cacheManagerUtil;
 
-  @Autowired
-  private RestHighLevelClient restHighLevelClient;
+	@Autowired
+	private RestHighLevelClient restHighLevelClient;
 
-  /**
-   * 插入商品，此时插入es
-   */
-  @Override
-  protected void processInsertInternal(CanalBinLogResult<SpuExtensionBO> result) {
-    System.out.println();
-  }
+	/**
+	 * 插入商品，此时插入es
+	 */
+	@Override
+	protected void processInsertInternal(CanalBinLogResult<SpuExtensionBO> result) {
+		System.out.println();
+	}
 
-  /**
-   * 更新商品，删除商品索引，再重新构建一个
-   */
-  @Override
-  protected void processUpdateInternal(CanalBinLogResult<SpuExtensionBO> result) {
-    // 更新之后的数据
-    SpuExtensionBO afterData = result.getAfterData();
+	/**
+	 * 更新商品，删除商品索引，再重新构建一个
+	 */
+	@Override
+	protected void processUpdateInternal(CanalBinLogResult<SpuExtensionBO> result) {
+		// 更新之后的数据
+		SpuExtensionBO afterData = result.getAfterData();
 
-    // 清除缓存
-    cacheManagerUtil.evictCache(CacheNames.SPU_EXTENSION_KEY, afterData.getSpuId().toString());
+		// 清除缓存
+		cacheManagerUtil.evictCache(CacheNames.SPU_EXTENSION_KEY, afterData.getSpuId().toString());
 
-    UpdateRequest request = new UpdateRequest(EsIndexEnum.PRODUCT.value(), String.valueOf(afterData.getSpuId()));
+		UpdateRequest request = new UpdateRequest(EsIndexEnum.PRODUCT.value(), String.valueOf(afterData.getSpuId()));
 
-    EsProductBO esProductBO = new EsProductBO();
-    // 可售库存
-    esProductBO.setSpuId(afterData.getSpuId());
-    esProductBO.setStock(afterData.getStock());
-    esProductBO.setHasStock(afterData.getStock() != 0);
-    esProductBO.setSaleNum(afterData.getSaleNum());
+		EsProductBO esProductBO = new EsProductBO();
+		// 可售库存
+		esProductBO.setSpuId(afterData.getSpuId());
+		esProductBO.setStock(afterData.getStock());
+		esProductBO.setHasStock(afterData.getStock() != 0);
+		esProductBO.setSaleNum(afterData.getSaleNum());
 
-    request.doc(Json.toJsonString(esProductBO), XContentType.JSON);
-    try {
-      UpdateResponse updateResponse = restHighLevelClient.update(request, RequestOptions.DEFAULT);
-      log.info(updateResponse.toString());
-    } catch (IOException e) {
-      log.error(e.toString());
-      throw new NimbusException("更新es信息异常", e);
-    }
-  }
+		request.doc(Json.toJsonString(esProductBO), XContentType.JSON);
+		try {
+			UpdateResponse updateResponse = restHighLevelClient.update(request, RequestOptions.DEFAULT);
+			log.info(updateResponse.toString());
+		}
+		catch (IOException e) {
+			log.error(e.toString());
+			throw new NimbusException("更新es信息异常", e);
+		}
+	}
+
 }

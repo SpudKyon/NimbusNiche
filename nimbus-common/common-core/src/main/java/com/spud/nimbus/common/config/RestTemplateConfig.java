@@ -7,16 +7,17 @@ import org.springframework.web.client.RestTemplate;
 
 /**
  * RestTemplate配置类
+ *
  * @author spud
  * @date 2024/1/28
  */
 @Configuration
 public class RestTemplateConfig {
 
-  @Bean
-  @ConditionalOnMissingBean
-  public RestTemplate restTemplate() {
-    return new RestTemplate();
-  }
+	@Bean
+	@ConditionalOnMissingBean
+	public RestTemplate restTemplate() {
+		return new RestTemplate();
+	}
 
 }

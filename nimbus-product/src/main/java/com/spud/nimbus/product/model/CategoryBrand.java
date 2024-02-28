@@ -28,22 +28,21 @@ import lombok.experimental.Accessors;
 @TableName("category_brand")
 public class CategoryBrand extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "id", type = IdType.AUTO)
-    private Long id;
+	@TableId(value = "id", type = IdType.AUTO)
+	private Long id;
 
-    /**
-     * 品牌id
-     */
-    @TableField("brand_id")
-    private Long brandId;
+	/**
+	 * 品牌id
+	 */
+	@TableField("brand_id")
+	private Long brandId;
 
-    /**
-     * 分类id
-     */
-    @TableField("category_id")
-    private Long categoryId;
-
+	/**
+	 * 分类id
+	 */
+	@TableField("category_id")
+	private Long categoryId;
 
 }

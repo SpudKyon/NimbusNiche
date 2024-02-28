@@ -6,29 +6,29 @@ package com.spud.nimbus.common.order.constant;
  */
 public enum OrderCloseType {
 
-  /**
-   * 超时未支付
-   */
-  OVERTIME(1),
+	/**
+	 * 超时未支付
+	 */
+	OVERTIME(1),
 
-  /**
-   * 买家取消
-   */
-  BUYER(4),
+	/**
+	 * 买家取消
+	 */
+	BUYER(4),
 
-  /**
-   * 已通过货到付款交易
-   */
-  DELIVERY(15),
-  ;
+	/**
+	 * 已通过货到付款交易
+	 */
+	DELIVERY(15),;
 
-  private final Integer code;
+	private final Integer code;
 
-  public Integer value() {
-    return code;
-  }
+	public Integer value() {
+		return code;
+	}
 
-  OrderCloseType(Integer code) {
-    this.code = code;
-  }
+	OrderCloseType(Integer code) {
+		this.code = code;
+	}
+
 }

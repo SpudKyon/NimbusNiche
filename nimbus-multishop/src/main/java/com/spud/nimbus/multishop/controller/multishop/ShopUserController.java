@@ -37,9 +37,8 @@ public class ShopUserController {
 	@Autowired
 	private ShopDetailService shopDetailService;
 
-
 	@GetMapping("/info")
-	@Operation(summary = "登陆店铺用户信息" , description = "获取当前登陆店铺用户的用户信息")
+	@Operation(summary = "登陆店铺用户信息", description = "获取当前登陆店铺用户的用户信息")
 	public Result<ShopUserSimpleVO> info() {
 		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
 		ShopUserSimpleVO shopUserSimple = new ShopUserSimpleVO();
@@ -51,32 +50,33 @@ public class ShopUserController {
 	}
 
 	@GetMapping("/page")
-	@Operation(summary = "店铺用户列表" , description = "获取店铺用户列表")
+	@Operation(summary = "店铺用户列表", description = "获取店铺用户列表")
 	public Result<PageVO<ShopUserVO>> page(@Valid PageDTO pageDTO, String nickName) {
 		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-		PageVO<ShopUserVO> shopUserPage = shopUserService.pageByShopId(pageDTO, userInfoInTokenBO.getTenantId(), nickName);
+		PageVO<ShopUserVO> shopUserPage = shopUserService.pageByShopId(pageDTO, userInfoInTokenBO.getTenantId(),
+				nickName);
 		return Result.success(shopUserPage);
 	}
 
 	@GetMapping
-	@Operation(summary = "获取店铺用户信息" , description = "根据用户id获取店铺用户信息")
+	@Operation(summary = "获取店铺用户信息", description = "根据用户id获取店铺用户信息")
 	public Result<ShopUserVO> detail(@RequestParam Long shopUserId) {
 		return Result.success(shopUserService.getByUserId(shopUserId));
 	}
 
 	@PostMapping
-	@Operation(summary = "保存店铺用户信息" , description = "保存店铺用户信息")
+	@Operation(summary = "保存店铺用户信息", description = "保存店铺用户信息")
 	public Result<Void> save(@Valid @RequestBody ShopUserDTO shopUserDTO) {
 		ShopUser shopUser = BeanUtil.map(shopUserDTO, ShopUser.class);
 		shopUser.setShopUserId(null);
 		shopUser.setShopId(AuthUserContext.get().getTenantId());
 		shopUser.setHasAccount(0);
-		shopUserService.save(shopUser,shopUserDTO.getRoleIds());
+		shopUserService.save(shopUser, shopUserDTO.getRoleIds());
 		return Result.success(null);
 	}
 
 	@PutMapping
-	@Operation(summary = "更新店铺用户信息" , description = "更新店铺用户信息")
+	@Operation(summary = "更新店铺用户信息", description = "更新店铺用户信息")
 	public Result<Void> update(@Valid @RequestBody ShopUserDTO shopUserDTO) {
 		ShopUser shopUser = BeanUtil.map(shopUserDTO, ShopUser.class);
 		ShopUserVO dbShopUser = shopUserService.getByUserId(shopUserDTO.getShopUserId());
@@ -84,12 +84,12 @@ public class ShopUserController {
 			return Result.fail(ResultCode.UNAUTHORIZED, null);
 		}
 		shopUser.setShopId(dbShopUser.getShopId());
-		shopUserService.update(shopUser,shopUserDTO.getRoleIds());
+		shopUserService.update(shopUser, shopUserDTO.getRoleIds());
 		return Result.success(null);
 	}
 
 	@DeleteMapping
-	@Operation(summary = "删除店铺用户信息" , description = "根据店铺用户id删除店铺用户信息")
+	@Operation(summary = "删除店铺用户信息", description = "根据店铺用户id删除店铺用户信息")
 	public Result<Void> delete(@RequestParam Long shopUserId) {
 		ShopUserVO dbShopUser = shopUserService.getByUserId(shopUserId);
 		if (!Objects.equals(dbShopUser.getShopId(), AuthUserContext.get().getTenantId())) {
@@ -98,4 +98,5 @@ public class ShopUserController {
 		shopUserService.deleteById(shopUserId);
 		return Result.success(null);
 	}
+
 }

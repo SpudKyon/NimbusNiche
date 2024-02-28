@@ -10,34 +10,34 @@ import lombok.Getter;
 @Getter
 public class NimbusException extends RuntimeException {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  private Object object;
+	private Object object;
 
-  private ResultCode resultCode;
+	private ResultCode resultCode;
 
-  public NimbusException(String msg) {
-    super(msg);
-  }
+	public NimbusException(String msg) {
+		super(msg);
+	}
 
-  public NimbusException(String msg, Object object) {
-    super(msg);
-    this.object = object;
-  }
+	public NimbusException(String msg, Object object) {
+		super(msg);
+		this.object = object;
+	}
 
-  public NimbusException(String msg, Throwable cause) {
-    super(msg, cause);
-  }
+	public NimbusException(String msg, Throwable cause) {
+		super(msg, cause);
+	}
 
+	public NimbusException(ResultCode code) {
+		super(code.getMsg());
+		this.resultCode = code;
+	}
 
-  public NimbusException(ResultCode code) {
-    super(code.getMsg());
-    this.resultCode = code;
-  }
+	public NimbusException(ResultCode code, Object object) {
+		super(code.getMsg());
+		this.resultCode = code;
+		this.object = object;
+	}
 
-  public NimbusException(ResultCode code, Object object) {
-    super(code.getMsg());
-    this.resultCode = code;
-    this.object = object;
-  }
 }

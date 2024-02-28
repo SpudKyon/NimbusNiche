@@ -27,92 +27,93 @@ import java.util.List;
  * @since 2024-01-23
  */
 @Service
-public class ShopCartItemServiceImpl extends ServiceImpl<ShopCartItemMapper, ShopCartItem> implements ShopCartItemService {
+public class ShopCartItemServiceImpl extends ServiceImpl<ShopCartItemMapper, ShopCartItem>
+		implements ShopCartItemService {
 
-  @Autowired
-  private ShopCartItemMapper shopCartItemMapper;
+	@Autowired
+	private ShopCartItemMapper shopCartItemMapper;
 
-  @Autowired
-  private CacheManagerUtil cacheManagerUtil;
+	@Autowired
+	private CacheManagerUtil cacheManagerUtil;
 
-  @Override
-  @CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
-  public void deleteShopCartItemsByShopCartItemIds(Long userId, List<Long> shopCartItemIds) {
-    shopCartItemMapper.deleteShopCartItemsByShopCartItemIds(userId, shopCartItemIds);
-  }
+	@Override
+	@CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
+	public void deleteShopCartItemsByShopCartItemIds(Long userId, List<Long> shopCartItemIds) {
+		shopCartItemMapper.deleteShopCartItemsByShopCartItemIds(userId, shopCartItemIds);
+	}
 
-  @Override
-  @CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
-  public void addShopCartItem(Long userId, ChangeShopCartItemDTO param, Long priceFee) {
-    ShopCartItem shopCartItem = new ShopCartItem();
-    shopCartItem.setCount(param.getCount());
-    shopCartItem.setSpuId(param.getSpuId());
-    shopCartItem.setShopId(param.getShopId());
-    shopCartItem.setUserId(userId);
-    shopCartItem.setSkuId(param.getSkuId());
-    shopCartItem.setIsChecked(1);
-    shopCartItem.setPriceFee(priceFee);
-    shopCartItemMapper.save(shopCartItem);
-  }
+	@Override
+	@CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
+	public void addShopCartItem(Long userId, ChangeShopCartItemDTO param, Long priceFee) {
+		ShopCartItem shopCartItem = new ShopCartItem();
+		shopCartItem.setCount(param.getCount());
+		shopCartItem.setSpuId(param.getSpuId());
+		shopCartItem.setShopId(param.getShopId());
+		shopCartItem.setUserId(userId);
+		shopCartItem.setSkuId(param.getSkuId());
+		shopCartItem.setIsChecked(1);
+		shopCartItem.setPriceFee(priceFee);
+		shopCartItemMapper.save(shopCartItem);
+	}
 
-  @Override
-  @CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
-  public void updateShopCartItem(Long userId, ShopCartItem shopCartItem) {
-    shopCartItemMapper.update(shopCartItem);
-  }
+	@Override
+	@CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
+	public void updateShopCartItem(Long userId, ShopCartItem shopCartItem) {
+		shopCartItemMapper.update(shopCartItem);
+	}
 
-  @Override
-  @CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
-  public void deleteAllShopCartItems(Long userId) {
-    shopCartItemMapper.deleteAllShopCartItems(userId);
-  }
+	@Override
+	@CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
+	public void deleteAllShopCartItems(Long userId) {
+		shopCartItemMapper.deleteAllShopCartItems(userId);
+	}
 
-  @Override
-  public List<ShopCartItemVO> getShopCartItems() {
-    Long userId = AuthUserContext.get().getUserId();
-    List<ShopCartItemVO> shopCartItems = shopCartItemMapper.getShopCartItems(userId, false, null);
-    for (ShopCartItemVO shopCartItem : shopCartItems) {
-      shopCartItem.setTotalAmount(shopCartItem.getCount() * shopCartItem.getSkuPriceFee());
-    }
-    return shopCartItems;
-  }
+	@Override
+	public List<ShopCartItemVO> getShopCartItems() {
+		Long userId = AuthUserContext.get().getUserId();
+		List<ShopCartItemVO> shopCartItems = shopCartItemMapper.getShopCartItems(userId, false, null);
+		for (ShopCartItemVO shopCartItem : shopCartItems) {
+			shopCartItem.setTotalAmount(shopCartItem.getCount() * shopCartItem.getSkuPriceFee());
+		}
+		return shopCartItems;
+	}
 
-  @Override
-  public List<ShopCartItemVO> getShopCartExpiryItems() {
-    Long userId = AuthUserContext.get().getUserId();
-    List<ShopCartItemVO> shopCartItems = shopCartItemMapper.getShopCartItems(userId, true, null);
-    for (ShopCartItemVO shopCartItem : shopCartItems) {
-      shopCartItem.setTotalAmount(shopCartItem.getCount() * shopCartItem.getSkuPriceFee());
-    }
-    return shopCartItems;
-  }
+	@Override
+	public List<ShopCartItemVO> getShopCartExpiryItems() {
+		Long userId = AuthUserContext.get().getUserId();
+		List<ShopCartItemVO> shopCartItems = shopCartItemMapper.getShopCartItems(userId, true, null);
+		for (ShopCartItemVO shopCartItem : shopCartItems) {
+			shopCartItem.setTotalAmount(shopCartItem.getCount() * shopCartItem.getSkuPriceFee());
+		}
+		return shopCartItems;
+	}
 
-  @Override
-  @Cacheable(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
-  public Integer getShopCartItemCount(Long userId) {
-    return shopCartItemMapper.getShopCartItemCount(userId);
-  }
+	@Override
+	@Cacheable(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")
+	public Integer getShopCartItemCount(Long userId) {
+		return shopCartItemMapper.getShopCartItemCount(userId);
+	}
 
-  @Override
-  public List<ShopCartItemVO> getCheckedShopCartItems() {
-    Long userId = AuthUserContext.get().getUserId();
-    return shopCartItemMapper.getShopCartItems(userId, false, true);
-  }
+	@Override
+	public List<ShopCartItemVO> getCheckedShopCartItems() {
+		Long userId = AuthUserContext.get().getUserId();
+		return shopCartItemMapper.getShopCartItems(userId, false, true);
+	}
 
-  @Override
-  public void removeShopCartItemCache(Long spuId) {
-    List<String> userIds = shopCartItemMapper.listUserIdBySpuId(spuId);
-    if (CollectionUtil.isEmpty(userIds)) {
-      return;
-    }
-    for (String userId : userIds) {
-      cacheManagerUtil.evictCache(CacheNames.SHOP_CART_ITEM_COUNT, userId);
-    }
-  }
+	@Override
+	public void removeShopCartItemCache(Long spuId) {
+		List<String> userIds = shopCartItemMapper.listUserIdBySpuId(spuId);
+		if (CollectionUtil.isEmpty(userIds)) {
+			return;
+		}
+		for (String userId : userIds) {
+			cacheManagerUtil.evictCache(CacheNames.SHOP_CART_ITEM_COUNT, userId);
+		}
+	}
 
-  @Override
-  public void checkShopCartItems(Long userId, List<CheckShopCartItemDTO> params) {
-    shopCartItemMapper.checkShopCartItems(userId, params);
-  }
+	@Override
+	public void checkShopCartItems(Long userId, List<CheckShopCartItemDTO> params) {
+		shopCartItemMapper.checkShopCartItems(userId, params);
+	}
 
 }

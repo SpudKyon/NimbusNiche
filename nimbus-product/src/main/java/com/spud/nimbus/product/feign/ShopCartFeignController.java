@@ -18,24 +18,25 @@ import java.util.List;
 @RestController
 public class ShopCartFeignController implements ShopCartFeignClient {
 
-  @Autowired
-  private ShopCartItemService shopCartService;
+	@Autowired
+	private ShopCartItemService shopCartService;
 
-  @Override
-  public Result<List<ShopCartItemVO>> getCheckedShopCartItems() {
-    List<ShopCartItemVO> checkedShopCartItems = shopCartService.getCheckedShopCartItems();
-    if (CollectionUtil.isNotEmpty(checkedShopCartItems)) {
-      for (ShopCartItemVO shopCartItem : checkedShopCartItems) {
-        shopCartItem.setTotalAmount(shopCartItem.getCount() * shopCartItem.getSkuPriceFee());
-      }
-    }
-    return Result.success(checkedShopCartItems);
-  }
+	@Override
+	public Result<List<ShopCartItemVO>> getCheckedShopCartItems() {
+		List<ShopCartItemVO> checkedShopCartItems = shopCartService.getCheckedShopCartItems();
+		if (CollectionUtil.isNotEmpty(checkedShopCartItems)) {
+			for (ShopCartItemVO shopCartItem : checkedShopCartItems) {
+				shopCartItem.setTotalAmount(shopCartItem.getCount() * shopCartItem.getSkuPriceFee());
+			}
+		}
+		return Result.success(checkedShopCartItems);
+	}
 
-  @Override
-  public Result<Void> deleteItem(List<Long> shopCartItemIds) {
-    Long userId = AuthUserContext.get().getUserId();
-    shopCartService.deleteShopCartItemsByShopCartItemIds(userId,shopCartItemIds);
-    return Result.success(null);
-  }
+	@Override
+	public Result<Void> deleteItem(List<Long> shopCartItemIds) {
+		Long userId = AuthUserContext.get().getUserId();
+		shopCartService.deleteShopCartItemsByShopCartItemIds(userId, shopCartItemIds);
+		return Result.success(null);
+	}
+
 }

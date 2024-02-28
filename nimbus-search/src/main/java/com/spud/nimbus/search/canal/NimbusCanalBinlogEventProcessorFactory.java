@@ -15,25 +15,26 @@ import java.util.concurrent.ConcurrentMap;
  */
 public class NimbusCanalBinlogEventProcessorFactory implements CanalBinlogEventProcessorFactory {
 
-  private final ConcurrentMap<ModelTable, List<BaseCanalBinlogEventProcessor<?>>> cache = new ConcurrentHashMap<>(16);
+	private final ConcurrentMap<ModelTable, List<BaseCanalBinlogEventProcessor<?>>> cache = new ConcurrentHashMap<>(16);
 
-  @Override
-  public void register(ModelTable modelTable, BaseCanalBinlogEventProcessor<?> processor) {
-    synchronized(this.cache) {
-      this.cache.putIfAbsent(modelTable, new LinkedList<>());
-      this.cache.get(modelTable).add(processor);
-    }
-  }
+	@Override
+	public void register(ModelTable modelTable, BaseCanalBinlogEventProcessor<?> processor) {
+		synchronized (this.cache) {
+			this.cache.putIfAbsent(modelTable, new LinkedList<>());
+			this.cache.get(modelTable).add(processor);
+		}
+	}
 
-  @Override
-  public List<BaseCanalBinlogEventProcessor<?>> get(ModelTable modelTable) {
-    return this.cache.get(modelTable);
-  }
+	@Override
+	public List<BaseCanalBinlogEventProcessor<?>> get(ModelTable modelTable) {
+		return this.cache.get(modelTable);
+	}
 
-  private NimbusCanalBinlogEventProcessorFactory() {
-  }
+	private NimbusCanalBinlogEventProcessorFactory() {
+	}
 
-  public static NimbusCanalBinlogEventProcessorFactory of() {
-    return new NimbusCanalBinlogEventProcessorFactory();
-  }
+	public static NimbusCanalBinlogEventProcessorFactory of() {
+		return new NimbusCanalBinlogEventProcessorFactory();
+	}
+
 }

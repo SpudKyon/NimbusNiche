@@ -16,21 +16,22 @@ import java.util.List;
 @ToString
 public class SubmitOrderPayInfoVO extends BaseVO {
 
-  @Schema(description = "商品名称")
-  private List<String> spuNameList;
+	@Schema(description = "商品名称")
+	private List<String> spuNameList;
 
-  @Schema(description = "收货人姓名")
-  private String consignee;
+	@Schema(description = "收货人姓名")
+	private String consignee;
 
-  @Schema(description = "收货地址")
-  private String userAddr;
+	@Schema(description = "收货地址")
+	private String userAddr;
 
-  @Schema(description = "收货人手机号")
-  private String mobile;
+	@Schema(description = "收货人手机号")
+	private String mobile;
 
-  @Schema(description = "订单过期时间")
-  private Date endTime;
+	@Schema(description = "订单过期时间")
+	private Date endTime;
 
-  @Schema(description = "总共需要支付金额")
-  private Long totalFee;
+	@Schema(description = "总共需要支付金额")
+	private Long totalFee;
+
 }

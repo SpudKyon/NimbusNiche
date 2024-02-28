@@ -9,9 +9,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @date 2024/2/23
  */
 @SpringBootApplication(scanBasePackages = { "com.spud.nimbus" })
-@EnableFeignClients(basePackages = {"com.spud.nimbus.api.**.feign"})
+@EnableFeignClients(basePackages = { "com.spud.nimbus.api.**.feign" })
 public class MultishopApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(MultishopApplication.class, args);
-  }
+
+	public static void main(String[] args) {
+		SpringApplication.run(MultishopApplication.class, args);
+	}
+
 }

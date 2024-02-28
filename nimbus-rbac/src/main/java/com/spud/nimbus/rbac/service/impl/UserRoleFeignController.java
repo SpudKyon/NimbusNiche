@@ -22,49 +22,50 @@ import java.util.List;
 @RestController
 public class UserRoleFeignController implements UserRoleFeignClient {
 
-  private static final Logger logger = LoggerFactory.getLogger(UserRoleFeignController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserRoleFeignController.class);
 
-  @Autowired
-  private UserRoleMapper userRoleMapper;
+	@Autowired
+	private UserRoleMapper userRoleMapper;
 
-  @Override
-  @Transactional(rollbackFor = Exception.class)
-  @CacheEvict(cacheNames = CacheNames.MENU_ID_LIST_KEY, key = "#userRoleDTO.userId")
-  public Result<Void> saveByUserIdAndSysType(UserRoleDTO userRoleDTO) {
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	@CacheEvict(cacheNames = CacheNames.MENU_ID_LIST_KEY, key = "#userRoleDTO.userId")
+	public Result<Void> saveByUserIdAndSysType(UserRoleDTO userRoleDTO) {
 
-    if (CollUtil.isEmpty(userRoleDTO.getRoleIds())) {
-      return Result.success(null);
-    }
-    //保存用户与角色关系
-    userRoleMapper.insertUserAndUserRole(userRoleDTO.getUserId(), userRoleDTO.getRoleIds());
-    return Result.success(null);
-  }
+		if (CollUtil.isEmpty(userRoleDTO.getRoleIds())) {
+			return Result.success(null);
+		}
+		// 保存用户与角色关系
+		userRoleMapper.insertUserAndUserRole(userRoleDTO.getUserId(), userRoleDTO.getRoleIds());
+		return Result.success(null);
+	}
 
-  @Override
-  @Transactional(rollbackFor = Exception.class)
-  @CacheEvict(cacheNames = CacheNames.MENU_ID_LIST_KEY, key = "#userRoleDTO.userId")
-  public Result<Void> updateByUserIdAndSysType(UserRoleDTO userRoleDTO) {
-    //先删除用户与角色关系
-    userRoleMapper.deleteByUserId(userRoleDTO.getUserId());
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	@CacheEvict(cacheNames = CacheNames.MENU_ID_LIST_KEY, key = "#userRoleDTO.userId")
+	public Result<Void> updateByUserIdAndSysType(UserRoleDTO userRoleDTO) {
+		// 先删除用户与角色关系
+		userRoleMapper.deleteByUserId(userRoleDTO.getUserId());
 
-    if (CollUtil.isEmpty(userRoleDTO.getRoleIds())) {
-      return Result.success(null);
-    }
-    //保存用户与角色关系
-    userRoleMapper.insertUserAndUserRole(userRoleDTO.getUserId(), userRoleDTO.getRoleIds());
-    return Result.success(null);
-  }
+		if (CollUtil.isEmpty(userRoleDTO.getRoleIds())) {
+			return Result.success(null);
+		}
+		// 保存用户与角色关系
+		userRoleMapper.insertUserAndUserRole(userRoleDTO.getUserId(), userRoleDTO.getRoleIds());
+		return Result.success(null);
+	}
 
-  @Override
-  @Transactional(rollbackFor = Exception.class)
-  @CacheEvict(cacheNames = CacheNames.MENU_ID_LIST_KEY, key = "#userId")
-  public Result<Void> deleteByUserIdAndSysType(Long userId) {
-    userRoleMapper.deleteByUserId(userId);
-    return Result.success(null);
-  }
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	@CacheEvict(cacheNames = CacheNames.MENU_ID_LIST_KEY, key = "#userId")
+	public Result<Void> deleteByUserIdAndSysType(Long userId) {
+		userRoleMapper.deleteByUserId(userId);
+		return Result.success(null);
+	}
 
-  @Override
-  public Result<List<Long>> getRoleIds(Long userId) {
-    return Result.success(userRoleMapper.getRoleIds(userId));
-  }
+	@Override
+	public Result<List<Long>> getRoleIds(Long userId) {
+		return Result.success(userRoleMapper.getRoleIds(userId));
+	}
+
 }

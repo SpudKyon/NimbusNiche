@@ -12,11 +12,13 @@ import lombok.ToString;
 @Data
 @ToString
 public class OrderItemDTO extends BaseDTO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "订单项ID")
-  private Long orderItemId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "变化金额", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Long changeAmount;
+	@Schema(description = "订单项ID")
+	private Long orderItemId;
+
+	@Schema(description = "变化金额", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Long changeAmount;
+
 }

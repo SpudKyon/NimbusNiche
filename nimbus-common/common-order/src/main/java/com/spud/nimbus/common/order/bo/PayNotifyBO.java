@@ -17,6 +17,6 @@ import java.util.List;
 @AllArgsConstructor
 public class PayNotifyBO {
 
-  private List<Long> orderIds;
+	private List<Long> orderIds;
 
 }

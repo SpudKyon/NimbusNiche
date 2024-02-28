@@ -6,32 +6,33 @@ package com.spud.nimbus.multishop.constant;
  */
 public enum ShopType {
 
-  /**
-   * 自营店
-   */
-  SELF_SHOP(-1),
-  /**
-   * 其他店铺
-   */
-  STOP(0);
+	/**
+	 * 自营店
+	 */
+	SELF_SHOP(-1),
+	/**
+	 * 其他店铺
+	 */
+	STOP(0);
 
-  private Integer num;
+	private Integer num;
 
-  ShopType(Integer num) {
-    this.num = num;
-  }
+	ShopType(Integer num) {
+		this.num = num;
+	}
 
-  public static ShopType instance(Integer value) {
-    ShopType[] enums = values();
-    for (ShopType statusEnum : enums) {
-      if (statusEnum.value().equals(value)) {
-        return statusEnum;
-      }
-    }
-    return null;
-  }
+	public static ShopType instance(Integer value) {
+		ShopType[] enums = values();
+		for (ShopType statusEnum : enums) {
+			if (statusEnum.value().equals(value)) {
+				return statusEnum;
+			}
+		}
+		return null;
+	}
 
-  public Integer value() {
-    return num;
-  }
+	public Integer value() {
+		return num;
+	}
+
 }

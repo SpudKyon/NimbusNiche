@@ -12,14 +12,16 @@ import lombok.ToString;
 @Data
 @ToString
 public class AttrValueVO extends BaseVO {
-    private static final long serialVersionUID = 1L;
 
-    @Schema(description = "属性id" )
-    private Long attrValueId;
+	private static final long serialVersionUID = 1L;
 
-    @Schema(description = "属性ID" )
-    private Long attrId;
+	@Schema(description = "属性id")
+	private Long attrValueId;
 
-    @Schema(description = "属性值" )
-    private String value;
+	@Schema(description = "属性ID")
+	private Long attrId;
+
+	@Schema(description = "属性值")
+	private String value;
+
 }

@@ -25,40 +25,39 @@ import java.time.LocalDateTime;
 @TableName("sys_config")
 public class SysConfig implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @TableId(value = "id", type = IdType.AUTO)
-  private Long id;
+	@TableId(value = "id", type = IdType.AUTO)
+	private Long id;
 
-  /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * key
-   */
-  @TableField("param_key")
-  private String paramKey;
+	/**
+	 * key
+	 */
+	@TableField("param_key")
+	private String paramKey;
 
-  /**
-   * value
-   */
-  @TableField("param_value")
-  private String paramValue;
+	/**
+	 * value
+	 */
+	@TableField("param_value")
+	private String paramValue;
 
-  /**
-   * 备注
-   */
-  @TableField("remark")
-  private String remark;
-
+	/**
+	 * 备注
+	 */
+	@TableField("remark")
+	private String remark;
 
 }

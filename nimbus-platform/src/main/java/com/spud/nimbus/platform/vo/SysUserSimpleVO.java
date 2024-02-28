@@ -15,19 +15,19 @@ import lombok.ToString;
 @ToString
 public class SysUserSimpleVO extends BaseVO {
 
-  /**
-   * 昵称
-   */
-  @Schema(description = "昵称")
-  private String nickName;
+	/**
+	 * 昵称
+	 */
+	@Schema(description = "昵称")
+	private String nickName;
 
-  /**
-   * 头像
-   */
-  @Schema(description = "头像")
-  @JsonSerialize(using = ImgJsonSerializer.class)
-  private String avatar;
+	/**
+	 * 头像
+	 */
+	@Schema(description = "头像")
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	private String avatar;
 
-  private Integer isAdmin;
+	private Integer isAdmin;
 
 }

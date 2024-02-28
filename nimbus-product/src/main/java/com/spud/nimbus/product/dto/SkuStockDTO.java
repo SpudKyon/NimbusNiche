@@ -12,14 +12,16 @@ import lombok.ToString;
 @Data
 @ToString
 public class SkuStockDTO extends BaseDTO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "库存id")
-  private Long stockId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "SKU ID")
-  private Long skuId;
+	@Schema(description = "库存id")
+	private Long stockId;
 
-  @Schema(description = "库存")
-  private Integer stock;
+	@Schema(description = "SKU ID")
+	private Long skuId;
+
+	@Schema(description = "库存")
+	private Integer stock;
+
 }

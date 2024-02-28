@@ -14,18 +14,20 @@ import java.util.List;
  * @date 2024/2/25
  */
 @Component
-@RocketMQMessageListener(topic = RocketMqConstant.ORDER_CANCEL_TOPIC,consumerGroup = RocketMqConstant.ORDER_CANCEL_TOPIC)
+@RocketMQMessageListener(topic = RocketMqConstant.ORDER_CANCEL_TOPIC,
+		consumerGroup = RocketMqConstant.ORDER_CANCEL_TOPIC)
 public class OrderCancelConsumer implements RocketMQListener<List<Long>> {
 
-    @Autowired
-    private OrderService orderService;
+	@Autowired
+	private OrderService orderService;
 
-    /**
-     * 订单取消状态修改后再进行其他服务
-     */
-    @Override
-    public void onMessage(List<Long> orderIds) {
-        // 如果订单未支付的话，将订单设为取消状态
-        orderService.cancelOrderAndGetCancelOrderIds(orderIds);
-    }
+	/**
+	 * 订单取消状态修改后再进行其他服务
+	 */
+	@Override
+	public void onMessage(List<Long> orderIds) {
+		// 如果订单未支付的话，将订单设为取消状态
+		orderService.cancelOrderAndGetCancelOrderIds(orderIds);
+	}
+
 }

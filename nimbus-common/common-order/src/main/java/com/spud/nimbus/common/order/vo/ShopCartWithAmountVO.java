@@ -1,5 +1,6 @@
 package com.spud.nimbus.common.order.vo;
 
+import com.spud.nimbus.common.vo.BaseVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
@@ -12,17 +13,18 @@ import java.util.List;
  */
 @Data
 @ToString
-public class ShopCartWithAmountVO {
+public class ShopCartWithAmountVO extends BaseVO {
 
-  @Schema(description = "总额")
-  private Long totalMoney;
+	@Schema(description = "总额")
+	private Long totalMoney;
 
-  @Schema(description = "总计")
-  private Long finalMoney;
+	@Schema(description = "总计")
+	private Long finalMoney;
 
-  @Schema(description = "商品数量")
-  private Integer count;
+	@Schema(description = "商品数量")
+	private Integer count;
 
-  @Schema(description = "多个店铺的购物车信息")
-  private List<ShopCartVO> shopCarts;
+	@Schema(description = "多个店铺的购物车信息")
+	private List<ShopCartVO> shopCarts;
+
 }

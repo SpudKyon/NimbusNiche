@@ -13,70 +13,72 @@ import lombok.ToString;
 @Data
 @ToString
 public class SpuBO {
-  /**
-   * spu id
-   */
-  private Long spuId;
 
-  /**
-   * 品牌ID
-   */
-  private Long brandId;
+	/**
+	 * spu id
+	 */
+	private Long spuId;
 
-  /**
-   * 分类ID
-   */
-  private Long categoryId;
+	/**
+	 * 品牌ID
+	 */
+	private Long brandId;
 
-  /**
-   * 店铺id
-   */
-  private Long shopId;
+	/**
+	 * 分类ID
+	 */
+	private Long categoryId;
 
-  /**
-   * spu名称
-   */
-  private String name;
+	/**
+	 * 店铺id
+	 */
+	private Long shopId;
 
-  /**
-   * 卖点
-   */
-  private String sellingPoint;
+	/**
+	 * spu名称
+	 */
+	private String name;
 
-  /**
-   * 主图
-   */
-  private String mainImgUrl;
+	/**
+	 * 卖点
+	 */
+	private String sellingPoint;
 
-  /**
-   * 商品图片 多个图片逗号分隔
-   */
-  private String imgUrls;
+	/**
+	 * 主图
+	 */
+	private String mainImgUrl;
 
-  /**
-   * 商品视频
-   */
-  private String video;
+	/**
+	 * 商品图片 多个图片逗号分隔
+	 */
+	private String imgUrls;
 
-  /**
-   * 售价，整数方式保存
-   */
-  private Long priceFee;
+	/**
+	 * 商品视频
+	 */
+	private String video;
 
-  /**
-   * 市场价，整数方式保存
-   */
-  private Long marketPriceFee;
+	/**
+	 * 售价，整数方式保存
+	 */
+	private Long priceFee;
 
-  /**
-   * 状态 1:enable, 0:disable, -1:deleted
-   */
-  private Integer status;
+	/**
+	 * 市场价，整数方式保存
+	 */
+	private Long marketPriceFee;
 
-  private Integer hasSkuImg;
+	/**
+	 * 状态 1:enable, 0:disable, -1:deleted
+	 */
+	private Integer status;
 
-  /**
-   * 序号
-   */
-  private Integer seq;
+	private Integer hasSkuImg;
+
+	/**
+	 * 序号
+	 */
+	private Integer seq;
+
 }

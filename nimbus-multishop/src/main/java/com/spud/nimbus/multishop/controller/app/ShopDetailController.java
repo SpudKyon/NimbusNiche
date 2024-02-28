@@ -24,34 +24,35 @@ import java.util.Objects;
 @Tag(name = "app-店铺详情信息")
 public class ShopDetailController {
 
-  @Autowired
-  private ShopDetailService shopDetailService;
+	@Autowired
+	private ShopDetailService shopDetailService;
 
-  @GetMapping("/check_shop_name")
-  @Operation(summary = "验证店铺名称是否重名", description = "验证店铺名称是否重名")
-  public Result<Boolean> checkShopName(@RequestParam("shopName") String shopName) {
-    Boolean res = shopDetailService.checkShopName(shopName);
-    return Result.success(res);
-  }
+	@GetMapping("/check_shop_name")
+	@Operation(summary = "验证店铺名称是否重名", description = "验证店铺名称是否重名")
+	public Result<Boolean> checkShopName(@RequestParam("shopName") String shopName) {
+		Boolean res = shopDetailService.checkShopName(shopName);
+		return Result.success(res);
+	}
 
-  @GetMapping("/head_info")
-  @Operation(summary = "店铺头部信息", description = "店铺头部信息")
-  public Result<ShopHeadInfoVO> getShopHeadInfo(Long shopId) {
-    ShopHeadInfoVO shopHeadInfoVO = new ShopHeadInfoVO();
-    ShopDetailVO shopDetailVO = shopDetailService.getByShopId(shopId);
-    if (Objects.isNull(shopDetailVO)) {
-      throw new NimbusException("店铺不存在");
-    }
-    shopHeadInfoVO.setShopStatus(shopDetailVO.getShopStatus());
-    if (!Objects.equals(shopDetailVO.getShopStatus(), 1)) {
-      return Result.success(shopHeadInfoVO);
-    }
-    shopHeadInfoVO.setShopId(shopId);
-    shopHeadInfoVO.setType(shopDetailVO.getType());
-    shopHeadInfoVO.setIntro(shopDetailVO.getIntro());
-    shopHeadInfoVO.setShopLogo(shopDetailVO.getShopLogo());
-    shopHeadInfoVO.setShopName(shopDetailVO.getShopName());
-    shopHeadInfoVO.setMobileBackgroundPic(shopDetailVO.getMobileBackgroundPic());
-    return Result.success(shopHeadInfoVO);
-  }
+	@GetMapping("/head_info")
+	@Operation(summary = "店铺头部信息", description = "店铺头部信息")
+	public Result<ShopHeadInfoVO> getShopHeadInfo(Long shopId) {
+		ShopHeadInfoVO shopHeadInfoVO = new ShopHeadInfoVO();
+		ShopDetailVO shopDetailVO = shopDetailService.getByShopId(shopId);
+		if (Objects.isNull(shopDetailVO)) {
+			throw new NimbusException("店铺不存在");
+		}
+		shopHeadInfoVO.setShopStatus(shopDetailVO.getShopStatus());
+		if (!Objects.equals(shopDetailVO.getShopStatus(), 1)) {
+			return Result.success(shopHeadInfoVO);
+		}
+		shopHeadInfoVO.setShopId(shopId);
+		shopHeadInfoVO.setType(shopDetailVO.getType());
+		shopHeadInfoVO.setIntro(shopDetailVO.getIntro());
+		shopHeadInfoVO.setShopLogo(shopDetailVO.getShopLogo());
+		shopHeadInfoVO.setShopName(shopDetailVO.getShopName());
+		shopHeadInfoVO.setMobileBackgroundPic(shopDetailVO.getMobileBackgroundPic());
+		return Result.success(shopHeadInfoVO);
+	}
+
 }

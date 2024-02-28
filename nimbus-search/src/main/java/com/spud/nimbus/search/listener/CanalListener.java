@@ -19,15 +19,17 @@ import java.util.Map;
 @Component
 @RocketMQMessageListener(topic = RocketMqConstant.CANAL_TOPIC, consumerGroup = RocketMqConstant.CANAL_TOPIC)
 public class CanalListener implements RocketMQListener<String> {
-  @Autowired
-  private CanalGlue canalGlue;
 
-  @Override
-  public void onMessage(String message) {
-    Map map = JSON.parseObject(message, Map.class);
-    String table = map.get("table").toString();
-    String database = map.get("database").toString();
-    log.info("canal-database: {}, table: {}, mq message:{}", database, table, message);
-    canalGlue.process(message);
-  }
+	@Autowired
+	private CanalGlue canalGlue;
+
+	@Override
+	public void onMessage(String message) {
+		Map map = JSON.parseObject(message, Map.class);
+		String table = map.get("table").toString();
+		String database = map.get("database").toString();
+		log.info("canal-database: {}, table: {}, mq message:{}", database, table, message);
+		canalGlue.process(message);
+	}
+
 }

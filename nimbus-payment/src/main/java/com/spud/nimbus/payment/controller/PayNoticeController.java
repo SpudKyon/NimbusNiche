@@ -22,26 +22,27 @@ import java.util.List;
 @RequestMapping("/notice/pay")
 public class PayNoticeController {
 
-  @Autowired
-  private PayInfoService payInfoService;
+	@Autowired
+	private PayInfoService payInfoService;
 
-  /**
-   * 支付异步回调
-   */
-  @RequestMapping("/order")
-  public ResponseEntity<String> submit(Long payId) {
-    PayInfo payInfo = payInfoService.getByPayId(payId);
-    String[] orderIdStrArr = payInfo.getOrderIds().split(StrUtil.COMMA);
-    List<Long> orderIdList = new ArrayList<>();
-    for (String s : orderIdStrArr) {
-      orderIdList.add(Long.valueOf(s));
-    }
-    PayInfoResultBO payInfoResult = new PayInfoResultBO();
-    payInfoResult.setPayId(payId);
-    payInfoResult.setBizPayNo(payInfo.getBizPayNo());
-    payInfoResult.setCallbackContent(payInfo.getCallbackContent());
-    // 支付成功
-    payInfoService.paySuccess(payInfoResult, orderIdList);
-    return ResponseEntity.ok("");
-  }
+	/**
+	 * 支付异步回调
+	 */
+	@RequestMapping("/order")
+	public ResponseEntity<String> submit(Long payId) {
+		PayInfo payInfo = payInfoService.getByPayId(payId);
+		String[] orderIdStrArr = payInfo.getOrderIds().split(StrUtil.COMMA);
+		List<Long> orderIdList = new ArrayList<>();
+		for (String s : orderIdStrArr) {
+			orderIdList.add(Long.valueOf(s));
+		}
+		PayInfoResultBO payInfoResult = new PayInfoResultBO();
+		payInfoResult.setPayId(payId);
+		payInfoResult.setBizPayNo(payInfo.getBizPayNo());
+		payInfoResult.setCallbackContent(payInfo.getCallbackContent());
+		// 支付成功
+		payInfoService.paySuccess(payInfoResult, orderIdList);
+		return ResponseEntity.ok("");
+	}
+
 }

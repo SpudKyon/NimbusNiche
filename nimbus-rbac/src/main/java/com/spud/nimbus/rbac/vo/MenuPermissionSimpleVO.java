@@ -13,14 +13,15 @@ import lombok.ToString;
 @ToString
 public class MenuPermissionSimpleVO extends BaseVO {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "菜单资源用户id")
-  private Long menuPermissionId;
+	@Schema(description = "菜单资源用户id")
+	private Long menuPermissionId;
 
-  @Schema(description = "资源关联菜单")
-  private Long menuId;
+	@Schema(description = "资源关联菜单")
+	private Long menuId;
 
-  @Schema(description = "资源名称")
-  private String name;
+	@Schema(description = "资源名称")
+	private String name;
+
 }

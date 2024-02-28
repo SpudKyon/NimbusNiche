@@ -23,43 +23,44 @@ import java.util.List;
 @Tag(name = "店铺-文件分组")
 public class AttachFileGroupController {
 
-  @Autowired
-  private AttachFileGroupService attachFileGroupService;
+	@Autowired
+	private AttachFileGroupService attachFileGroupService;
 
-  @GetMapping("/list")
-  @Operation(summary = "获取列表", description = "分页获取列表")
-  public Result<List<AttachFileGroupVO>> list() {
-    List<AttachFileGroupVO> attachFileGroupPage = attachFileGroupService.volist();
-    return Result.success(attachFileGroupPage);
-  }
+	@GetMapping("/list")
+	@Operation(summary = "获取列表", description = "分页获取列表")
+	public Result<List<AttachFileGroupVO>> list() {
+		List<AttachFileGroupVO> attachFileGroupPage = attachFileGroupService.volist();
+		return Result.success(attachFileGroupPage);
+	}
 
-  @GetMapping
-  @Operation(summary = "获取", description = "根据attachFileGroupId获取")
-  public Result<AttachFileGroupVO> getByAttachFileGroupId(@RequestParam Long attachFileGroupId) {
-    return Result.success(attachFileGroupService.getByAttachFileGroupId(attachFileGroupId));
-  }
+	@GetMapping
+	@Operation(summary = "获取", description = "根据attachFileGroupId获取")
+	public Result<AttachFileGroupVO> getByAttachFileGroupId(@RequestParam Long attachFileGroupId) {
+		return Result.success(attachFileGroupService.getByAttachFileGroupId(attachFileGroupId));
+	}
 
-  @PostMapping
-  @Operation(summary = "保存", description = "保存")
-  public Result<Void> save(@Valid @RequestBody AttachFileGroupDTO attachFileGroupDTO) {
-    AttachFileGroup attachFileGroup = BeanUtil.map(attachFileGroupDTO, AttachFileGroup.class);
-    attachFileGroup.setAttachFileGroupId(null);
-    attachFileGroupService.save(attachFileGroup);
-    return Result.success(null);
-  }
+	@PostMapping
+	@Operation(summary = "保存", description = "保存")
+	public Result<Void> save(@Valid @RequestBody AttachFileGroupDTO attachFileGroupDTO) {
+		AttachFileGroup attachFileGroup = BeanUtil.map(attachFileGroupDTO, AttachFileGroup.class);
+		attachFileGroup.setAttachFileGroupId(null);
+		attachFileGroupService.save(attachFileGroup);
+		return Result.success(null);
+	}
 
-  @PutMapping
-  @Operation(summary = "更新", description = "更新")
-  public Result<Void> update(@Valid @RequestBody AttachFileGroupDTO attachFileGroupDTO) {
-    AttachFileGroup attachFileGroup = BeanUtil.map(attachFileGroupDTO, AttachFileGroup.class);
-    attachFileGroupService.update(attachFileGroup);
-    return Result.success(null);
-  }
+	@PutMapping
+	@Operation(summary = "更新", description = "更新")
+	public Result<Void> update(@Valid @RequestBody AttachFileGroupDTO attachFileGroupDTO) {
+		AttachFileGroup attachFileGroup = BeanUtil.map(attachFileGroupDTO, AttachFileGroup.class);
+		attachFileGroupService.update(attachFileGroup);
+		return Result.success(null);
+	}
 
-  @DeleteMapping
-  @Operation(summary = "删除", description = "根据id删除")
-  public Result<Void> delete(@RequestParam Long attachFileGroupId) {
-    attachFileGroupService.deleteById(attachFileGroupId);
-    return Result.success(null);
-  }
+	@DeleteMapping
+	@Operation(summary = "删除", description = "根据id删除")
+	public Result<Void> delete(@RequestParam Long attachFileGroupId) {
+		attachFileGroupService.deleteById(attachFileGroupId);
+		return Result.success(null);
+	}
+
 }

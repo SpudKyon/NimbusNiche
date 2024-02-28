@@ -8,19 +8,17 @@ import com.spud.nimbus.leaf.common.Result;
  */
 public interface IDGen {
 
-  /**
-   * get
-   *
-   * @param key key
-   * @return Result
-   */
-  Result get(String key);
+	/**
+	 * get
+	 * @param key key
+	 * @return Result
+	 */
+	Result get(String key);
 
-  /**
-   * init
-   *
-   * @return inited
-   */
-  boolean init();
+	/**
+	 * init
+	 * @return inited
+	 */
+	boolean init();
 
 }

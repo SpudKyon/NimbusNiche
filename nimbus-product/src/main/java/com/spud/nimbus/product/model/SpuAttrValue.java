@@ -28,49 +28,48 @@ import lombok.experimental.Accessors;
 @TableName("spu_attr_value")
 public class SpuAttrValue extends BaseModel implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 商品属性值关联信息id
-   */
-  @TableId(value = "spu_attr_value_id", type = IdType.AUTO)
-  private Long spuAttrValueId;
+	/**
+	 * 商品属性值关联信息id
+	 */
+	@TableId(value = "spu_attr_value_id", type = IdType.AUTO)
+	private Long spuAttrValueId;
 
-  /**
-   * 商品id
-   */
-  @TableField("spu_id")
-  private Long spuId;
+	/**
+	 * 商品id
+	 */
+	@TableField("spu_id")
+	private Long spuId;
 
-  /**
-   * 规格属性id
-   */
-  @TableField("attr_id")
-  private Long attrId;
+	/**
+	 * 规格属性id
+	 */
+	@TableField("attr_id")
+	private Long attrId;
 
-  /**
-   * 规格属性名称
-   */
-  @TableField("attr_name")
-  private String attrName;
+	/**
+	 * 规格属性名称
+	 */
+	@TableField("attr_name")
+	private String attrName;
 
-  /**
-   * 规格属性值id
-   */
-  @TableField("attr_value_id")
-  private Long attrValueId;
+	/**
+	 * 规格属性值id
+	 */
+	@TableField("attr_value_id")
+	private Long attrValueId;
 
-  /**
-   * 规格属性值名称
-   */
-  @TableField("attr_value_name")
-  private String attrValueName;
+	/**
+	 * 规格属性值名称
+	 */
+	@TableField("attr_value_name")
+	private String attrValueName;
 
-  /**
-   * 规格属性描述
-   */
-  @TableField("attr_desc")
-  private String attrDesc;
-
+	/**
+	 * 规格属性描述
+	 */
+	@TableField("attr_desc")
+	private String attrDesc;
 
 }

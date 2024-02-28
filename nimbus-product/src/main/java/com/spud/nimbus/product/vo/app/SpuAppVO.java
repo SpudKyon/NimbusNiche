@@ -2,6 +2,8 @@ package com.spud.nimbus.product.vo.app;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.spud.nimbus.api.product.vo.SpuAttrValueVO;
+import com.spud.nimbus.common.serializer.ImgJsonSerializer;
+import com.spud.nimbus.common.vo.BaseVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
@@ -14,47 +16,49 @@ import java.util.List;
  */
 @Data
 @ToString
-public class SpuAppVO {
-  private static final long serialVersionUID = 1L;
+public class SpuAppVO extends BaseVO {
 
-  @Schema(description = "spu id" )
-  private Long spuId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺id" )
-  private Long shopId;
+	@Schema(description = "spu id")
+	private Long spuId;
 
-  @Schema(description = "spu名称" )
-  private String name;
+	@Schema(description = "店铺id")
+	private Long shopId;
 
-  @Schema(description = "卖点" )
-  private String sellingPoint;
+	@Schema(description = "spu名称")
+	private String name;
 
-//  @JsonSerialize(using = ImgJsonSerializer.class)
-  @Schema(description = "商品介绍主图" )
-  private String mainImgUrl;
+	@Schema(description = "卖点")
+	private String sellingPoint;
 
-//  @JsonSerialize(using = ImgJsonSerializer.class)
-  @Schema(description = "商品介绍主图 多个图片逗号分隔" )
-  private String imgUrls;
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	@Schema(description = "商品介绍主图")
+	private String mainImgUrl;
 
-  @Schema(description = "售价，整数方式保存" )
-  private Long priceFee;
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	@Schema(description = "商品介绍主图 多个图片逗号分隔")
+	private String imgUrls;
 
-  @Schema(description = "市场价，整数方式保存" )
-  private Long marketPriceFee;
+	@Schema(description = "售价，整数方式保存")
+	private Long priceFee;
 
-  @Schema(description = "商品详情" )
-  private String detail;
+	@Schema(description = "市场价，整数方式保存")
+	private Long marketPriceFee;
 
-  @Schema(description = "总库存" )
-  private Integer totalStock;
+	@Schema(description = "商品详情")
+	private String detail;
 
-  @Schema(description = "规格属性" )
-  private List<SpuAttrValueVO> spuAttrValues;
+	@Schema(description = "总库存")
+	private Integer totalStock;
 
-  @Schema(description = "sku列表" )
-  private List<SkuAppVO> skus;
+	@Schema(description = "规格属性")
+	private List<SpuAttrValueVO> spuAttrValues;
 
-  @Schema(description = "商品销量" )
-  private Integer saleNum;
+	@Schema(description = "sku列表")
+	private List<SkuAppVO> skus;
+
+	@Schema(description = "商品销量")
+	private Integer saleNum;
+
 }

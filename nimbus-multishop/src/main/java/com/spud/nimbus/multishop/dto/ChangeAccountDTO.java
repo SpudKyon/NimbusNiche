@@ -15,25 +15,26 @@ import lombok.ToString;
 @ToString
 public class ChangeAccountDTO extends BaseDTO {
 
-  @NotNull(message = "userId not null")
-  @Schema(description = "用户id")
-  private Long userId;
+	@NotNull(message = "userId not null")
+	@Schema(description = "用户id")
+	private Long userId;
 
-  @NotBlank(message = "username not blank")
-  @Schema(description = "用户名")
-  private String username;
+	@NotBlank(message = "username not blank")
+	@Schema(description = "用户名")
+	private String username;
 
-  @NotBlank(message = "password not blank")
-  @Schema(description = "密码")
-  private String password;
+	@NotBlank(message = "password not blank")
+	@Schema(description = "密码")
+	private String password;
 
-  @NotNull(message = "status not null")
-  @Schema(description = "状态 1启用 0禁用")
-  private Integer status;
+	@NotNull(message = "status not null")
+	@Schema(description = "状态 1启用 0禁用")
+	private Integer status;
 
-  @Schema(description = "邮箱")
-  private String email;
+	@Schema(description = "邮箱")
+	private String email;
 
-  @Schema(description = "手机号")
-  private String phone;
+	@Schema(description = "手机号")
+	private String phone;
+
 }

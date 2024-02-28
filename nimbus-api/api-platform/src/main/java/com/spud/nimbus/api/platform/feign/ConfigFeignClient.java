@@ -10,14 +10,15 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author spud
  * @date 2024/2/9
  */
-@FeignClient(value = "nimbus-platform",contextId = "config")
+@FeignClient(value = "nimbus-platform", contextId = "config")
 public interface ConfigFeignClient {
 
-  /**
-   * 获取配置信息
-   * @param key key
-   * @return 配置信息json
-   */
-  @GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/config/getConfig")
-  Result<String> getConfig(@RequestParam("key") String key);
+	/**
+	 * 获取配置信息
+	 * @param key key
+	 * @return 配置信息json
+	 */
+	@GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/config/getConfig")
+	Result<String> getConfig(@RequestParam("key") String key);
+
 }

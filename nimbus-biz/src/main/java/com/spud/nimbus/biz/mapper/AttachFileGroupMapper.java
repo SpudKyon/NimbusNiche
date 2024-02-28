@@ -10,7 +10,7 @@ import java.util.List;
 
 /**
  * <p>
- *  Mapper 接口
+ * Mapper 接口
  * </p>
  *
  * @author spud
@@ -18,39 +18,37 @@ import java.util.List;
  */
 @Mapper
 public interface AttachFileGroupMapper extends BaseMapper<AttachFileGroup> {
-  /**
-   * 获取列表
-   * @param shopId
-   * @return 列表
-   */
-  List<AttachFileGroupVO> list(@Param("shopId") Long shopId);
 
-  /**
-   * 根据id获取
-   *
-   * @param attachFileGroupId id
-   * @return
-   */
-  AttachFileGroupVO getByAttachFileGroupId(@Param("attachFileGroupId") Long attachFileGroupId);
+	/**
+	 * 获取列表
+	 * @param shopId
+	 * @return 列表
+	 */
+	List<AttachFileGroupVO> list(@Param("shopId") Long shopId);
 
-  /**
-   * 保存
-   *
-   * @param attachFileGroup
-   */
-  void save(@Param("attachFileGroup") AttachFileGroup attachFileGroup);
+	/**
+	 * 根据id获取
+	 * @param attachFileGroupId id
+	 * @return
+	 */
+	AttachFileGroupVO getByAttachFileGroupId(@Param("attachFileGroupId") Long attachFileGroupId);
 
-  /**
-   * 更新
-   *
-   * @param attachFileGroup
-   */
-  void update(@Param("attachFileGroup") AttachFileGroup attachFileGroup);
+	/**
+	 * 保存
+	 * @param attachFileGroup
+	 */
+	void save(@Param("attachFileGroup") AttachFileGroup attachFileGroup);
 
-  /**
-   * 根据id删除
-   *
-   * @param attachFileGroupId
-   */
-  void deleteById(@Param("attachFileGroupId") Long attachFileGroupId);
+	/**
+	 * 更新
+	 * @param attachFileGroup
+	 */
+	void update(@Param("attachFileGroup") AttachFileGroup attachFileGroup);
+
+	/**
+	 * 根据id删除
+	 * @param attachFileGroupId
+	 */
+	void deleteById(@Param("attachFileGroupId") Long attachFileGroupId);
+
 }

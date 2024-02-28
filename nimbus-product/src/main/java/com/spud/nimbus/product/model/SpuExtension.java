@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author spud
@@ -28,43 +28,42 @@ import lombok.experimental.Accessors;
 @TableName("spu_extension")
 public class SpuExtension extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 商品扩展信息表id
-     */
-    @TableId(value = "spu_extend_id", type = IdType.AUTO)
-    private Long spuExtendId;
+	/**
+	 * 商品扩展信息表id
+	 */
+	@TableId(value = "spu_extend_id", type = IdType.AUTO)
+	private Long spuExtendId;
 
-    /**
-     * 商品id
-     */
-    @TableField("spu_id")
-    private Long spuId;
+	/**
+	 * 商品id
+	 */
+	@TableField("spu_id")
+	private Long spuId;
 
-    /**
-     * 销量
-     */
-    @TableField("sale_num")
-    private Integer saleNum;
+	/**
+	 * 销量
+	 */
+	@TableField("sale_num")
+	private Integer saleNum;
 
-    /**
-     * 实际库存
-     */
-    @TableField("actual_stock")
-    private Integer actualStock;
+	/**
+	 * 实际库存
+	 */
+	@TableField("actual_stock")
+	private Integer actualStock;
 
-    /**
-     * 锁定库存
-     */
-    @TableField("lock_stock")
-    private Integer lockStock;
+	/**
+	 * 锁定库存
+	 */
+	@TableField("lock_stock")
+	private Integer lockStock;
 
-    /**
-     * 可售卖库存
-     */
-    @TableField("stock")
-    private Integer stock;
-
+	/**
+	 * 可售卖库存
+	 */
+	@TableField("stock")
+	private Integer stock;
 
 }

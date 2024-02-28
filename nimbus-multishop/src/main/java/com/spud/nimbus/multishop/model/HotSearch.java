@@ -25,55 +25,54 @@ import java.time.LocalDateTime;
 @TableName("hot_search")
 public class HotSearch implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 主键
-   */
-  @TableId(value = "hot_search_id", type = IdType.AUTO)
-  private Long hotSearchId;
+	/**
+	 * 主键
+	 */
+	@TableId(value = "hot_search_id", type = IdType.AUTO)
+	private Long hotSearchId;
 
-  /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * 店铺ID 0为全平台热搜
-   */
-  @TableField("shop_id")
-  private Long shopId;
+	/**
+	 * 店铺ID 0为全平台热搜
+	 */
+	@TableField("shop_id")
+	private Long shopId;
 
-  /**
-   * 内容
-   */
-  @TableField("content")
-  private String content;
+	/**
+	 * 内容
+	 */
+	@TableField("content")
+	private String content;
 
-  /**
-   * 顺序
-   */
-  @TableField("seq")
-  private Integer seq;
+	/**
+	 * 顺序
+	 */
+	@TableField("seq")
+	private Integer seq;
 
-  /**
-   * 状态 0下线 1上线
-   */
-  @TableField("status")
-  private Integer status;
+	/**
+	 * 状态 0下线 1上线
+	 */
+	@TableField("status")
+	private Integer status;
 
-  /**
-   * 热搜标题
-   */
-  @TableField("title")
-  private String title;
-
+	/**
+	 * 热搜标题
+	 */
+	@TableField("title")
+	private String title;
 
 }

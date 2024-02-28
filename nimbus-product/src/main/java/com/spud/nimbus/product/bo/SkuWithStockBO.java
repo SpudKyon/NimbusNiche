@@ -11,11 +11,12 @@ import lombok.ToString;
 @ToString
 public class SkuWithStockBO {
 
-  private Long id;
+	private Long id;
 
-  private Long skuId;
+	private Long skuId;
 
-  private Long spuId;
+	private Long spuId;
 
-  private Integer count;
+	private Integer count;
+
 }

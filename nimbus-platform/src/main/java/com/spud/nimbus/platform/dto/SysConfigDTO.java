@@ -12,16 +12,18 @@ import lombok.ToString;
 @Data
 @ToString
 public class SysConfigDTO extends BaseDTO {
-  private static final long serialVersionUID = 1L;
 
-  private Long id;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "key")
-  private String paramKey;
+	private Long id;
 
-  @Schema(description = "value")
-  private String paramValue;
+	@Schema(description = "key")
+	private String paramKey;
 
-  @Schema(description = "备注")
-  private String remark;
+	@Schema(description = "value")
+	private String paramValue;
+
+	@Schema(description = "备注")
+	private String remark;
+
 }

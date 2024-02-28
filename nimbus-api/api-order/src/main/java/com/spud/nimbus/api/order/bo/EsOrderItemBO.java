@@ -13,52 +13,54 @@ import java.util.Date;
 @Data
 @ToString
 public class EsOrderItemBO {
-  @Schema(description = "商品图片", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String pic;
 
-  @Schema(description = "商品名称", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String spuName;
+	@Schema(description = "商品图片", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String pic;
 
-  @Schema(description = "商品数量", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Integer count;
+	@Schema(description = "商品名称", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String spuName;
 
-  @Schema(description = "商品价格", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Long price;
+	@Schema(description = "商品数量", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Integer count;
 
-  @Schema(description = "skuId", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Long skuId;
+	@Schema(description = "商品价格", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Long price;
 
-  @Schema(description = "skuName", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String skuName;
+	@Schema(description = "skuId", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Long skuId;
 
-  @Schema(description = "订单项id", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Long orderItemId;
+	@Schema(description = "skuName", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String skuName;
 
-  @Schema(description = "商品id", requiredMode = Schema.RequiredMode.REQUIRED)
-  private Long spuId;
+	@Schema(description = "订单项id", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Long orderItemId;
 
-  /**
-   * 店铺id
-   */
-  private Long shopId;
+	@Schema(description = "商品id", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Long spuId;
 
-  /**
-   * 用户Id
-   */
-  private Long userId;
+	/**
+	 * 店铺id
+	 */
+	private Long shopId;
 
-  /**
-   * 单个orderItem的配送类型  ：无需快递
-   */
-  private Integer deliveryType;
+	/**
+	 * 用户Id
+	 */
+	private Long userId;
 
-  /**
-   * 加入购物车时间
-   */
-  private Date shopCartTime;
+	/**
+	 * 单个orderItem的配送类型 ：无需快递
+	 */
+	private Integer deliveryType;
 
-  /**
-   * 商品总金额
-   */
-  private Long spuTotalAmount;
+	/**
+	 * 加入购物车时间
+	 */
+	private Date shopCartTime;
+
+	/**
+	 * 商品总金额
+	 */
+	private Long spuTotalAmount;
+
 }

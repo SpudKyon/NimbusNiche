@@ -13,21 +13,22 @@ import java.util.concurrent.atomic.AtomicLong;
 @ToString
 public class Segment {
 
-  private final SegmentBuffer buffer;
+	private final SegmentBuffer buffer;
 
-  private AtomicLong value = new AtomicLong(0);
+	private AtomicLong value = new AtomicLong(0);
 
-  private volatile long max;
+	private volatile long max;
 
-  private volatile int step;
+	private volatile int step;
 
-  private volatile int randomStep;
+	private volatile int randomStep;
 
-  public Segment(SegmentBuffer buffer) {
-    this.buffer = buffer;
-  }
+	public Segment(SegmentBuffer buffer) {
+		this.buffer = buffer;
+	}
 
-  public long getIdle() {
-    return this.getMax() - getValue().get();
-  }
+	public long getIdle() {
+		return this.getMax() - getValue().get();
+	}
+
 }

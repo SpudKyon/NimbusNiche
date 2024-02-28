@@ -27,87 +27,86 @@ import lombok.experimental.Accessors;
 @TableName("pay_info")
 public class PayInfo implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    public static final String DISTRIBUTED_ID_KEY = "nimbus-pay";
+	public static final String DISTRIBUTED_ID_KEY = "nimbus-pay";
 
-    /**
-     * 支付单号
-     */
-    @TableId(value = "pay_id", type = IdType.AUTO)
-    private Long payId;
+	/**
+	 * 支付单号
+	 */
+	@TableId(value = "pay_id", type = IdType.AUTO)
+	private Long payId;
 
-    /**
-     * 创建时间
-     */
-    @TableField("create_time")
-    private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-    /**
-     * 更新时间
-     */
-    @TableField("update_time")
-    private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-    /**
-     * 用户id
-     */
-    @TableField("user_id")
-    private Long userId;
+	/**
+	 * 用户id
+	 */
+	@TableField("user_id")
+	private Long userId;
 
-    /**
-     * 本次支付关联的多个订单号
-     */
-    @TableField("order_ids")
-    private String orderIds;
+	/**
+	 * 本次支付关联的多个订单号
+	 */
+	@TableField("order_ids")
+	private String orderIds;
 
-    /**
-     * 外部订单流水号
-     */
-    @TableField("biz_pay_no")
-    private String bizPayNo;
+	/**
+	 * 外部订单流水号
+	 */
+	@TableField("biz_pay_no")
+	private String bizPayNo;
 
-    /**
-     * 系统类型 见SysTypeEnum
-     */
-    @TableField("sys_type")
-    private Integer sysType;
+	/**
+	 * 系统类型 见SysTypeEnum
+	 */
+	@TableField("sys_type")
+	private Integer sysType;
 
-    /**
-     * 支付状态
-     */
-    @TableField("pay_status")
-    private Integer payStatus;
+	/**
+	 * 支付状态
+	 */
+	@TableField("pay_status")
+	private Integer payStatus;
 
-    /**
-     * 支付金额
-     */
-    @TableField("pay_amount")
-    private Long payAmount;
+	/**
+	 * 支付金额
+	 */
+	@TableField("pay_amount")
+	private Long payAmount;
 
-    /**
-     * 版本号
-     */
-    @TableField("version")
-    private Integer version;
+	/**
+	 * 版本号
+	 */
+	@TableField("version")
+	private Integer version;
 
-    /**
-     * 回调内容
-     */
-    @TableField("callback_content")
-    private String callbackContent;
+	/**
+	 * 回调内容
+	 */
+	@TableField("callback_content")
+	private String callbackContent;
 
-    /**
-     * 回调时间
-     */
-    @TableField("callback_time")
-    private Date callbackTime;
+	/**
+	 * 回调时间
+	 */
+	@TableField("callback_time")
+	private Date callbackTime;
 
-    /**
-     * 确认时间
-     */
-    @TableField("confirm_time")
-    private LocalDateTime confirmTime;
-
+	/**
+	 * 确认时间
+	 */
+	@TableField("confirm_time")
+	private LocalDateTime confirmTime;
 
 }

@@ -14,29 +14,31 @@ import java.util.Date;
 @Data
 @ToString
 public class SpuExtensionVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "商品扩展信息表id" )
-  private Long spuExtendId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "创建时间" )
-  private Date createTime;
+	@Schema(description = "商品扩展信息表id")
+	private Long spuExtendId;
 
-  @Schema(description = "更新时间" )
-  private Date updateTime;
+	@Schema(description = "创建时间")
+	private Date createTime;
 
-  @Schema(description = "商品id" )
-  private Long spuId;
+	@Schema(description = "更新时间")
+	private Date updateTime;
 
-  @Schema(description = "销量" )
-  private Integer saleNum;
+	@Schema(description = "商品id")
+	private Long spuId;
 
-  @Schema(description = "实际库存" )
-  private Integer actualStock;
+	@Schema(description = "销量")
+	private Integer saleNum;
 
-  @Schema(description = "锁定库存" )
-  private Integer lockStock;
+	@Schema(description = "实际库存")
+	private Integer actualStock;
 
-  @Schema(description = "可售卖库存" )
-  private Integer stock;
+	@Schema(description = "锁定库存")
+	private Integer lockStock;
+
+	@Schema(description = "可售卖库存")
+	private Integer stock;
+
 }

@@ -13,12 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class IndexImgFeignController implements IndexImgFeignClient {
 
-    @Autowired
-    private IndexImgService indexImgService;
+	@Autowired
+	private IndexImgService indexImgService;
 
-    @Override
-    public Result<Void> deleteBySpuId(Long spuId, Long shopId) {
-        indexImgService.deleteBySpuId(spuId, shopId);
-        return Result.success(null);
-    }
+	@Override
+	public Result<Void> deleteBySpuId(Long spuId, Long shopId) {
+		indexImgService.deleteBySpuId(spuId, shopId);
+		return Result.success(null);
+	}
+
 }

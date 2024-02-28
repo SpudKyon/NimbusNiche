@@ -25,17 +25,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "multishop-spu管理列表接口")
 public class ProductSearchController {
 
-  @Autowired
-  private ProductSearchManager productSearchManager;
+	@Autowired
+	private ProductSearchManager productSearchManager;
 
-  @GetMapping("/page")
-  @Operation(summary = "商品信息列表", description = "商品信息列表")
-  public Result<EsPageVO<SpuAdminVO>> page(@Valid EsPageDTO pageDTO, ProductSearchDTO productSearchDTO) {
-    Long shopId = AuthUserContext.get().getTenantId();
-    productSearchDTO.setSearchType(SearchTypeEnum.MULTISHOP.value());
-    productSearchDTO.setShopId(shopId);
-    EsPageVO<SpuAdminVO> searchPage = productSearchManager.adminPage(pageDTO, productSearchDTO);
-    return Result.success(searchPage);
-  }
+	@GetMapping("/page")
+	@Operation(summary = "商品信息列表", description = "商品信息列表")
+	public Result<EsPageVO<SpuAdminVO>> page(@Valid EsPageDTO pageDTO, ProductSearchDTO productSearchDTO) {
+		Long shopId = AuthUserContext.get().getTenantId();
+		productSearchDTO.setSearchType(SearchTypeEnum.MULTISHOP.value());
+		productSearchDTO.setShopId(shopId);
+		EsPageVO<SpuAdminVO> searchPage = productSearchManager.adminPage(pageDTO, productSearchDTO);
+		return Result.success(searchPage);
+	}
 
 }

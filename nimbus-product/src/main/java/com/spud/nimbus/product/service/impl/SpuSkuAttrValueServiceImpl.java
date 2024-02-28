@@ -19,44 +19,46 @@ import java.util.List;
  * @since 2024-01-23
  */
 @Service
-public class SpuSkuAttrValueServiceImpl extends ServiceImpl<SpuSkuAttrValueMapper, SpuSkuAttrValue> implements SpuSkuAttrValueService {
+public class SpuSkuAttrValueServiceImpl extends ServiceImpl<SpuSkuAttrValueMapper, SpuSkuAttrValue>
+		implements SpuSkuAttrValueService {
 
-  @Autowired
-  private SpuSkuAttrValueMapper spuSkuAttrValueMapper;
+	@Autowired
+	private SpuSkuAttrValueMapper spuSkuAttrValueMapper;
 
-  @Override
-  public boolean save(SpuSkuAttrValue spuSkuAttrValue) {
-    spuSkuAttrValueMapper.save(spuSkuAttrValue);
-    return false;
-  }
+	@Override
+	public boolean save(SpuSkuAttrValue spuSkuAttrValue) {
+		spuSkuAttrValueMapper.save(spuSkuAttrValue);
+		return false;
+	}
 
-  @Override
-  public void updateBatch(List<SpuSkuAttrValue> spuSkuAttrValues) {
-    if (CollUtil.isNotEmpty(spuSkuAttrValues)) {
-      spuSkuAttrValueMapper.updateBatch(spuSkuAttrValues);
-    }
-  }
+	@Override
+	public void updateBatch(List<SpuSkuAttrValue> spuSkuAttrValues) {
+		if (CollUtil.isNotEmpty(spuSkuAttrValues)) {
+			spuSkuAttrValueMapper.updateBatch(spuSkuAttrValues);
+		}
+	}
 
-  @Override
-  public void deleteById(Long spuSkuAttrId) {
-    spuSkuAttrValueMapper.deleteById(spuSkuAttrId);
-  }
+	@Override
+	public void deleteById(Long spuSkuAttrId) {
+		spuSkuAttrValueMapper.deleteById(spuSkuAttrId);
+	}
 
-  @Override
-  public void saveBatch(List<SpuSkuAttrValue> spuSkuAttrValues) {
-    if (CollUtil.isEmpty(spuSkuAttrValues)) {
-      return;
-    }
-    spuSkuAttrValueMapper.saveBatch(spuSkuAttrValues);
-  }
+	@Override
+	public void saveBatch(List<SpuSkuAttrValue> spuSkuAttrValues) {
+		if (CollUtil.isEmpty(spuSkuAttrValues)) {
+			return;
+		}
+		spuSkuAttrValueMapper.saveBatch(spuSkuAttrValues);
+	}
 
-  @Override
-  public void updateBySpuId(Long spuId) {
-    spuSkuAttrValueMapper.updateBySpuId(spuId);
-  }
+	@Override
+	public void updateBySpuId(Long spuId) {
+		spuSkuAttrValueMapper.updateBySpuId(spuId);
+	}
 
-  @Override
-  public void changeStatusBySkuId(List<Long> skuIds, Integer status) {
-    spuSkuAttrValueMapper.changeStatusBySkuId(skuIds, status);
-  }
+	@Override
+	public void changeStatusBySkuId(List<Long> skuIds, Integer status) {
+		spuSkuAttrValueMapper.changeStatusBySkuId(skuIds, status);
+	}
+
 }

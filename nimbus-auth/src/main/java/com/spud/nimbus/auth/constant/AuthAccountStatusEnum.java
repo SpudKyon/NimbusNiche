@@ -6,29 +6,29 @@ package com.spud.nimbus.auth.constant;
  */
 public enum AuthAccountStatusEnum {
 
-  /**
-   * 启用
-   */
-  ENABLE(1),
+	/**
+	 * 启用
+	 */
+	ENABLE(1),
 
-  /**
-   * 禁用
-   */
-  DISABLE(0),
+	/**
+	 * 禁用
+	 */
+	DISABLE(0),
 
-  /**
-   * 删除
-   */
-  DELETE(-1);
+	/**
+	 * 删除
+	 */
+	DELETE(-1);
 
-  private final Integer value;
+	private final Integer value;
 
-  AuthAccountStatusEnum(Integer value) {
-    this.value = value;
-  }
+	AuthAccountStatusEnum(Integer value) {
+		this.value = value;
+	}
 
-  public Integer value() {
-    return value;
-  }
+	public Integer value() {
+		return value;
+	}
 
 }

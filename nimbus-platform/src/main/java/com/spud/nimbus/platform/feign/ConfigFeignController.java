@@ -13,11 +13,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ConfigFeignController implements ConfigFeignClient {
 
-    @Autowired
-    private SysConfigService sysConfigService;
+	@Autowired
+	private SysConfigService sysConfigService;
 
-    @Override
-    public Result<String> getConfig(String key) {
-        return Result.success(sysConfigService.getValue(key));
-    }
+	@Override
+	public Result<String> getConfig(String key) {
+		return Result.success(sysConfigService.getValue(key));
+	}
+
 }

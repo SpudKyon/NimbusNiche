@@ -50,6 +50,11 @@
             <artifactId>common-core</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.spud.nimbus</groupId>
+            <artifactId>common-database</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
 
     <build>

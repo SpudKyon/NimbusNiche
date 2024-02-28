@@ -29,94 +29,98 @@ import java.util.Objects;
  */
 @Service
 public class AuthAccountServiceImpl extends ServiceImpl<AuthAccountMapper, AuthAccount> implements AuthAccountService {
-  public static final String USER_NOT_FOUND_SECRET = "USER_NOT_FOUND_SECRET";
-  private static String userNotFoundEncodedPassword;
-  @Resource
-  private AuthAccountMapper authAccountMapper;
 
-  @Autowired
-  private PasswordEncoder passwordEncoder;
+	public static final String USER_NOT_FOUND_SECRET = "USER_NOT_FOUND_SECRET";
 
-  @Override
-  public Result<UserInfoInTokenBO> getUserInfoInTokenByInputUserNameAndPassword(String inputUserName,
-                                                                                String password, Integer sysType) {
+	private static String userNotFoundEncodedPassword;
 
-    if (StrUtil.isBlank(inputUserName)) {
-      return Result.showFailMsg("用户名不能为空");
-    }
-    if (StrUtil.isBlank(password)) {
-      return Result.showFailMsg("密码不能为空");
-    }
+	@Resource
+	private AuthAccountMapper authAccountMapper;
 
-    InputUserNameEnum inputUserNameEnum = null;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
-    // 用户名
-    if (PrincipalUtil.isUserName(inputUserName)) {
-      inputUserNameEnum = InputUserNameEnum.USERNAME;
-    }
+	@Override
+	public Result<UserInfoInTokenBO> getUserInfoInTokenByInputUserNameAndPassword(String inputUserName, String password,
+			Integer sysType) {
 
-    if (inputUserNameEnum == null) {
-      return Result.showFailMsg("请输入正确的用户名");
-    }
+		if (StrUtil.isBlank(inputUserName)) {
+			return Result.showFailMsg("用户名不能为空");
+		}
+		if (StrUtil.isBlank(password)) {
+			return Result.showFailMsg("密码不能为空");
+		}
 
-    AuthAccountInVerifyBO authAccountInVerifyBO = authAccountMapper
-            .getAuthAccountInVerifyByInputUserName(inputUserNameEnum.value(), inputUserName, sysType);
+		InputUserNameEnum inputUserNameEnum = null;
 
-    if (authAccountInVerifyBO == null) {
-      prepareTimingAttackProtection();
-      // 再次进行运算，防止计时攻击
-      // 计时攻击（Timing
-      // attack），通过设备运算的用时来推断出所使用的运算操作，或者通过对比运算的时间推定数据位于哪个存储设备，或者利用通信的时间差进行数据窃取。
-      mitigateAgainstTimingAttack(password);
-      return Result.showFailMsg("用户名或密码不正确");
-    }
+		// 用户名
+		if (PrincipalUtil.isUserName(inputUserName)) {
+			inputUserNameEnum = InputUserNameEnum.USERNAME;
+		}
 
-    if (Objects.equals(authAccountInVerifyBO.getStatus(), AuthAccountStatusEnum.DISABLE.value())) {
-      return Result.showFailMsg("用户已禁用，请联系客服");
-    }
+		if (inputUserNameEnum == null) {
+			return Result.showFailMsg("请输入正确的用户名");
+		}
 
-    if (!passwordEncoder.matches(password, authAccountInVerifyBO.getPassword())) {
-      return Result.showFailMsg("用户名或密码不正确");
-    }
+		AuthAccountInVerifyBO authAccountInVerifyBO = authAccountMapper
+				.getAuthAccountInVerifyByInputUserName(inputUserNameEnum.value(), inputUserName, sysType);
 
-    return Result.success(BeanUtil.map(authAccountInVerifyBO, UserInfoInTokenBO.class));
-  }
+		if (authAccountInVerifyBO == null) {
+			prepareTimingAttackProtection();
+			// 再次进行运算，防止计时攻击
+			// 计时攻击（Timing
+			// attack），通过设备运算的用时来推断出所使用的运算操作，或者通过对比运算的时间推定数据位于哪个存储设备，或者利用通信的时间差进行数据窃取。
+			mitigateAgainstTimingAttack(password);
+			return Result.showFailMsg("用户名或密码不正确");
+		}
 
-  @Override
-  public AuthAccount getByUserIdAndType(Long userId, Integer sysType) {
-    return authAccountMapper.getByUserIdAndType(userId, sysType);
-  }
+		if (Objects.equals(authAccountInVerifyBO.getStatus(), AuthAccountStatusEnum.DISABLE.value())) {
+			return Result.showFailMsg("用户已禁用，请联系客服");
+		}
 
-  @Override
-  public void updatePassword(Long userId, Integer sysType, String newPassWord) {
-    authAccountMapper.updatePassword(userId, sysType, passwordEncoder.encode(newPassWord));
-  }
+		if (!passwordEncoder.matches(password, authAccountInVerifyBO.getPassword())) {
+			return Result.showFailMsg("用户名或密码不正确");
+		}
 
-  @Override
-  public AuthAccount getByUid(Long uid) {
-    return authAccountMapper.getByUid(uid);
-  }
+		return Result.success(BeanUtil.map(authAccountInVerifyBO, UserInfoInTokenBO.class));
+	}
 
-  @Override
-  public AuthAccount getAccountByInputUserName(String mobile, Integer systemType) {
-    return authAccountMapper.getAccountByInputUserName(mobile, systemType);
-  }
+	@Override
+	public AuthAccount getByUserIdAndType(Long userId, Integer sysType) {
+		return authAccountMapper.getByUserIdAndType(userId, sysType);
+	}
 
-  /**
-   * 防止计时攻击
-   */
-  private void prepareTimingAttackProtection() {
-    if (userNotFoundEncodedPassword == null) {
-      userNotFoundEncodedPassword = this.passwordEncoder.encode(USER_NOT_FOUND_SECRET);
-    }
-  }
+	@Override
+	public void updatePassword(Long userId, Integer sysType, String newPassWord) {
+		authAccountMapper.updatePassword(userId, sysType, passwordEncoder.encode(newPassWord));
+	}
 
-  /**
-   * 防止计时攻击
-   */
-  private void mitigateAgainstTimingAttack(String presentedPassword) {
-    if (presentedPassword != null) {
-      this.passwordEncoder.matches(presentedPassword, userNotFoundEncodedPassword);
-    }
-  }
+	@Override
+	public AuthAccount getByUid(Long uid) {
+		return authAccountMapper.getByUid(uid);
+	}
+
+	@Override
+	public AuthAccount getAccountByInputUserName(String mobile, Integer systemType) {
+		return authAccountMapper.getAccountByInputUserName(mobile, systemType);
+	}
+
+	/**
+	 * 防止计时攻击
+	 */
+	private void prepareTimingAttackProtection() {
+		if (userNotFoundEncodedPassword == null) {
+			userNotFoundEncodedPassword = this.passwordEncoder.encode(USER_NOT_FOUND_SECRET);
+		}
+	}
+
+	/**
+	 * 防止计时攻击
+	 */
+	private void mitigateAgainstTimingAttack(String presentedPassword) {
+		if (presentedPassword != null) {
+			this.passwordEncoder.matches(presentedPassword, userNotFoundEncodedPassword);
+		}
+	}
+
 }

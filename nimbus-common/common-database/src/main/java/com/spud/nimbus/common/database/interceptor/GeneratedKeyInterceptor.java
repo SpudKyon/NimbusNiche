@@ -19,145 +19,145 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-
 /**
- * 分布式id生成
- * 1. 分布式id是通过美团的leaf生成的，是需要与Nimbus-leaf数据库 当中 leaf_alloc表中 biz_tag字段相关联的key
- * 2. 为了注入分布式id更加方便，规定为DistributedId为注解的字段加入该字段
+ * 分布式id生成 1. 分布式id是通过美团的leaf生成的，是需要与Nimbus-leaf数据库 当中 leaf_alloc表中 biz_tag字段相关联的key 2.
+ * 为了注入分布式id更加方便，规定为DistributedId为注解的字段加入该字段
  *
  * @see DistributedId
  */
 @Slf4j
 @Component
-@Intercepts({@Signature(type = Executor.class, method = "update", args = {MappedStatement.class, Object.class})})
+@Intercepts({ @Signature(type = Executor.class, method = "update", args = { MappedStatement.class, Object.class }) })
 public class GeneratedKeyInterceptor implements Interceptor {
-  /**
-   * 单个插入名称
-   */
-  private static final String INSERT = "insert";
 
-  /**
-   * 单个插入名称
-   */
-  private static final String SAVE = "save";
+	/**
+	 * 单个插入名称
+	 */
+	private static final String INSERT = "insert";
 
-  /**
-   * 批量插入名称
-   */
-  private static final String BATCH_INSERT = "insertBatch";
+	/**
+	 * 单个插入名称
+	 */
+	private static final String SAVE = "save";
 
-  /**
-   * 批量插入名称
-   */
-  private static final String BATCH_SAVE = "saveBatch";
+	/**
+	 * 批量插入名称
+	 */
+	private static final String BATCH_INSERT = "insertBatch";
 
-  @Autowired
-  private SegmentFeignClient segmentFeignClient;
+	/**
+	 * 批量插入名称
+	 */
+	private static final String BATCH_SAVE = "saveBatch";
 
-  @Override
-  public Object intercept(Invocation invocation) throws Throwable {
+	@Autowired
+	private SegmentFeignClient segmentFeignClient;
 
-    MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
+	@Override
+	public Object intercept(Invocation invocation) throws Throwable {
 
-    // 获取 SQL
-    SqlCommandType sqlCommandType = mappedStatement.getSqlCommandType();
+		MappedStatement mappedStatement = (MappedStatement) invocation.getArgs()[0];
 
-    // 不是 insert 类型的跳过
-    if (SqlCommandType.INSERT != sqlCommandType) {
-      return invocation.proceed();
-    }
+		// 获取 SQL
+		SqlCommandType sqlCommandType = mappedStatement.getSqlCommandType();
 
-    int one = 1;
+		// 不是 insert 类型的跳过
+		if (SqlCommandType.INSERT != sqlCommandType) {
+			return invocation.proceed();
+		}
 
-    // 获取参数
-    Object parameter = invocation.getArgs()[one];
+		int one = 1;
 
-    // 找数据库中的对象
-    Object dbObject = findDbObject(parameter);
+		// 获取参数
+		Object parameter = invocation.getArgs()[one];
 
-    if (dbObject == null) {
-      return invocation.proceed();
-    }
+		// 找数据库中的对象
+		Object dbObject = findDbObject(parameter);
 
-    // 插入
-    if (mappedStatement.getId().contains(INSERT) || mappedStatement.getId().contains(SAVE)) {
-      generatedKey(dbObject);
-    }
-    // 批量插入
-    else if (mappedStatement.getId().contains(BATCH_INSERT) || mappedStatement.getId().contains(BATCH_SAVE)) {
-      // 获取批量查询的参数并生成主键
-      if (parameter instanceof HashMap) {
-        Object list = ((Map) parameter).get("list");
-        if (list instanceof ArrayList) {
-          for (Object o : (ArrayList) list) {
-            generatedKey(dbObject);
-          }
-        }
-      }
-    }
+		if (dbObject == null) {
+			return invocation.proceed();
+		}
 
-    return invocation.proceed();
-  }
+		// 插入
+		if (mappedStatement.getId().contains(INSERT) || mappedStatement.getId().contains(SAVE)) {
+			generatedKey(dbObject);
+		}
+		// 批量插入
+		else if (mappedStatement.getId().contains(BATCH_INSERT) || mappedStatement.getId().contains(BATCH_SAVE)) {
+			// 获取批量查询的参数并生成主键
+			if (parameter instanceof HashMap) {
+				Object list = ((Map) parameter).get("list");
+				if (list instanceof ArrayList) {
+					for (Object o : (ArrayList) list) {
+						generatedKey(dbObject);
+					}
+				}
+			}
+		}
 
-  protected BaseModel findDbObject(Object parameterObj) {
-    if (parameterObj instanceof BaseModel) {
-      return (BaseModel) parameterObj;
-    } else if (parameterObj instanceof Map) {
-      for (Object val : ((Map<?, ?>) parameterObj).values()) {
-        if (val instanceof BaseModel) {
-          return (BaseModel) val;
-        }
-      }
-    }
-    return null;
-  }
+		return invocation.proceed();
+	}
 
-  /**
-   * 获取私有成员变量 ,并设置主键
-   *
-   * @param parameter 参数
-   */
-  private void generatedKey(Object parameter) throws Throwable {
+	protected BaseModel findDbObject(Object parameterObj) {
+		if (parameterObj instanceof BaseModel) {
+			return (BaseModel) parameterObj;
+		}
+		else if (parameterObj instanceof Map) {
+			for (Object val : ((Map<?, ?>) parameterObj).values()) {
+				if (val instanceof BaseModel) {
+					return (BaseModel) val;
+				}
+			}
+		}
+		return null;
+	}
 
-    Field[] fieldList = parameter.getClass().getDeclaredFields();
+	/**
+	 * 获取私有成员变量 ,并设置主键
+	 * @param parameter 参数
+	 */
+	private void generatedKey(Object parameter) throws Throwable {
 
-    for (Field field : fieldList) {
+		Field[] fieldList = parameter.getClass().getDeclaredFields();
 
-      if (!field.getType().isAssignableFrom(Long.class)) {
-        break;
-      }
+		for (Field field : fieldList) {
 
-      DistributedId annotation = field.getAnnotation(DistributedId.class);
-      if (annotation == null) {
-        break;
-      }
+			if (!field.getType().isAssignableFrom(Long.class)) {
+				break;
+			}
 
-      field.setAccessible(true);
-      if (field.get(parameter) != null) {
-        break;
-      }
-      Result<Long> segmentIdResponseEntity = segmentFeignClient.getSegmentId(annotation.value());
-      if (segmentIdResponseEntity.isSuccess()) {
-        // 这里设置分布式id
-        field.set(parameter, segmentIdResponseEntity.getData());
-      } else {
-        log.error("can't get distributed id !!!! ");
-        throw new NimbusException(ResultCode.EXCEPTION);
-      }
-    }
-  }
+			DistributedId annotation = field.getAnnotation(DistributedId.class);
+			if (annotation == null) {
+				break;
+			}
 
-  /**
-   * Plugin.wrap生成拦截代理对象
-   */
-  @Override
-  public Object plugin(Object o) {
-    if (o instanceof Executor) {
-      return Plugin.wrap(o, this);
-    } else {
-      return o;
-    }
-  }
+			field.setAccessible(true);
+			if (field.get(parameter) != null) {
+				break;
+			}
+			Result<Long> segmentIdResponseEntity = segmentFeignClient.getSegmentId(annotation.value());
+			if (segmentIdResponseEntity.isSuccess()) {
+				// 这里设置分布式id
+				field.set(parameter, segmentIdResponseEntity.getData());
+			}
+			else {
+				log.error("can't get distributed id !!!! ");
+				throw new NimbusException(ResultCode.EXCEPTION);
+			}
+		}
+	}
+
+	/**
+	 * Plugin.wrap生成拦截代理对象
+	 */
+	@Override
+	public Object plugin(Object o) {
+		if (o instanceof Executor) {
+			return Plugin.wrap(o, this);
+		}
+		else {
+			return o;
+		}
+	}
 
 }
-

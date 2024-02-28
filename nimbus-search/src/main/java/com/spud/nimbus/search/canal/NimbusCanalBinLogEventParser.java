@@ -20,75 +20,79 @@ import java.util.*;
  */
 public class NimbusCanalBinLogEventParser implements CanalBinLogEventParser {
 
-  private static final Logger log = LoggerFactory.getLogger(DefaultCanalBinLogEventParser.class);
+	private static final Logger log = LoggerFactory.getLogger(DefaultCanalBinLogEventParser.class);
 
-  @Override
-  public <T> List<CanalBinLogResult<T>> parse(CanalBinLogEvent event, Class<T> klass, BasePrimaryKeyTupleFunction primaryKeyFunction, BaseCommonEntryFunction<T> commonEntryFunction) {
-    BinLogEventType eventType = BinLogEventType.fromType(event.getType());
-    if (Objects.equals(BinLogEventType.CREATE, eventType) || Objects.equals(BinLogEventType.ALTER, eventType)) {
-      if (log.isDebugEnabled()) {
-        log.debug("监听到不需要处理或者未知的binlog事件类型[{}],将忽略解析过程返回空列表,binlog事件:{}", eventType, JSON.toJSONString(event));
-      }
-      return Collections.emptyList();
-    }
+	@Override
+	public <T> List<CanalBinLogResult<T>> parse(CanalBinLogEvent event, Class<T> klass,
+			BasePrimaryKeyTupleFunction primaryKeyFunction, BaseCommonEntryFunction<T> commonEntryFunction) {
+		BinLogEventType eventType = BinLogEventType.fromType(event.getType());
+		if (Objects.equals(BinLogEventType.CREATE, eventType) || Objects.equals(BinLogEventType.ALTER, eventType)) {
+			if (log.isDebugEnabled()) {
+				log.debug("监听到不需要处理或者未知的binlog事件类型[{}],将忽略解析过程返回空列表,binlog事件:{}", eventType, JSON.toJSONString(event));
+			}
+			return Collections.emptyList();
+		}
 
-    if (BinLogEventType.UNKNOWN != eventType && BinLogEventType.QUERY != eventType) {
-      if (Boolean.TRUE.equals(event.getIsDdl())) {
-        CanalBinLogResult<T> entry = new CanalBinLogResult<>();
-        entry.setOperationType(OperationType.DDL);
-        entry.setBinLogEventType(eventType);
-        entry.setDatabaseName(event.getDatabase());
-        entry.setTableName(event.getTable());
-        entry.setSql(event.getSql());
-        return Collections.singletonList(entry);
-      } else {
-        Optional.ofNullable(event.getPkNames()).filter((x) -> {
-          return x.size() == 1;
-        }).orElseThrow(() -> {
-          return new IllegalArgumentException("DML类型binlog事件主键列数量不为1");
-        });
-        String primaryKeyName = (String)event.getPkNames().get(0);
-        List<CanalBinLogResult<T>> entryList = new LinkedList<>();
-        List<Map<String, String>> data = event.getData();
-        List<Map<String, String>> old = event.getOld();
-        int dataSize = null != data ? data.size() : 0;
-        int oldSize = null != old ? old.size() : 0;
-        if (dataSize > 0) {
-          for(int index = 0; index < dataSize; ++index) {
-            CanalBinLogResult<T> entry = new CanalBinLogResult<>();
-            entryList.add(entry);
-            entry.setSql(event.getSql());
-            entry.setOperationType(OperationType.DML);
-            entry.setBinLogEventType(eventType);
-            entry.setTableName(event.getTable());
-            entry.setDatabaseName(event.getDatabase());
-            Map<String, String> item = data.get(index);
-            entry.setAfterData(commonEntryFunction.apply(item));
-            Map<String, String> oldItem = null;
-            if (oldSize > 0 && index <= oldSize) {
-              oldItem = old.get(index);
-              entry.setBeforeData(commonEntryFunction.apply(oldItem));
-            }
+		if (BinLogEventType.UNKNOWN != eventType && BinLogEventType.QUERY != eventType) {
+			if (Boolean.TRUE.equals(event.getIsDdl())) {
+				CanalBinLogResult<T> entry = new CanalBinLogResult<>();
+				entry.setOperationType(OperationType.DDL);
+				entry.setBinLogEventType(eventType);
+				entry.setDatabaseName(event.getDatabase());
+				entry.setTableName(event.getTable());
+				entry.setSql(event.getSql());
+				return Collections.singletonList(entry);
+			}
+			else {
+				Optional.ofNullable(event.getPkNames()).filter((x) -> {
+					return x.size() == 1;
+				}).orElseThrow(() -> {
+					return new IllegalArgumentException("DML类型binlog事件主键列数量不为1");
+				});
+				String primaryKeyName = (String) event.getPkNames().get(0);
+				List<CanalBinLogResult<T>> entryList = new LinkedList<>();
+				List<Map<String, String>> data = event.getData();
+				List<Map<String, String>> old = event.getOld();
+				int dataSize = null != data ? data.size() : 0;
+				int oldSize = null != old ? old.size() : 0;
+				if (dataSize > 0) {
+					for (int index = 0; index < dataSize; ++index) {
+						CanalBinLogResult<T> entry = new CanalBinLogResult<>();
+						entryList.add(entry);
+						entry.setSql(event.getSql());
+						entry.setOperationType(OperationType.DML);
+						entry.setBinLogEventType(eventType);
+						entry.setTableName(event.getTable());
+						entry.setDatabaseName(event.getDatabase());
+						Map<String, String> item = data.get(index);
+						entry.setAfterData(commonEntryFunction.apply(item));
+						Map<String, String> oldItem = null;
+						if (oldSize > 0 && index <= oldSize) {
+							oldItem = old.get(index);
+							entry.setBeforeData(commonEntryFunction.apply(oldItem));
+						}
 
-            entry.setPrimaryKey(primaryKeyFunction.apply(oldItem, item, primaryKeyName));
-          }
-        }
+						entry.setPrimaryKey(primaryKeyFunction.apply(oldItem, item, primaryKeyName));
+					}
+				}
 
-        return entryList;
-      }
-    } else {
-      if (log.isDebugEnabled()) {
-        log.debug("监听到不需要处理或者未知的binlog事件类型[{}],将忽略解析过程返回空列表,binlog事件:{}", eventType, JSON.toJSONString(event));
-      }
+				return entryList;
+			}
+		}
+		else {
+			if (log.isDebugEnabled()) {
+				log.debug("监听到不需要处理或者未知的binlog事件类型[{}],将忽略解析过程返回空列表,binlog事件:{}", eventType, JSON.toJSONString(event));
+			}
 
-      return Collections.emptyList();
-    }
-  }
+			return Collections.emptyList();
+		}
+	}
 
-  private NimbusCanalBinLogEventParser() {
-  }
+	private NimbusCanalBinLogEventParser() {
+	}
 
-  public static NimbusCanalBinLogEventParser of() {
-    return new NimbusCanalBinLogEventParser();
-  }
+	public static NimbusCanalBinLogEventParser of() {
+		return new NimbusCanalBinLogEventParser();
+	}
+
 }

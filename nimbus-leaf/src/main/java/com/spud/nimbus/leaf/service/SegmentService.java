@@ -19,33 +19,33 @@ import javax.sql.DataSource;
 @Slf4j
 public class SegmentService {
 
-  private final IDGen idGen;
+	private final IDGen idGen;
 
-  public SegmentService(DataSource dataSource) throws InitException {
-    // Config Dao
-    IDAllocDao dao = new IDAllocDaoImpl(dataSource);
+	public SegmentService(DataSource dataSource) throws InitException {
+		// Config Dao
+		IDAllocDao dao = new IDAllocDaoImpl(dataSource);
 
-    // Config ID Gen
-    idGen = new SegmentIDGenImpl();
-    ((SegmentIDGenImpl) idGen).setDao(dao);
-    if (idGen.init()) {
-      log.info("Segment Service Init Successfully");
-    }
-    else {
-      throw new InitException("Segment Service Init Fail");
-    }
+		// Config ID Gen
+		idGen = new SegmentIDGenImpl();
+		((SegmentIDGenImpl) idGen).setDao(dao);
+		if (idGen.init()) {
+			log.info("Segment Service Init Successfully");
+		}
+		else {
+			throw new InitException("Segment Service Init Fail");
+		}
 
-  }
+	}
 
-  public Result getId(String key) {
-    return idGen.get(key);
-  }
+	public Result getId(String key) {
+		return idGen.get(key);
+	}
 
-  public SegmentIDGenImpl getIdGen() {
-    if (idGen instanceof SegmentIDGenImpl) {
-      return (SegmentIDGenImpl) idGen;
-    }
-    return null;
-  }
+	public SegmentIDGenImpl getIdGen() {
+		if (idGen instanceof SegmentIDGenImpl) {
+			return (SegmentIDGenImpl) idGen;
+		}
+		return null;
+	}
 
 }

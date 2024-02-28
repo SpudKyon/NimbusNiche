@@ -29,19 +29,18 @@ import lombok.experimental.Accessors;
 @TableName("spu_detail")
 public class SpuDetail extends BaseModel implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 商品id
-   */
-  @TableId(value = "spu_id", type = IdType.AUTO)
-  private Long spuId;
+	/**
+	 * 商品id
+	 */
+	@TableId(value = "spu_id", type = IdType.AUTO)
+	private Long spuId;
 
-  /**
-   * 商品详情
-   */
-  @TableField("detail")
-  private String detail;
-
+	/**
+	 * 商品详情
+	 */
+	@TableField("detail")
+	private String detail;
 
 }

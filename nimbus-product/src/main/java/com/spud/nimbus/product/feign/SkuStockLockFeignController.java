@@ -16,12 +16,12 @@ import java.util.List;
 @RestController
 public class SkuStockLockFeignController implements SkuStockLockFeignClient {
 
+	@Autowired
+	private SkuStockLockService skuStockLockService;
 
-  @Autowired
-  private SkuStockLockService skuStockLockService;
+	@Override
+	public Result<Void> lock(List<SkuStockLockDTO> skuStockLocksParam) {
+		return skuStockLockService.lock(skuStockLocksParam);
+	}
 
-  @Override
-  public Result<Void> lock(List<SkuStockLockDTO> skuStockLocksParam) {
-    return skuStockLockService.lock(skuStockLocksParam);
-  }
 }

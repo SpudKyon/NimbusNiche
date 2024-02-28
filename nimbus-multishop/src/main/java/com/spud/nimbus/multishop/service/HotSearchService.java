@@ -13,7 +13,7 @@ import java.util.List;
  * @author spud
  * @date 2024/2/24
  */
-public interface HotSearchService  extends IService<HotSearch> {
+public interface HotSearchService extends IService<HotSearch> {
 
 	/**
 	 * 分页获取热搜列表
@@ -25,7 +25,6 @@ public interface HotSearchService  extends IService<HotSearch> {
 
 	/**
 	 * 根据热搜id获取热搜
-	 *
 	 * @param hotSearchId 热搜id
 	 * @return 热搜
 	 */
@@ -62,4 +61,5 @@ public interface HotSearchService  extends IService<HotSearch> {
 	 * @param shopId
 	 */
 	void removeHotSearchListCache(Long shopId);
+
 }

@@ -11,17 +11,17 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class DeliveryOrderDTO{
+public class DeliveryOrderDTO {
 
-  @Schema(description = "deliveryOrderId" )
-  private Long deliveryOrderId;
+	@Schema(description = "deliveryOrderId")
+	private Long deliveryOrderId;
 
-  @NotNull(message="订单号不能为空")
-  @Schema(description = "订单号" ,requiredMode = Schema.RequiredMode.REQUIRED)
-  private Long orderId;
+	@NotNull(message = "订单号不能为空")
+	@Schema(description = "订单号", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Long orderId;
 
-  @NotNull(message="发货方式不能为空")
-  @Schema(description = "发货方式" ,requiredMode = Schema.RequiredMode.REQUIRED)
-  private Integer deliveryType;
+	@NotNull(message = "发货方式不能为空")
+	@Schema(description = "发货方式", requiredMode = Schema.RequiredMode.REQUIRED)
+	private Integer deliveryType;
 
 }

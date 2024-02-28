@@ -23,14 +23,15 @@ import java.util.List;
 @Tag(name = "app-轮播图")
 public class IndexImgController {
 
-  @Autowired
-  private IndexImgService indexImgService;
+	@Autowired
+	private IndexImgService indexImgService;
 
-  @GetMapping("/list")
-  @Operation(summary = "获取轮播图列表", description = "分页获取轮播图列表")
-  @Parameter(name = "shopId", description = "店铺id（平台：0）")
-  public Result<List<IndexImgVO>> getList(@RequestParam("shopId") Long shopId) {
-    List<IndexImgVO> indexImgPage = indexImgService.getListByShopId(shopId);
-    return Result.success(indexImgPage);
-  }
+	@GetMapping("/list")
+	@Operation(summary = "获取轮播图列表", description = "分页获取轮播图列表")
+	@Parameter(name = "shopId", description = "店铺id（平台：0）")
+	public Result<List<IndexImgVO>> getList(@RequestParam("shopId") Long shopId) {
+		List<IndexImgVO> indexImgPage = indexImgService.getListByShopId(shopId);
+		return Result.success(indexImgPage);
+	}
+
 }

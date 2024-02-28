@@ -28,37 +28,36 @@ import lombok.experimental.Accessors;
 @ToString
 public class UserRole implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 关联id
-   */
-  @TableId(value = "id", type = IdType.AUTO)
-  private Long id;
+	/**
+	 * 关联id
+	 */
+	@TableId(value = "id", type = IdType.AUTO)
+	private Long id;
 
-  /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * 用户ID
-   */
-  @TableField("user_id")
-  private Long userId;
+	/**
+	 * 用户ID
+	 */
+	@TableField("user_id")
+	private Long userId;
 
-  /**
-   * 角色ID
-   */
-  @TableField("role_id")
-  private Long roleId;
-
+	/**
+	 * 角色ID
+	 */
+	@TableField("role_id")
+	private Long roleId;
 
 }

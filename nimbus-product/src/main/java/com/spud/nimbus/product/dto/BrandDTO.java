@@ -14,35 +14,37 @@ import java.util.List;
  */
 @Data
 @ToString
-public class BrandDTO extends BaseDTO{
-  private static final long serialVersionUID = 1L;
+public class BrandDTO extends BaseDTO {
 
-  @Schema(description = "brand_id" )
-  private Long brandId;
+	private static final long serialVersionUID = 1L;
 
-  @NotNull(message = "品牌名称不能为空")
-  @Schema(description = "品牌名称" )
-  private String name;
+	@Schema(description = "brand_id")
+	private Long brandId;
 
-  @Schema(description = "品牌描述" )
-  private String desc;
+	@NotNull(message = "品牌名称不能为空")
+	@Schema(description = "品牌名称")
+	private String name;
 
-  @NotNull(message = "logo图片不能为空")
-  @Schema(description = "品牌logo图片" )
-  private String imgUrl;
+	@Schema(description = "品牌描述")
+	private String desc;
 
-  @NotNull(message = "首字母不能为空")
-  @Schema(description = "检索首字母" )
-  private String firstLetter;
+	@NotNull(message = "logo图片不能为空")
+	@Schema(description = "品牌logo图片")
+	private String imgUrl;
 
-  @NotNull(message = "序号不能为空")
-  @Schema(description = "排序" )
-  private Integer seq;
+	@NotNull(message = "首字母不能为空")
+	@Schema(description = "检索首字母")
+	private String firstLetter;
 
-  @Schema(description = "状态 1:enable, 0:disable, -1:deleted" )
-  private Integer status;
+	@NotNull(message = "序号不能为空")
+	@Schema(description = "排序")
+	private Integer seq;
 
-  @NotNull(message = "分类不能为空")
-  @Schema(description = "分类" )
-  private List<Long> categoryIds;
+	@Schema(description = "状态 1:enable, 0:disable, -1:deleted")
+	private Integer status;
+
+	@NotNull(message = "分类不能为空")
+	@Schema(description = "分类")
+	private List<Long> categoryIds;
+
 }

@@ -28,26 +28,25 @@ import java.util.List;
 @Tag(name = "app-spu信息")
 public class SpuController {
 
-  @Autowired
-  private SpuService spuService;
+	@Autowired
+	private SpuService spuService;
 
-  @Autowired
-  private SkuService skuService;
+	@Autowired
+	private SkuService skuService;
 
+	@GetMapping("/prod_info")
+	@Operation(summary = "商品详情信息", description = "根据商品ID（prodId）获取商品信息")
+	@Parameter(name = "spuId", description = "商品ID", required = true)
+	public Result<SpuAppVO> prodInfo(@RequestParam("spuId") Long spuId) {
 
+		SpuVO spu = spuService.getBySpuId(spuId);
+		SpuAppVO spuAppVO = BeanUtil.map(spu, SpuAppVO.class);
+		SpuExtension spuExtension = spuService.getSpuExtension(spuId);
+		spuAppVO.setTotalStock(spuExtension.getActualStock());
+		spuAppVO.setSaleNum(spuExtension.getSaleNum());
+		List<SkuAppVO> skuAppVO = skuService.getSkuBySpuId(spu.getSpuId());
+		spuAppVO.setSkus(skuAppVO);
+		return Result.success(spuAppVO);
+	}
 
-  @GetMapping("/prod_info")
-  @Operation(summary = "商品详情信息" , description = "根据商品ID（prodId）获取商品信息")
-  @Parameter(name = "spuId", description = "商品ID" , required = true)
-  public Result<SpuAppVO> prodInfo(@RequestParam("spuId") Long spuId) {
-
-    SpuVO spu = spuService.getBySpuId(spuId);
-    SpuAppVO spuAppVO = BeanUtil.map(spu, SpuAppVO.class);
-    SpuExtension spuExtension = spuService.getSpuExtension(spuId);
-    spuAppVO.setTotalStock(spuExtension.getActualStock());
-    spuAppVO.setSaleNum(spuExtension.getSaleNum());
-    List<SkuAppVO> skuAppVO = skuService.getSkuBySpuId(spu.getSpuId());
-    spuAppVO.setSkus(skuAppVO);
-    return Result.success(spuAppVO);
-  }
 }

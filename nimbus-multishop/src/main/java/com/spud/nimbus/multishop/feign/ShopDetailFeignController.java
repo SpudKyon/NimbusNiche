@@ -20,42 +20,41 @@ import java.util.Objects;
 @RestController
 public class ShopDetailFeignController implements ShopDetailFeignClient {
 
-    @Autowired
-    private ShopDetailService shopDetailService;
+	@Autowired
+	private ShopDetailService shopDetailService;
 
+	@Override
+	public Result<String> getShopNameByShopId(Long shopId) {
+		ShopDetailVO shopDetail = shopDetailService.getByShopId(shopId);
+		if (Objects.isNull(shopDetail)) {
+			return Result.success("");
+		}
+		return Result.success(shopDetail.getShopName());
+	}
 
-    @Override
-    public Result<String> getShopNameByShopId(Long shopId) {
-        ShopDetailVO shopDetail = shopDetailService.getByShopId(shopId);
-        if (Objects.isNull(shopDetail)) {
-            return Result.success("");
-        }
-        return Result.success(shopDetail.getShopName());
-    }
+	@Override
+	public Result<EsShopDetailBO> getShopByShopId(Long shopId) {
+		ShopDetailVO shopDetail = shopDetailService.getByShopId(shopId);
+		if (Objects.isNull(shopDetail)) {
+			return Result.success(new EsShopDetailBO());
+		}
+		return Result.success(BeanUtil.map(shopDetail, EsShopDetailBO.class));
+	}
 
-    @Override
-    public Result<EsShopDetailBO> getShopByShopId(Long shopId) {
-        ShopDetailVO shopDetail = shopDetailService.getByShopId(shopId);
-        if (Objects.isNull(shopDetail)) {
-            return Result.success(new EsShopDetailBO());
-        }
-        return Result.success(BeanUtil.map(shopDetail, EsShopDetailBO.class));
-    }
+	@Override
+	public Result<List<ShopDetailVO>> listByShopIds(List<Long> shopIds) {
+		List<ShopDetail> shopDetail = shopDetailService.listByShopIds(shopIds);
+		return Result.success(BeanUtil.mapAsList(shopDetail, ShopDetailVO.class));
+	}
 
+	@Override
+	public Result<EsShopDetailBO> shopExtensionData(Long shopId) {
+		return Result.success(shopDetailService.shopExtensionData(shopId));
+	}
 
-    @Override
-    public Result<List<ShopDetailVO>> listByShopIds(List<Long> shopIds) {
-        List<ShopDetail> shopDetail = shopDetailService.listByShopIds(shopIds);
-        return Result.success(BeanUtil.mapAsList(shopDetail, ShopDetailVO.class));
-    }
+	@Override
+	public Result<List<ShopDetailVO>> getShopDetailByShopIdAndShopName(List<Long> shopIds, String shopName) {
+		return Result.success(shopDetailService.getShopDetailByShopIdAndShopName(shopIds, shopName));
+	}
 
-    @Override
-    public Result<EsShopDetailBO> shopExtensionData(Long shopId) {
-        return Result.success(shopDetailService.shopExtensionData(shopId));
-    }
-
-    @Override
-    public Result<List<ShopDetailVO>> getShopDetailByShopIdAndShopName(List<Long> shopIds, String shopName) {
-        return Result.success(shopDetailService.getShopDetailByShopIdAndShopName(shopIds,shopName));
-    }
 }

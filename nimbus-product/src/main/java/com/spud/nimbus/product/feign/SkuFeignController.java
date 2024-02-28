@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SkuFeignController implements SkuFeignClient {
 
-  @Autowired
-  private SkuService skuService;
+	@Autowired
+	private SkuService skuService;
 
+	@Override
+	public Result<SkuVO> getById(Long skuId) {
+		return Result.success(skuService.getSkuBySkuId(skuId));
+	}
 
-  @Override
-  public Result<SkuVO> getById(Long skuId) {
-    return Result.success(skuService.getSkuBySkuId(skuId));
-  }
 }

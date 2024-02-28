@@ -13,17 +13,17 @@ import lombok.ToString;
 @ToString
 public class SysConfigVO extends BaseVO {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  private Long id;
+	private Long id;
 
-  @Schema(description = "key")
-  private String paramKey;
+	@Schema(description = "key")
+	private String paramKey;
 
-  @Schema(description = "value")
-  private String paramValue;
+	@Schema(description = "value")
+	private String paramValue;
 
-  @Schema(description = "备注")
-  private String remark;
+	@Schema(description = "备注")
+	private String remark;
 
 }

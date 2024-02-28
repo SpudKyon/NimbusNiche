@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "nimbus-multishop", contextId = "indexImg")
 public interface IndexImgFeignClient {
 
-  /**
-   * 根据商品d删除轮播图信息
-   *
-   * @param spuId  商品id
-   * @param shopId 店鋪id
-   * @return void
-   */
-  @GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/indexImg/deleteBySpuId")
-  Result<Void> deleteBySpuId(@RequestParam("spuId") Long spuId, @RequestParam("shopId") Long shopId);
+	/**
+	 * 根据商品d删除轮播图信息
+	 * @param spuId 商品id
+	 * @param shopId 店鋪id
+	 * @return void
+	 */
+	@GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/indexImg/deleteBySpuId")
+	Result<Void> deleteBySpuId(@RequestParam("spuId") Long spuId, @RequestParam("shopId") Long shopId);
+
 }

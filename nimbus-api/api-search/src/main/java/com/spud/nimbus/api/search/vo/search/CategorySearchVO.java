@@ -10,12 +10,14 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class CategorySearchVO{
-    private static final long serialVersionUID = 1L;
+public class CategorySearchVO {
 
-    @Schema(description = "分类id" )
-    private Long categoryId;
+	private static final long serialVersionUID = 1L;
 
-    @Schema(description = "分类名称" )
-    private String name;
+	@Schema(description = "分类id")
+	private Long categoryId;
+
+	@Schema(description = "分类名称")
+	private String name;
+
 }

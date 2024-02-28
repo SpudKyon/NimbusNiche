@@ -28,25 +28,24 @@ import lombok.experimental.Accessors;
 @TableName("attr_category")
 public class AttrCategory extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 属性与分类关联id
-     */
-    @TableId(value = "attr_category_id", type = IdType.AUTO)
-    private Long attrCategoryId;
+	/**
+	 * 属性与分类关联id
+	 */
+	@TableId(value = "attr_category_id", type = IdType.AUTO)
+	private Long attrCategoryId;
 
-    /**
-     * 分类id
-     */
-    @TableField("category_id")
-    private Long categoryId;
+	/**
+	 * 分类id
+	 */
+	@TableField("category_id")
+	private Long categoryId;
 
-    /**
-     * 属性id
-     */
-    @TableField("attr_id")
-    private Long attrId;
-
+	/**
+	 * 属性id
+	 */
+	@TableField("attr_id")
+	private Long attrId;
 
 }

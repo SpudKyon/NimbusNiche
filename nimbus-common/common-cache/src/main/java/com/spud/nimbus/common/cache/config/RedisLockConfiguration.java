@@ -11,8 +11,10 @@ import org.springframework.integration.redis.util.RedisLockRegistry;
  */
 @Configuration
 public class RedisLockConfiguration {
-  @Bean
-  public RedisLockRegistry redisLockRegistry(RedisConnectionFactory redisConnectionFactory){
-    return new RedisLockRegistry(redisConnectionFactory,"spring-cloud");
-  }
+
+	@Bean
+	public RedisLockRegistry redisLockRegistry(RedisConnectionFactory redisConnectionFactory) {
+		return new RedisLockRegistry(redisConnectionFactory, "spring-cloud");
+	}
+
 }

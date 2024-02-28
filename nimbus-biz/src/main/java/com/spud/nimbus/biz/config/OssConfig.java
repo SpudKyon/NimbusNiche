@@ -16,23 +16,26 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class OssConfig {
 
-  @Value("${biz.oss.endpoint}")
-  private String endpoint;
+	@Value("${biz.oss.endpoint}")
+	private String endpoint;
 
-  @Value("${biz.oss.bucket}")
-  private String bucket;
-  @Value("${biz.oss.access-key-id}")
+	@Value("${biz.oss.bucket}")
+	private String bucket;
 
-  private String accessKeyId;
-  @Value("${biz.oss.access-key-secret}")
-  private String accessKeySecret;
+	@Value("${biz.oss.access-key-id}")
 
-  @Value("${biz.oss.type}")
-  private Integer ossType;
+	private String accessKeyId;
 
-  /**
-   * 最大上传长度单位m，默认20M
-   */
-  @Value("${biz.oss.maxLength:20}")
-  private Integer maxLength;
+	@Value("${biz.oss.access-key-secret}")
+	private String accessKeySecret;
+
+	@Value("${biz.oss.type}")
+	private Integer ossType;
+
+	/**
+	 * 最大上传长度单位m，默认20M
+	 */
+	@Value("${biz.oss.maxLength:20}")
+	private Integer maxLength;
+
 }

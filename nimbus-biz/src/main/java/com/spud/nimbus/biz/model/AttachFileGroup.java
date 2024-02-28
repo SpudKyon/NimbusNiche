@@ -16,7 +16,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author spud
@@ -28,28 +28,27 @@ import lombok.experimental.Accessors;
 @TableName("attach_file_group")
 public class AttachFileGroup extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "attach_file_group_id", type = IdType.AUTO)
-    private Long attachFileGroupId;
+	@TableId(value = "attach_file_group_id", type = IdType.AUTO)
+	private Long attachFileGroupId;
 
-    /**
-     * 店铺id
-     */
-    @TableField("shop_id")
-    private Long shopId;
+	/**
+	 * 店铺id
+	 */
+	@TableField("shop_id")
+	private Long shopId;
 
-    /**
-     * 分组名称
-     */
-    @TableField("name")
-    private String name;
+	/**
+	 * 分组名称
+	 */
+	@TableField("name")
+	private String name;
 
-    /**
-     * 1:图片 2:视频 3:文件
-     */
-    @TableField("type")
-    private Integer type;
-
+	/**
+	 * 1:图片 2:视频 3:文件
+	 */
+	@TableField("type")
+	private Integer type;
 
 }

@@ -12,16 +12,16 @@ import lombok.ToString;
 @ToString
 public class DeliveryOrderItemDTO {
 
-  @Schema(description = "id")
-  private Long orderItemId;
+	@Schema(description = "id")
+	private Long orderItemId;
 
-  @Schema(description = "商品图片")
-  private String pic;
+	@Schema(description = "商品图片")
+	private String pic;
 
-  @Schema(description = "商品名称")
-  private String spuName;
+	@Schema(description = "商品名称")
+	private String spuName;
 
-  @Schema(description = "发货改变的数量")
-  private Integer changeNum;
+	@Schema(description = "发货改变的数量")
+	private Integer changeNum;
 
 }

@@ -12,13 +12,15 @@ import lombok.ToString;
 @Data
 @ToString
 public class AttachFileGroupVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  private Long attachFileGroupId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺id")
-  private Long shopId;
+	private Long attachFileGroupId;
 
-  @Schema(description = "分组名称")
-  private String name;
+	@Schema(description = "店铺id")
+	private Long shopId;
+
+	@Schema(description = "分组名称")
+	private String name;
+
 }

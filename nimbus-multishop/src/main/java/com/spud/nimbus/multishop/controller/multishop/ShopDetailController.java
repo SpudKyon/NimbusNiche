@@ -20,14 +20,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "multishop-店铺详情信息")
 public class ShopDetailController {
 
-  @Autowired
-  private ShopDetailService shopDetailService;
+	@Autowired
+	private ShopDetailService shopDetailService;
 
-  @GetMapping("/info")
-  @Operation(summary = "获取店铺详情信息", description = "获取店铺详情信息")
-  public Result<ShopDetailVO> info() {
-    Long shopId = AuthUserContext.get().getTenantId();
-    ShopDetailVO shopDetailVO = shopDetailService.getByShopId(shopId);
-    return Result.success(shopDetailVO);
-  }
+	@GetMapping("/info")
+	@Operation(summary = "获取店铺详情信息", description = "获取店铺详情信息")
+	public Result<ShopDetailVO> info() {
+		Long shopId = AuthUserContext.get().getTenantId();
+		ShopDetailVO shopDetailVO = shopDetailService.getByShopId(shopId);
+		return Result.success(shopDetailVO);
+	}
+
 }

@@ -34,63 +34,66 @@ import java.util.List;
  */
 @Service
 public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> implements SysUserService {
-  @Resource
-  private SysUserMapper sysUserMapper;
-  @Autowired
-  private AccountFeignClient accountFeignClient;
-  @Autowired
-  private UserRoleFeignClient userRoleFeignClient;
 
+	@Resource
+	private SysUserMapper sysUserMapper;
 
-  @Override
-  @Cacheable(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#userId")
-  public SysUserSimpleVO getSimpleByUserId(Long userId) {
-    return sysUserMapper.getSimpleByUserId(userId);
-  }
+	@Autowired
+	private AccountFeignClient accountFeignClient;
 
-  @Override
-  public PageVO<SysUserVO> pageByShopId(PageDTO pageDTO, Long shopId, String nickName) {
-    return PageUtil.doPage(pageDTO, () -> sysUserMapper.listByShopId(shopId, nickName));
-  }
+	@Autowired
+	private UserRoleFeignClient userRoleFeignClient;
 
-  @Override
-  public SysUserVO getByUserId(Long userId) {
-    SysUserVO sysUser = sysUserMapper.getByUserId(userId);
-    Result<List<Long>> roleIds = userRoleFeignClient.getRoleIds(sysUser.getSysUserId());
-    sysUser.setRoleIds(roleIds.getData());
-    return sysUser;
-  }
+	@Override
+	@Cacheable(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#userId")
+	public SysUserSimpleVO getSimpleByUserId(Long userId) {
+		return sysUserMapper.getSimpleByUserId(userId);
+	}
 
-  @Override
-  @GlobalTransactional(rollbackFor = Exception.class)
-  @Transactional(rollbackFor = Exception.class)
-  public void save(SysUser sysUser, List<Long> roleIds) {
-    UserRoleDTO userRoleDTO = new UserRoleDTO();
-    userRoleDTO.setRoleIds(roleIds);
-    sysUserMapper.save(sysUser);
-    userRoleDTO.setUserId(sysUser.getSysUserId());
-    userRoleFeignClient.saveByUserIdAndSysType(userRoleDTO);
-  }
+	@Override
+	public PageVO<SysUserVO> pageByShopId(PageDTO pageDTO, Long shopId, String nickName) {
+		return PageUtil.doPage(pageDTO, () -> sysUserMapper.listByShopId(shopId, nickName));
+	}
 
-  @Override
-  @GlobalTransactional(rollbackFor = Exception.class)
-  @Transactional(rollbackFor = Exception.class)
-  @CacheEvict(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#sysUser.sysUserId")
-  public void update(SysUser sysUser, List<Long> roleIds) {
-    UserRoleDTO userRoleDTO = new UserRoleDTO();
-    userRoleDTO.setRoleIds(roleIds);
-    userRoleDTO.setUserId(sysUser.getSysUserId());
-    sysUserMapper.update(sysUser);
-    userRoleFeignClient.updateByUserIdAndSysType(userRoleDTO);
-  }
+	@Override
+	public SysUserVO getByUserId(Long userId) {
+		SysUserVO sysUser = sysUserMapper.getByUserId(userId);
+		Result<List<Long>> roleIds = userRoleFeignClient.getRoleIds(sysUser.getSysUserId());
+		sysUser.setRoleIds(roleIds.getData());
+		return sysUser;
+	}
 
-  @Override
-  @GlobalTransactional(rollbackFor = Exception.class)
-  @Transactional(rollbackFor = Exception.class)
-  @CacheEvict(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#sysUserId")
-  public void deleteById(Long sysUserId) {
-    accountFeignClient.deleteByUserIdAndSysType(sysUserId);
-    userRoleFeignClient.deleteByUserIdAndSysType(sysUserId);
-    sysUserMapper.deleteById(sysUserId);
-  }
+	@Override
+	@GlobalTransactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
+	public void save(SysUser sysUser, List<Long> roleIds) {
+		UserRoleDTO userRoleDTO = new UserRoleDTO();
+		userRoleDTO.setRoleIds(roleIds);
+		sysUserMapper.save(sysUser);
+		userRoleDTO.setUserId(sysUser.getSysUserId());
+		userRoleFeignClient.saveByUserIdAndSysType(userRoleDTO);
+	}
+
+	@Override
+	@GlobalTransactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
+	@CacheEvict(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#sysUser.sysUserId")
+	public void update(SysUser sysUser, List<Long> roleIds) {
+		UserRoleDTO userRoleDTO = new UserRoleDTO();
+		userRoleDTO.setRoleIds(roleIds);
+		userRoleDTO.setUserId(sysUser.getSysUserId());
+		sysUserMapper.update(sysUser);
+		userRoleFeignClient.updateByUserIdAndSysType(userRoleDTO);
+	}
+
+	@Override
+	@GlobalTransactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
+	@CacheEvict(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#sysUserId")
+	public void deleteById(Long sysUserId) {
+		accountFeignClient.deleteByUserIdAndSysType(sysUserId);
+		userRoleFeignClient.deleteByUserIdAndSysType(sysUserId);
+		sysUserMapper.deleteById(sysUserId);
+	}
+
 }

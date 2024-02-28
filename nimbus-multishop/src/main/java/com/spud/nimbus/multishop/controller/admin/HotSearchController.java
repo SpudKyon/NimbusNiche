@@ -24,50 +24,50 @@ import com.spud.nimbus.common.database.dto.PageDTO;
 @Tag(name = "admin-热搜")
 public class HotSearchController {
 
-  @Autowired
-  private HotSearchService hotSearchService;
+	@Autowired
+	private HotSearchService hotSearchService;
 
+	@GetMapping("/page")
+	@Operation(summary = "分页获取热搜列表", description = "分页获取热搜列表")
+	public Result<PageVO<HotSearchVO>> page(@Valid PageDTO pageDTO, HotSearchDTO hotSearchDTO) {
+		hotSearchDTO.setShopId(AuthUserContext.get().getTenantId());
+		PageVO<HotSearchVO> hotSearchPage = hotSearchService.page(pageDTO, hotSearchDTO);
+		return Result.success(hotSearchPage);
+	}
 
-  @GetMapping("/page")
-  @Operation(summary = "分页获取热搜列表", description = "分页获取热搜列表")
-  public Result<PageVO<HotSearchVO>> page(@Valid PageDTO pageDTO, HotSearchDTO hotSearchDTO) {
-    hotSearchDTO.setShopId(AuthUserContext.get().getTenantId());
-    PageVO<HotSearchVO> hotSearchPage = hotSearchService.page(pageDTO, hotSearchDTO);
-    return Result.success(hotSearchPage);
-  }
+	@GetMapping
+	@Operation(summary = "获取热搜", description = "根据hotSearchId获取热搜")
+	public Result<HotSearchVO> getByHotSearchId(@RequestParam Long hotSearchId) {
+		return Result.success(hotSearchService.getByHotSearchId(hotSearchId));
+	}
 
-  @GetMapping
-  @Operation(summary = "获取热搜", description = "根据hotSearchId获取热搜")
-  public Result<HotSearchVO> getByHotSearchId(@RequestParam Long hotSearchId) {
-    return Result.success(hotSearchService.getByHotSearchId(hotSearchId));
-  }
+	@PostMapping
+	@Operation(summary = "保存热搜", description = "保存热搜")
+	public Result<Void> save(@Valid @RequestBody HotSearchDTO hotSearchDTO) {
+		HotSearch hotSearch = BeanUtil.map(hotSearchDTO, HotSearch.class);
+		hotSearch.setShopId(AuthUserContext.get().getTenantId());
+		hotSearchService.save(hotSearch);
+		hotSearchService.removeHotSearchListCache(hotSearch.getShopId());
+		return Result.success(null);
+	}
 
-  @PostMapping
-  @Operation(summary = "保存热搜", description = "保存热搜")
-  public Result<Void> save(@Valid @RequestBody HotSearchDTO hotSearchDTO) {
-    HotSearch hotSearch = BeanUtil.map(hotSearchDTO, HotSearch.class);
-    hotSearch.setShopId(AuthUserContext.get().getTenantId());
-    hotSearchService.save(hotSearch);
-    hotSearchService.removeHotSearchListCache(hotSearch.getShopId());
-    return Result.success(null);
-  }
+	@PutMapping
+	@Operation(summary = "更新热搜", description = "更新热搜")
+	public Result<Void> update(@Valid @RequestBody HotSearchDTO hotSearchDTO) {
+		HotSearch hotSearch = BeanUtil.map(hotSearchDTO, HotSearch.class);
+		hotSearch.setShopId(AuthUserContext.get().getTenantId());
+		hotSearchService.update(hotSearch);
+		hotSearchService.removeHotSearchListCache(hotSearch.getShopId());
+		return Result.success(null);
+	}
 
-  @PutMapping
-  @Operation(summary = "更新热搜", description = "更新热搜")
-  public Result<Void> update(@Valid @RequestBody HotSearchDTO hotSearchDTO) {
-    HotSearch hotSearch = BeanUtil.map(hotSearchDTO, HotSearch.class);
-    hotSearch.setShopId(AuthUserContext.get().getTenantId());
-    hotSearchService.update(hotSearch);
-    hotSearchService.removeHotSearchListCache(hotSearch.getShopId());
-    return Result.success(null);
-  }
+	@DeleteMapping
+	@Operation(summary = "删除热搜", description = "根据热搜id删除热搜")
+	public Result<Void> delete(@RequestParam Long hotSearchId) {
+		Long shopId = AuthUserContext.get().getTenantId();
+		hotSearchService.deleteById(hotSearchId, shopId);
+		hotSearchService.removeHotSearchListCache(shopId);
+		return Result.success(null);
+	}
 
-  @DeleteMapping
-  @Operation(summary = "删除热搜", description = "根据热搜id删除热搜")
-  public Result<Void> delete(@RequestParam Long hotSearchId) {
-    Long shopId = AuthUserContext.get().getTenantId();
-    hotSearchService.deleteById(hotSearchId, shopId);
-    hotSearchService.removeHotSearchListCache(shopId);
-    return Result.success(null);
-  }
 }

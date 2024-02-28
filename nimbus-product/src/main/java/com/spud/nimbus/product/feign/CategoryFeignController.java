@@ -17,18 +17,19 @@ import java.util.List;
 @RestController
 public class CategoryFeignController implements CategoryFeignClient {
 
-  @Autowired
-  private CategoryService categoryService;
+	@Autowired
+	private CategoryService categoryService;
 
-  @Override
-  public Result<List<CategoryVO>> listByOneLevel() {
-    return Result.success(categoryService.listByShopIdAndParenId(Constant.PLATFORM_SHOP_ID, Constant.CATEGORY_ID));
-  }
+	@Override
+	public Result<List<CategoryVO>> listByOneLevel() {
+		return Result.success(categoryService.listByShopIdAndParenId(Constant.PLATFORM_SHOP_ID, Constant.CATEGORY_ID));
+	}
 
-  @Override
-  public Result<List<Long>> listCategoryId(Long categoryId) {
-    CategoryVO category = categoryService.getById(categoryId);
-    List<Long> categoryIds = categoryService.listCategoryId(category.getShopId(), category.getParentId());
-    return Result.success(categoryIds);
-  }
+	@Override
+	public Result<List<Long>> listCategoryId(Long categoryId) {
+		CategoryVO category = categoryService.getById(categoryId);
+		List<Long> categoryIds = categoryService.listCategoryId(category.getShopId(), category.getParentId());
+		return Result.success(categoryIds);
+	}
+
 }

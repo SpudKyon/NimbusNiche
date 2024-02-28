@@ -13,13 +13,14 @@ import lombok.ToString;
 @ToString
 public class AttachFileGroupDTO extends BaseDTO {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  private Long attachFileGroupId;
+	private Long attachFileGroupId;
 
-  @Schema(description = "店铺id")
-  private Long shopId;
+	@Schema(description = "店铺id")
+	private Long shopId;
 
-  @Schema(description = "分组名称")
-  private String name;
+	@Schema(description = "分组名称")
+	private String name;
+
 }

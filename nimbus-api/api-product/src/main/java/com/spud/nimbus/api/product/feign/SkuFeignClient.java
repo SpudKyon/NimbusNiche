@@ -11,15 +11,15 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author spud
  * @date 2024/2/10
  */
-@FeignClient(value = "nimbus-product",contextId = "sku")
+@FeignClient(value = "nimbus-product", contextId = "sku")
 public interface SkuFeignClient {
 
-    /**
-     * 通过skuId获取sku信息
-     * @param skuId skuId
-     * @return sku信息
-     */
-    @GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/sku/getById")
-    Result<SkuVO> getById(@RequestParam("skuId") Long skuId);
+	/**
+	 * 通过skuId获取sku信息
+	 * @param skuId skuId
+	 * @return sku信息
+	 */
+	@GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/sku/getById")
+	Result<SkuVO> getById(@RequestParam("skuId") Long skuId);
 
 }

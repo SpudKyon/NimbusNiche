@@ -6,9 +6,9 @@ package com.spud.nimbus.common.cache.constant;
  */
 public interface BizCacheNames {
 
-    /**
-     * 前缀
-     */
-    String COUPON_PREFIX = "nimbus_biz:";
+	/**
+	 * 前缀
+	 */
+	String COUPON_PREFIX = "nimbus_biz:";
 
 }

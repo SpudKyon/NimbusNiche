@@ -12,40 +12,36 @@ import java.util.List;
  */
 public interface AttachFileGroupService extends IService<AttachFileGroup> {
 
-  /**
-   * 获取列表
-   *
-   * @return 列表数据
-   */
-  List<AttachFileGroupVO> volist();
+	/**
+	 * 获取列表
+	 * @return 列表数据
+	 */
+	List<AttachFileGroupVO> volist();
 
-  /**
-   * 根据id获取
-   *
-   * @param attachFileGroupId id
-   * @return
-   */
-  AttachFileGroupVO getByAttachFileGroupId(Long attachFileGroupId);
+	/**
+	 * 根据id获取
+	 * @param attachFileGroupId id
+	 * @return
+	 */
+	AttachFileGroupVO getByAttachFileGroupId(Long attachFileGroupId);
 
-  /**
-   * 保存
-   *
-   * @param attachFileGroup
-   * @return
-   */
-  boolean save(AttachFileGroup attachFileGroup);
+	/**
+	 * 保存
+	 * @param attachFileGroup
+	 * @return
+	 */
+	boolean save(AttachFileGroup attachFileGroup);
 
-  /**
-   * 更新
-   *
-   * @param attachFileGroup
-   */
-  void update(AttachFileGroup attachFileGroup);
+	/**
+	 * 更新
+	 * @param attachFileGroup
+	 */
+	void update(AttachFileGroup attachFileGroup);
 
-  /**
-   * 根据id删除
-   *
-   * @param attachFileGroupId
-   */
-  void deleteById(Long attachFileGroupId);
+	/**
+	 * 根据id删除
+	 * @param attachFileGroupId
+	 */
+	void deleteById(Long attachFileGroupId);
+
 }

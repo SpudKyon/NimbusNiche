@@ -12,11 +12,13 @@ import lombok.ToString;
 @Data
 @ToString
 public class SpuDetailVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "商品id" )
-  private Long spuId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "商品详情" )
-  private String detail;
+	@Schema(description = "商品id")
+	private Long spuId;
+
+	@Schema(description = "商品详情")
+	private String detail;
+
 }

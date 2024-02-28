@@ -5,37 +5,38 @@ package com.spud.nimbus.common.constant;
  * @date 2024/2/10
  */
 public enum UserAdminType {
-  /**
-   * 管理员
-   */
-  ADMIN(1),
-  /**
-   * 用户
-   */
-  USER(0),
-  ;
 
-  private Integer value;
+	/**
+	 * 管理员
+	 */
+	ADMIN(1),
+	/**
+	 * 用户
+	 */
+	USER(0),;
 
-  UserAdminType(Integer value) {
-    this.value = value;
-  }
+	private Integer value;
 
-  public static UserAdminType instance(Integer value) {
-    UserAdminType[] enums = values();
-    for (UserAdminType statusEnum : enums) {
-      if (statusEnum.getValue().equals(value)) {
-        return statusEnum;
-      }
-    }
-    return null;
-  }
+	UserAdminType(Integer value) {
+		this.value = value;
+	}
 
-  public Integer value() {
-    return value;
-  }
+	public static UserAdminType instance(Integer value) {
+		UserAdminType[] enums = values();
+		for (UserAdminType statusEnum : enums) {
+			if (statusEnum.getValue().equals(value)) {
+				return statusEnum;
+			}
+		}
+		return null;
+	}
 
-  public Integer getValue() {
-    return value;
-  }
+	public Integer value() {
+		return value;
+	}
+
+	public Integer getValue() {
+		return value;
+	}
+
 }

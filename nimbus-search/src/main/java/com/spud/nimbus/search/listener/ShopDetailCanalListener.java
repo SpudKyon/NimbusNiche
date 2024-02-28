@@ -24,42 +24,45 @@ import java.util.Objects;
 @Component
 public class ShopDetailCanalListener extends BaseCanalBinlogEventProcessor<ShopDetailBO> {
 
-  @Autowired
-  private ProductUpdateManager productUpdateManager;
-  @Autowired
-  private ProductFeignClient productFeignClient;
+	@Autowired
+	private ProductUpdateManager productUpdateManager;
 
-  /**
-   * 新增店铺
-   */
-  @Override
-  protected void processInsertInternal(CanalBinLogResult<ShopDetailBO> shopDetailResult) {
+	@Autowired
+	private ProductFeignClient productFeignClient;
 
-  }
+	/**
+	 * 新增店铺
+	 */
+	@Override
+	protected void processInsertInternal(CanalBinLogResult<ShopDetailBO> shopDetailResult) {
 
-  /**
-   * 更新店铺
-   *
-   * @param result
-   */
-  @Override
-  protected void processUpdateInternal(CanalBinLogResult<ShopDetailBO> result) {
-    ShopDetailBO beforeData = result.getBeforeData();
-    if (Objects.isNull(beforeData.getShopName()) && StrUtil.isBlank(beforeData.getShopLogo()) && !Objects.equals(beforeData.getShopStatus(), StatusEnum.ENABLE.value())) {
-      return;
-    }
-    ShopDetailBO afterData = result.getAfterData();
-    EsProductBO esProductBO = new EsProductBO();
-    if (StrUtil.isNotBlank(beforeData.getShopName())) {
-      esProductBO.setShopName(afterData.getShopName());
-    }
-    if (Objects.nonNull(beforeData.getShopLogo())) {
-      esProductBO.setShopImg(afterData.getShopLogo());
-    }
-    if (Objects.nonNull(beforeData.getShopStatus()) && Objects.equals(beforeData.getShopId(), StatusEnum.ENABLE.value())) {
-      esProductBO.setSpuStatus(StatusEnum.DISABLE.value());
-    }
-    Result<List<Long>> responseData = productFeignClient.getSpuIdsByShopId(afterData.getShopId());
-    productUpdateManager.esUpdateSpuBySpuIds(responseData.getData(), esProductBO);
-  }
+	}
+
+	/**
+	 * 更新店铺
+	 * @param result
+	 */
+	@Override
+	protected void processUpdateInternal(CanalBinLogResult<ShopDetailBO> result) {
+		ShopDetailBO beforeData = result.getBeforeData();
+		if (Objects.isNull(beforeData.getShopName()) && StrUtil.isBlank(beforeData.getShopLogo())
+				&& !Objects.equals(beforeData.getShopStatus(), StatusEnum.ENABLE.value())) {
+			return;
+		}
+		ShopDetailBO afterData = result.getAfterData();
+		EsProductBO esProductBO = new EsProductBO();
+		if (StrUtil.isNotBlank(beforeData.getShopName())) {
+			esProductBO.setShopName(afterData.getShopName());
+		}
+		if (Objects.nonNull(beforeData.getShopLogo())) {
+			esProductBO.setShopImg(afterData.getShopLogo());
+		}
+		if (Objects.nonNull(beforeData.getShopStatus())
+				&& Objects.equals(beforeData.getShopId(), StatusEnum.ENABLE.value())) {
+			esProductBO.setSpuStatus(StatusEnum.DISABLE.value());
+		}
+		Result<List<Long>> responseData = productFeignClient.getSpuIdsByShopId(afterData.getShopId());
+		productUpdateManager.esUpdateSpuBySpuIds(responseData.getData(), esProductBO);
+	}
+
 }

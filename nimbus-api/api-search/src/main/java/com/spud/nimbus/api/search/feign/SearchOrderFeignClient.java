@@ -13,16 +13,15 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @author spud
  * @date 2024/2/10
  */
-@FeignClient(value = "nimbus-search",contextId = "searchOrder")
+@FeignClient(value = "nimbus-search", contextId = "searchOrder")
 public interface SearchOrderFeignClient {
 
-
-  /**
-   * 订单搜索
-   * @param orderSearch 订单搜索参数
-   * @return 订单列表
-   */
-  @PutMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/searchOrder/getOrderPage")
-  Result<EsPageVO<EsOrderVO>> getOrderPage(@RequestBody OrderSearchDTO orderSearch);
+	/**
+	 * 订单搜索
+	 * @param orderSearch 订单搜索参数
+	 * @return 订单列表
+	 */
+	@PutMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/searchOrder/getOrderPage")
+	Result<EsPageVO<EsOrderVO>> getOrderPage(@RequestBody OrderSearchDTO orderSearch);
 
 }

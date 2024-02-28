@@ -19,40 +19,37 @@ import java.util.List;
  */
 @Mapper
 public interface UserMapper extends BaseMapper<User> {
-  /**
-   * 获取用户表列表
-   *
-   * @return 用户表列表
-   */
-  List<UserVO> list();
 
-  /**
-   * 根据用户表id获取用户表
-   *
-   * @param userId 用户表id
-   * @return 用户表
-   */
-  UserApiVO getByUserId(@Param("userId") Long userId);
+	/**
+	 * 获取用户表列表
+	 * @return 用户表列表
+	 */
+	List<UserVO> list();
 
-  /**
-   * 保存用户表
-   *
-   * @param user 用户表
-   */
-  void save(@Param("user") User user);
+	/**
+	 * 根据用户表id获取用户表
+	 * @param userId 用户表id
+	 * @return 用户表
+	 */
+	UserApiVO getByUserId(@Param("userId") Long userId);
 
-  /**
-   * 更新用户表
-   *
-   * @param user 用户表
-   */
-  void update(@Param("user") User user);
+	/**
+	 * 保存用户表
+	 * @param user 用户表
+	 */
+	void save(@Param("user") User user);
 
-  /**
-   * 根据用户id列表，获取用户信息
-   *
-   * @param userIds
-   * @return
-   */
-  List<UserApiVO> getUserByUserIds(@Param("userIds") List<Long> userIds);
+	/**
+	 * 更新用户表
+	 * @param user 用户表
+	 */
+	void update(@Param("user") User user);
+
+	/**
+	 * 根据用户id列表，获取用户信息
+	 * @param userIds
+	 * @return
+	 */
+	List<UserApiVO> getUserByUserIds(@Param("userIds") List<Long> userIds);
+
 }

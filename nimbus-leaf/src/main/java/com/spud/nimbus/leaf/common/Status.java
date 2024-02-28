@@ -6,14 +6,14 @@ package com.spud.nimbus.leaf.common;
  */
 public enum Status {
 
-  /**
-   * success
-   */
-  SUCCESS,
+	/**
+	 * success
+	 */
+	SUCCESS,
 
-  /**
-   * exception
-   */
-  EXCEPTION
+	/**
+	 * exception
+	 */
+	EXCEPTION
 
 }

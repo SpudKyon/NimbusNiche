@@ -28,40 +28,40 @@ import java.util.Objects;
 @Tag(name = "platform-店铺信息")
 public class ShopDetailController {
 
-  @Autowired
-  private ShopDetailService shopDetailService;
+	@Autowired
+	private ShopDetailService shopDetailService;
 
+	@GetMapping("/page")
+	@Operation(summary = "分页查询", description = "分页查询")
+	public Result<PageVO<ShopDetailVO>> getShopAuditingPage(PageDTO pageDTO, ShopDetailDTO shopDetailDTO) {
+		if (!Objects.equals(Constant.PLATFORM_SHOP_ID, AuthUserContext.get().getTenantId())) {
+			throw new NimbusException(ResultCode.UNAUTHORIZED);
+		}
+		return Result.success(shopDetailService.page(pageDTO, shopDetailDTO));
+	}
 
-  @GetMapping("/page")
-  @Operation(summary = "分页查询", description = "分页查询")
-  public Result<PageVO<ShopDetailVO>> getShopAuditingPage(PageDTO pageDTO, ShopDetailDTO shopDetailDTO) {
-    if (!Objects.equals(Constant.PLATFORM_SHOP_ID, AuthUserContext.get().getTenantId())) {
-      throw new NimbusException(ResultCode.UNAUTHORIZED);
-    }
-    return Result.success(shopDetailService.page(pageDTO, shopDetailDTO));
-  }
+	@GetMapping("/info")
+	@Operation(summary = "店铺详情", description = "店铺详情")
+	public Result<ShopDetailVO> getInfo(@RequestParam Long shopId) {
+		ShopDetailVO shopDetailVO = shopDetailService.getByShopId(shopId);
+		return Result.success(shopDetailVO);
+	}
 
-  @GetMapping("/info")
-  @Operation(summary = "店铺详情", description = "店铺详情")
-  public Result<ShopDetailVO> getInfo(@RequestParam Long shopId) {
-    ShopDetailVO shopDetailVO = shopDetailService.getByShopId(shopId);
-    return Result.success(shopDetailVO);
-  }
+	/**
+	 * 新建店铺
+	 */
+	@PostMapping("/create_shop")
+	@Operation(summary = "新建店铺", description = "新建店铺")
+	public Result<Void> createShop(@RequestBody ShopDetailDTO shopDetailDTO) {
+		shopDetailService.createShop(shopDetailDTO);
+		return Result.success(null);
+	}
 
-  /**
-   * 新建店铺
-   */
-  @PostMapping("/create_shop")
-  @Operation(summary = "新建店铺", description = "新建店铺")
-  public Result<Void> createShop(@RequestBody ShopDetailDTO shopDetailDTO) {
-    shopDetailService.createShop(shopDetailDTO);
-    return Result.success(null);
-  }
+	@PutMapping("/update_shop")
+	@Operation(summary = "更新店铺", description = "更新店铺")
+	public Result<Void> updateShop(@RequestBody ShopDetailDTO shopDetailDTO) {
+		shopDetailService.update(BeanUtil.map(shopDetailDTO, ShopDetail.class));
+		return Result.success(null);
+	}
 
-  @PutMapping("/update_shop")
-  @Operation(summary = "更新店铺", description = "更新店铺")
-  public Result<Void> updateShop(@RequestBody ShopDetailDTO shopDetailDTO) {
-    shopDetailService.update(BeanUtil.map(shopDetailDTO, ShopDetail.class));
-    return Result.success(null);
-  }
 }

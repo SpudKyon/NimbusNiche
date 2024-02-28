@@ -27,33 +27,32 @@ import lombok.experimental.Accessors;
 @TableName("user")
 public class User extends BaseModel implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  public static final String DISTRIBUTED_ID_KEY = "nimbus-user";
+	public static final String DISTRIBUTED_ID_KEY = "nimbus-user";
 
-  /**
-   * ID
-   */
-  @TableId(value = "user_id", type = IdType.AUTO)
-  private Long userId;
+	/**
+	 * ID
+	 */
+	@TableId(value = "user_id", type = IdType.AUTO)
+	private Long userId;
 
-  /**
-   * 用户昵称
-   */
-  @TableField("nick_name")
-  private String nickName;
+	/**
+	 * 用户昵称
+	 */
+	@TableField("nick_name")
+	private String nickName;
 
-  /**
-   * 头像图片路径
-   */
-  @TableField("pic")
-  private String pic;
+	/**
+	 * 头像图片路径
+	 */
+	@TableField("pic")
+	private String pic;
 
-  /**
-   * 状态 1 正常 0 无效
-   */
-  @TableField("status")
-  private Integer status;
-
+	/**
+	 * 状态 1 正常 0 无效
+	 */
+	@TableField("status")
+	private Integer status;
 
 }

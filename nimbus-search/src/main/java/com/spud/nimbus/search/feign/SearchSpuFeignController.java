@@ -24,45 +24,46 @@ import java.util.Objects;
 @RestController
 public class SearchSpuFeignController implements SearchSpuFeignClient {
 
-  @Autowired
-  private ProductSearchManager productSearchManager;
+	@Autowired
+	private ProductSearchManager productSearchManager;
 
-  @Override
-  public Result<EsPageVO<ProductSearchVO>> search(EsPageDTO pageDTO, ProductSearchDTO productSearchDTO) {
-    return Result.success(productSearchManager.simplePage(pageDTO, productSearchDTO));
-  }
+	@Override
+	public Result<EsPageVO<ProductSearchVO>> search(EsPageDTO pageDTO, ProductSearchDTO productSearchDTO) {
+		return Result.success(productSearchManager.simplePage(pageDTO, productSearchDTO));
+	}
 
-  @Override
-  public Result<List<SpuSearchVO>> getSpusBySpuIds(List<Long> spuIds) {
-    if (CollUtil.isEmpty(spuIds)) {
-      return Result.success(new ArrayList<>());
-    }
-    ProductSearchDTO productSearchDTO = new ProductSearchDTO();
-    productSearchDTO.setSpuIds(spuIds);
-    List<SpuSearchVO> list = productSearchManager.list(productSearchDTO);
-    return Result.success(list);
-  }
+	@Override
+	public Result<List<SpuSearchVO>> getSpusBySpuIds(List<Long> spuIds) {
+		if (CollUtil.isEmpty(spuIds)) {
+			return Result.success(new ArrayList<>());
+		}
+		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
+		productSearchDTO.setSpuIds(spuIds);
+		List<SpuSearchVO> list = productSearchManager.list(productSearchDTO);
+		return Result.success(list);
+	}
 
-  @Override
-  public Result<EsPageVO<ProductSearchVO>> spuPage(Integer pageNum, Integer pageSize, Long shopId) {
-    EsPageDTO pageDTO = new EsPageDTO();
-    pageDTO.setPageNum(pageNum);
-    pageDTO.setPageSize(pageSize);
-    ProductSearchDTO productSearchDTO = new ProductSearchDTO();
-    // 平台id则搜索整个平台的商品
-    if (!Objects.equals(shopId, Constant.PLATFORM_SHOP_ID)) {
-      productSearchDTO.setShopId(shopId);
-    }
-    EsPageVO<ProductSearchVO> page = productSearchManager.page(pageDTO, productSearchDTO);
-    return Result.success(page);
-  }
+	@Override
+	public Result<EsPageVO<ProductSearchVO>> spuPage(Integer pageNum, Integer pageSize, Long shopId) {
+		EsPageDTO pageDTO = new EsPageDTO();
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setPageSize(pageSize);
+		ProductSearchDTO productSearchDTO = new ProductSearchDTO();
+		// 平台id则搜索整个平台的商品
+		if (!Objects.equals(shopId, Constant.PLATFORM_SHOP_ID)) {
+			productSearchDTO.setShopId(shopId);
+		}
+		EsPageVO<ProductSearchVO> page = productSearchManager.page(pageDTO, productSearchDTO);
+		return Result.success(page);
+	}
 
-  @Override
-  public Result<List<SpuSearchVO>> limitSizeListByShopIds(List<Long> shopIds, Integer size) {
-    if (CollUtil.isEmpty(shopIds)) {
-      return Result.success(new ArrayList<>());
-    }
-    List<SpuSearchVO> list = productSearchManager.limitSizeListByShopIds(shopIds, size);
-    return Result.success(list);
-  }
+	@Override
+	public Result<List<SpuSearchVO>> limitSizeListByShopIds(List<Long> shopIds, Integer size) {
+		if (CollUtil.isEmpty(shopIds)) {
+			return Result.success(new ArrayList<>());
+		}
+		List<SpuSearchVO> list = productSearchManager.limitSizeListByShopIds(shopIds, size);
+		return Result.success(list);
+	}
+
 }

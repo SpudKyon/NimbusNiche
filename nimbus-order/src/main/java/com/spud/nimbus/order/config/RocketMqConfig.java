@@ -17,25 +17,25 @@ import org.springframework.context.annotation.Lazy;
 @Configuration
 public class RocketMqConfig {
 
-    @Autowired
-    private RocketMqAdapter rocketMqAdapter;
+	@Autowired
+	private RocketMqAdapter rocketMqAdapter;
 
-    @Lazy
-    @Bean(destroyMethod = "destroy")
-    public RocketMQTemplate stockMqTemplate() {
-        return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.STOCK_UNLOCK_TOPIC);
-    }
+	@Lazy
+	@Bean(destroyMethod = "destroy")
+	public RocketMQTemplate stockMqTemplate() {
+		return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.STOCK_UNLOCK_TOPIC);
+	}
 
+	@Lazy
+	@Bean(destroyMethod = "destroy")
+	public RocketMQTemplate orderCancelTemplate() {
+		return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.ORDER_CANCEL_TOPIC);
+	}
 
-    @Lazy
-    @Bean(destroyMethod = "destroy")
-    public RocketMQTemplate orderCancelTemplate() {
-        return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.ORDER_CANCEL_TOPIC);
-    }
+	@Lazy
+	@Bean(destroyMethod = "destroy")
+	public RocketMQTemplate orderNotifyStockTemplate() {
+		return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.ORDER_NOTIFY_STOCK_TOPIC);
+	}
 
-    @Lazy
-    @Bean(destroyMethod = "destroy")
-    public RocketMQTemplate orderNotifyStockTemplate() {
-        return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.ORDER_NOTIFY_STOCK_TOPIC);
-    }
 }

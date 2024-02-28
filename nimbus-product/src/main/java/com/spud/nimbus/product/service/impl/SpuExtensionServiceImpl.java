@@ -13,46 +13,48 @@ import org.springframework.stereotype.Service;
 
 /**
  * <p>
- *  服务实现类
+ * 服务实现类
  * </p>
  *
  * @author spud
  * @since 2024-01-23
  */
 @Service
-public class SpuExtensionServiceImpl extends ServiceImpl<SpuExtensionMapper, SpuExtension> implements SpuExtensionService {
+public class SpuExtensionServiceImpl extends ServiceImpl<SpuExtensionMapper, SpuExtension>
+		implements SpuExtensionService {
 
-  @Autowired
-  private SpuExtensionMapper spuExtensionMapper;
+	@Autowired
+	private SpuExtensionMapper spuExtensionMapper;
 
-  @Override
-  public PageVO<SpuExtensionVO> page(PageDTO pageDTO) {
-    return PageUtil.doPage(pageDTO, () -> spuExtensionMapper.list());
-  }
+	@Override
+	public PageVO<SpuExtensionVO> page(PageDTO pageDTO) {
+		return PageUtil.doPage(pageDTO, () -> spuExtensionMapper.list());
+	}
 
-  @Override
-  public SpuExtensionVO getBySpuExtendId(Long spuExtendId) {
-    return spuExtensionMapper.getBySpuExtendId(spuExtendId);
-  }
+	@Override
+	public SpuExtensionVO getBySpuExtendId(Long spuExtendId) {
+		return spuExtensionMapper.getBySpuExtendId(spuExtendId);
+	}
 
-  @Override
-  public boolean save(SpuExtension spuExtension) {
-    spuExtensionMapper.save(spuExtension);
-    return false;
-  }
+	@Override
+	public boolean save(SpuExtension spuExtension) {
+		spuExtensionMapper.save(spuExtension);
+		return false;
+	}
 
-  @Override
-  public void updateStock(Long spuId, Integer count) {
-    spuExtensionMapper.updateStock(spuId,count);
-  }
+	@Override
+	public void updateStock(Long spuId, Integer count) {
+		spuExtensionMapper.updateStock(spuId, count);
+	}
 
-  @Override
-  public void deleteById(Long spuId) {
-    spuExtensionMapper.deleteById(spuId);
-  }
+	@Override
+	public void deleteById(Long spuId) {
+		spuExtensionMapper.deleteById(spuId);
+	}
 
-  @Override
-  public SpuExtension getBySpuId(Long spuId) {
-    return spuExtensionMapper.getBySpuId(spuId);
-  }
+	@Override
+	public SpuExtension getBySpuId(Long spuId) {
+		return spuExtensionMapper.getBySpuId(spuId);
+	}
+
 }

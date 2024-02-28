@@ -28,97 +28,96 @@ import lombok.experimental.Accessors;
 @TableName("spu")
 public class Spu extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * spu id
-     */
-    @TableId(value = "spu_id", type = IdType.AUTO)
-    private Long spuId;
+	/**
+	 * spu id
+	 */
+	@TableId(value = "spu_id", type = IdType.AUTO)
+	private Long spuId;
 
-    /**
-     * 品牌ID
-     */
-    @TableField("brand_id")
-    private Long brandId;
+	/**
+	 * 品牌ID
+	 */
+	@TableField("brand_id")
+	private Long brandId;
 
-    /**
-     * 分类ID
-     */
-    @TableField("category_id")
-    private Long categoryId;
+	/**
+	 * 分类ID
+	 */
+	@TableField("category_id")
+	private Long categoryId;
 
-    /**
-     * 店铺分类ID
-     */
-    @TableField("shop_category_id")
-    private Long shopCategoryId;
+	/**
+	 * 店铺分类ID
+	 */
+	@TableField("shop_category_id")
+	private Long shopCategoryId;
 
-    /**
-     * 店铺id
-     */
-    @TableField("shop_id")
-    private Long shopId;
+	/**
+	 * 店铺id
+	 */
+	@TableField("shop_id")
+	private Long shopId;
 
-    /**
-     * 商品名称
-     */
-    @TableField("name")
-    private String name;
+	/**
+	 * 商品名称
+	 */
+	@TableField("name")
+	private String name;
 
-    /**
-     * 卖点
-     */
-    @TableField("selling_point")
-    private String sellingPoint;
+	/**
+	 * 卖点
+	 */
+	@TableField("selling_point")
+	private String sellingPoint;
 
-    /**
-     * 商品介绍主图
-     */
-    @TableField("main_img_url")
-    private String mainImgUrl;
+	/**
+	 * 商品介绍主图
+	 */
+	@TableField("main_img_url")
+	private String mainImgUrl;
 
-    /**
-     * 商品图片 多个图片逗号分隔
-     */
-    @TableField("img_urls")
-    private String imgUrls;
+	/**
+	 * 商品图片 多个图片逗号分隔
+	 */
+	@TableField("img_urls")
+	private String imgUrls;
 
-    /**
-     * 商品视频
-     */
-    @TableField("video")
-    private String video;
+	/**
+	 * 商品视频
+	 */
+	@TableField("video")
+	private String video;
 
-    /**
-     * 售价，整数方式保存
-     */
-    @TableField("price_fee")
-    private Long priceFee;
+	/**
+	 * 售价，整数方式保存
+	 */
+	@TableField("price_fee")
+	private Long priceFee;
 
-    /**
-     * 市场价，整数方式保存
-     */
-    @TableField("market_price_fee")
-    private Long marketPriceFee;
+	/**
+	 * 市场价，整数方式保存
+	 */
+	@TableField("market_price_fee")
+	private Long marketPriceFee;
 
-    /**
-     * 状态 -1:删除, 0:下架, 1:上架
-     */
-    @TableField("status")
-    private Integer status;
+	/**
+	 * 状态 -1:删除, 0:下架, 1:上架
+	 */
+	@TableField("status")
+	private Integer status;
 
-    /**
-     * sku是否含有图片 0无 1有
-     */
-    @TableField("has_sku_img")
-    private Integer hasSkuImg;
+	/**
+	 * sku是否含有图片 0无 1有
+	 */
+	@TableField("has_sku_img")
+	private Integer hasSkuImg;
 
-    /**
-     * 序号
-     */
-    @TableField("seq")
-    private Integer seq;
-
+	/**
+	 * 序号
+	 */
+	@TableField("seq")
+	private Integer seq;
 
 }

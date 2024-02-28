@@ -17,14 +17,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SearchOrderFeignController implements SearchOrderFeignClient {
 
-  @Autowired
-  private OrderSearchManager orderSearchManager;
+	@Autowired
+	private OrderSearchManager orderSearchManager;
 
-  @Override
-  public Result<EsPageVO<EsOrderVO>> getOrderPage(OrderSearchDTO orderSearch) {
-    EsPageDTO pageDTO = new EsPageDTO();
-    pageDTO.setPageNum(orderSearch.getPageNum());
-    pageDTO.setPageSize(orderSearch.getPageSize());
-    return Result.success(orderSearchManager.pageSearchResult(pageDTO, orderSearch));
-  }
+	@Override
+	public Result<EsPageVO<EsOrderVO>> getOrderPage(OrderSearchDTO orderSearch) {
+		EsPageDTO pageDTO = new EsPageDTO();
+		pageDTO.setPageNum(orderSearch.getPageNum());
+		pageDTO.setPageSize(orderSearch.getPageSize());
+		return Result.success(orderSearchManager.pageSearchResult(pageDTO, orderSearch));
+	}
+
 }

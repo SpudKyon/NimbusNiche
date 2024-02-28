@@ -16,10 +16,11 @@ import java.util.List;
 @ToString
 public class PayInfoDTO extends BaseDTO {
 
-  @NotEmpty(message = "订单号不能为空")
-  @Schema(description = "订单号", requiredMode = Schema.RequiredMode.REQUIRED)
-  private List<Long> orderIds;
+	@NotEmpty(message = "订单号不能为空")
+	@Schema(description = "订单号", requiredMode = Schema.RequiredMode.REQUIRED)
+	private List<Long> orderIds;
 
-  @Schema(description = "支付完成回跳地址", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String returnUrl;
+	@Schema(description = "支付完成回跳地址", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String returnUrl;
+
 }

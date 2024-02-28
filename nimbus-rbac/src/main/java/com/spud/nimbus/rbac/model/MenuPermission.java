@@ -28,61 +28,60 @@ import lombok.experimental.Accessors;
 @ToString
 public class MenuPermission implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 菜单资源用户id
-   */
-  @TableId(value = "menu_permission_id", type = IdType.AUTO)
-  private Long menuPermissionId;
+	/**
+	 * 菜单资源用户id
+	 */
+	@TableId(value = "menu_permission_id", type = IdType.AUTO)
+	private Long menuPermissionId;
 
-  /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * 资源关联菜单
-   */
-  @TableField("menu_id")
-  private Long menuId;
+	/**
+	 * 资源关联菜单
+	 */
+	@TableField("menu_id")
+	private Long menuId;
 
-  /**
-   * 业务类型 1 店铺菜单 2平台菜单
-   */
-  @TableField("biz_type")
-  private Integer bizType;
+	/**
+	 * 业务类型 1 店铺菜单 2平台菜单
+	 */
+	@TableField("biz_type")
+	private Integer bizType;
 
-  /**
-   * 权限对应的编码
-   */
-  @TableField("permission")
-  private String permission;
+	/**
+	 * 权限对应的编码
+	 */
+	@TableField("permission")
+	private String permission;
 
-  /**
-   * 资源名称
-   */
-  @TableField("name")
-  private String name;
+	/**
+	 * 资源名称
+	 */
+	@TableField("name")
+	private String name;
 
-  /**
-   * 资源对应服务器路径
-   */
-  @TableField("uri")
-  private String uri;
+	/**
+	 * 资源对应服务器路径
+	 */
+	@TableField("uri")
+	private String uri;
 
-  /**
-   * 请求方法 1.GET 2.POST 3.PUT 4.DELETE
-   */
-  @TableField("method")
-  private Integer method;
-
+	/**
+	 * 请求方法 1.GET 2.POST 3.PUT 4.DELETE
+	 */
+	@TableField("method")
+	private Integer method;
 
 }

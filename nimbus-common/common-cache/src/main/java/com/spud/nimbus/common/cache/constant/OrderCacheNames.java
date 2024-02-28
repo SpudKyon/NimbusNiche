@@ -6,18 +6,19 @@ package com.spud.nimbus.common.cache.constant;
  */
 public interface OrderCacheNames {
 
-    /**
-     * 前缀
-     */
-    String ORDER_PREFIX = "nimbus_order:";
+	/**
+	 * 前缀
+	 */
+	String ORDER_PREFIX = "nimbus_order:";
 
-    /**
-     * 确认订单信息缓存
-     */
-    String ORDER_CONFIRM_KEY = ORDER_PREFIX + "order:confirm";
+	/**
+	 * 确认订单信息缓存
+	 */
+	String ORDER_CONFIRM_KEY = ORDER_PREFIX + "order:confirm";
 
-    /**
-     * 订单uuid
-     */
-    String ORDER_CONFIRM_UUID_KEY = ORDER_PREFIX + "order:uuid_confirm";
+	/**
+	 * 订单uuid
+	 */
+	String ORDER_CONFIRM_UUID_KEY = ORDER_PREFIX + "order:uuid_confirm";
+
 }

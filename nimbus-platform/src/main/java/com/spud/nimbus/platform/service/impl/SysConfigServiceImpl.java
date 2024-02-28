@@ -25,70 +25,67 @@ import java.util.Objects;
  */
 @Service
 public class SysConfigServiceImpl extends ServiceImpl<SysConfigMapper, SysConfig> implements SysConfigService {
-  @Resource
-  private SysConfigMapper sysConfigMapper;
 
-  @Override
-  @Caching(evict = {
-          @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#key"),
-          @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key")
-  })
-  public void updateValueByKey(String key, String value) {
-//        sysConfigMapper.updateValueByKey(key, value);
-  }
+	@Resource
+	private SysConfigMapper sysConfigMapper;
 
-  @Override
-  public void deleteBatch(Long[] ids) {
-//        sysConfigMapper.deleteBatch(ids);
-  }
+	@Override
+	@Caching(evict = { @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#key"),
+			@CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key") })
+	public void updateValueByKey(String key, String value) {
+		// sysConfigMapper.updateValueByKey(key, value);
+	}
 
-  @Override
-  @Cacheable(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key")
-  public String getValue(String key) {
-    SysConfig config = sysConfigMapper.queryByKey(key);
-    return config == null ? null : config.getParamValue();
-  }
+	@Override
+	public void deleteBatch(Long[] ids) {
+		// sysConfigMapper.deleteBatch(ids);
+	}
 
-  @Override
-  @Caching(evict = {
-          @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#key"),
-          @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key")
-  })
-  public void removeSysConfig(String key) {
-  }
+	@Override
+	@Cacheable(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key")
+	public String getValue(String key) {
+		SysConfig config = sysConfigMapper.queryByKey(key);
+		return config == null ? null : config.getParamValue();
+	}
 
-  @Override
-  @Caching(evict = {
-          @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#sysConfig.paramKey"),
-          @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#sysConfig.paramKey")
-  })
-  public void saveOrUpdateSysConfig(SysConfig sysConfig) {
-    if (sysConfigMapper.countByKey(sysConfig.getParamKey()) > 0) {
-      sysConfigMapper.update(sysConfig);
-    } else {
-      sysConfigMapper.save(sysConfig);
-    }
-  }
+	@Override
+	@Caching(evict = { @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#key"),
+			@CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key") })
+	public void removeSysConfig(String key) {
+	}
 
-  @Override
-  @Cacheable(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key")
-  public SysConfig getByKey(String key) {
-    return sysConfigMapper.queryByKey(key);
-  }
+	@Override
+	@Caching(evict = { @CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#sysConfig.paramKey"),
+			@CacheEvict(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#sysConfig.paramKey") })
+	public void saveOrUpdateSysConfig(SysConfig sysConfig) {
+		if (sysConfigMapper.countByKey(sysConfig.getParamKey()) > 0) {
+			sysConfigMapper.update(sysConfig);
+		}
+		else {
+			sysConfigMapper.save(sysConfig);
+		}
+	}
 
+	@Override
+	@Cacheable(cacheNames = ConfigCacheNames.SYS_CONFIG, key = "#key")
+	public SysConfig getByKey(String key) {
+		return sysConfigMapper.queryByKey(key);
+	}
 
-  @Override
-  @Cacheable(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#key")
-  public <T> T getSysConfigObject(String key, Class<T> clazz) {
-    String value = getValue(key);
-    if (StrUtil.isBlank(value)) {
-      return null;
-    }
+	@Override
+	@Cacheable(cacheNames = ConfigCacheNames.SYS_CONFIG_OBJECT, key = "#key")
+	public <T> T getSysConfigObject(String key, Class<T> clazz) {
+		String value = getValue(key);
+		if (StrUtil.isBlank(value)) {
+			return null;
+		}
 
-    if (Objects.equals(String.class, clazz)) {
-      return (T) value;
-    } else {
-      return Json.parseObject(value, clazz);
-    }
-  }
+		if (Objects.equals(String.class, clazz)) {
+			return (T) value;
+		}
+		else {
+			return Json.parseObject(value, clazz);
+		}
+	}
+
 }

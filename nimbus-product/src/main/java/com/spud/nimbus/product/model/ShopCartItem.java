@@ -28,55 +28,54 @@ import lombok.experimental.Accessors;
 @TableName("shop_cart_item")
 public class ShopCartItem extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 主键
-     */
-    @TableId(value = "cart_item_id", type = IdType.AUTO)
-    private Long cartItemId;
+	/**
+	 * 主键
+	 */
+	@TableId(value = "cart_item_id", type = IdType.AUTO)
+	private Long cartItemId;
 
-    /**
-     * 店铺ID
-     */
-    @TableField("shop_id")
-    private Long shopId;
+	/**
+	 * 店铺ID
+	 */
+	@TableField("shop_id")
+	private Long shopId;
 
-    /**
-     * 产品ID
-     */
-    @TableField("spu_id")
-    private Long spuId;
+	/**
+	 * 产品ID
+	 */
+	@TableField("spu_id")
+	private Long spuId;
 
-    /**
-     * SkuID
-     */
-    @TableField("sku_id")
-    private Long skuId;
+	/**
+	 * SkuID
+	 */
+	@TableField("sku_id")
+	private Long skuId;
 
-    /**
-     * 用户ID
-     */
-    @TableField("user_id")
-    private Long userId;
+	/**
+	 * 用户ID
+	 */
+	@TableField("user_id")
+	private Long userId;
 
-    /**
-     * 购物车产品个数
-     */
-    @TableField("count")
-    private Integer count;
+	/**
+	 * 购物车产品个数
+	 */
+	@TableField("count")
+	private Integer count;
 
-    /**
-     * 售价，加入购物车时的商品价格
-     */
-    @TableField("price_fee")
-    private Long priceFee;
+	/**
+	 * 售价，加入购物车时的商品价格
+	 */
+	@TableField("price_fee")
+	private Long priceFee;
 
-    /**
-     * 是否已勾选
-     */
-    @TableField("is_checked")
-    private Integer isChecked;
-
+	/**
+	 * 是否已勾选
+	 */
+	@TableField("is_checked")
+	private Integer isChecked;
 
 }

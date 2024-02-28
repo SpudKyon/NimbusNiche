@@ -17,39 +17,36 @@ import java.util.List;
  */
 @Mapper
 public interface OrderAddrMapper extends BaseMapper<OrderAddr> {
-  /**
-   * 获取用户订单配送地址列表
-   *
-   * @return 用户订单配送地址列表
-   */
-  List<OrderAddr> list();
 
-  /**
-   * 根据用户订单配送地址id获取用户订单配送地址
-   *
-   * @param orderAddrId 用户订单配送地址id
-   * @return 用户订单配送地址
-   */
-  OrderAddr getByOrderAddrId(@Param("orderAddrId") Long orderAddrId);
+	/**
+	 * 获取用户订单配送地址列表
+	 * @return 用户订单配送地址列表
+	 */
+	List<OrderAddr> list();
 
-  /**
-   * 保存用户订单配送地址
-   *
-   * @param orderAddr 用户订单配送地址
-   */
-  void save(@Param("orderAddr") OrderAddr orderAddr);
+	/**
+	 * 根据用户订单配送地址id获取用户订单配送地址
+	 * @param orderAddrId 用户订单配送地址id
+	 * @return 用户订单配送地址
+	 */
+	OrderAddr getByOrderAddrId(@Param("orderAddrId") Long orderAddrId);
 
-  /**
-   * 更新用户订单配送地址
-   *
-   * @param orderAddr 用户订单配送地址
-   */
-  void update(@Param("orderAddr") OrderAddr orderAddr);
+	/**
+	 * 保存用户订单配送地址
+	 * @param orderAddr 用户订单配送地址
+	 */
+	void save(@Param("orderAddr") OrderAddr orderAddr);
 
-  /**
-   * 根据用户订单配送地址id删除用户订单配送地址
-   *
-   * @param orderAddrId
-   */
-  void deleteById(@Param("orderAddrId") Long orderAddrId);
+	/**
+	 * 更新用户订单配送地址
+	 * @param orderAddr 用户订单配送地址
+	 */
+	void update(@Param("orderAddr") OrderAddr orderAddr);
+
+	/**
+	 * 根据用户订单配送地址id删除用户订单配送地址
+	 * @param orderAddrId
+	 */
+	void deleteById(@Param("orderAddrId") Long orderAddrId);
+
 }

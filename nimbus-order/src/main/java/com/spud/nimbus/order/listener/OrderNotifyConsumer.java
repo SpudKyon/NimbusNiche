@@ -23,23 +23,26 @@ import java.util.Objects;
  */
 @Component
 @Slf4j
-@RocketMQMessageListener(topic = RocketMqConstant.ORDER_NOTIFY_TOPIC,consumerGroup = RocketMqConstant.ORDER_NOTIFY_TOPIC)
+@RocketMQMessageListener(topic = RocketMqConstant.ORDER_NOTIFY_TOPIC,
+		consumerGroup = RocketMqConstant.ORDER_NOTIFY_TOPIC)
 public class OrderNotifyConsumer implements RocketMQListener<PayNotifyBO> {
 
-    @Autowired
-    private OrderService orderService;
+	@Autowired
+	private OrderService orderService;
 
-    @Autowired
-    private RocketMQTemplate orderNotifyStockTemplate;
+	@Autowired
+	private RocketMQTemplate orderNotifyStockTemplate;
 
-    @Override
-    public void onMessage(PayNotifyBO message) {
-        log.info("订单回调开始... message: " + Json.toJsonString(message));
-        orderService.updateByToPaySuccess(message.getOrderIds());
-        // 发送消息，订单支付成功 通知库存扣减
-        SendStatus sendStockStatus = orderNotifyStockTemplate.syncSend(RocketMqConstant.ORDER_NOTIFY_STOCK_TOPIC, new GenericMessage<>(message)).getSendStatus();
-        if (!Objects.equals(sendStockStatus,SendStatus.SEND_OK)) {
-            throw new NimbusException(ResultCode.EXCEPTION);
-        }
-    }
+	@Override
+	public void onMessage(PayNotifyBO message) {
+		log.info("订单回调开始... message: " + Json.toJsonString(message));
+		orderService.updateByToPaySuccess(message.getOrderIds());
+		// 发送消息，订单支付成功 通知库存扣减
+		SendStatus sendStockStatus = orderNotifyStockTemplate
+				.syncSend(RocketMqConstant.ORDER_NOTIFY_STOCK_TOPIC, new GenericMessage<>(message)).getSendStatus();
+		if (!Objects.equals(sendStockStatus, SendStatus.SEND_OK)) {
+			throw new NimbusException(ResultCode.EXCEPTION);
+		}
+	}
+
 }

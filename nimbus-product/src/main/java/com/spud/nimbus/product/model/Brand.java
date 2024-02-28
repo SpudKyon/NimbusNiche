@@ -28,49 +28,48 @@ import lombok.experimental.Accessors;
 @TableName("brand")
 public class Brand extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * brand_id
-     */
-    @TableId(value = "brand_id", type = IdType.AUTO)
-    private Long brandId;
+	/**
+	 * brand_id
+	 */
+	@TableId(value = "brand_id", type = IdType.AUTO)
+	private Long brandId;
 
-    /**
-     * 品牌名称
-     */
-    @TableField("name")
-    private String name;
+	/**
+	 * 品牌名称
+	 */
+	@TableField("name")
+	private String name;
 
-    /**
-     * 品牌描述
-     */
-    @TableField("desc")
-    private String desc;
+	/**
+	 * 品牌描述
+	 */
+	@TableField("desc")
+	private String desc;
 
-    /**
-     * 品牌logo图片
-     */
-    @TableField("img_url")
-    private String imgUrl;
+	/**
+	 * 品牌logo图片
+	 */
+	@TableField("img_url")
+	private String imgUrl;
 
-    /**
-     * 检索首字母
-     */
-    @TableField("first_letter")
-    private String firstLetter;
+	/**
+	 * 检索首字母
+	 */
+	@TableField("first_letter")
+	private String firstLetter;
 
-    /**
-     * 排序
-     */
-    @TableField("seq")
-    private Integer seq;
+	/**
+	 * 排序
+	 */
+	@TableField("seq")
+	private Integer seq;
 
-    /**
-     * 状态 1:enable, 0:disable, -1:deleted
-     */
-    @TableField("status")
-    private Integer status;
-
+	/**
+	 * 状态 1:enable, 0:disable, -1:deleted
+	 */
+	@TableField("status")
+	private Integer status;
 
 }

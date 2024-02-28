@@ -21,18 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "token")
 public class TokenController {
 
-  @Autowired
-  private TokenStore tokenStore;
+	@Autowired
+	private TokenStore tokenStore;
 
-
-  @PostMapping("/ua/token/refresh")
-  public Result<TokenInfoVO> refreshToken(@Valid @RequestBody RefreshTokenDTO refreshTokenDTO) {
-    Result<TokenInfoBO> tokenInfoResult = tokenStore
-            .refreshToken(refreshTokenDTO.getRefreshToken());
-    if (!tokenInfoResult.isSuccess()) {
-      return Result.transform(tokenInfoResult);
-    }
-    return Result.success(BeanUtil.map(tokenInfoResult.getData(), TokenInfoVO.class));
-  }
+	@PostMapping("/ua/token/refresh")
+	public Result<TokenInfoVO> refreshToken(@Valid @RequestBody RefreshTokenDTO refreshTokenDTO) {
+		Result<TokenInfoBO> tokenInfoResult = tokenStore.refreshToken(refreshTokenDTO.getRefreshToken());
+		if (!tokenInfoResult.isSuccess()) {
+			return Result.transform(tokenInfoResult);
+		}
+		return Result.success(BeanUtil.map(tokenInfoResult.getData(), TokenInfoVO.class));
+	}
 
 }

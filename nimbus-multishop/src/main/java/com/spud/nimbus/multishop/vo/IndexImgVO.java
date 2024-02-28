@@ -11,110 +11,103 @@ import io.swagger.v3.oas.annotations.media.Schema;
  * @date 2024/2/24
  */
 public class IndexImgVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "主键")
-  private Long imgId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺ID")
-  private Long shopId;
+	@Schema(description = "主键")
+	private Long imgId;
 
-  @Schema(description = "图片")
-  @JsonSerialize(using = ImgJsonSerializer.class)
-  private String imgUrl;
+	@Schema(description = "店铺ID")
+	private Long shopId;
 
-  @Schema(description = "状态")
-  private Integer status;
+	@Schema(description = "图片")
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	private String imgUrl;
 
-  @Schema(description = "顺序")
-  private Integer seq;
+	@Schema(description = "状态")
+	private Integer status;
 
-  @Schema(description = "关联商品id")
-  private Long spuId;
+	@Schema(description = "顺序")
+	private Integer seq;
 
-  @Schema(description = "图片类型 0:小程序 1:pc")
-  private Integer imgType;
+	@Schema(description = "关联商品id")
+	private Long spuId;
 
-  @Schema(description = "spu信息")
-  private SpuVO spu;
+	@Schema(description = "图片类型 0:小程序 1:pc")
+	private Integer imgType;
 
-  public Long getImgId() {
-    return imgId;
-  }
+	@Schema(description = "spu信息")
+	private SpuVO spu;
 
-  public void setImgId(Long imgId) {
-    this.imgId = imgId;
-  }
+	public Long getImgId() {
+		return imgId;
+	}
 
-  public Long getShopId() {
-    return shopId;
-  }
+	public void setImgId(Long imgId) {
+		this.imgId = imgId;
+	}
 
-  public void setShopId(Long shopId) {
-    this.shopId = shopId;
-  }
+	public Long getShopId() {
+		return shopId;
+	}
 
-  public String getImgUrl() {
-    return imgUrl;
-  }
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
 
-  public void setImgUrl(String imgUrl) {
-    this.imgUrl = imgUrl;
-  }
+	public String getImgUrl() {
+		return imgUrl;
+	}
 
-  public Integer getStatus() {
-    return status;
-  }
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
+	}
 
-  public void setStatus(Integer status) {
-    this.status = status;
-  }
+	public Integer getStatus() {
+		return status;
+	}
 
-  public Integer getSeq() {
-    return seq;
-  }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-  public void setSeq(Integer seq) {
-    this.seq = seq;
-  }
+	public Integer getSeq() {
+		return seq;
+	}
 
-  public Long getSpuId() {
-    return spuId;
-  }
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
-  public void setSpuId(Long spuId) {
-    this.spuId = spuId;
-  }
+	public Long getSpuId() {
+		return spuId;
+	}
 
-  public Integer getImgType() {
-    return imgType;
-  }
+	public void setSpuId(Long spuId) {
+		this.spuId = spuId;
+	}
 
-  public void setImgType(Integer imgType) {
-    this.imgType = imgType;
-  }
+	public Integer getImgType() {
+		return imgType;
+	}
 
-  public SpuVO getSpu() {
-    return spu;
-  }
+	public void setImgType(Integer imgType) {
+		this.imgType = imgType;
+	}
 
-  public void setSpu(SpuVO spu) {
-    this.spu = spu;
-  }
+	public SpuVO getSpu() {
+		return spu;
+	}
 
-  @Override
-  public String toString() {
-    return "IndexImgVO{" +
-            "imgId=" + imgId +
-            ",shopId=" + shopId +
-            ",imgUrl=" + imgUrl +
-            ",status=" + status +
-            ",seq=" + seq +
-            ",spuId=" + spuId +
-            ",imgType=" + imgType +
-            ",spu=" + spu +
-            ",createTime=" + createTime +
-            ",updateTime=" + updateTime +
-            '}';
-  }
+	public void setSpu(SpuVO spu) {
+		this.spu = spu;
+	}
+
+	@Override
+	public String toString() {
+		return "IndexImgVO{" + "imgId=" + imgId + ",shopId=" + shopId + ",imgUrl=" + imgUrl + ",status=" + status
+				+ ",seq=" + seq + ",spuId=" + spuId + ",imgType=" + imgType + ",spu=" + spu + ",createTime="
+				+ createTime + ",updateTime=" + updateTime + '}';
+	}
+
 }

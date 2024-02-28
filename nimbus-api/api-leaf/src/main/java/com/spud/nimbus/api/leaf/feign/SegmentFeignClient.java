@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 @FeignClient(value = "nimbus-leaf", contextId = "segment")
 public interface SegmentFeignClient {
 
-  /**
-   * 获取id
-   */
-  @GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/segment")
-  Result<Long> getSegmentId(@RequestParam("key") String key);
+	/**
+	 * 获取id
+	 */
+	@GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/insider/segment")
+	Result<Long> getSegmentId(@RequestParam("key") String key);
+
 }

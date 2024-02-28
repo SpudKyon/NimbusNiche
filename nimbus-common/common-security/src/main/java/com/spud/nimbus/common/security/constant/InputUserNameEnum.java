@@ -6,29 +6,29 @@ package com.spud.nimbus.common.security.constant;
  */
 public enum InputUserNameEnum {
 
-  /**
-   * 用户名
-   */
-  USERNAME(1),
+	/**
+	 * 用户名
+	 */
+	USERNAME(1),
 
-  /**
-   * 手机号
-   */
-  PHONE(2),
+	/**
+	 * 手机号
+	 */
+	PHONE(2),
 
-  /**
-   * 邮箱
-   */
-  EMAIL(3),;
+	/**
+	 * 邮箱
+	 */
+	EMAIL(3),;
 
-  private final Integer value;
+	private final Integer value;
 
-  public Integer value() {
-    return value;
-  }
+	public Integer value() {
+		return value;
+	}
 
-  InputUserNameEnum(Integer value) {
-    this.value = value;
-  }
+	InputUserNameEnum(Integer value) {
+		this.value = value;
+	}
 
 }

@@ -14,12 +14,13 @@ import java.util.List;
 @ToString
 public class AttrSearchVO {
 
-    @Schema(description = "规格id" )
-    private Long attrId;
+	@Schema(description = "规格id")
+	private Long attrId;
 
-    @Schema(description = "规格名" )
-    private String attrName;
+	@Schema(description = "规格名")
+	private String attrName;
 
-    @Schema(description = "规格值列表" )
-    private List<AttrValueSearchVO> attrValues;
+	@Schema(description = "规格值列表")
+	private List<AttrValueSearchVO> attrValues;
+
 }

@@ -23,47 +23,47 @@ import java.util.Objects;
 @RestController
 public class OrderFeignController implements OrderFeignClient {
 
+	@Autowired
+	private OrderService orderService;
 
-  @Autowired
-  private OrderService orderService;
+	@Override
+	public Result<OrderAmountVO> getOrdersAmountAndIfNoCancel(List<Long> orderIds) {
+		List<OrderStatusBO> orderStatus = orderService.getOrdersStatus(orderIds);
+		if (CollectionUtil.isEmpty(orderStatus)) {
+			return Result.fail(ResultCode.ORDER_NOT_EXIST, null);
+		}
 
-  @Override
-  public Result<OrderAmountVO> getOrdersAmountAndIfNoCancel(List<Long> orderIds) {
-    List<OrderStatusBO> orderStatus = orderService.getOrdersStatus(orderIds);
-    if (CollectionUtil.isEmpty(orderStatus)) {
-      return Result.fail(ResultCode.ORDER_NOT_EXIST, null);
-    }
+		for (OrderStatusBO statusBO : orderStatus) {
+			// 订单已关闭
+			if (statusBO.getStatus() == null || Objects.equals(statusBO.getStatus(), OrderStatus.CLOSE.value())) {
+				return Result.fail(ResultCode.ORDER_EXPIRED, null);
+			}
+		}
 
-    for (OrderStatusBO statusBO : orderStatus) {
-      // 订单已关闭
-      if (statusBO.getStatus() == null || Objects.equals(statusBO.getStatus(), OrderStatus.CLOSE.value())) {
-        return Result.fail(ResultCode.ORDER_EXPIRED, null);
-      }
-    }
+		OrderAmountVO orderAmountVO = orderService.getOrdersActualAmount(orderIds);
+		return Result.success(orderAmountVO);
+	}
 
-    OrderAmountVO orderAmountVO = orderService.getOrdersActualAmount(orderIds);
-    return Result.success(orderAmountVO);
-  }
+	@Override
+	public Result<List<OrderStatusBO>> getOrdersStatus(List<Long> orderIds) {
+		List<OrderStatusBO> orderStatusList = orderService.getOrdersStatus(orderIds);
+		return Result.success(orderStatusList);
+	}
 
-  @Override
-  public Result<List<OrderStatusBO>> getOrdersStatus(List<Long> orderIds) {
-    List<OrderStatusBO> orderStatusList = orderService.getOrdersStatus(orderIds);
-    return Result.success(orderStatusList);
-  }
+	@Override
+	public Result<List<OrderSimpleAmountInfoBO>> getOrdersSimpleAmountInfo(List<Long> orderIds) {
+		return Result.success(orderService.getOrdersSimpleAmountInfo(orderIds));
+	}
 
-  @Override
-  public Result<List<OrderSimpleAmountInfoBO>> getOrdersSimpleAmountInfo(List<Long> orderIds) {
-    return Result.success(orderService.getOrdersSimpleAmountInfo(orderIds));
-  }
+	@Override
+	public Result<EsOrderBO> getEsOrder(Long orderId) {
+		EsOrderBO esOrderBO = orderService.getEsOrder(orderId);
+		return Result.success(esOrderBO);
+	}
 
-  @Override
-  public Result<EsOrderBO> getEsOrder(Long orderId) {
-    EsOrderBO esOrderBO = orderService.getEsOrder(orderId);
-    return Result.success(esOrderBO);
-  }
+	@Override
+	public Result<Void> updateOrderState(List<Long> orderIds) {
+		return null;
+	}
 
-  @Override
-  public Result<Void> updateOrderState(List<Long> orderIds) {
-    return null;
-  }
 }

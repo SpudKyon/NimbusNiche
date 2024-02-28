@@ -24,59 +24,59 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 public class SysUserAccountServiceImpl implements SysUserAccountService {
 
-  @Resource
-  private SysUserMapper sysUserMapper;
+	@Resource
+	private SysUserMapper sysUserMapper;
 
-  @Autowired
-  private AccountFeignClient accountFeignClient;
+	@Autowired
+	private AccountFeignClient accountFeignClient;
 
-  @Override
-  @GlobalTransactional(rollbackFor = Exception.class)
-  @Transactional(rollbackFor = Exception.class)
-  public Result<Void> save(ChangeAccountDTO changeAccountDTO) {
-    AuthAccountDTO authAccountDTO = getAuthAccountDTO(changeAccountDTO);
-    authAccountDTO.setCreateIp(IpHelper.getIpAddr());
-    authAccountDTO.setIsAdmin(0);
-    // 保存
-    Result<Long> serverResponseEntity = accountFeignClient.save(authAccountDTO);
-    if (!serverResponseEntity.isSuccess()) {
-      return Result.transform(serverResponseEntity);
-    }
-    SysUser sysUser = new SysUser();
-    sysUser.setSysUserId(changeAccountDTO.getUserId());
-    sysUser.setHasAccount(1);
-    sysUserMapper.update(sysUser);
-    return Result.success(null);
-  }
+	@Override
+	@GlobalTransactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
+	public Result<Void> save(ChangeAccountDTO changeAccountDTO) {
+		AuthAccountDTO authAccountDTO = getAuthAccountDTO(changeAccountDTO);
+		authAccountDTO.setCreateIp(IpHelper.getIpAddr());
+		authAccountDTO.setIsAdmin(0);
+		// 保存
+		Result<Long> serverResponseEntity = accountFeignClient.save(authAccountDTO);
+		if (!serverResponseEntity.isSuccess()) {
+			return Result.transform(serverResponseEntity);
+		}
+		SysUser sysUser = new SysUser();
+		sysUser.setSysUserId(changeAccountDTO.getUserId());
+		sysUser.setHasAccount(1);
+		sysUserMapper.update(sysUser);
+		return Result.success(null);
+	}
 
-  @Override
-  public Result<Void> update(ChangeAccountDTO changeAccountDTO) {
+	@Override
+	public Result<Void> update(ChangeAccountDTO changeAccountDTO) {
 
-    AuthAccountDTO authAccountDTO = getAuthAccountDTO(changeAccountDTO);
-    // 更新，不涉及分布式事务
-    Result<Void> serverResponseEntity = accountFeignClient.update(authAccountDTO);
-    if (!serverResponseEntity.isSuccess()) {
-      return serverResponseEntity;
-    }
+		AuthAccountDTO authAccountDTO = getAuthAccountDTO(changeAccountDTO);
+		// 更新，不涉及分布式事务
+		Result<Void> serverResponseEntity = accountFeignClient.update(authAccountDTO);
+		if (!serverResponseEntity.isSuccess()) {
+			return serverResponseEntity;
+		}
 
-    return Result.success(null);
-  }
+		return Result.success(null);
+	}
 
-  @Override
-  public Result<AuthAccountVO> getByUserIdAndSysType(Long userId, Integer sysType) {
-    return accountFeignClient.getByUserIdAndSysType(userId, sysType);
-  }
+	@Override
+	public Result<AuthAccountVO> getByUserIdAndSysType(Long userId, Integer sysType) {
+		return accountFeignClient.getByUserIdAndSysType(userId, sysType);
+	}
 
-  private AuthAccountDTO getAuthAccountDTO(ChangeAccountDTO changeAccountDTO) {
-    AuthAccountDTO authAccountDTO = new AuthAccountDTO();
-    UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-    authAccountDTO.setPassword(changeAccountDTO.getPassword());
-    authAccountDTO.setUsername(changeAccountDTO.getUsername());
-    authAccountDTO.setStatus(changeAccountDTO.getStatus());
-    authAccountDTO.setSysType(userInfoInTokenBO.getSysType());
-    authAccountDTO.setTenantId(userInfoInTokenBO.getTenantId());
-    authAccountDTO.setUserId(changeAccountDTO.getUserId());
-    return authAccountDTO;
-  }
+	private AuthAccountDTO getAuthAccountDTO(ChangeAccountDTO changeAccountDTO) {
+		AuthAccountDTO authAccountDTO = new AuthAccountDTO();
+		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
+		authAccountDTO.setPassword(changeAccountDTO.getPassword());
+		authAccountDTO.setUsername(changeAccountDTO.getUsername());
+		authAccountDTO.setStatus(changeAccountDTO.getStatus());
+		authAccountDTO.setSysType(userInfoInTokenBO.getSysType());
+		authAccountDTO.setTenantId(userInfoInTokenBO.getTenantId());
+		authAccountDTO.setUserId(changeAccountDTO.getUserId());
+		return authAccountDTO;
+	}
 
 }

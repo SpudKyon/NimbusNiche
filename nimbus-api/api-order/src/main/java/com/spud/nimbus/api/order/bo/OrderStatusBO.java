@@ -11,7 +11,8 @@ import lombok.ToString;
 @ToString
 public class OrderStatusBO {
 
-  private Long orderId;
+	private Long orderId;
 
-  private Integer status;
+	private Integer status;
+
 }

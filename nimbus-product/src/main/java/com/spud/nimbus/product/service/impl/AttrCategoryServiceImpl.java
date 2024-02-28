@@ -21,37 +21,39 @@ import java.util.List;
  * @since 2024-01-23
  */
 @Service
-public class AttrCategoryServiceImpl extends ServiceImpl<AttrCategoryMapper, AttrCategory> implements AttrCategoryService {
+public class AttrCategoryServiceImpl extends ServiceImpl<AttrCategoryMapper, AttrCategory>
+		implements AttrCategoryService {
 
-  @Autowired
-  private AttrCategoryMapper attrCategoryMapper;
+	@Autowired
+	private AttrCategoryMapper attrCategoryMapper;
 
-  @Override
-  public void save(Long attrId, List<Long> categoryId) {
-    attrCategoryMapper.saveBatch(attrId, categoryId);
-  }
+	@Override
+	public void save(Long attrId, List<Long> categoryId) {
+		attrCategoryMapper.saveBatch(attrId, categoryId);
+	}
 
-  @Override
-  public List<Long> update(Long attrId, List<Long> categoryIds) {
-    if (CollUtil.isEmpty(categoryIds)) {
-      return new ArrayList<>();
-    }
-    List<Long> dbCategoryIds = attrCategoryMapper.getCategoryIdsByAttrId(attrId);
-    List<Long> addList = new ArrayList<>(categoryIds.size());
-    addList.addAll(categoryIds);
-    addList.removeAll(dbCategoryIds);
-    if (CollUtil.isNotEmpty(addList)) {
-      attrCategoryMapper.saveBatch(attrId, addList);
-    }
-    dbCategoryIds.removeAll(categoryIds);
-    if (CollUtil.isNotEmpty(dbCategoryIds)) {
-      attrCategoryMapper.deleteBatch(attrId, dbCategoryIds);
-    }
-    return dbCategoryIds;
-  }
+	@Override
+	public List<Long> update(Long attrId, List<Long> categoryIds) {
+		if (CollUtil.isEmpty(categoryIds)) {
+			return new ArrayList<>();
+		}
+		List<Long> dbCategoryIds = attrCategoryMapper.getCategoryIdsByAttrId(attrId);
+		List<Long> addList = new ArrayList<>(categoryIds.size());
+		addList.addAll(categoryIds);
+		addList.removeAll(dbCategoryIds);
+		if (CollUtil.isNotEmpty(addList)) {
+			attrCategoryMapper.saveBatch(attrId, addList);
+		}
+		dbCategoryIds.removeAll(categoryIds);
+		if (CollUtil.isNotEmpty(dbCategoryIds)) {
+			attrCategoryMapper.deleteBatch(attrId, dbCategoryIds);
+		}
+		return dbCategoryIds;
+	}
 
-  @Override
-  public List<CategoryVO> listByAttrId(Long attrId) {
-    return attrCategoryMapper.listByAttrId(attrId);
-  }
+	@Override
+	public List<CategoryVO> listByAttrId(Long attrId) {
+		return attrCategoryMapper.listByAttrId(attrId);
+	}
+
 }

@@ -23,43 +23,42 @@ import java.util.Objects;
 @Tag(name = "平台用户账号信息")
 public class SysUserAccountController {
 
-  private final SysUserAccountService SysUserAccountService;
+	private final SysUserAccountService SysUserAccountService;
 
-  private final SysUserService SysUserService;
+	private final SysUserService SysUserService;
 
-  public SysUserAccountController(SysUserAccountService sysUserAccountService, SysUserService sysUserService) {
-    this.SysUserAccountService = sysUserAccountService;
-    this.SysUserService = sysUserService;
-  }
+	public SysUserAccountController(SysUserAccountService sysUserAccountService, SysUserService sysUserService) {
+		this.SysUserAccountService = sysUserAccountService;
+		this.SysUserService = sysUserService;
+	}
 
+	@GetMapping
+	@Operation(summary = "获取账号信息", description = "获取账号信息")
+	public Result<AuthAccountVO> getAccount(Long userId) {
+		return SysUserAccountService.getByUserIdAndSysType(userId, AuthUserContext.get().getSysType());
+	}
 
-  @GetMapping
-  @Operation(summary = "获取账号信息", description = "获取账号信息")
-  public Result<AuthAccountVO> getAccount(Long userId) {
-    return SysUserAccountService.getByUserIdAndSysType(userId, AuthUserContext.get().getSysType());
-  }
+	@PostMapping
+	@Operation(summary = "添加账号", description = "添加账号")
+	public Result<Void> addAccount(@Valid @RequestBody ChangeAccountDTO changeAccountDTO) {
+		SysUserVO sysUserVO = SysUserService.getByUserId(changeAccountDTO.getUserId());
+		if (sysUserVO == null) {
+			return Result.showFailMsg("无法获取账户信息");
+		}
+		if (Objects.equals(sysUserVO.getHasAccount(), 1)) {
+			return Result.showFailMsg("已有账号，无需重复添加");
+		}
+		return SysUserAccountService.save(changeAccountDTO);
+	}
 
+	@PutMapping
+	@Operation(summary = "修改账号", description = "修改账号")
+	public Result<Void> updateAccount(@Valid @RequestBody ChangeAccountDTO changeAccountDTO) {
+		SysUserVO sysUserVO = SysUserService.getByUserId(changeAccountDTO.getUserId());
+		if (sysUserVO == null || Objects.equals(sysUserVO.getHasAccount(), 0)) {
+			return Result.showFailMsg("无法获取账户信息");
+		}
+		return SysUserAccountService.update(changeAccountDTO);
+	}
 
-  @PostMapping
-  @Operation(summary = "添加账号", description = "添加账号")
-  public Result<Void> addAccount(@Valid @RequestBody ChangeAccountDTO changeAccountDTO) {
-    SysUserVO sysUserVO = SysUserService.getByUserId(changeAccountDTO.getUserId());
-    if (sysUserVO == null) {
-      return Result.showFailMsg("无法获取账户信息");
-    }
-    if (Objects.equals(sysUserVO.getHasAccount(), 1)) {
-      return Result.showFailMsg("已有账号，无需重复添加");
-    }
-    return SysUserAccountService.save(changeAccountDTO);
-  }
-
-  @PutMapping
-  @Operation(summary = "修改账号", description = "修改账号")
-  public Result<Void> updateAccount(@Valid @RequestBody ChangeAccountDTO changeAccountDTO) {
-    SysUserVO sysUserVO = SysUserService.getByUserId(changeAccountDTO.getUserId());
-    if (sysUserVO == null || Objects.equals(sysUserVO.getHasAccount(), 0)) {
-      return Result.showFailMsg("无法获取账户信息");
-    }
-    return SysUserAccountService.update(changeAccountDTO);
-  }
 }

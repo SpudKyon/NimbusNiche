@@ -28,52 +28,51 @@ import lombok.experimental.Accessors;
 @TableName("attach_file")
 public class AttachFile extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    @TableId(value = "file_id", type = IdType.AUTO)
-    private Long fileId;
+	@TableId(value = "file_id", type = IdType.AUTO)
+	private Long fileId;
 
-    /**
-     * 文件路径
-     */
-    @TableField("file_path")
-    private String filePath;
+	/**
+	 * 文件路径
+	 */
+	@TableField("file_path")
+	private String filePath;
 
-    /**
-     * 文件类型
-     */
-    @TableField("file_type")
-    private String fileType;
+	/**
+	 * 文件类型
+	 */
+	@TableField("file_type")
+	private String fileType;
 
-    /**
-     * 文件名
-     */
-    @TableField("file_name")
-    private String fileName;
+	/**
+	 * 文件名
+	 */
+	@TableField("file_name")
+	private String fileName;
 
-    /**
-     * 文件大小
-     */
-    @TableField("file_size")
-    private Integer fileSize;
+	/**
+	 * 文件大小
+	 */
+	@TableField("file_size")
+	private Integer fileSize;
 
-    /**
-     * 店铺id
-     */
-    @TableField("shop_id")
-    private Long shopId;
+	/**
+	 * 店铺id
+	 */
+	@TableField("shop_id")
+	private Long shopId;
 
-    /**
-     * 文件 1:图片 2:视频 3:文件
-     */
-    @TableField("type")
-    private Integer type;
+	/**
+	 * 文件 1:图片 2:视频 3:文件
+	 */
+	@TableField("type")
+	private Integer type;
 
-    /**
-     * 文件分组id
-     */
-    @TableField("attach_file_group_id")
-    private Long attachFileGroupId;
-
+	/**
+	 * 文件分组id
+	 */
+	@TableField("attach_file_group_id")
+	private Long attachFileGroupId;
 
 }

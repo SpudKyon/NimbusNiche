@@ -11,83 +11,79 @@ import lombok.Data;
  * @date 2021-01-27 09:10:00
  */
 public class HotSearchVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "主键")
-  private Long hotSearchId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺ID 0为全局热搜")
-  private Long shopId;
+	@Schema(description = "主键")
+	private Long hotSearchId;
 
-  @Schema(description = "内容")
-  private String content;
+	@Schema(description = "店铺ID 0为全局热搜")
+	private Long shopId;
 
-  @Schema(description = "顺序")
-  private Integer seq;
+	@Schema(description = "内容")
+	private String content;
 
-  @Schema(description = "状态 0下线 1上线")
-  private Integer status;
+	@Schema(description = "顺序")
+	private Integer seq;
 
-  @Schema(description = "热搜标题")
-  private String title;
+	@Schema(description = "状态 0下线 1上线")
+	private Integer status;
 
-  public Long getHotSearchId() {
-    return hotSearchId;
-  }
+	@Schema(description = "热搜标题")
+	private String title;
 
-  public void setHotSearchId(Long hotSearchId) {
-    this.hotSearchId = hotSearchId;
-  }
+	public Long getHotSearchId() {
+		return hotSearchId;
+	}
 
-  public Long getShopId() {
-    return shopId;
-  }
+	public void setHotSearchId(Long hotSearchId) {
+		this.hotSearchId = hotSearchId;
+	}
 
-  public void setShopId(Long shopId) {
-    this.shopId = shopId;
-  }
+	public Long getShopId() {
+		return shopId;
+	}
 
-  public String getContent() {
-    return content;
-  }
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
 
-  public void setContent(String content) {
-    this.content = content;
-  }
+	public String getContent() {
+		return content;
+	}
 
-  public Integer getSeq() {
-    return seq;
-  }
+	public void setContent(String content) {
+		this.content = content;
+	}
 
-  public void setSeq(Integer seq) {
-    this.seq = seq;
-  }
+	public Integer getSeq() {
+		return seq;
+	}
 
-  public Integer getStatus() {
-    return status;
-  }
+	public void setSeq(Integer seq) {
+		this.seq = seq;
+	}
 
-  public void setStatus(Integer status) {
-    this.status = status;
-  }
+	public Integer getStatus() {
+		return status;
+	}
 
-  public String getTitle() {
-    return title;
-  }
+	public void setStatus(Integer status) {
+		this.status = status;
+	}
 
-  public void setTitle(String title) {
-    this.title = title;
-  }
+	public String getTitle() {
+		return title;
+	}
 
-  @Override
-  public String toString() {
-    return "HotSearchVO{" +
-            "hotSearchId=" + hotSearchId +
-            ",shopId=" + shopId +
-            ",content=" + content +
-            ",seq=" + seq +
-            ",status=" + status +
-            ",title=" + title +
-            '}';
-  }
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Override
+	public String toString() {
+		return "HotSearchVO{" + "hotSearchId=" + hotSearchId + ",shopId=" + shopId + ",content=" + content + ",seq="
+				+ seq + ",status=" + status + ",title=" + title + '}';
+	}
+
 }

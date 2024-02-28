@@ -18,39 +18,41 @@ import java.util.List;
  * @date 2024/2/18
  */
 @Service
-public class AttachFileGroupServiceImpl extends ServiceImpl<AttachFileGroupMapper, AttachFileGroup> implements AttachFileGroupService {
+public class AttachFileGroupServiceImpl extends ServiceImpl<AttachFileGroupMapper, AttachFileGroup>
+		implements AttachFileGroupService {
 
-  @Autowired
-  private AttachFileMapper attachFileMapper;
+	@Autowired
+	private AttachFileMapper attachFileMapper;
 
-  @Autowired
-  private AttachFileGroupMapper attachFileGroupMapper;
+	@Autowired
+	private AttachFileGroupMapper attachFileGroupMapper;
 
-  @Override
-  public List<AttachFileGroupVO> volist() {
-    return attachFileGroupMapper.list(AuthUserContext.get().getTenantId());
-  }
+	@Override
+	public List<AttachFileGroupVO> volist() {
+		return attachFileGroupMapper.list(AuthUserContext.get().getTenantId());
+	}
 
-  @Override
-  public AttachFileGroupVO getByAttachFileGroupId(Long attachFileGroupId) {
-    return attachFileGroupMapper.getByAttachFileGroupId(attachFileGroupId);
-  }
+	@Override
+	public AttachFileGroupVO getByAttachFileGroupId(Long attachFileGroupId) {
+		return attachFileGroupMapper.getByAttachFileGroupId(attachFileGroupId);
+	}
 
-  @Override
-  public boolean save(AttachFileGroup attachFileGroup) {
-    attachFileGroup.setShopId(AuthUserContext.get().getTenantId());
-    return super.save(attachFileGroup);
-  }
+	@Override
+	public boolean save(AttachFileGroup attachFileGroup) {
+		attachFileGroup.setShopId(AuthUserContext.get().getTenantId());
+		return super.save(attachFileGroup);
+	}
 
-  @Override
-  public void update(AttachFileGroup attachFileGroup) {
-    attachFileGroupMapper.update(attachFileGroup);
-  }
+	@Override
+	public void update(AttachFileGroup attachFileGroup) {
+		attachFileGroupMapper.update(attachFileGroup);
+	}
 
-  @Override
-  @Transactional(rollbackFor = Exception.class)
-  public void deleteById(Long attachFileGroupId) {
-    attachFileGroupMapper.deleteById(attachFileGroupId);
-    attachFileMapper.updateBatchByAttachFileGroupId(attachFileGroupId);
-  }
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteById(Long attachFileGroupId) {
+		attachFileGroupMapper.deleteById(attachFileGroupId);
+		attachFileMapper.updateBatchByAttachFileGroupId(attachFileGroupId);
+	}
+
 }

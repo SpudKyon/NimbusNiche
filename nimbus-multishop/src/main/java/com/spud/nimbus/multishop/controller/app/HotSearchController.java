@@ -23,14 +23,15 @@ import java.util.List;
 @Tag(name = "app-热搜")
 public class HotSearchController {
 
-    @Autowired
-    private HotSearchService hotSearchService;
+	@Autowired
+	private HotSearchService hotSearchService;
 
 	@GetMapping("/list")
-	@Operation(summary = "获取热搜列表" , description = "获取热搜列表")
+	@Operation(summary = "获取热搜列表", description = "获取热搜列表")
 	@Parameter(name = "shopId", description = "店铺id")
 	public Result<List<HotSearchVO>> listByShopId(@RequestParam("shopId") Long shopId) {
 		List<HotSearchVO> hotSearches = hotSearchService.listByShopId(shopId);
 		return Result.success(hotSearches);
 	}
+
 }

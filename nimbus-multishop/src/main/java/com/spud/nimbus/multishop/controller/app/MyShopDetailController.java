@@ -22,23 +22,24 @@ import java.util.Objects;
 @Tag(name = "app-我的店铺详情信息")
 public class MyShopDetailController {
 
-  @Autowired
-  private ShopDetailService shopDetailService;
+	@Autowired
+	private ShopDetailService shopDetailService;
 
-  @PostMapping("/create")
-  @Operation(summary = "创建店铺", description = "创建店铺")
-  public Result<Void> create(@Valid @RequestBody ShopDetailDTO shopDetailDTO) {
-    shopDetailService.createShop(shopDetailDTO);
-    return Result.success(null);
-  }
+	@PostMapping("/create")
+	@Operation(summary = "创建店铺", description = "创建店铺")
+	public Result<Void> create(@Valid @RequestBody ShopDetailDTO shopDetailDTO) {
+		shopDetailService.createShop(shopDetailDTO);
+		return Result.success(null);
+	}
 
-  @GetMapping
-  @Operation(summary = "获取我的店铺", description = "获取我的店铺")
-  public Result<ShopDetailVO> get() {
-    Long shopId = AuthUserContext.get().getTenantId();
-    if (Objects.isNull(shopId)) {
-      return Result.success(null);
-    }
-    return Result.success(shopDetailService.getByShopId(shopId));
-  }
+	@GetMapping
+	@Operation(summary = "获取我的店铺", description = "获取我的店铺")
+	public Result<ShopDetailVO> get() {
+		Long shopId = AuthUserContext.get().getTenantId();
+		if (Objects.isNull(shopId)) {
+			return Result.success(null);
+		}
+		return Result.success(shopDetailService.getByShopId(shopId));
+	}
+
 }

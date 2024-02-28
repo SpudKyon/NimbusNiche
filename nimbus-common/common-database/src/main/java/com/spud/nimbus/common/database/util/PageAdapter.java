@@ -14,12 +14,13 @@ import static cn.hutool.core.util.PageUtil.getStart;
 @ToString
 public class PageAdapter {
 
-  private int begin;
+	private int begin;
 
-  private int size;
+	private int size;
 
-  public PageAdapter(PageDTO page) {
-    this.begin = getStart(page.getPageNum() - 1, page.getPageSize());
-    this.size = page.getPageSize();
-  }
+	public PageAdapter(PageDTO page) {
+		this.begin = getStart(page.getPageNum() - 1, page.getPageSize());
+		this.size = page.getPageSize();
+	}
+
 }

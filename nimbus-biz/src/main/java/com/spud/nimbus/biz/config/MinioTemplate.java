@@ -26,60 +26,57 @@ import java.util.concurrent.TimeUnit;
 @Component
 public class MinioTemplate implements InitializingBean {
 
-  @Autowired
-  private OssConfig ossConfig;
-  private MinioClient minioClient;
+	@Autowired
+	private OssConfig ossConfig;
 
-  @Override
-  public void afterPropertiesSet() throws Exception {
-    this.minioClient = MinioClient.builder().endpoint(ossConfig.getEndpoint())
-            .credentials(ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret())
-            .build();
-  }
+	private MinioClient minioClient;
 
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		this.minioClient = MinioClient.builder().endpoint(ossConfig.getEndpoint())
+				.credentials(ossConfig.getAccessKeyId(), ossConfig.getAccessKeySecret()).build();
+	}
 
-  /**
-   * 删除文件
-   *
-   * @param objectName 文件名称
-   * @throws Exception https://docs.minio.io/cn/java-client-api-reference.html#removeObject
-   */
-  public void removeObject(String objectName) throws Exception {
-    minioClient.removeObject(RemoveObjectArgs.builder().object(objectName).bucket(ossConfig.getBucket()).build());
-  }
+	/**
+	 * 删除文件
+	 * @param objectName 文件名称
+	 * @throws Exception
+	 * https://docs.minio.io/cn/java-client-api-reference.html#removeObject
+	 */
+	public void removeObject(String objectName) throws Exception {
+		minioClient.removeObject(RemoveObjectArgs.builder().object(objectName).bucket(ossConfig.getBucket()).build());
+	}
 
-  /**
-   * 获得上传的URL
-   *
-   * @param objectName
-   */
-  public String getPresignedObjectUrl(String objectName) {
-    try {
-      return minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder().bucket(ossConfig.getBucket()).object(objectName).expiry(10, TimeUnit.MINUTES).method(Method.PUT).build());
-    } catch (Exception e) {
-      log.error("minio获取上传URL错误：", e);
-      throw new NimbusException(ResultCode.EXCEPTION);
-    }
-  }
+	/**
+	 * 获得上传的URL
+	 * @param objectName
+	 */
+	public String getPresignedObjectUrl(String objectName) {
+		try {
+			return minioClient.getPresignedObjectUrl(GetPresignedObjectUrlArgs.builder().bucket(ossConfig.getBucket())
+					.object(objectName).expiry(10, TimeUnit.MINUTES).method(Method.PUT).build());
+		}
+		catch (Exception e) {
+			log.error("minio获取上传URL错误：", e);
+			throw new NimbusException(ResultCode.EXCEPTION);
+		}
+	}
 
-  public void uploadMinio(byte[] bytes, String filePath, String contentType) throws IOException {
-    InputStream input = null;
-    try {
-      input = new ByteArrayInputStream(bytes);
-      minioClient.putObject(
-              PutObjectArgs.builder()
-                      .bucket(ossConfig.getBucket())
-                      .contentType(contentType)
-                      .stream(input, input.available(), -1)
-                      .object(filePath)
-                      .build()
-      );
-    } catch (Exception e) {
-      log.error("minio上传文件错误：", e);
-    } finally {
-      if (Objects.nonNull(input)) {
-        input.close();
-      }
-    }
-  }
+	public void uploadMinio(byte[] bytes, String filePath, String contentType) throws IOException {
+		InputStream input = null;
+		try {
+			input = new ByteArrayInputStream(bytes);
+			minioClient.putObject(PutObjectArgs.builder().bucket(ossConfig.getBucket()).contentType(contentType)
+					.stream(input, input.available(), -1).object(filePath).build());
+		}
+		catch (Exception e) {
+			log.error("minio上传文件错误：", e);
+		}
+		finally {
+			if (Objects.nonNull(input)) {
+				input.close();
+			}
+		}
+	}
+
 }

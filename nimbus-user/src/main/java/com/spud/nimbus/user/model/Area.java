@@ -27,28 +27,27 @@ import lombok.experimental.Accessors;
 @TableName("area")
 public class Area extends BaseModel implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  @TableId(value = "area_id", type = IdType.AUTO)
-  private Long areaId;
+	@TableId(value = "area_id", type = IdType.AUTO)
+	private Long areaId;
 
-  /**
-   * 地址
-   */
-  @TableField("area_name")
-  private String areaName;
+	/**
+	 * 地址
+	 */
+	@TableField("area_name")
+	private String areaName;
 
-  /**
-   * 上级地址
-   */
-  @TableField("parent_id")
-  private Long parentId;
+	/**
+	 * 上级地址
+	 */
+	@TableField("parent_id")
+	private Long parentId;
 
-  /**
-   * 等级（从1开始）
-   */
-  @TableField("level")
-  private Integer level;
-
+	/**
+	 * 等级（从1开始）
+	 */
+	@TableField("level")
+	private Integer level;
 
 }

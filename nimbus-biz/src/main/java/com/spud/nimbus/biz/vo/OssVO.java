@@ -14,25 +14,26 @@ import java.util.List;
 @ToString
 public class OssVO extends BaseVO {
 
-  private String accessid;
+	private String accessid;
 
-  private String policy;
+	private String policy;
 
-  private String signature;
+	private String signature;
 
-  private String dir;
+	private String dir;
 
-  private String host;
+	private String host;
 
-  private Integer expire;
+	private Integer expire;
 
-  private String fileName;
+	private String fileName;
 
-  private String actionUrl;
+	private String actionUrl;
 
-  /**
-   * url列表--minio中一条链接对应一个上传的文件
-   * @return
-   */
-  private List<OssVO> ossList;
+	/**
+	 * url列表--minio中一条链接对应一个上传的文件
+	 * @return
+	 */
+	private List<OssVO> ossList;
+
 }

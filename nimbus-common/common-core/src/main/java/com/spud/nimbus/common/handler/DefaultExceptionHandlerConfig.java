@@ -30,56 +30,55 @@ import java.util.List;
 @RestControllerAdvice
 public class DefaultExceptionHandlerConfig {
 
-  @ExceptionHandler({MethodArgumentNotValidException.class, BindException.class})
-  public ResponseEntity<Result<List<String>>> methodArgumentNotValidExceptionHandler(Exception e) {
-    log.error("methodArgumentNotValidExceptionHandler", e);
-    List<FieldError> fieldErrors = null;
-    if (e instanceof MethodArgumentNotValidException) {
-      fieldErrors = ((MethodArgumentNotValidException) e).getBindingResult().getFieldErrors();
-    }
-    if (e instanceof BindException) {
-      fieldErrors = ((BindException) e).getBindingResult().getFieldErrors();
-    }
-    if (fieldErrors == null) {
-      return ResponseEntity.status(HttpStatus.OK)
-              .body(Result.fail(ResultCode.METHOD_ARGUMENT_NOT_VALID, null));
-    }
+	@ExceptionHandler({ MethodArgumentNotValidException.class, BindException.class })
+	public ResponseEntity<Result<List<String>>> methodArgumentNotValidExceptionHandler(Exception e) {
+		log.error("methodArgumentNotValidExceptionHandler", e);
+		List<FieldError> fieldErrors = null;
+		if (e instanceof MethodArgumentNotValidException) {
+			fieldErrors = ((MethodArgumentNotValidException) e).getBindingResult().getFieldErrors();
+		}
+		if (e instanceof BindException) {
+			fieldErrors = ((BindException) e).getBindingResult().getFieldErrors();
+		}
+		if (fieldErrors == null) {
+			return ResponseEntity.status(HttpStatus.OK).body(Result.fail(ResultCode.METHOD_ARGUMENT_NOT_VALID, null));
+		}
 
-    List<String> defaultMessages = new ArrayList<>(fieldErrors.size());
-    for (FieldError fieldError : fieldErrors) {
-      defaultMessages.add(fieldError.getField() + ":" + fieldError.getDefaultMessage());
-    }
-    return ResponseEntity.status(HttpStatus.OK)
-            .body(Result.fail(ResultCode.METHOD_ARGUMENT_NOT_VALID, defaultMessages));
-  }
+		List<String> defaultMessages = new ArrayList<>(fieldErrors.size());
+		for (FieldError fieldError : fieldErrors) {
+			defaultMessages.add(fieldError.getField() + ":" + fieldError.getDefaultMessage());
+		}
+		return ResponseEntity.status(HttpStatus.OK)
+				.body(Result.fail(ResultCode.METHOD_ARGUMENT_NOT_VALID, defaultMessages));
+	}
 
-  @ExceptionHandler({HttpMessageNotReadableException.class})
-  public ResponseEntity<Result<List<FieldError>>> methodArgumentNotValidExceptionHandler(
-          HttpMessageNotReadableException e) {
-    log.error("methodArgumentNotValidExceptionHandler", e);
-    return ResponseEntity.status(HttpStatus.OK)
-            .body(Result.fail(ResultCode.HTTP_MESSAGE_NOT_READABLE, null));
-  }
+	@ExceptionHandler({ HttpMessageNotReadableException.class })
+	public ResponseEntity<Result<List<FieldError>>> methodArgumentNotValidExceptionHandler(
+			HttpMessageNotReadableException e) {
+		log.error("methodArgumentNotValidExceptionHandler", e);
+		return ResponseEntity.status(HttpStatus.OK).body(Result.fail(ResultCode.HTTP_MESSAGE_NOT_READABLE, null));
+	}
 
-  @ExceptionHandler(NimbusException.class)
-  public ResponseEntity<Result<Object>> nimbusExceptionHandler(NimbusException e) {
-    log.error("nimbusExceptionHandler", e);
-    ResultCode responseEnum = e.getResultCode();
-    // 失败返回失败消息 + 状态码
-    if (responseEnum != null) {
-      return ResponseEntity.status(HttpStatus.OK).body(Result.fail(responseEnum, e.getObject()));
-    }
-    // 失败返回消息 状态码固定为直接显示消息的状态码
-    return ResponseEntity.status(HttpStatus.OK).body(Result.showFailMsg(e.getMessage()));
-  }
+	@ExceptionHandler(NimbusException.class)
+	public ResponseEntity<Result<Object>> nimbusExceptionHandler(NimbusException e) {
+		log.error("nimbusExceptionHandler", e);
+		ResultCode responseEnum = e.getResultCode();
+		// 失败返回失败消息 + 状态码
+		if (responseEnum != null) {
+			return ResponseEntity.status(HttpStatus.OK).body(Result.fail(responseEnum, e.getObject()));
+		}
+		// 失败返回消息 状态码固定为直接显示消息的状态码
+		return ResponseEntity.status(HttpStatus.OK).body(Result.showFailMsg(e.getMessage()));
+	}
 
-  @ExceptionHandler(Exception.class)
-  public ResponseEntity<Result<Object>> exceptionHandler(Exception e) throws TransactionException {
-    log.error("exceptionHandler", e);
-    log.info("RootContext.getXID(): " + RootContext.getXID());
-    if (StrUtil.isNotBlank(RootContext.getXID())) {
-      GlobalTransactionContext.reload(RootContext.getXID()).rollback();
-    }
-    return ResponseEntity.status(HttpStatus.OK).body(Result.fail(ResultCode.EXCEPTION, null));
-  }
+	@ExceptionHandler(Exception.class)
+	public ResponseEntity<Result<Object>> exceptionHandler(Exception e) throws TransactionException {
+		log.error("exceptionHandler", e);
+		log.info("RootContext.getXID(): " + RootContext.getXID());
+		if (StrUtil.isNotBlank(RootContext.getXID())) {
+			GlobalTransactionContext.reload(RootContext.getXID()).rollback();
+		}
+		return ResponseEntity.status(HttpStatus.OK).body(Result.fail(ResultCode.EXCEPTION, null));
+	}
+
 }

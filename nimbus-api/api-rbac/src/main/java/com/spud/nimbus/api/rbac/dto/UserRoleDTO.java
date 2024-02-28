@@ -15,16 +15,16 @@ import java.util.List;
 @ToString
 public class UserRoleDTO {
 
-  /**
-   * 用户id
-   */
-  @NotNull(message = "userId not null")
-  private Long userId;
+	/**
+	 * 用户id
+	 */
+	@NotNull(message = "userId not null")
+	private Long userId;
 
+	/**
+	 * 角色id列表
+	 */
+	@NotEmpty(message = "userId not null")
+	private List<Long> roleIds;
 
-  /**
-   * 角色id列表
-   */
-  @NotEmpty(message = "userId not null")
-  private List<Long> roleIds;
 }

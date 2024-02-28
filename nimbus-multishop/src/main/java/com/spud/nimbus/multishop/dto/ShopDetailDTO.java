@@ -14,159 +14,153 @@ import lombok.ToString;
 @Data
 @ToString
 public class ShopDetailDTO extends BaseDTO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺id")
-  private Long shopId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺类型1自营店 2普通店")
-  private Integer type;
+	@Schema(description = "店铺id")
+	private Long shopId;
 
-  @Schema(description = "店铺名称")
-  private String shopName;
+	@Schema(description = "店铺类型1自营店 2普通店")
+	private Integer type;
 
-  @Schema(description = "店铺简介")
-  private String intro;
+	@Schema(description = "店铺名称")
+	private String shopName;
 
-  @Schema(description = "店铺logo(可修改)")
-  private String shopLogo;
+	@Schema(description = "店铺简介")
+	private String intro;
 
-  @Schema(description = "店铺状态(-1:已删除 0: 停业中 1:营业中)")
-  private Integer shopStatus;
+	@Schema(description = "店铺logo(可修改)")
+	private String shopLogo;
 
-  @Schema(description = "营业执照")
-  private String businessLicense;
+	@Schema(description = "店铺状态(-1:已删除 0: 停业中 1:营业中)")
+	private Integer shopStatus;
 
-  @Schema(description = "身份证正面")
-  private String identityCardFront;
+	@Schema(description = "营业执照")
+	private String businessLicense;
 
-  @Schema(description = "身份证反面")
-  private String identityCardLater;
+	@Schema(description = "身份证正面")
+	private String identityCardFront;
 
-  @Size(max = 30)
-  @Schema(description = "用户名", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String username;
-  @Size(max = 30)
+	@Schema(description = "身份证反面")
+	private String identityCardLater;
 
-  @Size(max = 64)
-  @Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String password;
+	@Size(max = 30)
+	@Schema(description = "用户名", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String username;
 
-  @Schema(description = "移动端背景图")
-  @NotBlank(message = "移动端背景图不能为空")
-  private String mobileBackgroundPic;
+	@Size(max = 30)
 
-  public String getMobileBackgroundPic() {
-    return mobileBackgroundPic;
-  }
+	@Size(max = 64)
+	@Schema(description = "密码", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String password;
 
-  public void setMobileBackgroundPic(String mobileBackgroundPic) {
-    this.mobileBackgroundPic = mobileBackgroundPic;
-  }
+	@Schema(description = "移动端背景图")
+	@NotBlank(message = "移动端背景图不能为空")
+	private String mobileBackgroundPic;
 
-  public Long getShopId() {
-    return shopId;
-  }
+	public String getMobileBackgroundPic() {
+		return mobileBackgroundPic;
+	}
 
-  public void setShopId(Long shopId) {
-    this.shopId = shopId;
-  }
+	public void setMobileBackgroundPic(String mobileBackgroundPic) {
+		this.mobileBackgroundPic = mobileBackgroundPic;
+	}
 
-  public Integer getType() {
-    return type;
-  }
+	public Long getShopId() {
+		return shopId;
+	}
 
-  public void setType(Integer type) {
-    this.type = type;
-  }
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
 
-  public String getShopName() {
-    return shopName;
-  }
+	public Integer getType() {
+		return type;
+	}
 
-  public void setShopName(String shopName) {
-    this.shopName = shopName;
-  }
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
-  public String getIntro() {
-    return intro;
-  }
+	public String getShopName() {
+		return shopName;
+	}
 
-  public void setIntro(String intro) {
-    this.intro = intro;
-  }
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
 
-  public String getShopLogo() {
-    return shopLogo;
-  }
+	public String getIntro() {
+		return intro;
+	}
 
-  public void setShopLogo(String shopLogo) {
-    this.shopLogo = shopLogo;
-  }
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
 
-  public Integer getShopStatus() {
-    return shopStatus;
-  }
+	public String getShopLogo() {
+		return shopLogo;
+	}
 
-  public void setShopStatus(Integer shopStatus) {
-    this.shopStatus = shopStatus;
-  }
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
+	}
 
-  public String getBusinessLicense() {
-    return businessLicense;
-  }
+	public Integer getShopStatus() {
+		return shopStatus;
+	}
 
-  public void setBusinessLicense(String businessLicense) {
-    this.businessLicense = businessLicense;
-  }
+	public void setShopStatus(Integer shopStatus) {
+		this.shopStatus = shopStatus;
+	}
 
-  public String getIdentityCardFront() {
-    return identityCardFront;
-  }
+	public String getBusinessLicense() {
+		return businessLicense;
+	}
 
-  public void setIdentityCardFront(String identityCardFront) {
-    this.identityCardFront = identityCardFront;
-  }
+	public void setBusinessLicense(String businessLicense) {
+		this.businessLicense = businessLicense;
+	}
 
-  public String getIdentityCardLater() {
-    return identityCardLater;
-  }
+	public String getIdentityCardFront() {
+		return identityCardFront;
+	}
 
-  public void setIdentityCardLater(String identityCardLater) {
-    this.identityCardLater = identityCardLater;
-  }
+	public void setIdentityCardFront(String identityCardFront) {
+		this.identityCardFront = identityCardFront;
+	}
 
-  public String getUsername() {
-    return username;
-  }
+	public String getIdentityCardLater() {
+		return identityCardLater;
+	}
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
+	public void setIdentityCardLater(String identityCardLater) {
+		this.identityCardLater = identityCardLater;
+	}
 
-  public String getPassword() {
-    return password;
-  }
+	public String getUsername() {
+		return username;
+	}
 
-  public void setPassword(String password) {
-    this.password = password;
-  }
+	public void setUsername(String username) {
+		this.username = username;
+	}
 
-  @Override
-  public String toString() {
-    return "ShopDetailDTO{" +
-            "shopId=" + shopId +
-            ", type=" + type +
-            ", shopName='" + shopName + '\'' +
-            ", intro='" + intro + '\'' +
-            ", shopLogo='" + shopLogo + '\'' +
-            ", shopStatus=" + shopStatus +
-            ", businessLicense='" + businessLicense + '\'' +
-            ", identityCardFront='" + identityCardFront + '\'' +
-            ", identityCardLater='" + identityCardLater + '\'' +
-            ", username='" + username + '\'' +
-            ", password='" + password + '\'' +
-            ", mobileBackgroundPic='" + mobileBackgroundPic + '\'' +
-            '}';
-  }
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "ShopDetailDTO{" + "shopId=" + shopId + ", type=" + type + ", shopName='" + shopName + '\'' + ", intro='"
+				+ intro + '\'' + ", shopLogo='" + shopLogo + '\'' + ", shopStatus=" + shopStatus + ", businessLicense='"
+				+ businessLicense + '\'' + ", identityCardFront='" + identityCardFront + '\'' + ", identityCardLater='"
+				+ identityCardLater + '\'' + ", username='" + username + '\'' + ", password='" + password + '\''
+				+ ", mobileBackgroundPic='" + mobileBackgroundPic + '\'' + '}';
+	}
+
 }

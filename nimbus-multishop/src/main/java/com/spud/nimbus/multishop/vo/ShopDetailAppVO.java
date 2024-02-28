@@ -13,135 +13,129 @@ import java.util.List;
  * @date 2024/2/24
  */
 public class ShopDetailAppVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺id")
-  private Long shopId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺类型1自营店 2普通店")
-  private Integer type;
+	@Schema(description = "店铺id")
+	private Long shopId;
 
-  @Schema(description = "店铺名称")
-  private String shopName;
+	@Schema(description = "店铺类型1自营店 2普通店")
+	private Integer type;
 
-  @Schema(description = "店铺简介")
-  private String intro;
+	@Schema(description = "店铺名称")
+	private String shopName;
 
-  @Schema(description = "店铺logo(可修改)")
-  @JsonSerialize(using = ImgJsonSerializer.class)
-  private String shopLogo;
+	@Schema(description = "店铺简介")
+	private String intro;
 
-  @Schema(description = "店铺状态(-1:未开通 0: 停业中 1:营业中)")
-  private Integer shopStatus;
+	@Schema(description = "店铺logo(可修改)")
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	private String shopLogo;
 
-  @Schema(description = "营业执照")
-  @JsonSerialize(using = ImgJsonSerializer.class)
-  private String businessLicense;
+	@Schema(description = "店铺状态(-1:未开通 0: 停业中 1:营业中)")
+	private Integer shopStatus;
 
-  @Schema(description = "身份证正面")
-  @JsonSerialize(using = ImgJsonSerializer.class)
-  private String identityCardFront;
+	@Schema(description = "营业执照")
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	private String businessLicense;
 
-  @Schema(description = "身份证反面")
-  @JsonSerialize(using = ImgJsonSerializer.class)
-  private String identityCardLater;
+	@Schema(description = "身份证正面")
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	private String identityCardFront;
 
-  @Schema(description = "商品列表")
-  private List<SpuSearchVO> spuList;
+	@Schema(description = "身份证反面")
+	@JsonSerialize(using = ImgJsonSerializer.class)
+	private String identityCardLater;
 
-  public Long getShopId() {
-    return shopId;
-  }
+	@Schema(description = "商品列表")
+	private List<SpuSearchVO> spuList;
 
-  public void setShopId(Long shopId) {
-    this.shopId = shopId;
-  }
+	public Long getShopId() {
+		return shopId;
+	}
 
-  public Integer getType() {
-    return type;
-  }
+	public void setShopId(Long shopId) {
+		this.shopId = shopId;
+	}
 
-  public void setType(Integer type) {
-    this.type = type;
-  }
+	public Integer getType() {
+		return type;
+	}
 
-  public String getShopName() {
-    return shopName;
-  }
+	public void setType(Integer type) {
+		this.type = type;
+	}
 
-  public void setShopName(String shopName) {
-    this.shopName = shopName;
-  }
+	public String getShopName() {
+		return shopName;
+	}
 
-  public String getIntro() {
-    return intro;
-  }
+	public void setShopName(String shopName) {
+		this.shopName = shopName;
+	}
 
-  public void setIntro(String intro) {
-    this.intro = intro;
-  }
+	public String getIntro() {
+		return intro;
+	}
 
-  public String getShopLogo() {
-    return shopLogo;
-  }
+	public void setIntro(String intro) {
+		this.intro = intro;
+	}
 
-  public void setShopLogo(String shopLogo) {
-    this.shopLogo = shopLogo;
-  }
+	public String getShopLogo() {
+		return shopLogo;
+	}
 
-  public Integer getShopStatus() {
-    return shopStatus;
-  }
+	public void setShopLogo(String shopLogo) {
+		this.shopLogo = shopLogo;
+	}
 
-  public void setShopStatus(Integer shopStatus) {
-    this.shopStatus = shopStatus;
-  }
+	public Integer getShopStatus() {
+		return shopStatus;
+	}
 
-  public String getBusinessLicense() {
-    return businessLicense;
-  }
+	public void setShopStatus(Integer shopStatus) {
+		this.shopStatus = shopStatus;
+	}
 
-  public void setBusinessLicense(String businessLicense) {
-    this.businessLicense = businessLicense;
-  }
+	public String getBusinessLicense() {
+		return businessLicense;
+	}
 
-  public String getIdentityCardFront() {
-    return identityCardFront;
-  }
+	public void setBusinessLicense(String businessLicense) {
+		this.businessLicense = businessLicense;
+	}
 
-  public void setIdentityCardFront(String identityCardFront) {
-    this.identityCardFront = identityCardFront;
-  }
+	public String getIdentityCardFront() {
+		return identityCardFront;
+	}
 
-  public String getIdentityCardLater() {
-    return identityCardLater;
-  }
+	public void setIdentityCardFront(String identityCardFront) {
+		this.identityCardFront = identityCardFront;
+	}
 
-  public void setIdentityCardLater(String identityCardLater) {
-    this.identityCardLater = identityCardLater;
-  }
+	public String getIdentityCardLater() {
+		return identityCardLater;
+	}
 
-  public List<SpuSearchVO> getSpuList() {
-    return spuList;
-  }
+	public void setIdentityCardLater(String identityCardLater) {
+		this.identityCardLater = identityCardLater;
+	}
 
-  public void setSpuList(List<SpuSearchVO> spuList) {
-    this.spuList = spuList;
-  }
+	public List<SpuSearchVO> getSpuList() {
+		return spuList;
+	}
 
-  @Override
-  public String toString() {
-    return "ShopDetailAppVO{" +
-            "shopId=" + shopId +
-            ", type=" + type +
-            ", shopName='" + shopName + '\'' +
-            ", intro='" + intro + '\'' +
-            ", shopLogo='" + shopLogo + '\'' +
-            ", shopStatus=" + shopStatus +
-            ", businessLicense='" + businessLicense + '\'' +
-            ", identityCardFront='" + identityCardFront + '\'' +
-            ", identityCardLater='" + identityCardLater + '\'' +
-            ", spuList=" + spuList +
-            '}';
-  }
+	public void setSpuList(List<SpuSearchVO> spuList) {
+		this.spuList = spuList;
+	}
+
+	@Override
+	public String toString() {
+		return "ShopDetailAppVO{" + "shopId=" + shopId + ", type=" + type + ", shopName='" + shopName + '\''
+				+ ", intro='" + intro + '\'' + ", shopLogo='" + shopLogo + '\'' + ", shopStatus=" + shopStatus
+				+ ", businessLicense='" + businessLicense + '\'' + ", identityCardFront='" + identityCardFront + '\''
+				+ ", identityCardLater='" + identityCardLater + '\'' + ", spuList=" + spuList + '}';
+	}
+
 }

@@ -24,45 +24,45 @@ import java.util.Objects;
 @Tag(name = "app-用户信息")
 public class UserController {
 
-  @Autowired
-  private UserService userService;
+	@Autowired
+	private UserService userService;
 
-  @GetMapping("/simple_info")
-  @Operation(summary = "用户头像昵称", description = "用户头像昵称")
-  public Result<UserSimpleInfoVO> getByAddrId() {
-    Long userId = AuthUserContext.get().getUserId();
+	@GetMapping("/simple_info")
+	@Operation(summary = "用户头像昵称", description = "用户头像昵称")
+	public Result<UserSimpleInfoVO> getByAddrId() {
+		Long userId = AuthUserContext.get().getUserId();
 
-    UserApiVO userApiVO = userService.getByUserId(userId);
-    UserSimpleInfoVO userSimpleInfoVO = new UserSimpleInfoVO();
-    userSimpleInfoVO.setNickName(userApiVO.getNickName());
-    userSimpleInfoVO.setPic(userApiVO.getPic());
+		UserApiVO userApiVO = userService.getByUserId(userId);
+		UserSimpleInfoVO userSimpleInfoVO = new UserSimpleInfoVO();
+		userSimpleInfoVO.setNickName(userApiVO.getNickName());
+		userSimpleInfoVO.setPic(userApiVO.getPic());
 
-    return Result.success(userSimpleInfoVO);
-  }
+		return Result.success(userSimpleInfoVO);
+	}
 
+	@GetMapping("/ma/user_detail_info")
+	@Operation(summary = "获取用户详细信息", description = "返回用户详细信息")
+	public Result<UserApiVO> getUserDetailInfo() {
+		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
+		if (userInfoInTokenBO == null) {
+			return Result.fail(ResultCode.CLEAN_TOKEN, null);
+		}
+		Long userId = userInfoInTokenBO.getUserId();
+		UserApiVO userApiVO = userService.getByUserId(userId);
+		return Result.success(userApiVO);
+	}
 
-  @GetMapping("/ma/user_detail_info")
-  @Operation(summary = "获取用户详细信息", description = "返回用户详细信息")
-  public Result<UserApiVO> getUserDetailInfo() {
-    UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-    if (userInfoInTokenBO == null) {
-      return Result.fail(ResultCode.CLEAN_TOKEN, null);
-    }
-    Long userId = userInfoInTokenBO.getUserId();
-    UserApiVO userApiVO = userService.getByUserId(userId);
-    return Result.success(userApiVO);
-  }
+	@PostMapping("/ma/update_user")
+	@Operation(summary = "更新用户信息")
+	public Result<Void> updateUser(@RequestBody UserApiVO userApiVO) {
+		Long userId = AuthUserContext.get().getUserId();
+		UserApiVO byUserId = userService.getByUserId(userId);
+		User user = new User();
+		user.setUserId(userId);
+		user.setNickName(Objects.isNull(userApiVO.getNickName()) ? byUserId.getNickName() : userApiVO.getNickName());
+		user.setPic(Objects.isNull(userApiVO.getPic()) ? byUserId.getPic() : userApiVO.getPic());
+		userService.update(user);
+		return Result.success(null);
+	}
 
-  @PostMapping("/ma/update_user")
-  @Operation(summary = "更新用户信息")
-  public Result<Void> updateUser(@RequestBody UserApiVO userApiVO) {
-    Long userId = AuthUserContext.get().getUserId();
-    UserApiVO byUserId = userService.getByUserId(userId);
-    User user = new User();
-    user.setUserId(userId);
-    user.setNickName(Objects.isNull(userApiVO.getNickName()) ? byUserId.getNickName() : userApiVO.getNickName());
-    user.setPic(Objects.isNull(userApiVO.getPic()) ? byUserId.getPic() : userApiVO.getPic());
-    userService.update(user);
-    return Result.success(null);
-  }
 }

@@ -6,25 +6,24 @@ package com.spud.nimbus.biz.constant;
  */
 public enum OssType {
 
-  /**
-   * 阿里云oss
-   */
-  ALI(0),
+	/**
+	 * 阿里云oss
+	 */
+	ALI(0),
 
-  /**
-   * minio
-   */
-  MINIO(1),
-  ;
+	/**
+	 * minio
+	 */
+	MINIO(1),;
 
-  private final Integer value;
+	private final Integer value;
 
-  OssType(Integer value) {
-    this.value = value;
-  }
+	OssType(Integer value) {
+		this.value = value;
+	}
 
-  public Integer value() {
-    return value;
-  }
+	public Integer value() {
+		return value;
+	}
 
 }

@@ -26,27 +26,28 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "app-用户注册接口")
 public class UserRegisterController {
 
-  @Autowired
-  private UserService userService;
-  @Autowired
-  private AccountFeignClient accountFeignClient;
+	@Autowired
+	private UserService userService;
 
-  @Operation(summary = "注册")
-  @PostMapping
-  public Result<TokenInfoVO> register(@Valid @RequestBody UserRegisterDTO param) {
+	@Autowired
+	private AccountFeignClient accountFeignClient;
 
-    if (StrUtil.isBlank(param.getNickName())) {
-      param.setNickName(param.getUserName());
-    }
-    // 1. 保存账户信息
-    Long uid = userService.save(param);
-    // 2. 登录
-    UserInfoInTokenBO userInfoInTokenBO = new UserInfoInTokenBO();
-    userInfoInTokenBO.setUid(uid);
-    userInfoInTokenBO.setUserId(param.getUserId());
-    userInfoInTokenBO.setSysType(SysTypeEnum.ORDINARY.value());
-    userInfoInTokenBO.setIsAdmin(0);
-    return accountFeignClient.storeTokenAndGetVo(userInfoInTokenBO);
-  }
+	@Operation(summary = "注册")
+	@PostMapping
+	public Result<TokenInfoVO> register(@Valid @RequestBody UserRegisterDTO param) {
+
+		if (StrUtil.isBlank(param.getNickName())) {
+			param.setNickName(param.getUserName());
+		}
+		// 1. 保存账户信息
+		Long uid = userService.save(param);
+		// 2. 登录
+		UserInfoInTokenBO userInfoInTokenBO = new UserInfoInTokenBO();
+		userInfoInTokenBO.setUid(uid);
+		userInfoInTokenBO.setUserId(param.getUserId());
+		userInfoInTokenBO.setSysType(SysTypeEnum.ORDINARY.value());
+		userInfoInTokenBO.setIsAdmin(0);
+		return accountFeignClient.storeTokenAndGetVo(userInfoInTokenBO);
+	}
 
 }

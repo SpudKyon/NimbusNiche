@@ -6,25 +6,24 @@ package com.spud.nimbus.product.constant;
  */
 public enum SearchType {
 
-  /**
-   * 不需要作为搜索参数
-   */
-  NOT_SEARCH(0),
+	/**
+	 * 不需要作为搜索参数
+	 */
+	NOT_SEARCH(0),
 
-  /**
-   * 搜索参数
-   */
-  SEARCH(1)
-  ;
+	/**
+	 * 搜索参数
+	 */
+	SEARCH(1);
 
-  private final Integer value;
+	private final Integer value;
 
-  public Integer value() {
-    return value;
-  }
+	public Integer value() {
+		return value;
+	}
 
-  SearchType(Integer value) {
-    this.value = value;
-  }
+	SearchType(Integer value) {
+		this.value = value;
+	}
 
 }

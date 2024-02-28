@@ -6,12 +6,11 @@ package com.spud.nimbus.common.cache.constant;
  */
 public interface PlatformCacheNames {
 
-    /**
-     * 前缀
-     */
-    String PLATFORM_PREFIX = "nimbus_platform:";
+	/**
+	 * 前缀
+	 */
+	String PLATFORM_PREFIX = "nimbus_platform:";
 
-
-    String PLATFORM_SIMPLE_INFO_KEY = PLATFORM_PREFIX + "simple_info";
+	String PLATFORM_SIMPLE_INFO_KEY = PLATFORM_PREFIX + "simple_info";
 
 }

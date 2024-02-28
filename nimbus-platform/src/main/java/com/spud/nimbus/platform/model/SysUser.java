@@ -25,55 +25,54 @@ import java.time.LocalDateTime;
 @TableName("sys_user")
 public class SysUser implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 平台用户id
-   */
-  @TableId(value = "sys_user_id", type = IdType.AUTO)
-  private Long sysUserId;
+	/**
+	 * 平台用户id
+	 */
+	@TableId(value = "sys_user_id", type = IdType.AUTO)
+	private Long sysUserId;
 
-  /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * 昵称
-   */
-  @TableField("nick_name")
-  private String nickName;
+	/**
+	 * 昵称
+	 */
+	@TableField("nick_name")
+	private String nickName;
 
-  /**
-   * 头像
-   */
-  @TableField("avatar")
-  private String avatar;
+	/**
+	 * 头像
+	 */
+	@TableField("avatar")
+	private String avatar;
 
-  /**
-   * 员工编号
-   */
-  @TableField("code")
-  private String code;
+	/**
+	 * 员工编号
+	 */
+	@TableField("code")
+	private String code;
 
-  /**
-   * 联系方式
-   */
-  @TableField("phone_num")
-  private String phoneNum;
+	/**
+	 * 联系方式
+	 */
+	@TableField("phone_num")
+	private String phoneNum;
 
-  /**
-   * 是否已经设置账号
-   */
-  @TableField("has_account")
-  private Integer hasAccount;
-
+	/**
+	 * 是否已经设置账号
+	 */
+	@TableField("has_account")
+	private Integer hasAccount;
 
 }

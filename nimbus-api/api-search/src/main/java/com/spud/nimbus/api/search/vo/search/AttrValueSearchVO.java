@@ -12,9 +12,10 @@ import lombok.ToString;
 @ToString
 public class AttrValueSearchVO {
 
-    @Schema(description = "规格值id" )
-    private Long attrValueId;
+	@Schema(description = "规格值id")
+	private Long attrValueId;
 
-    @Schema(description = "规格值名称" )
-    private String attrValueName;
+	@Schema(description = "规格值名称")
+	private String attrValueName;
+
 }

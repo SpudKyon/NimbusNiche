@@ -12,7 +12,8 @@ import lombok.ToString;
 @ToString
 public class AuthAccountInVerifyBO extends UserInfoInTokenBO {
 
-  private String password;
+	private String password;
 
-  private Integer status;
+	private Integer status;
+
 }

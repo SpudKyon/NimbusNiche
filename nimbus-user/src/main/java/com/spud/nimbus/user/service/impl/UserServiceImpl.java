@@ -38,86 +38,86 @@ import java.util.Objects;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-  @Autowired
-  private UserMapper userMapper;
+	@Autowired
+	private UserMapper userMapper;
 
-  @Autowired
-  private AccountFeignClient accountFeignClient;
+	@Autowired
+	private AccountFeignClient accountFeignClient;
 
-  @Autowired
-  private SegmentFeignClient segmentFeignClient;
+	@Autowired
+	private SegmentFeignClient segmentFeignClient;
 
-  @Override
-  public PageVO<UserApiVO> page(PageDTO pageDTO) {
-    return PageUtil.doPage(pageDTO, () -> userMapper.list());
-  }
+	@Override
+	public PageVO<UserApiVO> page(PageDTO pageDTO) {
+		return PageUtil.doPage(pageDTO, () -> userMapper.list());
+	}
 
-  @Override
-  public UserApiVO getByUserId(Long userId) {
-    return userMapper.getByUserId(userId);
-  }
+	@Override
+	public UserApiVO getByUserId(Long userId) {
+		return userMapper.getByUserId(userId);
+	}
 
+	@Override
+	public void update(User user) {
+		userMapper.update(user);
+	}
 
-  @Override
-  public void update(User user) {
-    userMapper.update(user);
-  }
+	@Override
+	public List<UserApiVO> getUserByUserIds(List<Long> userIds) {
+		if (CollUtil.isEmpty(userIds)) {
+			return new ArrayList<>();
+		}
+		return userMapper.getUserByUserIds(userIds);
+	}
 
+	@Override
+	public Long save(UserRegisterDTO param) {
+		this.checkRegisterInfo(param);
 
-  @Override
-  public List<UserApiVO> getUserByUserIds(List<Long> userIds) {
-    if (CollUtil.isEmpty(userIds)) {
-      return new ArrayList<>();
-    }
-    return userMapper.getUserByUserIds(userIds);
-  }
+		Result<Long> segmentIdResponse = segmentFeignClient.getSegmentId(User.DISTRIBUTED_ID_KEY);
+		if (!segmentIdResponse.isSuccess()) {
+			throw new NimbusException(ResultCode.EXCEPTION);
+		}
+		Long userId = segmentIdResponse.getData();
 
-  @Override
-  public Long save(UserRegisterDTO param) {
-    this.checkRegisterInfo(param);
+		param.setUserId(userId);
 
-    Result<Long> segmentIdResponse = segmentFeignClient.getSegmentId(User.DISTRIBUTED_ID_KEY);
-    if (!segmentIdResponse.isSuccess()) {
-      throw new NimbusException(ResultCode.EXCEPTION);
-    }
-    Long userId = segmentIdResponse.getData();
+		AuthAccountDTO authAccountDTO = new AuthAccountDTO();
+		authAccountDTO.setCreateIp(IpHelper.getIpAddr());
+		authAccountDTO.setPassword(param.getPassword());
+		authAccountDTO.setIsAdmin(0);
+		authAccountDTO.setSysType(SysTypeEnum.ORDINARY.value());
+		authAccountDTO.setUsername(param.getUserName());
+		authAccountDTO.setStatus(1);
+		authAccountDTO.setUserId(userId);
 
-    param.setUserId(userId);
+		// 保存统一账户信息
+		Result<Long> serverResponse = accountFeignClient.save(authAccountDTO);
+		// 抛异常回滚
+		if (!serverResponse.isSuccess()) {
+			throw new NimbusException(serverResponse.getMsg());
+		}
 
-    AuthAccountDTO authAccountDTO = new AuthAccountDTO();
-    authAccountDTO.setCreateIp(IpHelper.getIpAddr());
-    authAccountDTO.setPassword(param.getPassword());
-    authAccountDTO.setIsAdmin(0);
-    authAccountDTO.setSysType(SysTypeEnum.ORDINARY.value());
-    authAccountDTO.setUsername(param.getUserName());
-    authAccountDTO.setStatus(1);
-    authAccountDTO.setUserId(userId);
+		User user = new User();
+		user.setUserId(userId);
+		user.setPic(param.getImg());
+		user.setNickName(param.getNickName());
+		user.setStatus(1);
+		// 这里保存之后才有用户id
+		userMapper.save(user);
 
-    // 保存统一账户信息
-    Result<Long> serverResponse = accountFeignClient.save(authAccountDTO);
-    // 抛异常回滚
-    if (!serverResponse.isSuccess()) {
-      throw new NimbusException(serverResponse.getMsg());
-    }
+		return serverResponse.getData();
+	}
 
-    User user = new User();
-    user.setUserId(userId);
-    user.setPic(param.getImg());
-    user.setNickName(param.getNickName());
-    user.setStatus(1);
-    // 这里保存之后才有用户id
-    userMapper.save(user);
+	private void checkRegisterInfo(UserRegisterDTO userRegisterDTO) {
+		Result<AuthAccountVO> responseEntity = accountFeignClient.getByUsernameAndSysType(userRegisterDTO.getUserName(),
+				SysTypeEnum.ORDINARY);
+		if (!responseEntity.isSuccess()) {
+			throw new NimbusException(responseEntity.getMsg());
+		}
+		if (Objects.nonNull(responseEntity.getData())) {
+			throw new NimbusException("用户名已存在");
+		}
+	}
 
-    return serverResponse.getData();
-  }
-
-  private void checkRegisterInfo(UserRegisterDTO userRegisterDTO) {
-    Result<AuthAccountVO> responseEntity = accountFeignClient.getByUsernameAndSysType(userRegisterDTO.getUserName(), SysTypeEnum.ORDINARY);
-    if (!responseEntity.isSuccess()) {
-      throw new NimbusException(responseEntity.getMsg());
-    }
-    if (Objects.nonNull(responseEntity.getData())) {
-      throw new NimbusException("用户名已存在");
-    }
-  }
 }

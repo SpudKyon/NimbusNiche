@@ -21,31 +21,32 @@ import com.spud.nimbus.order.model.OrderAddr;
 @Service
 public class OrderAddrServiceImpl extends ServiceImpl<OrderAddrMapper, OrderAddr> implements OrderAddrService {
 
-  @Autowired
-  private OrderAddrMapper orderAddrMapper;
+	@Autowired
+	private OrderAddrMapper orderAddrMapper;
 
-  @Override
-  public PageVO<OrderAddr> page(PageDTO pageDTO) {
-    return PageUtil.doPage(pageDTO, () -> orderAddrMapper.list());
-  }
+	@Override
+	public PageVO<OrderAddr> page(PageDTO pageDTO) {
+		return PageUtil.doPage(pageDTO, () -> orderAddrMapper.list());
+	}
 
-  @Override
-  public OrderAddr getByOrderAddrId(Long orderAddrId) {
-    return orderAddrMapper.getByOrderAddrId(orderAddrId);
-  }
+	@Override
+	public OrderAddr getByOrderAddrId(Long orderAddrId) {
+		return orderAddrMapper.getByOrderAddrId(orderAddrId);
+	}
 
-  @Override
-  public boolean save(OrderAddr orderAddr) {
-    return super.save(orderAddr);
-  }
+	@Override
+	public boolean save(OrderAddr orderAddr) {
+		return super.save(orderAddr);
+	}
 
-  @Override
-  public void update(OrderAddr orderAddr) {
-    orderAddrMapper.update(orderAddr);
-  }
+	@Override
+	public void update(OrderAddr orderAddr) {
+		orderAddrMapper.update(orderAddr);
+	}
 
-  @Override
-  public void deleteById(Long orderAddrId) {
-    orderAddrMapper.deleteById(orderAddrId);
-  }
+	@Override
+	public void deleteById(Long orderAddrId) {
+		orderAddrMapper.deleteById(orderAddrId);
+	}
+
 }

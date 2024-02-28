@@ -13,33 +13,33 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 
 /**
  * feign请求拦截器
+ *
  * @author spud
  * @date 2024
  */
 @Slf4j
 @Component
-@ConditionalOnClass({RequestInterceptor.class})
+@ConditionalOnClass({ RequestInterceptor.class })
 public class FeignBasicAuthRequestInterceptor implements RequestInterceptor {
 
-  @Autowired
-  private FeignInsideAuthConfig feignInsideAuthConfig;
+	@Autowired
+	private FeignInsideAuthConfig feignInsideAuthConfig;
 
-  @Override
-  public void apply(RequestTemplate template) {
-    // feign的内部请求，往请求头放入key 和 secret进行校验
-    template.header(feignInsideAuthConfig.getKey(), feignInsideAuthConfig.getSecret());
+	@Override
+	public void apply(RequestTemplate template) {
+		// feign的内部请求，往请求头放入key 和 secret进行校验
+		template.header(feignInsideAuthConfig.getKey(), feignInsideAuthConfig.getSecret());
 
-    ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
-            .getRequestAttributes();
-    if (attributes == null) {
-      return;
-    }
-    HttpServletRequest request = attributes.getRequest();
-    String authorization = request.getHeader("Authorization");
+		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
+		if (attributes == null) {
+			return;
+		}
+		HttpServletRequest request = attributes.getRequest();
+		String authorization = request.getHeader("Authorization");
 
+		if (StrUtil.isNotBlank(authorization)) {
+			template.header("Authorization", authorization);
+		}
+	}
 
-    if (StrUtil.isNotBlank(authorization)) {
-      template.header("Authorization", authorization);
-    }
-  }
 }

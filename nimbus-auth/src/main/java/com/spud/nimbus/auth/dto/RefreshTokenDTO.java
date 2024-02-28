@@ -14,10 +14,11 @@ import lombok.ToString;
 @ToString
 public class RefreshTokenDTO extends BaseDTO {
 
-  /**
-   * refreshToken
-   */
-  @NotBlank(message = "refreshToken不能为空")
-  @Schema(description = "refreshToken", requiredMode = Schema.RequiredMode.REQUIRED)
-  private String refreshToken;
+	/**
+	 * refreshToken
+	 */
+	@NotBlank(message = "refreshToken不能为空")
+	@Schema(description = "refreshToken", requiredMode = Schema.RequiredMode.REQUIRED)
+	private String refreshToken;
+
 }

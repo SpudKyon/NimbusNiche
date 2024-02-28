@@ -19,56 +19,51 @@ import java.util.List;
  */
 @Mapper
 public interface IndexImgMapper extends BaseMapper<IndexImg> {
-  /**
-   * 获取轮播图列表
-   *
-   * @param indexImgDTO
-   * @return 轮播图列表
-   */
-  List<IndexImgVO> list(@Param("indexImg") IndexImgDTO indexImgDTO);
 
-  /**
-   * 根据轮播图id获取轮播图
-   *
-   * @param imgId 轮播图id
-   * @return 轮播图
-   */
-  IndexImgVO getByImgId(@Param("imgId") Long imgId);
+	/**
+	 * 获取轮播图列表
+	 * @param indexImgDTO
+	 * @return 轮播图列表
+	 */
+	List<IndexImgVO> list(@Param("indexImg") IndexImgDTO indexImgDTO);
 
-  /**
-   * 保存轮播图
-   *
-   * @param indexImg 轮播图
-   */
-  void save(@Param("indexImg") IndexImg indexImg);
+	/**
+	 * 根据轮播图id获取轮播图
+	 * @param imgId 轮播图id
+	 * @return 轮播图
+	 */
+	IndexImgVO getByImgId(@Param("imgId") Long imgId);
 
-  /**
-   * 更新轮播图
-   *
-   * @param indexImg 轮播图
-   */
-  void update(@Param("indexImg") IndexImg indexImg);
+	/**
+	 * 保存轮播图
+	 * @param indexImg 轮播图
+	 */
+	void save(@Param("indexImg") IndexImg indexImg);
 
-  /**
-   * 根据轮播图id删除轮播图
-   *
-   * @param imgId  轮播图id
-   * @param shopId 店铺id
-   */
-  void deleteByIdAndShopId(@Param("imgId") Long imgId, @Param("shopId") Long shopId);
+	/**
+	 * 更新轮播图
+	 * @param indexImg 轮播图
+	 */
+	void update(@Param("indexImg") IndexImg indexImg);
 
-  /**
-   * 根据店铺id，获取轮播图列表
-   *
-   * @param shopId
-   * @return
-   */
-  List<IndexImgVO> getListByShopId(@Param("shopId") Long shopId);
+	/**
+	 * 根据轮播图id删除轮播图
+	 * @param imgId 轮播图id
+	 * @param shopId 店铺id
+	 */
+	void deleteByIdAndShopId(@Param("imgId") Long imgId, @Param("shopId") Long shopId);
 
-  /**
-   * 根据spuId清除轮播图的spuId
-   *
-   * @param spuId
-   */
-  void clearSpuIdBySpuId(Long spuId);
+	/**
+	 * 根据店铺id，获取轮播图列表
+	 * @param shopId
+	 * @return
+	 */
+	List<IndexImgVO> getListByShopId(@Param("shopId") Long shopId);
+
+	/**
+	 * 根据spuId清除轮播图的spuId
+	 * @param spuId
+	 */
+	void clearSpuIdBySpuId(Long spuId);
+
 }

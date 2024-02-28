@@ -23,30 +23,29 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "店铺-用户表")
 public class ShopUserController {
 
-  @Autowired
-  private UserService userService;
+	@Autowired
+	private UserService userService;
 
-  @GetMapping("/page")
-  @Operation(summary = "获取用户表列表", description = "分页获取用户表列表")
-  public Result<PageVO<UserApiVO>> page(@Valid PageDTO pageDTO) {
-    PageVO<UserApiVO> userPage = userService.page(pageDTO);
-    return Result.success(userPage);
-  }
+	@GetMapping("/page")
+	@Operation(summary = "获取用户表列表", description = "分页获取用户表列表")
+	public Result<PageVO<UserApiVO>> page(@Valid PageDTO pageDTO) {
+		PageVO<UserApiVO> userPage = userService.page(pageDTO);
+		return Result.success(userPage);
+	}
 
-  @GetMapping
-  @Operation(summary = "获取用户表", description = "根据userId获取用户表")
-  public Result<UserApiVO> getByUserId(@RequestParam Long userId) {
-    UserApiVO userVO = BeanUtil.map(userService.getByUserId(userId), UserApiVO.class);
-    return Result.success(userVO);
-  }
+	@GetMapping
+	@Operation(summary = "获取用户表", description = "根据userId获取用户表")
+	public Result<UserApiVO> getByUserId(@RequestParam Long userId) {
+		UserApiVO userVO = BeanUtil.map(userService.getByUserId(userId), UserApiVO.class);
+		return Result.success(userVO);
+	}
 
-
-  @PutMapping
-  @Operation(summary = "更新用户表", description = "更新用户表")
-  public Result<Void> update(@Valid @RequestBody UserDTO userDTO) {
-    User user = BeanUtil.map(userDTO, User.class);
-    userService.update(user);
-    return Result.success(null);
-  }
+	@PutMapping
+	@Operation(summary = "更新用户表", description = "更新用户表")
+	public Result<Void> update(@Valid @RequestBody UserDTO userDTO) {
+		User user = BeanUtil.map(userDTO, User.class);
+		userService.update(user);
+		return Result.success(null);
+	}
 
 }

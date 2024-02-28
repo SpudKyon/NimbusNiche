@@ -14,12 +14,14 @@ import java.util.List;
  */
 @Component
 public class OrderCacheTtlAdapter implements CacheTtlAdapter {
-  @Override
-  public List<CacheNameWithTtlBO> listCacheNameWithTTL() {
-    List<CacheNameWithTtlBO> cacheNameWithTtls = new ArrayList<>();
-    // 确认订单缓存30分钟
-    cacheNameWithTtls.add(new CacheNameWithTtlBO(OrderCacheNames.ORDER_CONFIRM_UUID_KEY, 60 * 30));
-    cacheNameWithTtls.add(new CacheNameWithTtlBO(OrderCacheNames.ORDER_CONFIRM_KEY, 60 * 30));
-    return cacheNameWithTtls;
-  }
+
+	@Override
+	public List<CacheNameWithTtlBO> listCacheNameWithTTL() {
+		List<CacheNameWithTtlBO> cacheNameWithTtls = new ArrayList<>();
+		// 确认订单缓存30分钟
+		cacheNameWithTtls.add(new CacheNameWithTtlBO(OrderCacheNames.ORDER_CONFIRM_UUID_KEY, 60 * 30));
+		cacheNameWithTtls.add(new CacheNameWithTtlBO(OrderCacheNames.ORDER_CONFIRM_KEY, 60 * 30));
+		return cacheNameWithTtls;
+	}
+
 }

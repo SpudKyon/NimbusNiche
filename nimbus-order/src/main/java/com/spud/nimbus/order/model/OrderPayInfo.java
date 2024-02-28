@@ -13,55 +13,57 @@ import java.util.Date;
 @Data
 @ToString
 public class OrderPayInfo extends BaseModel implements Serializable {
-  private static final long serialVersionUID = 1L;
 
-  /**
-   * 支付单号
-   */
-  private Long payId;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 用户id
-   */
-  private Long userId;
+	/**
+	 * 支付单号
+	 */
+	private Long payId;
 
-  /**
-   * 外部订单流水号
-   */
-  private String bizPayNo;
+	/**
+	 * 用户id
+	 */
+	private Long userId;
 
-  /**
-   * 系统类型 见SysTypeEnum
-   */
-  private Integer sysType;
+	/**
+	 * 外部订单流水号
+	 */
+	private String bizPayNo;
 
-  /**
-   * 支付状态
-   */
-  private Integer payStatus;
+	/**
+	 * 系统类型 见SysTypeEnum
+	 */
+	private Integer sysType;
 
-  /**
-   * 支付金额
-   */
-  private Long payAmount;
+	/**
+	 * 支付状态
+	 */
+	private Integer payStatus;
 
-  /**
-   * 版本号
-   */
-  private Integer version;
+	/**
+	 * 支付金额
+	 */
+	private Long payAmount;
 
-  /**
-   * 回调内容
-   */
-  private String callbackContent;
+	/**
+	 * 版本号
+	 */
+	private Integer version;
 
-  /**
-   * 回调时间
-   */
-  private Date callbackTime;
+	/**
+	 * 回调内容
+	 */
+	private String callbackContent;
 
-  /**
-   * 确认时间
-   */
-  private Date confirmTime;
+	/**
+	 * 回调时间
+	 */
+	private Date callbackTime;
+
+	/**
+	 * 确认时间
+	 */
+	private Date confirmTime;
+
 }

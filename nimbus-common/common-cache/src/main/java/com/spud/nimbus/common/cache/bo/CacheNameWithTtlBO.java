@@ -13,7 +13,8 @@ import lombok.ToString;
 @ToString
 public class CacheNameWithTtlBO {
 
-  private String cacheName;
+	private String cacheName;
 
-  private Integer ttl;
+	private Integer ttl;
+
 }

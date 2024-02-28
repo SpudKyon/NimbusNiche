@@ -12,42 +12,43 @@ import lombok.ToString;
 @Data
 @ToString
 public class OrderAddrVO extends BaseVO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "ID")
-  private Long orderAddrId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "用户ID")
-  private Long userId;
+	@Schema(description = "ID")
+	private Long orderAddrId;
 
-  @Schema(description = "收货人")
-  private String consignee;
+	@Schema(description = "用户ID")
+	private Long userId;
 
-  @Schema(description = "省ID")
-  private Long provinceId;
+	@Schema(description = "收货人")
+	private String consignee;
 
-  @Schema(description = "省")
-  private String province;
+	@Schema(description = "省ID")
+	private Long provinceId;
 
-  @Schema(description = "城市ID")
-  private Long cityId;
+	@Schema(description = "省")
+	private String province;
 
-  @Schema(description = "城市")
-  private String city;
+	@Schema(description = "城市ID")
+	private Long cityId;
 
-  @Schema(description = "区域ID")
-  private Long areaId;
+	@Schema(description = "城市")
+	private String city;
 
-  @Schema(description = "区")
-  private String area;
+	@Schema(description = "区域ID")
+	private Long areaId;
 
-  @Schema(description = "地址")
-  private String addr;
+	@Schema(description = "区")
+	private String area;
 
-  @Schema(description = "邮编")
-  private String postCode;
+	@Schema(description = "地址")
+	private String addr;
 
-  @Schema(description = "手机")
-  private String mobile;
+	@Schema(description = "邮编")
+	private String postCode;
+
+	@Schema(description = "手机")
+	private String mobile;
 
 }

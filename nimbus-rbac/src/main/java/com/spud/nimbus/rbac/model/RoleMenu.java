@@ -27,43 +27,42 @@ import java.time.LocalDateTime;
 @ToString
 public class RoleMenu implements Serializable {
 
-  private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-  /**
-   * 关联id
-   */
-  @TableId(value = "id", type = IdType.AUTO)
-  private Long id;
+	/**
+	 * 关联id
+	 */
+	@TableId(value = "id", type = IdType.AUTO)
+	private Long id;
 
-  /**
-   * 创建时间
-   */
-  @TableField("create_time")
-  private LocalDateTime createTime;
+	/**
+	 * 创建时间
+	 */
+	@TableField("create_time")
+	private LocalDateTime createTime;
 
-  /**
-   * 更新时间
-   */
-  @TableField("update_time")
-  private LocalDateTime updateTime;
+	/**
+	 * 更新时间
+	 */
+	@TableField("update_time")
+	private LocalDateTime updateTime;
 
-  /**
-   * 角色ID
-   */
-  @TableField("role_id")
-  private Long roleId;
+	/**
+	 * 角色ID
+	 */
+	@TableField("role_id")
+	private Long roleId;
 
-  /**
-   * 菜单ID
-   */
-  @TableField("menu_id")
-  private Long menuId;
+	/**
+	 * 菜单ID
+	 */
+	@TableField("menu_id")
+	private Long menuId;
 
-  /**
-   * 菜单资源用户id
-   */
-  @TableField("menu_permission_id")
-  private Long menuPermissionId;
-
+	/**
+	 * 菜单资源用户id
+	 */
+	@TableField("menu_permission_id")
+	private Long menuPermissionId;
 
 }

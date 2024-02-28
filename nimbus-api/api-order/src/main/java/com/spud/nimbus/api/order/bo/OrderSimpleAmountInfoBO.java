@@ -11,22 +11,23 @@ import lombok.ToString;
 @ToString
 public class OrderSimpleAmountInfoBO {
 
-  private Long orderId;
+	private Long orderId;
 
-  private Long shopId;
+	private Long shopId;
 
-  /**
-   * 实际总值
-   */
-  private Long actualTotal;
+	/**
+	 * 实际总值
+	 */
+	private Long actualTotal;
 
-  /**
-   * 订单状态
-   */
-  private Integer status;
+	/**
+	 * 订单状态
+	 */
+	private Integer status;
 
-  /**
-   * 订单关闭原因
-   */
-  private Integer closeType;
+	/**
+	 * 订单关闭原因
+	 */
+	private Integer closeType;
+
 }

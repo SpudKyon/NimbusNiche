@@ -12,14 +12,15 @@ import lombok.ToString;
 @Data
 @ToString
 public class CategoryBrandDTO extends BaseDTO {
-  private static final long serialVersionUID = 1L;
 
-  private Long id;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "品牌id" )
-  private Long brandId;
+	private Long id;
 
-  @Schema(description = "分类id" )
-  private Long categoryId;
+	@Schema(description = "品牌id")
+	private Long brandId;
+
+	@Schema(description = "分类id")
+	private Long categoryId;
 
 }

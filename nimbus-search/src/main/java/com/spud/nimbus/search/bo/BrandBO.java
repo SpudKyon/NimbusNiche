@@ -13,23 +13,25 @@ import lombok.ToString;
 @Data
 @ToString
 public class BrandBO {
-  /**
-   * brand_id
-   */
-  private Long brandId;
 
-  /**
-   * 品牌名称
-   */
-  private String name;
+	/**
+	 * brand_id
+	 */
+	private Long brandId;
 
-  /**
-   * 品牌描述
-   */
-  private String desc;
+	/**
+	 * 品牌名称
+	 */
+	private String name;
 
-  /**
-   * 品牌logo图片
-   */
-  private String imgUrl;
+	/**
+	 * 品牌描述
+	 */
+	private String desc;
+
+	/**
+	 * 品牌logo图片
+	 */
+	private String imgUrl;
+
 }

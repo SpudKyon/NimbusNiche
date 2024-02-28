@@ -15,26 +15,24 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sys_config")
 public class SysConfigController {
 
+	@Autowired
+	private SysConfigService sysConfigService;
 
-  @Autowired
-  private SysConfigService sysConfigService;
+	/**
+	 * 获取保存支付宝支付配置信息
+	 */
+	@GetMapping("/info/{key}")
+	public Result<String> info(@PathVariable("key") String key) {
+		return Result.success(sysConfigService.getValue(key));
+	}
 
-  /**
-   * 获取保存支付宝支付配置信息
-   */
-  @GetMapping("/info/{key}")
-  public Result<String> info(@PathVariable("key") String key) {
-    return Result.success(sysConfigService.getValue(key));
-  }
-
-  /**
-   * 保存配置
-   */
-  @PostMapping("/save")
-  public Result<Void> save(@RequestBody @Valid SysConfig sysConfig) {
-    sysConfigService.saveOrUpdateSysConfig(sysConfig);
-    return Result.success(null);
-  }
-
+	/**
+	 * 保存配置
+	 */
+	@PostMapping("/save")
+	public Result<Void> save(@RequestBody @Valid SysConfig sysConfig) {
+		sysConfigService.saveOrUpdateSysConfig(sysConfig);
+		return Result.success(null);
+	}
 
 }

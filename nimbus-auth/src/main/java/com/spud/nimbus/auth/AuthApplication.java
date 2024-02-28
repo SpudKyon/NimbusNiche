@@ -9,11 +9,11 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @date 2024/2/10
  */
 @SpringBootApplication(scanBasePackages = { "com.spud.nimbus" })
-@EnableFeignClients(basePackages = {"com.spud.nimbus.api.**.feign"})
+@EnableFeignClients(basePackages = { "com.spud.nimbus.api.**.feign" })
 public class AuthApplication {
 
-  public static void main(String[] args) {
-    SpringApplication.run(AuthApplication.class, args);
-  }
+	public static void main(String[] args) {
+		SpringApplication.run(AuthApplication.class, args);
+	}
 
 }

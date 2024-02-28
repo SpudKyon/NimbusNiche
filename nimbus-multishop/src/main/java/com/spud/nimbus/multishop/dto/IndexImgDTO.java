@@ -13,29 +13,31 @@ import lombok.ToString;
 @Data
 @ToString
 public class IndexImgDTO extends BaseDTO {
-  private static final long serialVersionUID = 1L;
 
-  @Schema(description = "主键")
-  private Long imgId;
+	private static final long serialVersionUID = 1L;
 
-  @Schema(description = "店铺ID")
-  private Long shopId;
+	@Schema(description = "主键")
+	private Long imgId;
 
-  @NotNull(message = "图片不能为空")
-  @Schema(description = "图片")
-  private String imgUrl;
+	@Schema(description = "店铺ID")
+	private Long shopId;
 
-  @Schema(description = "状态")
-  private Integer status;
+	@NotNull(message = "图片不能为空")
+	@Schema(description = "图片")
+	private String imgUrl;
 
-  @NotNull(message = "序号不能为空")
-  @Schema(description = "顺序")
-  private Integer seq;
+	@Schema(description = "状态")
+	private Integer status;
 
-  @Schema(description = "关联商品id")
-  private Long spuId;
+	@NotNull(message = "序号不能为空")
+	@Schema(description = "顺序")
+	private Integer seq;
 
-  @NotNull(message = "图片类型不能为空")
-  @Schema(description = "图片类型 0:小程序 1:pc")
-  private Integer imgType;
+	@Schema(description = "关联商品id")
+	private Long spuId;
+
+	@NotNull(message = "图片类型不能为空")
+	@Schema(description = "图片类型 0:小程序 1:pc")
+	private Integer imgType;
+
 }

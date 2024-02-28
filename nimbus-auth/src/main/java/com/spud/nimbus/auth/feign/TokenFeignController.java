@@ -16,17 +16,17 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TokenFeignController implements TokenFeignClient {
 
-  @Autowired
-  private TokenStore tokenStore;
+	@Autowired
+	private TokenStore tokenStore;
 
-  @Override
-  public Result<UserInfoInTokenBO> checkToken(String accessToken) {
-    Result<UserInfoInTokenBO> userInfoByAccessTokenResponse = tokenStore
-            .getUserInfoByAccessToken(accessToken, true);
-    if (!userInfoByAccessTokenResponse.isSuccess()) {
-      return Result.transform(userInfoByAccessTokenResponse);
-    }
-    return Result.success(userInfoByAccessTokenResponse.getData());
-  }
+	@Override
+	public Result<UserInfoInTokenBO> checkToken(String accessToken) {
+		Result<UserInfoInTokenBO> userInfoByAccessTokenResponse = tokenStore.getUserInfoByAccessToken(accessToken,
+				true);
+		if (!userInfoByAccessTokenResponse.isSuccess()) {
+			return Result.transform(userInfoByAccessTokenResponse);
+		}
+		return Result.success(userInfoByAccessTokenResponse.getData());
+	}
 
 }

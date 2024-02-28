@@ -21,13 +21,14 @@ import java.util.List;
 @Service
 public class AttrValueServiceImpl extends ServiceImpl<AttrValueMapper, AttrValue> implements AttrValueService {
 
-  @Override
-  public void saveByAttrValuesAndAttrId(List<AttrValue> attrValues, Long attrId) {
+	@Override
+	public void saveByAttrValuesAndAttrId(List<AttrValue> attrValues, Long attrId) {
 
-  }
+	}
 
-  @Override
-  public void update(Attr attrVO, AttrVO dbAttr) {
+	@Override
+	public void update(Attr attrVO, AttrVO dbAttr) {
 
-  }
+	}
+
 }

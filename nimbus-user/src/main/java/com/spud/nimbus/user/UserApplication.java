@@ -8,10 +8,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
  * @author spud
  * @date 2024/1/31
  */
-@SpringBootApplication(scanBasePackages = {"com.spud.nimbus"})
-@EnableFeignClients(basePackages = {"com.spud.nimbus.api.**.feign"})
+@SpringBootApplication(scanBasePackages = { "com.spud.nimbus" })
+@EnableFeignClients(basePackages = { "com.spud.nimbus.api.**.feign" })
 public class UserApplication {
-  public static void main(String[] args) {
-    SpringApplication.run(UserApplication.class, args);
-  }
+
+	public static void main(String[] args) {
+		SpringApplication.run(UserApplication.class, args);
+	}
+
 }

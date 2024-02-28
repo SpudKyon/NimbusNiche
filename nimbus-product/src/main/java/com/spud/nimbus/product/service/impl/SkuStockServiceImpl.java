@@ -26,57 +26,58 @@ import java.util.Objects;
 @Service
 public class SkuStockServiceImpl extends ServiceImpl<SkuStockMapper, SkuStock> implements SkuStockService {
 
-  @Autowired
-  private SkuStockMapper skuStockMapper;
+	@Autowired
+	private SkuStockMapper skuStockMapper;
 
-  @Override
-  public boolean save(SkuStock skuStock) {
-    skuStockMapper.save(skuStock);
-    return true;
-  }
+	@Override
+	public boolean save(SkuStock skuStock) {
+		skuStockMapper.save(skuStock);
+		return true;
+	}
 
-  @Override
-  public void update(SkuStock skuStock) {
-    skuStockMapper.update(skuStock);
-  }
+	@Override
+	public void update(SkuStock skuStock) {
+		skuStockMapper.update(skuStock);
+	}
 
-  @Override
-  public void deleteById(Long stockId) {
-    skuStockMapper.deleteById(stockId);
-  }
+	@Override
+	public void deleteById(Long stockId) {
+		skuStockMapper.deleteById(stockId);
+	}
 
-  @Override
-  public void saveBatch(List<SkuStock> skuStocks) {
-    skuStockMapper.saveBatch(skuStocks);
-  }
+	@Override
+	public void saveBatch(List<SkuStock> skuStocks) {
+		skuStockMapper.saveBatch(skuStocks);
+	}
 
-  @Override
-  public void deleteBySkuIds(List<Long> skuIds) {
-    skuStockMapper.deleteBySkuIds(skuIds);
-  }
+	@Override
+	public void deleteBySkuIds(List<Long> skuIds) {
+		skuStockMapper.deleteBySkuIds(skuIds);
+	}
 
-  @Override
-  public List<SkuStockVO> listBySkuList(List<SkuVO> skuVOList) {
-    return skuStockMapper.listBySkuList(skuVOList);
-  }
+	@Override
+	public List<SkuStockVO> listBySkuList(List<SkuVO> skuVOList) {
+		return skuStockMapper.listBySkuList(skuVOList);
+	}
 
-  @Override
-  public void updateBatch(List<SkuDTO> skuList) {
-    if (CollUtil.isEmpty(skuList)) {
-      return;
-    }
-    // 如果是修改库存，此时不需要改变锁定库存
-    List<SkuStock> skuStocks = new ArrayList<>();
-    for (SkuDTO sku : skuList) {
-      SkuStock skuStock = new SkuStock();
-      if (Objects.nonNull(sku.getChangeStock()) && sku.getChangeStock() > 0) {
-        skuStock.setStock(sku.getChangeStock());
-        skuStock.setSkuId(sku.getSkuId());
-        skuStocks.add(skuStock);
-      }
-    }
-    if (CollUtil.isNotEmpty(skuStocks)) {
-      skuStockMapper.updateStock(skuStocks);
-    }
-  }
+	@Override
+	public void updateBatch(List<SkuDTO> skuList) {
+		if (CollUtil.isEmpty(skuList)) {
+			return;
+		}
+		// 如果是修改库存，此时不需要改变锁定库存
+		List<SkuStock> skuStocks = new ArrayList<>();
+		for (SkuDTO sku : skuList) {
+			SkuStock skuStock = new SkuStock();
+			if (Objects.nonNull(sku.getChangeStock()) && sku.getChangeStock() > 0) {
+				skuStock.setStock(sku.getChangeStock());
+				skuStock.setSkuId(sku.getSkuId());
+				skuStocks.add(skuStock);
+			}
+		}
+		if (CollUtil.isNotEmpty(skuStocks)) {
+			skuStockMapper.updateStock(skuStocks);
+		}
+	}
+
 }

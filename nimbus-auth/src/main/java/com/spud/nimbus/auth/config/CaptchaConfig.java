@@ -16,15 +16,16 @@ import java.util.Properties;
 @Configuration
 public class CaptchaConfig {
 
-  @Bean
-  public CaptchaService captchaService() {
-    Properties config = new Properties();
-    config.put(Const.CAPTCHA_CACHETYPE, "redis");
-    config.put(Const.CAPTCHA_WATER_MARK, "");
-    // 滑动验证
-    config.put(Const.CAPTCHA_TYPE, CaptchaTypeEnum.BLOCKPUZZLE.getCodeValue());
-    //	config.put(Const.ORIGINAL_PATH_JIGSAW, FileUtil.getAbsolutePath("classpath:captcha"));
-    return CaptchaServiceFactory.getInstance(config);
-  }
+	@Bean
+	public CaptchaService captchaService() {
+		Properties config = new Properties();
+		config.put(Const.CAPTCHA_CACHETYPE, "redis");
+		config.put(Const.CAPTCHA_WATER_MARK, "");
+		// 滑动验证
+		config.put(Const.CAPTCHA_TYPE, CaptchaTypeEnum.BLOCKPUZZLE.getCodeValue());
+		// config.put(Const.ORIGINAL_PATH_JIGSAW,
+		// FileUtil.getAbsolutePath("classpath:captcha"));
+		return CaptchaServiceFactory.getInstance(config);
+	}
 
 }

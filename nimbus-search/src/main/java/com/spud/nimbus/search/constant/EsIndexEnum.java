@@ -6,25 +6,26 @@ package com.spud.nimbus.search.constant;
  */
 public enum EsIndexEnum {
 
-  /**
-   * 商品
-   */
-  PRODUCT("product"),
+	/**
+	 * 商品
+	 */
+	PRODUCT("product"),
 
-  /**
-   * 订单
-   */
-  ORDER("order"),
+	/**
+	 * 订单
+	 */
+	ORDER("order"),
 
-  ;
+	;
 
-  private final String value;
+	private final String value;
 
-  public String value() {
-    return value;
-  }
+	public String value() {
+		return value;
+	}
 
-  EsIndexEnum(String value) {
-    this.value = value;
-  }
+	EsIndexEnum(String value) {
+		this.value = value;
+	}
+
 }

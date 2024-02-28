@@ -7,12 +7,12 @@ import com.spud.nimbus.product.dto.CategoryDTO;
  * @date 2024/2/10
  */
 public interface CategoryAndSpuService {
-  /**
-   * 分类的启用和禁用
-   *
-   * @param categoryDTO
-   * @return
-   */
-  Boolean categoryEnableOrDisable(CategoryDTO categoryDTO);
+
+	/**
+	 * 分类的启用和禁用
+	 * @param categoryDTO
+	 * @return
+	 */
+	Boolean categoryEnableOrDisable(CategoryDTO categoryDTO);
 
 }

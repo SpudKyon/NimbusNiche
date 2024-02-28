@@ -31,4 +31,5 @@ public interface SysUserAccountService {
 	 * @return void
 	 */
 	Result<AuthAccountVO> getByUserIdAndSysType(Long userId, Integer sysType);
+
 }

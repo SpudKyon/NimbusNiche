@@ -33,106 +33,107 @@ import java.util.Objects;
 @Tag(name = "菜单接口")
 public class MenuController {
 
-  @Autowired
-  private MenuService menuService;
+	@Autowired
+	private MenuService menuService;
 
-  @GetMapping(value = "/route")
-  @Operation(summary = "路由菜单", description = "获取当前登陆用户可用的路由菜单列表")
-  public Result<List<RouteVO>> route(Integer sysType) {
-    sysType = Objects.isNull(sysType) ? AuthUserContext.get().getSysType() : sysType;
-    List<Menu> menus = menuService.listBySysType(sysType);
+	@GetMapping(value = "/route")
+	@Operation(summary = "路由菜单", description = "获取当前登陆用户可用的路由菜单列表")
+	public Result<List<RouteVO>> route(Integer sysType) {
+		sysType = Objects.isNull(sysType) ? AuthUserContext.get().getSysType() : sysType;
+		List<Menu> menus = menuService.listBySysType(sysType);
 
-    List<RouteVO> routes = new ArrayList<>(menus.size());
+		List<RouteVO> routes = new ArrayList<>(menus.size());
 
-    for (Menu menu : menus) {
-      RouteVO route = new RouteVO();
-      route.setAlwaysShow(BooleanUtil.isTrue(menu.getAlwaysShow()));
-      route.setComponent(menu.getComponent());
-      route.setHidden(BooleanUtil.isTrue(menu.getHidden()));
-      route.setName(menu.getName());
-      route.setPath(menu.getPath());
-      route.setRedirect(menu.getRedirect());
-      route.setId(menu.getMenuId());
-      route.setParentId(menu.getParentId());
-      route.setSeq(menu.getSeq());
+		for (Menu menu : menus) {
+			RouteVO route = new RouteVO();
+			route.setAlwaysShow(BooleanUtil.isTrue(menu.getAlwaysShow()));
+			route.setComponent(menu.getComponent());
+			route.setHidden(BooleanUtil.isTrue(menu.getHidden()));
+			route.setName(menu.getName());
+			route.setPath(menu.getPath());
+			route.setRedirect(menu.getRedirect());
+			route.setId(menu.getMenuId());
+			route.setParentId(menu.getParentId());
+			route.setSeq(menu.getSeq());
 
-      RouteMetaVO meta = new RouteMetaVO();
-      meta.setActiveMenu(menu.getActiveMenu());
-      meta.setAffix(BooleanUtil.isTrue(menu.getAffix()));
-      meta.setBreadcrumb(BooleanUtil.isTrue(menu.getBreadcrumb()));
-      meta.setIcon(menu.getIcon());
-      meta.setNoCache(BooleanUtil.isTrue(menu.getNoCache()));
-      meta.setTitle(menu.getTitle());
-      // 对于前端来说角色就是权限
-      meta.setRoles(Collections.singletonList(menu.getPermission()));
+			RouteMetaVO meta = new RouteMetaVO();
+			meta.setActiveMenu(menu.getActiveMenu());
+			meta.setAffix(BooleanUtil.isTrue(menu.getAffix()));
+			meta.setBreadcrumb(BooleanUtil.isTrue(menu.getBreadcrumb()));
+			meta.setIcon(menu.getIcon());
+			meta.setNoCache(BooleanUtil.isTrue(menu.getNoCache()));
+			meta.setTitle(menu.getTitle());
+			// 对于前端来说角色就是权限
+			meta.setRoles(Collections.singletonList(menu.getPermission()));
 
-      route.setMeta(meta);
-      routes.add(route);
-    }
-    return Result.success(routes);
-  }
+			route.setMeta(meta);
+			routes.add(route);
+		}
+		return Result.success(routes);
+	}
 
-  @GetMapping
-  @Operation(summary = "获取菜单管理", description = "根据menuId获取菜单管理")
-  public Result<MenuVO> getByMenuId(@RequestParam Long menuId) {
-    return Result.success(menuService.getByMenuId(menuId));
-  }
+	@GetMapping
+	@Operation(summary = "获取菜单管理", description = "根据menuId获取菜单管理")
+	public Result<MenuVO> getByMenuId(@RequestParam Long menuId) {
+		return Result.success(menuService.getByMenuId(menuId));
+	}
 
-  @PostMapping
-  @Operation(summary = "保存菜单管理", description = "保存菜单管理")
-  public Result<Void> save(@Valid @RequestBody MenuDTO menuDTO) {
-    Menu menu = checkAndGenerate(menuDTO);
-    menu.setMenuId(null);
-    menuService.save(menu);
-    return Result.success(null);
-  }
+	@PostMapping
+	@Operation(summary = "保存菜单管理", description = "保存菜单管理")
+	public Result<Void> save(@Valid @RequestBody MenuDTO menuDTO) {
+		Menu menu = checkAndGenerate(menuDTO);
+		menu.setMenuId(null);
+		menuService.save(menu);
+		return Result.success(null);
+	}
 
-  private Menu checkAndGenerate(@RequestBody @Valid MenuDTO menuDTO) {
-    UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-    if (!Objects.equals(userInfoInTokenBO.getTenantId(), 0L)) {
-      throw new NimbusException("无权限操作！");
-    }
-    Menu menu = BeanUtil.map(menuDTO, Menu.class);
-    menu.setBizType(menuDTO.getSysType());
-    if (Objects.isNull(menuDTO.getSysType())) {
-      menu.setBizType(AuthUserContext.get().getSysType());
-    }
-    return menu;
-  }
+	private Menu checkAndGenerate(@RequestBody @Valid MenuDTO menuDTO) {
+		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
+		if (!Objects.equals(userInfoInTokenBO.getTenantId(), 0L)) {
+			throw new NimbusException("无权限操作！");
+		}
+		Menu menu = BeanUtil.map(menuDTO, Menu.class);
+		menu.setBizType(menuDTO.getSysType());
+		if (Objects.isNull(menuDTO.getSysType())) {
+			menu.setBizType(AuthUserContext.get().getSysType());
+		}
+		return menu;
+	}
 
-  @PutMapping
-  @Operation(summary = "更新菜单管理", description = "更新菜单管理")
-  public Result<Void> update(@Valid @RequestBody MenuDTO menuDTO) {
-    Menu menu = checkAndGenerate(menuDTO);
-    menuService.update(menu);
-    return Result.success(null);
-  }
+	@PutMapping
+	@Operation(summary = "更新菜单管理", description = "更新菜单管理")
+	public Result<Void> update(@Valid @RequestBody MenuDTO menuDTO) {
+		Menu menu = checkAndGenerate(menuDTO);
+		menuService.update(menu);
+		return Result.success(null);
+	}
 
-  @DeleteMapping
-  @Operation(summary = "删除菜单管理", description = "根据菜单管理id删除菜单管理")
-  public Result<Void> delete(@RequestParam("menuId") Long menuId, @RequestParam("sysType") Integer sysType) {
-    UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-    if (!Objects.equals(userInfoInTokenBO.getTenantId(), 0L)) {
-      throw new NimbusException("无权限操作！");
-    }
-    sysType = Objects.isNull(sysType) ? userInfoInTokenBO.getSysType() : sysType;
-    menuService.deleteById(menuId, sysType);
-    return Result.success(null);
-  }
+	@DeleteMapping
+	@Operation(summary = "删除菜单管理", description = "根据菜单管理id删除菜单管理")
+	public Result<Void> delete(@RequestParam("menuId") Long menuId, @RequestParam("sysType") Integer sysType) {
+		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
+		if (!Objects.equals(userInfoInTokenBO.getTenantId(), 0L)) {
+			throw new NimbusException("无权限操作！");
+		}
+		sysType = Objects.isNull(sysType) ? userInfoInTokenBO.getSysType() : sysType;
+		menuService.deleteById(menuId, sysType);
+		return Result.success(null);
+	}
 
-  @GetMapping(value = "/list_with_permissions")
-  @Operation(summary = "菜单列表和按钮列表", description = "根据系统类型获取该系统的菜单列表 + 菜单下的权限列表")
-  public Result<List<MenuSimpleVO>> listWithPermissions() {
-    UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-    List<MenuSimpleVO> menuList = menuService.listWithPermissions(userInfoInTokenBO.getSysType());
-    return Result.success(menuList);
-  }
+	@GetMapping(value = "/list_with_permissions")
+	@Operation(summary = "菜单列表和按钮列表", description = "根据系统类型获取该系统的菜单列表 + 菜单下的权限列表")
+	public Result<List<MenuSimpleVO>> listWithPermissions() {
+		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
+		List<MenuSimpleVO> menuList = menuService.listWithPermissions(userInfoInTokenBO.getSysType());
+		return Result.success(menuList);
+	}
 
-  @GetMapping(value = "/list_menu_ids")
-  @Operation(summary = "获取当前用户可见的菜单ids", description = "获取当前用户可见的菜单id")
-  public Result<List<Long>> listMenuIds() {
-    UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-    List<Long> menuList = menuService.listMenuIds(userInfoInTokenBO.getUserId());
-    return Result.success(menuList);
-  }
+	@GetMapping(value = "/list_menu_ids")
+	@Operation(summary = "获取当前用户可见的菜单ids", description = "获取当前用户可见的菜单id")
+	public Result<List<Long>> listMenuIds() {
+		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
+		List<Long> menuList = menuService.listMenuIds(userInfoInTokenBO.getUserId());
+		return Result.success(menuList);
+	}
+
 }

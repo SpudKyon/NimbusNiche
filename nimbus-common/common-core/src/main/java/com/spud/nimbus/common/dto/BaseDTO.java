@@ -16,15 +16,16 @@ import java.util.Date;
 @ToString
 public class BaseDTO implements Serializable {
 
-  /**
-   * 创建时间
-   */
-  @Schema(description = "创建时间")
-  protected Date createTime;
+	/**
+	 * 创建时间
+	 */
+	@Schema(description = "创建时间")
+	protected Date createTime;
 
-  /**
-   * 更新时间
-   */
-  @Schema(description = "更新时间")
-  protected Date updateTime;
+	/**
+	 * 更新时间
+	 */
+	@Schema(description = "更新时间")
+	protected Date updateTime;
+
 }

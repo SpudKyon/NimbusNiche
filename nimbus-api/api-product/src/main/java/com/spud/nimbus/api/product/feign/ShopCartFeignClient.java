@@ -14,21 +14,22 @@ import java.util.List;
  * @author spud
  * @date 2024/2/10
  */
-@FeignClient(value = "nimbus-product",contextId = "shopCart")
+@FeignClient(value = "nimbus-product", contextId = "shopCart")
 public interface ShopCartFeignClient {
 
-    /**
-     * 获取购物项
-     * @return 购物项
-     */
-    @GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/shopCart/getById")
-    Result<List<ShopCartItemVO>> getCheckedShopCartItems();
+	/**
+	 * 获取购物项
+	 * @return 购物项
+	 */
+	@GetMapping(value = FeignInsideAuthConfig.FEIGN_INSIDE_URL_PREFIX + "/shopCart/getById")
+	Result<List<ShopCartItemVO>> getCheckedShopCartItems();
 
-    /**
-     * 通过购物车id删除用户购物车物品
-     * @param shopCartItemIds 购物车id
-     * @return
-     */
-    @DeleteMapping("/delete_item")
-    Result<Void> deleteItem(@RequestBody List<Long> shopCartItemIds);
+	/**
+	 * 通过购物车id删除用户购物车物品
+	 * @param shopCartItemIds 购物车id
+	 * @return
+	 */
+	@DeleteMapping("/delete_item")
+	Result<Void> deleteItem(@RequestBody List<Long> shopCartItemIds);
+
 }

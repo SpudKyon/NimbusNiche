@@ -8,50 +8,50 @@ import java.util.Objects;
  */
 public enum HttpMethodEnum {
 
-  /**
-   * GET
-   */
-  GET(1, "GET"),
+	/**
+	 * GET
+	 */
+	GET(1, "GET"),
 
-  /**
-   * POST
-   */
-  POST(2, "POST"),
+	/**
+	 * POST
+	 */
+	POST(2, "POST"),
 
-  /**
-   * PUT
-   */
-  PUT(3, "PUT"),
+	/**
+	 * PUT
+	 */
+	PUT(3, "PUT"),
 
-  /**
-   * DELETE
-   */
-  DELETE(4, "DELETE"),;
+	/**
+	 * DELETE
+	 */
+	DELETE(4, "DELETE"),;
 
-  private final Integer value;
+	private final Integer value;
 
-  private final String method;
+	private final String method;
 
-  public Integer value() {
-    return value;
-  }
+	public Integer value() {
+		return value;
+	}
 
-  public String method() {
-    return this.method;
-  }
+	public String method() {
+		return this.method;
+	}
 
-  HttpMethodEnum(Integer value, String method) {
-    this.value = value;
-    this.method = method;
-  }
+	HttpMethodEnum(Integer value, String method) {
+		this.value = value;
+		this.method = method;
+	}
 
-  public static HttpMethodEnum valueOf(Integer value) {
-    for (HttpMethodEnum httpMethodEnum : values()) {
-      if (Objects.equals(httpMethodEnum.value(), value)) {
-        return httpMethodEnum;
-      }
-    }
-    return null;
-  }
+	public static HttpMethodEnum valueOf(Integer value) {
+		for (HttpMethodEnum httpMethodEnum : values()) {
+			if (Objects.equals(httpMethodEnum.value(), value)) {
+				return httpMethodEnum;
+			}
+		}
+		return null;
+	}
 
 }

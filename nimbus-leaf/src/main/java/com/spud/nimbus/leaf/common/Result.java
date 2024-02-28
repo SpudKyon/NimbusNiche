@@ -15,7 +15,8 @@ import lombok.ToString;
 @AllArgsConstructor
 public class Result {
 
-  private long id;
+	private long id;
 
-  private Status status;
+	private Status status;
+
 }

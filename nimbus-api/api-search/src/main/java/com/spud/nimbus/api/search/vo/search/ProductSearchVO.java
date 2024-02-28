@@ -14,18 +14,19 @@ import java.util.List;
 @ToString
 public class ProductSearchVO {
 
-    @Schema(description = "店铺信息" )
-    private ShopInfoSearchVO shopInfo;
+	@Schema(description = "店铺信息")
+	private ShopInfoSearchVO shopInfo;
 
-    @Schema(description = "规格属性列表" )
-    private List<AttrSearchVO> attrs;
+	@Schema(description = "规格属性列表")
+	private List<AttrSearchVO> attrs;
 
-    @Schema(description = "品牌列表信息" )
-    private List<BrandSearchVO> brands;
+	@Schema(description = "品牌列表信息")
+	private List<BrandSearchVO> brands;
 
-    @Schema(description = "spu列表信息" )
-    private List<SpuSearchVO> spus;
+	@Schema(description = "spu列表信息")
+	private List<SpuSearchVO> spus;
 
-    @Schema(description = "分类列表信息" )
-    private List<CategorySearchVO> categorys;
+	@Schema(description = "分类列表信息")
+	private List<CategorySearchVO> categorys;
+
 }

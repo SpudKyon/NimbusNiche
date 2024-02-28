@@ -14,30 +14,32 @@ import java.util.List;
 @Data
 @ToString
 public class BrandVO extends BaseVO {
-    private static final long serialVersionUID = 1L;
 
-    @Schema(description = "brand_id" )
-    private Long brandId;
+	private static final long serialVersionUID = 1L;
 
-    @Schema(description = "品牌名称" )
-    private String name;
+	@Schema(description = "brand_id")
+	private Long brandId;
 
-    @Schema(description = "品牌描述" )
-    private String desc;
+	@Schema(description = "品牌名称")
+	private String name;
 
-    @Schema(description = "品牌logo图片" )
-//	@JsonSerialize(using = ImgJsonSerializer.class)
-    private String imgUrl;
+	@Schema(description = "品牌描述")
+	private String desc;
 
-    @Schema(description = "检索首字母" )
-    private String firstLetter;
+	@Schema(description = "品牌logo图片")
+	// @JsonSerialize(using = ImgJsonSerializer.class)
+	private String imgUrl;
 
-    @Schema(description = "排序" )
-    private Integer seq;
+	@Schema(description = "检索首字母")
+	private String firstLetter;
 
-    @Schema(description = "状态 1:enable, 0:disable, -1:deleted" )
-    private Integer status;
+	@Schema(description = "排序")
+	private Integer seq;
 
-	@Schema(description = "分类" )
+	@Schema(description = "状态 1:enable, 0:disable, -1:deleted")
+	private Integer status;
+
+	@Schema(description = "分类")
 	private List<CategoryVO> categories;
+
 }

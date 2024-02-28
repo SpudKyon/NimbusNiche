@@ -18,23 +18,24 @@ import org.springframework.context.annotation.Import;
 @RefreshScope
 @Slf4j
 @Configuration
-@Import({RocketMQAutoConfiguration.class})
+@Import({ RocketMQAutoConfiguration.class })
 public class RocketMqAdapter {
 
-  @Autowired
-  private RocketMQMessageConverter rocketMqMessageConverter;
+	@Autowired
+	private RocketMQMessageConverter rocketMqMessageConverter;
 
-  @Value("${rocketmq.name-server:}")
-  private String nameServer;
+	@Value("${rocketmq.name-server:}")
+	private String nameServer;
 
-  public RocketMQTemplate getTemplateByTopicName(String topic){
-    RocketMQTemplate mqTemplate = new RocketMQTemplate();
-    DefaultMQProducer producer = new DefaultMQProducer(topic);
-    producer.setNamesrvAddr(nameServer);
-    producer.setRetryTimesWhenSendFailed(2);
-    producer.setSendMsgTimeout((int) RocketMqConstant.TIMEOUT);
-    mqTemplate.setProducer(producer);
-    mqTemplate.setMessageConverter(rocketMqMessageConverter.getMessageConverter());
-    return mqTemplate;
-  }
+	public RocketMQTemplate getTemplateByTopicName(String topic) {
+		RocketMQTemplate mqTemplate = new RocketMQTemplate();
+		DefaultMQProducer producer = new DefaultMQProducer(topic);
+		producer.setNamesrvAddr(nameServer);
+		producer.setRetryTimesWhenSendFailed(2);
+		producer.setSendMsgTimeout((int) RocketMqConstant.TIMEOUT);
+		mqTemplate.setProducer(producer);
+		mqTemplate.setMessageConverter(rocketMqMessageConverter.getMessageConverter());
+		return mqTemplate;
+	}
+
 }

@@ -29,79 +29,78 @@ import lombok.experimental.Accessors;
 @TableName("sku")
 public class Sku extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * 属性id
-     */
-    @TableId(value = "sku_id", type = IdType.AUTO)
-    private Long skuId;
+	/**
+	 * 属性id
+	 */
+	@TableId(value = "sku_id", type = IdType.AUTO)
+	private Long skuId;
 
-    /**
-     * SPU id
-     */
-    @TableField("spu_id")
-    private Long spuId;
+	/**
+	 * SPU id
+	 */
+	@TableField("spu_id")
+	private Long spuId;
 
-    /**
-     * sku名称
-     */
-    @TableField("sku_name")
-    private String skuName;
+	/**
+	 * sku名称
+	 */
+	@TableField("sku_name")
+	private String skuName;
 
-    /**
-     * 多个销售属性值id逗号分隔
-     */
-    @TableField("attrs")
-    private String attrs;
+	/**
+	 * 多个销售属性值id逗号分隔
+	 */
+	@TableField("attrs")
+	private String attrs;
 
-    /**
-     * sku图片
-     */
-    @TableField("img_url")
-    private String imgUrl;
+	/**
+	 * sku图片
+	 */
+	@TableField("img_url")
+	private String imgUrl;
 
-    /**
-     * 售价，整数方式保存
-     */
-    @TableField("price_fee")
-    private Long priceFee;
+	/**
+	 * 售价，整数方式保存
+	 */
+	@TableField("price_fee")
+	private Long priceFee;
 
-    /**
-     * 市场价，整数方式保存
-     */
-    @TableField("market_price_fee")
-    private Long marketPriceFee;
+	/**
+	 * 市场价，整数方式保存
+	 */
+	@TableField("market_price_fee")
+	private Long marketPriceFee;
 
-    /**
-     * 商品编码
-     */
-    @TableField("party_code")
-    private String partyCode;
+	/**
+	 * 商品编码
+	 */
+	@TableField("party_code")
+	private String partyCode;
 
-    /**
-     * 商品条形码
-     */
-    @TableField("model_id")
-    private String modelId;
+	/**
+	 * 商品条形码
+	 */
+	@TableField("model_id")
+	private String modelId;
 
-    /**
-     * 商品重量
-     */
-    @TableField("weight")
-    private BigDecimal weight;
+	/**
+	 * 商品重量
+	 */
+	@TableField("weight")
+	private BigDecimal weight;
 
-    /**
-     * 商品体积
-     */
-    @TableField("volume")
-    private BigDecimal volume;
+	/**
+	 * 商品体积
+	 */
+	@TableField("volume")
+	private BigDecimal volume;
 
-    /**
-     * 状态 1:enable, 0:disable, -1:deleted
-     */
-    @TableField("status")
-    private Integer status;
-
+	/**
+	 * 状态 1:enable, 0:disable, -1:deleted
+	 */
+	@TableField("status")
+	private Integer status;
 
 }

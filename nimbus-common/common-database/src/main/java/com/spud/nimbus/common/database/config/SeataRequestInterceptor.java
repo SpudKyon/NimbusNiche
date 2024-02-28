@@ -16,14 +16,16 @@ import org.springframework.stereotype.Component;
  */
 @Slf4j
 @Component
-@ConditionalOnClass({RequestInterceptor.class, GlobalTransactional.class})
+@ConditionalOnClass({ RequestInterceptor.class, GlobalTransactional.class })
 public class SeataRequestInterceptor implements RequestInterceptor {
 
-    @Override
-    public void apply(RequestTemplate template) {
-        String currentXid = RootContext.getXID();
-        if (StrUtil.isNotBlank(currentXid) && !template.url().startsWith(Auth.CHECK_TOKEN_URI) && !template.url().startsWith(Auth.CHECK_RBAC_URI)) {
-            template.header(RootContext.KEY_XID, currentXid);
-        }
-    }
+	@Override
+	public void apply(RequestTemplate template) {
+		String currentXid = RootContext.getXID();
+		if (StrUtil.isNotBlank(currentXid) && !template.url().startsWith(Auth.CHECK_TOKEN_URI)
+				&& !template.url().startsWith(Auth.CHECK_RBAC_URI)) {
+			template.header(RootContext.KEY_XID, currentXid);
+		}
+	}
+
 }

@@ -20,42 +20,39 @@ import java.util.List;
  */
 @Service
 public interface UserService extends IService<User> {
-  /**
-   * 分页获取用户表列表
-   *
-   * @param pageDTO 分页参数
-   * @return 用户表列表分页数据
-   */
-  PageVO<UserApiVO> page(PageDTO pageDTO);
 
-  /**
-   * 根据用户表id获取用户表
-   *
-   * @param userId 用户表id
-   * @return 用户表
-   */
-  UserApiVO getByUserId(Long userId);
+	/**
+	 * 分页获取用户表列表
+	 * @param pageDTO 分页参数
+	 * @return 用户表列表分页数据
+	 */
+	PageVO<UserApiVO> page(PageDTO pageDTO);
 
-  /**
-   * 更新用户表
-   *
-   * @param user 用户表
-   */
-  void update(User user);
+	/**
+	 * 根据用户表id获取用户表
+	 * @param userId 用户表id
+	 * @return 用户表
+	 */
+	UserApiVO getByUserId(Long userId);
 
-  /**
-   * 根据用户id列表，获取用户信息
-   *
-   * @param userIds 用户id列表
-   * @return 用户信息
-   */
-  List<UserApiVO> getUserByUserIds(List<Long> userIds);
+	/**
+	 * 更新用户表
+	 * @param user 用户表
+	 */
+	void update(User user);
 
-  /**
-   * 保存用户
-   *
-   * @param param 注册信息
-   * @return uid
-   */
-  Long save(UserRegisterDTO param);
+	/**
+	 * 根据用户id列表，获取用户信息
+	 * @param userIds 用户id列表
+	 * @return 用户信息
+	 */
+	List<UserApiVO> getUserByUserIds(List<Long> userIds);
+
+	/**
+	 * 保存用户
+	 * @param param 注册信息
+	 * @return uid
+	 */
+	Long save(UserRegisterDTO param);
+
 }

@@ -1,5 +1,6 @@
 package com.spud.nimbus.api.auth.vo;
 
+import com.spud.nimbus.common.vo.BaseVO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.Data;
 import lombok.ToString;
@@ -12,14 +13,15 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class TokenInfoVO {
+public class TokenInfoVO extends BaseVO {
 
-  @Schema(description = "accessToken")
-  private String accessToken;
+	@Schema(description = "accessToken")
+	private String accessToken;
 
-  @Schema(description = "refreshToken")
-  private String refreshToken;
+	@Schema(description = "refreshToken")
+	private String refreshToken;
 
-  @Schema(description = "在多少秒后过期")
-  private Integer expiresIn;
+	@Schema(description = "在多少秒后过期")
+	private Integer expiresIn;
+
 }

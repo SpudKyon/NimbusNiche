@@ -19,20 +19,20 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "验证码")
 public class CaptchaController {
 
-  private final CaptchaService captchaService;
+	private final CaptchaService captchaService;
 
-  public CaptchaController(CaptchaService captchaService) {
-    this.captchaService = captchaService;
-  }
+	public CaptchaController(CaptchaService captchaService) {
+		this.captchaService = captchaService;
+	}
 
-  @PostMapping({ "/get" })
-  public Result<ResponseModel> get(@RequestBody CaptchaVO captchaVO) {
-    return Result.success(captchaService.get(captchaVO));
-  }
+	@PostMapping({ "/get" })
+	public Result<ResponseModel> get(@RequestBody CaptchaVO captchaVO) {
+		return Result.success(captchaService.get(captchaVO));
+	}
 
-  @PostMapping({ "/check" })
-  public Result<ResponseModel> check(@RequestBody CaptchaVO captchaVO) {
-    return Result.success(captchaService.check(captchaVO));
-  }
+	@PostMapping({ "/check" })
+	public Result<ResponseModel> check(@RequestBody CaptchaVO captchaVO) {
+		return Result.success(captchaService.check(captchaVO));
+	}
 
 }

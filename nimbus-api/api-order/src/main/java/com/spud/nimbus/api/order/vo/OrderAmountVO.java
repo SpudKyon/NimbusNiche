@@ -1,5 +1,6 @@
 package com.spud.nimbus.api.order.vo;
 
+import com.spud.nimbus.common.vo.BaseVO;
 import lombok.Data;
 import lombok.ToString;
 
@@ -9,10 +10,11 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class OrderAmountVO {
+public class OrderAmountVO extends BaseVO {
 
-  /**
-   * 支付金额
-   */
-  private Long payAmount;
+	/**
+	 * 支付金额
+	 */
+	private Long payAmount;
+
 }

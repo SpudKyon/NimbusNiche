@@ -24,14 +24,15 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "platform-spu列表接口")
 public class ProductSearchController {
 
-  @Autowired
-  private ProductSearchManager productSearchManager;
+	@Autowired
+	private ProductSearchManager productSearchManager;
 
-  @GetMapping("/page")
-  @Operation(summary = "商品管理信息列表（平台端）", description = "商品管理信息列表（平台端）")
-  public Result<EsPageVO<SpuAdminVO>> adminPage(@Valid EsPageDTO pageDTO, ProductSearchDTO productSearchDTO) {
-    productSearchDTO.setSearchType(SearchTypeEnum.PLATFORM.value());
-    EsPageVO<SpuAdminVO> searchPage = productSearchManager.adminPage(pageDTO, productSearchDTO);
-    return Result.success(searchPage);
-  }
+	@GetMapping("/page")
+	@Operation(summary = "商品管理信息列表（平台端）", description = "商品管理信息列表（平台端）")
+	public Result<EsPageVO<SpuAdminVO>> adminPage(@Valid EsPageDTO pageDTO, ProductSearchDTO productSearchDTO) {
+		productSearchDTO.setSearchType(SearchTypeEnum.PLATFORM.value());
+		EsPageVO<SpuAdminVO> searchPage = productSearchManager.adminPage(pageDTO, productSearchDTO);
+		return Result.success(searchPage);
+	}
+
 }

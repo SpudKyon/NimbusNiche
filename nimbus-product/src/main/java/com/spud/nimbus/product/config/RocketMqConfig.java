@@ -17,13 +17,13 @@ import org.springframework.context.annotation.Lazy;
 @Configuration
 public class RocketMqConfig {
 
-  @Autowired
-  private RocketMqAdapter rocketMqAdapter;
+	@Autowired
+	private RocketMqAdapter rocketMqAdapter;
 
-  @Lazy
-  @Bean(destroyMethod = "destroy")
-  public RocketMQTemplate stockMqTemplate() {
-    return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.STOCK_UNLOCK_TOPIC);
-  }
+	@Lazy
+	@Bean(destroyMethod = "destroy")
+	public RocketMQTemplate stockMqTemplate() {
+		return rocketMqAdapter.getTemplateByTopicName(RocketMqConstant.STOCK_UNLOCK_TOPIC);
+	}
 
 }

@@ -23,13 +23,14 @@ import java.util.List;
 @Tag(name = "admin-品牌信息")
 public class BrandController {
 
-  @Autowired
-  private BrandService brandService;
+	@Autowired
+	private BrandService brandService;
 
-  @GetMapping("/get_brand_by_category_id")
-  @Parameter(name = "categoryId", description = "分类id" )
-  @Operation(summary = "根据分类，获取品牌列表" , description = "根据分类，获取品牌列表")
-  public Result<List<BrandVO>> getBrandByCategoryId(@RequestParam Long categoryId) {
-    return Result.success(brandService.getBrandByCategoryId(categoryId));
-  }
+	@GetMapping("/get_brand_by_category_id")
+	@Parameter(name = "categoryId", description = "分类id")
+	@Operation(summary = "根据分类，获取品牌列表", description = "根据分类，获取品牌列表")
+	public Result<List<BrandVO>> getBrandByCategoryId(@RequestParam Long categoryId) {
+		return Result.success(brandService.getBrandByCategoryId(categoryId));
+	}
+
 }

@@ -29,46 +29,47 @@ import lombok.experimental.Accessors;
 @TableName("attr")
 public class Attr extends BaseModel implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    /**
-     * attr id
-     */
-    @TableId(value = "attr_id", type = IdType.AUTO)
-    private Long attrId;
+	/**
+	 * attr id
+	 */
+	@TableId(value = "attr_id", type = IdType.AUTO)
+	private Long attrId;
 
-    /**
-     * 店铺Id
-     */
-    @TableField("shop_id")
-    private Long shopId;
+	/**
+	 * 店铺Id
+	 */
+	@TableField("shop_id")
+	private Long shopId;
 
-    /**
-     * 属性名称
-     */
-    @TableField("name")
-    private String name;
+	/**
+	 * 属性名称
+	 */
+	@TableField("name")
+	private String name;
 
-    /**
-     * 属性描述
-     */
-    @TableField("desc")
-    private String desc;
+	/**
+	 * 属性描述
+	 */
+	@TableField("desc")
+	private String desc;
 
-    /**
-     * 0:不需要，1:需要
-     */
-    @TableField("search_type")
-    private Integer searchType;
+	/**
+	 * 0:不需要，1:需要
+	 */
+	@TableField("search_type")
+	private Integer searchType;
 
-    /**
-     * 0:销售属性，1:基本属性
-     */
-    @TableField("attr_type")
-    private Integer attrType;
+	/**
+	 * 0:销售属性，1:基本属性
+	 */
+	@TableField("attr_type")
+	private Integer attrType;
 
-    /**
-     * 属性值列表
-     */
-    private List<AttrValue> attrValues;
+	/**
+	 * 属性值列表
+	 */
+	private List<AttrValue> attrValues;
+
 }

@@ -14,16 +14,15 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ElasticConfig {
 
-  @Value("${elastic.address}")
-  private String address;
+	@Value("${elastic.address}")
+	private String address;
 
-  @Value("${elastic.port}")
-  private Integer port;
+	@Value("${elastic.port}")
+	private Integer port;
 
-  @Bean
-  public RestHighLevelClient restHighLevelClient() {
-    return new RestHighLevelClient(
-            RestClient.builder(
-                    new HttpHost(address, port, "http")));
-  }
+	@Bean
+	public RestHighLevelClient restHighLevelClient() {
+		return new RestHighLevelClient(RestClient.builder(new HttpHost(address, port, "http")));
+	}
+
 }

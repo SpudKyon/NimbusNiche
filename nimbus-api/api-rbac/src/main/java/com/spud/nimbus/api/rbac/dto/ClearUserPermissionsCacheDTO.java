@@ -12,15 +12,16 @@ import lombok.ToString;
 @ToString
 public class ClearUserPermissionsCacheDTO {
 
-  /**
-   * 用户id
-   */
-  @NotNull(message = "userId not null")
-  private Long userId;
+	/**
+	 * 用户id
+	 */
+	@NotNull(message = "userId not null")
+	private Long userId;
 
-  /**
-   * 系统类型
-   */
-  @NotNull(message = "sysType not null")
-  private Integer sysType;
+	/**
+	 * 系统类型
+	 */
+	@NotNull(message = "sysType not null")
+	private Integer sysType;
+
 }

@@ -31,68 +31,68 @@ import java.util.List;
 @Service
 public class ShopUserServiceImpl extends ServiceImpl<ShopUserMapper, ShopUser> implements ShopUserService {
 
-  @Resource
-  private ShopUserMapper shopUserMapper;
-  
-  @Autowired
-  private AccountFeignClient accountFeignClient;
-  
-  @Autowired
-  private UserRoleFeignClient userRoleFeignClient;
-  
-  @Autowired
-  private SegmentFeignClient segmentFeignClient;
+	@Resource
+	private ShopUserMapper shopUserMapper;
 
-  @Override
-  public PageVO<ShopUserVO> pageByShopId(PageDTO pageDTO, Long shopId, String nickName) {
-    return PageUtil.doPage(pageDTO, () -> shopUserMapper.listByShopId(shopId, nickName));
-  }
+	@Autowired
+	private AccountFeignClient accountFeignClient;
 
-  @Override
-  public ShopUserVO getByUserId(Long userId) {
-    ShopUserVO shopUser = shopUserMapper.getByUserId(userId);
-    Result<List<Long>> roleIds = userRoleFeignClient.getRoleIds(shopUser.getShopUserId());
-    shopUser.setRoleIds(roleIds.getData());
-    return shopUser;
-  }
+	@Autowired
+	private UserRoleFeignClient userRoleFeignClient;
 
-  @Override
-  @Transactional(rollbackFor = Exception.class)
-  public void save(ShopUser shopUser, List<Long> roleIds) {
-    shopUserMapper.save(shopUser);
-    if (CollUtil.isEmpty(roleIds)) {
-      return;
-    }
-    UserRoleDTO userRoleDTO = new UserRoleDTO();
-    userRoleDTO.setRoleIds(roleIds);
-    userRoleDTO.setUserId(shopUser.getShopUserId());
-    userRoleFeignClient.saveByUserIdAndSysType(userRoleDTO);
-  }
+	@Autowired
+	private SegmentFeignClient segmentFeignClient;
 
-  @Override
-  @GlobalTransactional(rollbackFor = Exception.class)
-  @Transactional(rollbackFor = Exception.class)
-  public void update(ShopUser shopUser, List<Long> roleIds) {
-    UserRoleDTO userRoleDTO = new UserRoleDTO();
-    userRoleDTO.setRoleIds(roleIds);
-    userRoleDTO.setUserId(shopUser.getShopUserId());
-    shopUserMapper.update(shopUser);
-    userRoleFeignClient.updateByUserIdAndSysType(userRoleDTO);
-  }
+	@Override
+	public PageVO<ShopUserVO> pageByShopId(PageDTO pageDTO, Long shopId, String nickName) {
+		return PageUtil.doPage(pageDTO, () -> shopUserMapper.listByShopId(shopId, nickName));
+	}
 
-  @Override
-  @GlobalTransactional(rollbackFor = Exception.class)
-  @Transactional(rollbackFor = Exception.class)
-  public void deleteById(Long shopUserId) {
-    UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
-    accountFeignClient.deleteByUserIdAndSysType(shopUserId);
-    userRoleFeignClient.deleteByUserIdAndSysType(shopUserId);
-    shopUserMapper.deleteById(shopUserId);
-  }
+	@Override
+	public ShopUserVO getByUserId(Long userId) {
+		ShopUserVO shopUser = shopUserMapper.getByUserId(userId);
+		Result<List<Long>> roleIds = userRoleFeignClient.getRoleIds(shopUser.getShopUserId());
+		shopUser.setRoleIds(roleIds.getData());
+		return shopUser;
+	}
 
-  @Override
-  public Long getUserIdByShopId(Long shopId) {
-    return shopUserMapper.getUserIdByShopId(shopId);
-  }
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void save(ShopUser shopUser, List<Long> roleIds) {
+		shopUserMapper.save(shopUser);
+		if (CollUtil.isEmpty(roleIds)) {
+			return;
+		}
+		UserRoleDTO userRoleDTO = new UserRoleDTO();
+		userRoleDTO.setRoleIds(roleIds);
+		userRoleDTO.setUserId(shopUser.getShopUserId());
+		userRoleFeignClient.saveByUserIdAndSysType(userRoleDTO);
+	}
+
+	@Override
+	@GlobalTransactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
+	public void update(ShopUser shopUser, List<Long> roleIds) {
+		UserRoleDTO userRoleDTO = new UserRoleDTO();
+		userRoleDTO.setRoleIds(roleIds);
+		userRoleDTO.setUserId(shopUser.getShopUserId());
+		shopUserMapper.update(shopUser);
+		userRoleFeignClient.updateByUserIdAndSysType(userRoleDTO);
+	}
+
+	@Override
+	@GlobalTransactional(rollbackFor = Exception.class)
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteById(Long shopUserId) {
+		UserInfoInTokenBO userInfoInTokenBO = AuthUserContext.get();
+		accountFeignClient.deleteByUserIdAndSysType(shopUserId);
+		userRoleFeignClient.deleteByUserIdAndSysType(shopUserId);
+		shopUserMapper.deleteById(shopUserId);
+	}
+
+	@Override
+	public Long getUserIdByShopId(Long shopId) {
+		return shopUserMapper.getUserIdByShopId(shopId);
+	}
 
 }

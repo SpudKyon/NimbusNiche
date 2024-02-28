@@ -40,6 +40,17 @@
             <artifactId>api-leaf</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <!--        会导致nimbus-search启动失败-->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+            <version>3.5.3</version>
+        </dependency>
     </dependencies>
 
 </project>

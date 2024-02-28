@@ -13,58 +13,60 @@ import lombok.ToString;
 @Data
 @ToString
 public class CategoryBO {
-  /**
-   * 分类id
-   */
-  private Long categoryId;
 
-  /**
-   * 店铺id
-   */
-  private Long shopId;
+	/**
+	 * 分类id
+	 */
+	private Long categoryId;
 
-  /**
-   * 父ID
-   */
-  private Long parentId;
+	/**
+	 * 店铺id
+	 */
+	private Long shopId;
 
-  /**
-   * 分类名称
-   */
-  private String name;
+	/**
+	 * 父ID
+	 */
+	private Long parentId;
 
-  /**
-   * 分类描述
-   */
-  private String desc;
+	/**
+	 * 分类名称
+	 */
+	private String name;
 
-  /**
-   * 分类地址{parent_id}-{child_id},...
-   */
-  private String path;
+	/**
+	 * 分类描述
+	 */
+	private String desc;
 
-  /**
-   * 状态 1:enable, 0:disable, -1:deleted
-   */
-  private Integer status;
+	/**
+	 * 分类地址{parent_id}-{child_id},...
+	 */
+	private String path;
 
-  /**
-   * 分类图标
-   */
-  private String icon;
+	/**
+	 * 状态 1:enable, 0:disable, -1:deleted
+	 */
+	private Integer status;
 
-  /**
-   * 分类的显示图片
-   */
-  private String imgUrl;
+	/**
+	 * 分类图标
+	 */
+	private String icon;
 
-  /**
-   * 分类层级 从0开始
-   */
-  private Integer level;
+	/**
+	 * 分类的显示图片
+	 */
+	private String imgUrl;
 
-  /**
-   * 排序
-   */
-  private Integer seq;
+	/**
+	 * 分类层级 从0开始
+	 */
+	private Integer level;
+
+	/**
+	 * 排序
+	 */
+	private Integer seq;
+
 }

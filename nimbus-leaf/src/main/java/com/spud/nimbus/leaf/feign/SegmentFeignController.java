@@ -20,25 +20,24 @@ import java.util.Objects;
 @RestController
 public class SegmentFeignController implements SegmentFeignClient {
 
+	@Autowired
+	private SegmentService segmentService;
 
-  @Autowired
-  private SegmentService segmentService;
+	@Override
+	public Result<Long> getSegmentId(String key) {
+		return Result.success(get(key, segmentService.getId(key)));
+	}
 
-  @Override
-  public Result<Long> getSegmentId(String key) {
-    return Result.success(get(key, segmentService.getId(key)));
-  }
+	private Long get(String key, com.spud.nimbus.leaf.common.Result id) {
+		com.spud.nimbus.leaf.common.Result result;
+		if (key == null || key.isEmpty()) {
+			throw new NoKeyException();
+		}
+		result = id;
+		if (Objects.equals(result.getStatus(), Status.EXCEPTION)) {
+			throw new LeafServerException(result.toString());
+		}
+		return result.getId();
+	}
 
-
-  private Long get(String key, com.spud.nimbus.leaf.common.Result id) {
-    com.spud.nimbus.leaf.common.Result result;
-    if (key == null || key.isEmpty()) {
-      throw new NoKeyException();
-    }
-    result = id;
-    if (Objects.equals(result.getStatus(), Status.EXCEPTION)) {
-      throw new LeafServerException(result.toString());
-    }
-    return result.getId();
-  }
 }

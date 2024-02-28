@@ -11,18 +11,19 @@ import lombok.ToString;
 @ToString
 public class UriPermissionBO {
 
-  /**
-   * 请求方法 1.GET 2.POST 3.PUT 4.DELETE
-   */
-  private Integer method;
+	/**
+	 * 请求方法 1.GET 2.POST 3.PUT 4.DELETE
+	 */
+	private Integer method;
 
-  /**
-   * uri
-   */
-  private String uri;
+	/**
+	 * uri
+	 */
+	private String uri;
 
-  /**
-   * permission
-   */
-  private String permission;
+	/**
+	 * permission
+	 */
+	private String permission;
+
 }
