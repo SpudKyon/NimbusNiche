@@ -1,9 +1,9 @@
 package com.spud.nimbus.api.product.dto;
 
+import com.spud.nimbus.common.dto.BaseDTO;
 import lombok.Data;
 import lombok.ToString;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +12,7 @@ import java.util.List;
  */
 @Data
 @ToString
-public class SpuUpdateDTO implements Serializable {
+public class SpuUpdateDTO extends BaseDTO {
 
 	/**
 	 * 分类id

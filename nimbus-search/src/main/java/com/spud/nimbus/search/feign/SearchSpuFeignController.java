@@ -24,8 +24,12 @@ import java.util.Objects;
 @RestController
 public class SearchSpuFeignController implements SearchSpuFeignClient {
 
+	private final ProductSearchManager productSearchManager;
+
 	@Autowired
-	private ProductSearchManager productSearchManager;
+	public SearchSpuFeignController(ProductSearchManager productSearchManager) {
+		this.productSearchManager = productSearchManager;
+	}
 
 	@Override
 	public Result<EsPageVO<ProductSearchVO>> search(EsPageDTO pageDTO, ProductSearchDTO productSearchDTO) {

@@ -29,8 +29,12 @@ import java.util.Objects;
 @Tag(name = "角色")
 public class RoleController {
 
+	private final RoleService roleService;
+
 	@Autowired
-	private RoleService roleService;
+	public RoleController(RoleService roleService) {
+		this.roleService = roleService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "分页获取角色列表", description = "分页获取角色列表")

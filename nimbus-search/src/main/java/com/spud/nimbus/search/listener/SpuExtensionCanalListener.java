@@ -28,11 +28,15 @@ import java.io.IOException;
 @Component
 public class SpuExtensionCanalListener extends BaseCanalBinlogEventProcessor<SpuExtensionBO> {
 
-	@Autowired
-	private CacheManagerUtil cacheManagerUtil;
+	private final CacheManagerUtil cacheManagerUtil;
+
+	private final RestHighLevelClient restHighLevelClient;
 
 	@Autowired
-	private RestHighLevelClient restHighLevelClient;
+	public SpuExtensionCanalListener(CacheManagerUtil cacheManagerUtil, RestHighLevelClient restHighLevelClient) {
+		this.cacheManagerUtil = cacheManagerUtil;
+		this.restHighLevelClient = restHighLevelClient;
+	}
 
 	/**
 	 * 插入商品，此时插入es

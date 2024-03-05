@@ -38,20 +38,24 @@ import java.util.stream.Collectors;
 @Service
 public class AttrServiceImpl extends ServiceImpl<AttrMapper, Attr> implements AttrService {
 
-	@Autowired
-	private AttrMapper attrMapper;
+	private final AttrMapper attrMapper;
+
+	private final AttrCategoryService attrCategoryService;
+
+	private final AttrValueService attrValueService;
+
+	private final CategoryService categoryService;
+
+	private final SpuAttrValueService spuAttrValueService;
 
 	@Autowired
-	private AttrCategoryService attrCategoryService;
-
-	@Autowired
-	private AttrValueService attrValueService;
-
-	@Autowired
-	private CategoryService categoryService;
-
-	@Autowired
-	private SpuAttrValueService spuAttrValueService;
+	public AttrServiceImpl(AttrMapper attrMapper, AttrCategoryService attrCategoryService, AttrValueService attrValueService, CategoryService categoryService, SpuAttrValueService spuAttrValueService) {
+		this.attrMapper = attrMapper;
+		this.attrCategoryService = attrCategoryService;
+		this.attrValueService = attrValueService;
+		this.categoryService = categoryService;
+		this.spuAttrValueService = spuAttrValueService;
+	}
 
 	@Override
 	public PageVO<AttrVO> page(PageDTO pageDTO, AttrDTO attrDTO) {

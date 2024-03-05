@@ -25,8 +25,12 @@ import java.util.List;
 @Tag(name = "app-品牌信息")
 public class BrandController {
 
+	private final BrandService brandService;
+
 	@Autowired
-	private BrandService brandService;
+	public BrandController(BrandService brandService) {
+		this.brandService = brandService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "获取品牌信息列表", description = "分页获取品牌信息列表")

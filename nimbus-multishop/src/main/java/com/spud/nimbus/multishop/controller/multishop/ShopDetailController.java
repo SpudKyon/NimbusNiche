@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "multishop-店铺详情信息")
 public class ShopDetailController {
 
+	private final ShopDetailService shopDetailService;
+
 	@Autowired
-	private ShopDetailService shopDetailService;
+	public ShopDetailController(ShopDetailService shopDetailService) {
+		this.shopDetailService = shopDetailService;
+	}
 
 	@GetMapping("/info")
 	@Operation(summary = "获取店铺详情信息", description = "获取店铺详情信息")

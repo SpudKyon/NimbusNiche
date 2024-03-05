@@ -21,8 +21,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "token")
 public class TokenController {
 
+	private final TokenStore tokenStore;
+
 	@Autowired
-	private TokenStore tokenStore;
+	public TokenController(TokenStore tokenStore) {
+		this.tokenStore = tokenStore;
+	}
 
 	@PostMapping("/ua/token/refresh")
 	public Result<TokenInfoVO> refreshToken(@Valid @RequestBody RefreshTokenDTO refreshTokenDTO) {

@@ -24,8 +24,12 @@ import com.spud.nimbus.common.database.dto.PageDTO;
 @Tag(name = "admin-热搜")
 public class HotSearchController {
 
+	private final HotSearchService hotSearchService;
+
 	@Autowired
-	private HotSearchService hotSearchService;
+	public HotSearchController(HotSearchService hotSearchService) {
+		this.hotSearchService = hotSearchService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "分页获取热搜列表", description = "分页获取热搜列表")

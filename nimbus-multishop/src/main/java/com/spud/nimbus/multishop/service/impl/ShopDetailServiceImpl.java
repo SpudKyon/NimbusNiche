@@ -56,20 +56,24 @@ import java.util.stream.Collectors;
 @Service
 public class ShopDetailServiceImpl extends ServiceImpl<ShopDetailMapper, ShopDetail> implements ShopDetailService {
 
-	@Autowired
-	private ShopDetailMapper shopDetailMapper;
+	private final ShopDetailMapper shopDetailMapper;
+
+	private final SearchSpuFeignClient searchSpuFeignClient;
+
+	private final ShopUserService shopUserService;
+
+	private final PasswordEncoder passwordEncoder;
+
+	private final AccountFeignClient accountFeignClient;
 
 	@Autowired
-	private SearchSpuFeignClient searchSpuFeignClient;
-
-	@Autowired
-	private ShopUserService shopUserService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
-
-	@Autowired
-	private AccountFeignClient accountFeignClient;
+	public ShopDetailServiceImpl(ShopDetailMapper shopDetailMapper, SearchSpuFeignClient searchSpuFeignClient, ShopUserService shopUserService, PasswordEncoder passwordEncoder, AccountFeignClient accountFeignClient) {
+		this.shopDetailMapper = shopDetailMapper;
+		this.searchSpuFeignClient = searchSpuFeignClient;
+		this.shopUserService = shopUserService;
+		this.passwordEncoder = passwordEncoder;
+		this.accountFeignClient = accountFeignClient;
+	}
 
 	@Override
 	public PageVO<ShopDetailVO> page(PageDTO pageDTO, ShopDetailDTO shopDetailDTO) {

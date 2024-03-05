@@ -26,8 +26,12 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "平台用户信息")
 public class SysUserController {
 
+	private final SysUserService sysUserService;
+
 	@Autowired
-	private SysUserService sysUserService;
+	public SysUserController(SysUserService sysUserService) {
+		this.sysUserService = sysUserService;
+	}
 
 	@GetMapping("/info")
 	@Operation(summary = "登陆平台用户信息", description = "获取当前登陆平台用户的用户信息")

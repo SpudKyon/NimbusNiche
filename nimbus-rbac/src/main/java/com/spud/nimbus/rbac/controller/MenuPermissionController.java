@@ -29,8 +29,12 @@ import java.util.List;
 @Tag(name = "权限接口")
 public class MenuPermissionController {
 
+	private final MenuPermissionService menuPermissionService;
+
 	@Autowired
-	private MenuPermissionService menuPermissionService;
+	public MenuPermissionController(MenuPermissionService menuPermissionService) {
+		this.menuPermissionService = menuPermissionService;
+	}
 
 	@GetMapping("/list_by_menu")
 	@Operation(summary = "获取菜单资源列表", description = "分页获取菜单资源列表")

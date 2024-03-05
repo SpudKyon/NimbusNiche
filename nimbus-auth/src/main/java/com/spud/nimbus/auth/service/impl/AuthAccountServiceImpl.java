@@ -37,8 +37,12 @@ public class AuthAccountServiceImpl extends ServiceImpl<AuthAccountMapper, AuthA
 	@Resource
 	private AuthAccountMapper authAccountMapper;
 
+	private final PasswordEncoder passwordEncoder;
+
 	@Autowired
-	private PasswordEncoder passwordEncoder;
+	public AuthAccountServiceImpl(PasswordEncoder passwordEncoder) {
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@Override
 	public Result<UserInfoInTokenBO> getUserInfoInTokenByInputUserNameAndPassword(String inputUserName, String password,

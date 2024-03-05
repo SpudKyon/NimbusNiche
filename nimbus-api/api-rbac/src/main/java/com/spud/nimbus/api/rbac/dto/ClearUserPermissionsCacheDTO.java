@@ -1,5 +1,6 @@
 package com.spud.nimbus.api.rbac.dto;
 
+import com.spud.nimbus.common.dto.BaseDTO;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.ToString;
@@ -10,7 +11,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class ClearUserPermissionsCacheDTO {
+public class ClearUserPermissionsCacheDTO extends BaseDTO {
 
 	/**
 	 * 用户id

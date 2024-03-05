@@ -26,14 +26,18 @@ import java.util.Objects;
 @Service
 public class AttachFileServiceImpl extends ServiceImpl<AttachFileMapper, AttachFile> implements AttachFileService {
 
-	@Autowired
-	private AttachFileMapper attachFileMapper;
+	private final AttachFileMapper attachFileMapper;
+
+	private final Environment environment;
+
+	private final MinioTemplate minioTemplate;
 
 	@Autowired
-	private Environment environment;
-
-	@Autowired
-	private MinioTemplate minioTemplate;
+	public AttachFileServiceImpl(AttachFileMapper attachFileMapper, Environment environment, MinioTemplate minioTemplate) {
+		this.attachFileMapper = attachFileMapper;
+		this.environment = environment;
+		this.minioTemplate = minioTemplate;
+	}
 
 	@Override
 	public PageVO<AttachFileVO> page(PageDTO pageDTO, String fileName, Long fileGroupId) {

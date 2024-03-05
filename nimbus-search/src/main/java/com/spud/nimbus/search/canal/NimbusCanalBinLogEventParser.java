@@ -9,6 +9,7 @@ import cn.throwx.canal.gule.support.parser.BasePrimaryKeyTupleFunction;
 import cn.throwx.canal.gule.support.parser.CanalBinLogEventParser;
 import cn.throwx.canal.gule.support.parser.DefaultCanalBinLogEventParser;
 import com.alibaba.fastjson.JSON;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,9 +19,8 @@ import java.util.*;
  * @author spud
  * @date 2024/2/26
  */
+@Slf4j
 public class NimbusCanalBinLogEventParser implements CanalBinLogEventParser {
-
-	private static final Logger log = LoggerFactory.getLogger(DefaultCanalBinLogEventParser.class);
 
 	@Override
 	public <T> List<CanalBinLogResult<T>> parse(CanalBinLogEvent event, Class<T> klass,

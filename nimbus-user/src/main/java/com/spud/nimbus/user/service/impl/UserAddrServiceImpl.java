@@ -21,8 +21,12 @@ import java.util.List;
 @Service
 public class UserAddrServiceImpl extends ServiceImpl<UserAddrMapper, UserAddr> implements UserAddrService {
 
+	private final UserAddrMapper userAddrMapper;
+
 	@Autowired
-	private UserAddrMapper userAddrMapper;
+	public UserAddrServiceImpl(UserAddrMapper userAddrMapper) {
+		this.userAddrMapper = userAddrMapper;
+	}
 
 	@Override
 	public List<UserAddrVO> userAddrList(Long userId) {

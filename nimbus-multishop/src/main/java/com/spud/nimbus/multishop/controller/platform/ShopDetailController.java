@@ -28,8 +28,12 @@ import java.util.Objects;
 @Tag(name = "platform-店铺信息")
 public class ShopDetailController {
 
+	private final ShopDetailService shopDetailService;
+
 	@Autowired
-	private ShopDetailService shopDetailService;
+	public ShopDetailController(ShopDetailService shopDetailService) {
+		this.shopDetailService = shopDetailService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "分页查询", description = "分页查询")

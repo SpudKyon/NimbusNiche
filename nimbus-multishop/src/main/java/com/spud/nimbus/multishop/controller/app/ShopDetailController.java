@@ -24,8 +24,12 @@ import java.util.Objects;
 @Tag(name = "app-店铺详情信息")
 public class ShopDetailController {
 
+	private final ShopDetailService shopDetailService;
+
 	@Autowired
-	private ShopDetailService shopDetailService;
+	public ShopDetailController(ShopDetailService shopDetailService) {
+		this.shopDetailService = shopDetailService;
+	}
 
 	@GetMapping("/check_shop_name")
 	@Operation(summary = "验证店铺名称是否重名", description = "验证店铺名称是否重名")

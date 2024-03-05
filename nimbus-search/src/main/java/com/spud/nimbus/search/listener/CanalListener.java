@@ -20,8 +20,12 @@ import java.util.Map;
 @RocketMQMessageListener(topic = RocketMqConstant.CANAL_TOPIC, consumerGroup = RocketMqConstant.CANAL_TOPIC)
 public class CanalListener implements RocketMQListener<String> {
 
+	private final CanalGlue canalGlue;
+
 	@Autowired
-	private CanalGlue canalGlue;
+	public CanalListener(CanalGlue canalGlue) {
+		this.canalGlue = canalGlue;
+	}
 
 	@Override
 	public void onMessage(String message) {

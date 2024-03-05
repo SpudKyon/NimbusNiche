@@ -18,8 +18,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class SpuDetailServiceImpl extends ServiceImpl<SpuDetailMapper, SpuDetail> implements SpuDetailService {
 
+	private final SpuDetailMapper spuDetailMapper;
+
 	@Autowired
-	private SpuDetailMapper spuDetailMapper;
+	public SpuDetailServiceImpl(SpuDetailMapper spuDetailMapper) {
+		this.spuDetailMapper = spuDetailMapper;
+	}
 
 	@Override
 	public boolean save(SpuDetail spuDetail) {

@@ -1,4 +1,4 @@
-package com.spud.nimbus.user.controller;
+package com.spud.nimbus.user.controller.app;
 
 import cn.hutool.core.util.StrUtil;
 import com.spud.nimbus.api.auth.bo.UserInfoInTokenBO;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @date 2024/2/1
  */
 @RestController
-@RequestMapping("/v1/user/register")
+@RequestMapping("/ua/user/register")
 @Tag(name = "app-用户注册接口")
 public class UserRegisterController {
 

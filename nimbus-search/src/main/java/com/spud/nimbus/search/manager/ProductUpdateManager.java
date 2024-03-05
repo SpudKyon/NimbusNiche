@@ -22,8 +22,12 @@ import java.util.List;
 @Component
 public class ProductUpdateManager {
 
+	private final RestHighLevelClient restHighLevelClient;
+
 	@Autowired
-	private RestHighLevelClient restHighLevelClient;
+	public ProductUpdateManager(RestHighLevelClient restHighLevelClient) {
+		this.restHighLevelClient = restHighLevelClient;
+	}
 
 	/**
 	 * 批量更新es中的商品信息

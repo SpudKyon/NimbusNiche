@@ -21,11 +21,15 @@ import java.util.List;
 public class AttachFileGroupServiceImpl extends ServiceImpl<AttachFileGroupMapper, AttachFileGroup>
 		implements AttachFileGroupService {
 
-	@Autowired
-	private AttachFileMapper attachFileMapper;
+	private final AttachFileMapper attachFileMapper;
+
+	private final AttachFileGroupMapper attachFileGroupMapper;
 
 	@Autowired
-	private AttachFileGroupMapper attachFileGroupMapper;
+	public AttachFileGroupServiceImpl(AttachFileMapper attachFileMapper, AttachFileGroupMapper attachFileGroupMapper) {
+		this.attachFileMapper = attachFileMapper;
+		this.attachFileGroupMapper = attachFileGroupMapper;
+	}
 
 	@Override
 	public List<AttachFileGroupVO> volist() {

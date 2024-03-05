@@ -30,11 +30,15 @@ import java.util.stream.Collectors;
 public class SpuAttrValueServiceImpl extends ServiceImpl<SpuAttrValueMapper, SpuAttrValue>
 		implements SpuAttrValueService {
 
-	@Autowired
-	private SpuAttrValueMapper spuAttrValueMapper;
+	private final SpuAttrValueMapper spuAttrValueMapper;
+
+	private final SpuMapper spuMapper;
 
 	@Autowired
-	private SpuMapper spuMapper;
+	public SpuAttrValueServiceImpl(SpuAttrValueMapper spuAttrValueMapper, SpuMapper spuMapper) {
+		this.spuAttrValueMapper = spuAttrValueMapper;
+		this.spuMapper = spuMapper;
+	}
 
 	@Override
 	public void update(Long spuId, List<SpuAttrValue> spuAttrValues, List<SpuAttrValueVO> spuAttrValuesDb) {

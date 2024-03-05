@@ -24,11 +24,15 @@ import java.util.Objects;
 @Component
 public class ShopDetailCanalListener extends BaseCanalBinlogEventProcessor<ShopDetailBO> {
 
-	@Autowired
-	private ProductUpdateManager productUpdateManager;
+	private final ProductUpdateManager productUpdateManager;
+
+	private final ProductFeignClient productFeignClient;
 
 	@Autowired
-	private ProductFeignClient productFeignClient;
+	public ShopDetailCanalListener(ProductUpdateManager productUpdateManager, ProductFeignClient productFeignClient) {
+		this.productUpdateManager = productUpdateManager;
+		this.productFeignClient = productFeignClient;
+	}
 
 	/**
 	 * 新增店铺

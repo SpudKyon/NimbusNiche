@@ -1,4 +1,4 @@
-package com.spud.nimbus.user.controller;
+package com.spud.nimbus.user.controller.app;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.spud.nimbus.common.exception.NimbusException;
@@ -23,7 +23,7 @@ import java.util.List;
  * @date 2024/2/1
  */
 @RestController("UserAddrController")
-@RequestMapping("/v1/user_addr")
+@RequestMapping("/user_addr")
 @Tag(name = "app-用户地址")
 public class UserAddrController {
 

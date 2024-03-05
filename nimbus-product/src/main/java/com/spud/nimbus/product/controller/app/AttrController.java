@@ -20,8 +20,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "app-属性信息")
 public class AttrController {
 
+	private final AttrService attrService;
+
 	@Autowired
-	private AttrService attrService;
+	public AttrController(AttrService attrService) {
+		this.attrService = attrService;
+	}
 
 	@GetMapping
 	@Operation(summary = "获取属性信息", description = "根据attrId获取属性信息")

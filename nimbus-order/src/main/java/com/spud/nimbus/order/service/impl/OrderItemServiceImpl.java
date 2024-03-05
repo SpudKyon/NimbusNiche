@@ -21,8 +21,12 @@ import java.util.List;
 @Service
 public class OrderItemServiceImpl extends ServiceImpl<OrderItemMapper, OrderItem> implements OrderItemService {
 
+	private final OrderItemMapper orderItemMapper;
+
 	@Autowired
-	private OrderItemMapper orderItemMapper;
+	public OrderItemServiceImpl(OrderItemMapper orderItemMapper) {
+		this.orderItemMapper = orderItemMapper;
+	}
 
 	@Override
 	public boolean save(OrderItem orderItem) {

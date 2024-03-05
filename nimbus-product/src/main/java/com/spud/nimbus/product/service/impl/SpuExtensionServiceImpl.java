@@ -23,8 +23,12 @@ import org.springframework.stereotype.Service;
 public class SpuExtensionServiceImpl extends ServiceImpl<SpuExtensionMapper, SpuExtension>
 		implements SpuExtensionService {
 
+	private final SpuExtensionMapper spuExtensionMapper;
+
 	@Autowired
-	private SpuExtensionMapper spuExtensionMapper;
+	public SpuExtensionServiceImpl(SpuExtensionMapper spuExtensionMapper) {
+		this.spuExtensionMapper = spuExtensionMapper;
+	}
 
 	@Override
 	public PageVO<SpuExtensionVO> page(PageDTO pageDTO) {

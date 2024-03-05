@@ -6,6 +6,7 @@ import com.spud.nimbus.api.rbac.feign.UserRoleFeignClient;
 import com.spud.nimbus.common.cache.constant.CacheNames;
 import com.spud.nimbus.common.response.Result;
 import com.spud.nimbus.rbac.mapper.UserRoleMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,13 +20,16 @@ import java.util.List;
  * @author FrozenWatermelon
  * @date 2020/7/15
  */
+@Slf4j
 @RestController
 public class UserRoleFeignController implements UserRoleFeignClient {
 
-	private static final Logger logger = LoggerFactory.getLogger(UserRoleFeignController.class);
+	private final UserRoleMapper userRoleMapper;
 
 	@Autowired
-	private UserRoleMapper userRoleMapper;
+	public UserRoleFeignController(UserRoleMapper userRoleMapper) {
+		this.userRoleMapper = userRoleMapper;
+	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)

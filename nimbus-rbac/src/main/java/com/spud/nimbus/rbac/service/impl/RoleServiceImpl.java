@@ -30,14 +30,18 @@ import java.util.stream.Collectors;
 @Service
 public class RoleServiceImpl extends ServiceImpl<RoleMapper, Role> implements RoleService {
 
-	@Autowired
-	private RoleMapper roleMapper;
+	private final RoleMapper roleMapper;
+
+	private final RoleMenuMapper roleMenuMapper;
+
+	private final UserRoleMapper userRoleMapper;
 
 	@Autowired
-	private RoleMenuMapper roleMenuMapper;
-
-	@Autowired
-	private UserRoleMapper userRoleMapper;
+	public RoleServiceImpl(RoleMapper roleMapper, RoleMenuMapper roleMenuMapper, UserRoleMapper userRoleMapper) {
+		this.roleMapper = roleMapper;
+		this.roleMenuMapper = roleMenuMapper;
+		this.userRoleMapper = userRoleMapper;
+	}
 
 	@Override
 	public PageVO<RoleVO> page(PageDTO pageDTO, Integer sysType, Long tenantId) {

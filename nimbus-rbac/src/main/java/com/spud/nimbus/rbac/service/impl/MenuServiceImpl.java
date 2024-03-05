@@ -25,8 +25,12 @@ import java.util.List;
 @Service
 public class MenuServiceImpl extends ServiceImpl<MenuMapper, Menu> implements MenuService {
 
+	private final MenuMapper menuMapper;
+
 	@Autowired
-	private MenuMapper menuMapper;
+	public MenuServiceImpl(MenuMapper menuMapper) {
+		this.menuMapper = menuMapper;
+	}
 
 	@Override
 	public MenuVO getByMenuId(Long menuId) {

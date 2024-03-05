@@ -16,8 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class TokenFeignController implements TokenFeignClient {
 
+	private final TokenStore tokenStore;
+
 	@Autowired
-	private TokenStore tokenStore;
+	public TokenFeignController(TokenStore tokenStore) {
+		this.tokenStore = tokenStore;
+	}
 
 	@Override
 	public Result<UserInfoInTokenBO> checkToken(String accessToken) {

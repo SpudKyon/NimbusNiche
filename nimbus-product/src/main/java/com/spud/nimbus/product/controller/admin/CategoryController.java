@@ -31,11 +31,15 @@ import java.util.Objects;
 @Tag(name = "admin-分类信息")
 public class CategoryController {
 
-	@Autowired
-	private CategoryService categoryService;
+	private final CategoryService categoryService;
+
+	private final CategoryAndSpuService categoryAndSpuService;
 
 	@Autowired
-	private CategoryAndSpuService categoryAndSpuService;
+	public CategoryController(CategoryService categoryService, CategoryAndSpuService categoryAndSpuService) {
+		this.categoryService = categoryService;
+		this.categoryAndSpuService = categoryAndSpuService;
+	}
 
 	@GetMapping
 	@Operation(summary = "获取分类信息", description = "根据categoryId获取分类信息")

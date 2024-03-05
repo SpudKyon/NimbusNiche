@@ -23,11 +23,15 @@ import java.util.Objects;
 @Component
 public class BrandCanalListener extends BaseCanalBinlogEventProcessor<BrandBO> {
 
-	@Autowired
-	private ProductUpdateManager productUpdateManager;
+	private final ProductUpdateManager productUpdateManager;
+
+	private final ProductFeignClient productFeignClient;
 
 	@Autowired
-	private ProductFeignClient productFeignClient;
+	public BrandCanalListener(ProductUpdateManager productUpdateManager, ProductFeignClient productFeignClient) {
+		this.productUpdateManager = productUpdateManager;
+		this.productFeignClient = productFeignClient;
+	}
 
 	/**
 	 * 新增品牌

@@ -11,6 +11,7 @@ import com.spud.nimbus.multishop.vo.ShopUserVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -28,6 +29,7 @@ public class ShopUserAccountController {
 
 	private final ShopUserService shopUserService;
 
+	@Autowired
 	public ShopUserAccountController(ShopUserAccountService shopUserAccountService, ShopUserService shopUserService) {
 		this.shopUserAccountService = shopUserAccountService;
 		this.shopUserService = shopUserService;

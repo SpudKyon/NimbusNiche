@@ -52,32 +52,36 @@ import java.util.stream.Collectors;
 @Service
 public class SpuServiceImpl extends ServiceImpl<SpuMapper, Spu> implements SpuService {
 
-	@Autowired
-	private SpuMapper spuMapper;
+	private final SpuMapper spuMapper;
+
+	private final SpuDetailService spuDetailService;
+
+	private final SpuExtensionService spuExtensionService;
+
+	private final SpuAttrValueService spuAttrValueService;
+
+	private final SkuService skuService;
+
+	private final BrandService brandService;
+
+	private final CategoryService categoryService;
+
+	private final ShopDetailFeignClient shopDetailFeignClient;
+
+	private final IndexImgFeignClient indexImgFeignClient;
 
 	@Autowired
-	private SpuDetailService spuDetailService;
-
-	@Autowired
-	private SpuExtensionService spuExtensionService;
-
-	@Autowired
-	private SpuAttrValueService spuAttrValueService;
-
-	@Autowired
-	private SkuService skuService;
-
-	@Autowired
-	private BrandService brandService;
-
-	@Autowired
-	private CategoryService categoryService;
-
-	@Autowired
-	private ShopDetailFeignClient shopDetailFeignClient;
-
-	@Autowired
-	private IndexImgFeignClient indexImgFeignClient;
+	public SpuServiceImpl(SpuMapper spuMapper, SpuDetailService spuDetailService, SpuExtensionService spuExtensionService, SpuAttrValueService spuAttrValueService, SkuService skuService, BrandService brandService, CategoryService categoryService, ShopDetailFeignClient shopDetailFeignClient, IndexImgFeignClient indexImgFeignClient) {
+		this.spuMapper = spuMapper;
+		this.spuDetailService = spuDetailService;
+		this.spuExtensionService = spuExtensionService;
+		this.spuAttrValueService = spuAttrValueService;
+		this.skuService = skuService;
+		this.brandService = brandService;
+		this.categoryService = categoryService;
+		this.shopDetailFeignClient = shopDetailFeignClient;
+		this.indexImgFeignClient = indexImgFeignClient;
+	}
 
 	@Override
 	public PageVO<SpuVO> page(PageDTO pageDTO, SpuPageSearchDTO spuDTO) {

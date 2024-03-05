@@ -16,8 +16,12 @@ import java.util.List;
 @RestController
 public class UserFeignController implements UserFeignClient {
 
+	private final UserService userService;
+
 	@Autowired
-	private UserService userService;
+	public UserFeignController(UserService userService) {
+		this.userService = userService;
+	}
 
 	@Override
 	public Result<List<UserApiVO>> getUserByUserIds(List<Long> userIds) {

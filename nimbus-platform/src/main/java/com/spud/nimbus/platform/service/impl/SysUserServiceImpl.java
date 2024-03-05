@@ -38,11 +38,15 @@ public class SysUserServiceImpl extends ServiceImpl<SysUserMapper, SysUser> impl
 	@Resource
 	private SysUserMapper sysUserMapper;
 
-	@Autowired
-	private AccountFeignClient accountFeignClient;
+	private final AccountFeignClient accountFeignClient;
+
+	private final UserRoleFeignClient userRoleFeignClient;
 
 	@Autowired
-	private UserRoleFeignClient userRoleFeignClient;
+	public SysUserServiceImpl(AccountFeignClient accountFeignClient, UserRoleFeignClient userRoleFeignClient) {
+		this.accountFeignClient = accountFeignClient;
+		this.userRoleFeignClient = userRoleFeignClient;
+	}
 
 	@Override
 	@Cacheable(cacheNames = CacheNames.PLATFORM_SIMPLE_INFO_KEY, key = "#userId")

@@ -30,11 +30,15 @@ import java.util.List;
 public class ShopCartItemServiceImpl extends ServiceImpl<ShopCartItemMapper, ShopCartItem>
 		implements ShopCartItemService {
 
-	@Autowired
-	private ShopCartItemMapper shopCartItemMapper;
+	private final ShopCartItemMapper shopCartItemMapper;
+
+	private final CacheManagerUtil cacheManagerUtil;
 
 	@Autowired
-	private CacheManagerUtil cacheManagerUtil;
+	public ShopCartItemServiceImpl(ShopCartItemMapper shopCartItemMapper, CacheManagerUtil cacheManagerUtil) {
+		this.shopCartItemMapper = shopCartItemMapper;
+		this.cacheManagerUtil = cacheManagerUtil;
+	}
 
 	@Override
 	@CacheEvict(cacheNames = CacheNames.SHOP_CART_ITEM_COUNT, key = "#userId")

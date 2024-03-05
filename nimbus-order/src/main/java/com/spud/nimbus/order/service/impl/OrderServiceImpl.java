@@ -33,6 +33,7 @@ import com.spud.nimbus.order.service.OrderService;
 import com.spud.nimbus.order.vo.OrderCountVO;
 import com.spud.nimbus.order.vo.OrderVO;
 import io.seata.spring.annotation.GlobalTransactional;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendStatus;
 import org.apache.rocketmq.spring.core.RocketMQTemplate;
 import org.slf4j.Logger;
@@ -55,34 +56,37 @@ import java.util.Objects;
  * @author spud
  * @since 2024-01-23
  */
+@Slf4j
 @Service
 public class OrderServiceImpl extends ServiceImpl<OrderMapper, Order> implements OrderService {
 
-	private static final Logger log = LoggerFactory.getLogger(OrderServiceImpl.class);
+	private final OrderMapper orderMapper;
+
+	private final OrderItemService orderItemService;
+
+	private final SegmentFeignClient segmentFeignClient;
+
+	private final SkuStockLockFeignClient skuStockLockFeignClient;
+
+	private final ShopCartFeignClient shopCartFeignClient;
+
+	private final RocketMQTemplate stockMqTemplate;
+
+	private final RocketMQTemplate orderCancelTemplate;
+
+	private final OrderAddrService orderAddrService;
 
 	@Autowired
-	private OrderMapper orderMapper;
-
-	@Autowired
-	private OrderItemService orderItemService;
-
-	@Autowired
-	private SegmentFeignClient segmentFeignClient;
-
-	@Autowired
-	private SkuStockLockFeignClient skuStockLockFeignClient;
-
-	@Autowired
-	private ShopCartFeignClient shopCartFeignClient;
-
-	@Autowired
-	private RocketMQTemplate stockMqTemplate;
-
-	@Autowired
-	private RocketMQTemplate orderCancelTemplate;
-
-	@Autowired
-	private OrderAddrService orderAddrService;
+	public OrderServiceImpl(OrderMapper orderMapper, OrderItemService orderItemService, SegmentFeignClient segmentFeignClient, SkuStockLockFeignClient skuStockLockFeignClient, ShopCartFeignClient shopCartFeignClient, RocketMQTemplate stockMqTemplate, RocketMQTemplate orderCancelTemplate, OrderAddrService orderAddrService) {
+		this.orderMapper = orderMapper;
+		this.orderItemService = orderItemService;
+		this.segmentFeignClient = segmentFeignClient;
+		this.skuStockLockFeignClient = skuStockLockFeignClient;
+		this.shopCartFeignClient = shopCartFeignClient;
+		this.stockMqTemplate = stockMqTemplate;
+		this.orderCancelTemplate = orderCancelTemplate;
+		this.orderAddrService = orderAddrService;
+	}
 
 	@Override
 	public void update(Order order) {

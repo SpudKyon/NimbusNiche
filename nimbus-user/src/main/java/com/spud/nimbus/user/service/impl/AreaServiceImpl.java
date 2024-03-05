@@ -23,8 +23,12 @@ import java.util.List;
 @Service
 public class AreaServiceImpl extends ServiceImpl<AreaMapper, Area> implements AreaService {
 
+	private final AreaMapper areaMapper;
+
 	@Autowired
-	private AreaMapper areaMapper;
+	public AreaServiceImpl(AreaMapper areaMapper) {
+		this.areaMapper = areaMapper;
+	}
 
 	@Override
 	public List<AreaVO> areaList() {

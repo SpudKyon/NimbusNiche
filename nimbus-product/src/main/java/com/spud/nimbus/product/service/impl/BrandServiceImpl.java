@@ -34,11 +34,15 @@ import java.util.*;
 @Service
 public class BrandServiceImpl extends ServiceImpl<BrandMapper, Brand> implements BrandService {
 
-	@Autowired
-	private BrandMapper brandMapper;
+	private final BrandMapper brandMapper;
+
+	private final CategoryBrandService categoryBrandService;
 
 	@Autowired
-	private CategoryBrandService categoryBrandService;
+	public BrandServiceImpl(BrandMapper brandMapper, CategoryBrandService categoryBrandService) {
+		this.brandMapper = brandMapper;
+		this.categoryBrandService = categoryBrandService;
+	}
 
 	@Override
 	public PageVO<BrandVO> page(PageDTO pageDTO, BrandDTO brandDTO) {

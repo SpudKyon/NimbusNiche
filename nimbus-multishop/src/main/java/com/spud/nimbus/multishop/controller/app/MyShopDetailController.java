@@ -22,8 +22,12 @@ import java.util.Objects;
 @Tag(name = "app-我的店铺详情信息")
 public class MyShopDetailController {
 
+	private final ShopDetailService shopDetailService;
+
 	@Autowired
-	private ShopDetailService shopDetailService;
+	public MyShopDetailController(ShopDetailService shopDetailService) {
+		this.shopDetailService = shopDetailService;
+	}
 
 	@PostMapping("/create")
 	@Operation(summary = "创建店铺", description = "创建店铺")

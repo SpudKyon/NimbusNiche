@@ -27,17 +27,21 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "登录")
 public class LoginController {
 
-	@Autowired
-	private TokenStore tokenStore;
+	private final TokenStore tokenStore;
+
+	private final AuthAccountService authAccountService;
+
+	private final PermissionFeignClient permissionFeignClient;
+
+	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	private AuthAccountService authAccountService;
-
-	@Autowired
-	private PermissionFeignClient permissionFeignClient;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	public LoginController(TokenStore tokenStore, AuthAccountService authAccountService, PermissionFeignClient permissionFeignClient, PasswordEncoder passwordEncoder) {
+		this.tokenStore = tokenStore;
+		this.authAccountService = authAccountService;
+		this.permissionFeignClient = permissionFeignClient;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@PostMapping("v1/ua/login")
 	@Operation(summary = "账号密码", description = "通过账号登录，还要携带用户的类型，也就是用户所在的系统")

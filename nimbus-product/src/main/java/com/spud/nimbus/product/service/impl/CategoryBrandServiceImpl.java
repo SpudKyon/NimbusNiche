@@ -23,8 +23,12 @@ import java.util.List;
 public class CategoryBrandServiceImpl extends ServiceImpl<CategoryBrandMapper, CategoryBrand>
 		implements CategoryBrandService {
 
+	private final CategoryBrandMapper categoryBrandMapper;
+
 	@Autowired
-	private CategoryBrandMapper categoryBrandMapper;
+	public CategoryBrandServiceImpl(CategoryBrandMapper categoryBrandMapper) {
+		this.categoryBrandMapper = categoryBrandMapper;
+	}
 
 	@Override
 	public void deleteByBrandId(Long brandId) {

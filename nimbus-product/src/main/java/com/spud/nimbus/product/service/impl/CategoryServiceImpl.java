@@ -32,8 +32,12 @@ import java.util.stream.Collectors;
 @Service
 public class CategoryServiceImpl extends ServiceImpl<CategoryMapper, Category> implements CategoryService {
 
+	private final CategoryMapper categoryMapper;
+
 	@Autowired
-	private CategoryMapper categoryMapper;
+	public CategoryServiceImpl(CategoryMapper categoryMapper) {
+		this.categoryMapper = categoryMapper;
+	}
 
 	@Override
 	public CategoryVO getById(Long categoryId) {

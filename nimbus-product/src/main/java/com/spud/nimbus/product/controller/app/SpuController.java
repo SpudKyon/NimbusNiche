@@ -28,11 +28,15 @@ import java.util.List;
 @Tag(name = "app-spu信息")
 public class SpuController {
 
-	@Autowired
-	private SpuService spuService;
+	private final SpuService spuService;
+
+	private final SkuService skuService;
 
 	@Autowired
-	private SkuService skuService;
+	public SpuController(SpuService spuService, SkuService skuService) {
+		this.spuService = spuService;
+		this.skuService = skuService;
+	}
 
 	@GetMapping("/prod_info")
 	@Operation(summary = "商品详情信息", description = "根据商品ID（prodId）获取商品信息")

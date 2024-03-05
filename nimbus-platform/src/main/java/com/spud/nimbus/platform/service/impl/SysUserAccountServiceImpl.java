@@ -27,8 +27,12 @@ public class SysUserAccountServiceImpl implements SysUserAccountService {
 	@Resource
 	private SysUserMapper sysUserMapper;
 
+	private final AccountFeignClient accountFeignClient;
+
 	@Autowired
-	private AccountFeignClient accountFeignClient;
+	public SysUserAccountServiceImpl(AccountFeignClient accountFeignClient) {
+		this.accountFeignClient = accountFeignClient;
+	}
 
 	@Override
 	@GlobalTransactional(rollbackFor = Exception.class)

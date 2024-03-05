@@ -24,8 +24,12 @@ import java.util.List;
 @Tag(name = "app-分类信息")
 public class CategoryController {
 
+	private final CategoryService categoryService;
+
 	@Autowired
-	private CategoryService categoryService;
+	public CategoryController(CategoryService categoryService) {
+		this.categoryService = categoryService;
+	}
 
 	@GetMapping("/category_list")
 	@Operation(summary = "获取指定分类下的分类列表（顶级分类的parentId为0,默认为一级分类）", description = "获取指定分类下的分类列表")

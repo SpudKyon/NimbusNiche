@@ -26,11 +26,15 @@ import java.util.Objects;
 @Service
 public class CategoryAndSpuServiceImpl implements CategoryAndSpuService {
 
-	@Autowired
-	private CategoryService categoryService;
+	private final CategoryService categoryService;
+
+	private final SpuService spuService;
 
 	@Autowired
-	private SpuService spuService;
+	public CategoryAndSpuServiceImpl(CategoryService categoryService, SpuService spuService) {
+		this.categoryService = categoryService;
+		this.spuService = spuService;
+	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)

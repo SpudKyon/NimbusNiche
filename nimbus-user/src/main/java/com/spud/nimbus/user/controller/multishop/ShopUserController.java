@@ -1,4 +1,4 @@
-package com.spud.nimbus.user.controller;
+package com.spud.nimbus.user.controller.multishop;
 
 import com.spud.nimbus.api.user.vo.UserApiVO;
 import com.spud.nimbus.common.database.dto.PageDTO;
@@ -19,12 +19,16 @@ import org.springframework.web.bind.annotation.*;
  * @date 2024/2/1
  */
 @RestController("shopUserController")
-@RequestMapping("/v1/user/shop")
+@RequestMapping("/m/user")
 @Tag(name = "店铺-用户表")
 public class ShopUserController {
 
+	private final UserService userService;
+
 	@Autowired
-	private UserService userService;
+	public ShopUserController(UserService userService) {
+		this.userService = userService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "获取用户表列表", description = "分页获取用户表列表")

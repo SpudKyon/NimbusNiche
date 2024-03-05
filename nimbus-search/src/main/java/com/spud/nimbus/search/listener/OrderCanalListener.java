@@ -32,11 +32,15 @@ import java.io.IOException;
 @Component
 public class OrderCanalListener extends BaseCanalBinlogEventProcessor<OrderBO> {
 
-	@Autowired
-	private OrderFeignClient orderFeignClient;
+	private final OrderFeignClient orderFeignClient;
+
+	private final RestHighLevelClient restHighLevelClient;
 
 	@Autowired
-	private RestHighLevelClient restHighLevelClient;
+	public OrderCanalListener(OrderFeignClient orderFeignClient, RestHighLevelClient restHighLevelClient) {
+		this.orderFeignClient = orderFeignClient;
+		this.restHighLevelClient = restHighLevelClient;
+	}
 
 	/**
 	 * 插入订单，此时插入es

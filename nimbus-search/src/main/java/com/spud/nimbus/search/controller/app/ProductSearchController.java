@@ -32,11 +32,15 @@ import java.util.Objects;
 @Tag(name = "app-spu搜索接口")
 public class ProductSearchController {
 
-	@Autowired
-	private ProductSearchManager productSearchManager;
+	private final ProductSearchManager productSearchManager;
+
+	private final ShopDetailFeignClient shopDetailFeignClient;
 
 	@Autowired
-	private ShopDetailFeignClient shopDetailFeignClient;
+	public ProductSearchController(ProductSearchManager productSearchManager, ShopDetailFeignClient shopDetailFeignClient) {
+		this.productSearchManager = productSearchManager;
+		this.shopDetailFeignClient = shopDetailFeignClient;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "商品信息列表-包含spu、品牌、分类、属性和店铺信息", description = "spu列表-包含spu、品牌、分类、属性和店铺信息")

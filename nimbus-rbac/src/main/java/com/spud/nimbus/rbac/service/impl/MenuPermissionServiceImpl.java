@@ -35,11 +35,15 @@ import java.util.Objects;
 public class MenuPermissionServiceImpl extends ServiceImpl<MenuPermissionMapper, MenuPermission>
 		implements MenuPermissionService {
 
-	@Autowired
-	private MenuPermissionMapper menuPermissionMapper;
+	private final MenuPermissionMapper menuPermissionMapper;
+
+	private final CacheManagerUtil cacheManagerUtil;
 
 	@Autowired
-	private CacheManagerUtil cacheManagerUtil;
+	public MenuPermissionServiceImpl(MenuPermissionMapper menuPermissionMapper, CacheManagerUtil cacheManagerUtil) {
+		this.menuPermissionMapper = menuPermissionMapper;
+		this.cacheManagerUtil = cacheManagerUtil;
+	}
 
 	@Override
 	public PageVO<MenuPermissionVO> page(PageDTO pageDTO, Integer sysType) {

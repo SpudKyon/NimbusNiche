@@ -33,20 +33,24 @@ import java.util.stream.Collectors;
 @Tag(name = "admin-spu信息")
 public class SpuController {
 
-	@Autowired
-	private SpuService spuService;
+	private final SpuService spuService;
+
+	private final SkuService skuService;
+
+	private final CategoryService categoryService;
+
+	private final AttrService attrService;
+
+	private final BrandService brandService;
 
 	@Autowired
-	private SkuService skuService;
-
-	@Autowired
-	private CategoryService categoryService;
-
-	@Autowired
-	private AttrService attrService;
-
-	@Autowired
-	private BrandService brandService;
+	public SpuController(SpuService spuService, SkuService skuService, CategoryService categoryService, AttrService attrService, BrandService brandService) {
+		this.spuService = spuService;
+		this.skuService = skuService;
+		this.categoryService = categoryService;
+		this.attrService = attrService;
+		this.brandService = brandService;
+	}
 
 	@GetMapping("/platform_page")
 	@Operation(summary = "获取平台spu信息列表", description = "分页获取平台spu信息列表")

@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SearchOrderFeignController implements SearchOrderFeignClient {
 
+	private final OrderSearchManager orderSearchManager;
+
 	@Autowired
-	private OrderSearchManager orderSearchManager;
+	public SearchOrderFeignController(OrderSearchManager orderSearchManager) {
+		this.orderSearchManager = orderSearchManager;
+	}
 
 	@Override
 	public Result<EsPageVO<EsOrderVO>> getOrderPage(OrderSearchDTO orderSearch) {

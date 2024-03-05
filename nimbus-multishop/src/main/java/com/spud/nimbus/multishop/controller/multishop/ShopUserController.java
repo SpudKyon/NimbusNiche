@@ -31,11 +31,15 @@ import java.util.Objects;
 @Tag(name = "店铺用户信息")
 public class ShopUserController {
 
-	@Autowired
-	private ShopUserService shopUserService;
+	private final ShopUserService shopUserService;
+
+	private final ShopDetailService shopDetailService;
 
 	@Autowired
-	private ShopDetailService shopDetailService;
+	public ShopUserController(ShopUserService shopUserService, ShopDetailService shopDetailService) {
+		this.shopUserService = shopUserService;
+		this.shopDetailService = shopDetailService;
+	}
 
 	@GetMapping("/info")
 	@Operation(summary = "登陆店铺用户信息", description = "获取当前登陆店铺用户的用户信息")

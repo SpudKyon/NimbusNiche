@@ -24,8 +24,12 @@ import java.util.List;
 public class AttrCategoryServiceImpl extends ServiceImpl<AttrCategoryMapper, AttrCategory>
 		implements AttrCategoryService {
 
+	private final AttrCategoryMapper attrCategoryMapper;
+
 	@Autowired
-	private AttrCategoryMapper attrCategoryMapper;
+	public AttrCategoryServiceImpl(AttrCategoryMapper attrCategoryMapper) {
+		this.attrCategoryMapper = attrCategoryMapper;
+	}
 
 	@Override
 	public void save(Long attrId, List<Long> categoryId) {

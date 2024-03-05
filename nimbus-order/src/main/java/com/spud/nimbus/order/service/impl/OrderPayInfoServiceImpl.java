@@ -9,8 +9,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class OrderPayInfoServiceImpl implements OrderPayInfoService {
 
+	private final OrderPayInfoMapper orderPayInfoMapper;
+
 	@Autowired
-	private OrderPayInfoMapper orderPayInfoMapper;
+	public OrderPayInfoServiceImpl(OrderPayInfoMapper orderPayInfoMapper) {
+		this.orderPayInfoMapper = orderPayInfoMapper;
+	}
 
 	@Override
 	public void save(OrderPayInfo orderPayInfo) {

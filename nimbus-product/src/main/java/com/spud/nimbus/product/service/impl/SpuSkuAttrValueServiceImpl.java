@@ -22,8 +22,12 @@ import java.util.List;
 public class SpuSkuAttrValueServiceImpl extends ServiceImpl<SpuSkuAttrValueMapper, SpuSkuAttrValue>
 		implements SpuSkuAttrValueService {
 
+	private final SpuSkuAttrValueMapper spuSkuAttrValueMapper;
+
 	@Autowired
-	private SpuSkuAttrValueMapper spuSkuAttrValueMapper;
+	public SpuSkuAttrValueServiceImpl(SpuSkuAttrValueMapper spuSkuAttrValueMapper) {
+		this.spuSkuAttrValueMapper = spuSkuAttrValueMapper;
+	}
 
 	@Override
 	public boolean save(SpuSkuAttrValue spuSkuAttrValue) {

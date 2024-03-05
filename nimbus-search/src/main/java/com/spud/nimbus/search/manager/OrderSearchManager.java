@@ -41,8 +41,12 @@ import java.util.Objects;
 @Component
 public class OrderSearchManager {
 
+	private final RestHighLevelClient restHighLevelClient;
+
 	@Autowired
-	private RestHighLevelClient restHighLevelClient;
+	public OrderSearchManager(RestHighLevelClient restHighLevelClient) {
+		this.restHighLevelClient = restHighLevelClient;
+	}
 
 	/**
 	 * 通过搜索信息分页搜索es数据的信息

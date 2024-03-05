@@ -23,8 +23,12 @@ import java.util.List;
 @Tag(name = "admin-品牌信息")
 public class BrandController {
 
+	private final BrandService brandService;
+
 	@Autowired
-	private BrandService brandService;
+	public BrandController(BrandService brandService) {
+		this.brandService = brandService;
+	}
 
 	@GetMapping("/get_brand_by_category_id")
 	@Parameter(name = "categoryId", description = "分类id")

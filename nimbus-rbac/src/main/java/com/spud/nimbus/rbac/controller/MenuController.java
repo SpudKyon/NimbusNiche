@@ -33,8 +33,12 @@ import java.util.Objects;
 @Tag(name = "菜单接口")
 public class MenuController {
 
+	private final MenuService menuService;
+
 	@Autowired
-	private MenuService menuService;
+	public MenuController(MenuService menuService) {
+		this.menuService = menuService;
+	}
 
 	@GetMapping(value = "/route")
 	@Operation(summary = "路由菜单", description = "获取当前登陆用户可用的路由菜单列表")

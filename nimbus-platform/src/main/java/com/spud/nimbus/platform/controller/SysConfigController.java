@@ -15,8 +15,12 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/sys_config")
 public class SysConfigController {
 
+	private final SysConfigService sysConfigService;
+
 	@Autowired
-	private SysConfigService sysConfigService;
+	public SysConfigController(SysConfigService sysConfigService) {
+		this.sysConfigService = sysConfigService;
+	}
 
 	/**
 	 * 获取保存支付宝支付配置信息

@@ -24,11 +24,15 @@ import com.spud.nimbus.common.util.BooleanUtil;
 @Tag(name = "订单接口")
 public class PayController {
 
-	@Autowired
-	private PayInfoService payInfoService;
+	private final PayInfoService payInfoService;
+
+	private final PayNoticeController payNoticeController;
 
 	@Autowired
-	private PayNoticeController payNoticeController;
+	public PayController(PayInfoService payInfoService, PayNoticeController payNoticeController) {
+		this.payInfoService = payInfoService;
+		this.payNoticeController = payNoticeController;
+	}
 
 	/**
 	 * 支付接口

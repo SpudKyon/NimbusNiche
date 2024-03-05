@@ -38,17 +38,21 @@ import java.util.Objects;
 @Tag(name = "app-购物车")
 public class ShopCartController {
 
-	@Autowired
-	private ShopCartItemService shopCartService;
+	private final ShopCartItemService shopCartService;
+
+	private final SpuService spuService;
+
+	private final SkuService skuService;
+
+	private final ShopCartAdapter shopCartAdapter;
 
 	@Autowired
-	private SpuService spuService;
-
-	@Autowired
-	private SkuService skuService;
-
-	@Autowired
-	private ShopCartAdapter shopCartAdapter;
+	public ShopCartController(ShopCartItemService shopCartService, SpuService spuService, SkuService skuService, ShopCartAdapter shopCartAdapter) {
+		this.shopCartService = shopCartService;
+		this.spuService = spuService;
+		this.skuService = skuService;
+		this.shopCartAdapter = shopCartAdapter;
+	}
 
 	/**
 	 * 获取用户购物车信息

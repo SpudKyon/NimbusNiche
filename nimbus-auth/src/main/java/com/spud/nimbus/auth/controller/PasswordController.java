@@ -25,14 +25,18 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "密码")
 public class PasswordController {
 
-	@Autowired
-	private TokenStore tokenStore;
+	private final TokenStore tokenStore;
+
+	private final AuthAccountService authAccountService;
+
+	private final PasswordEncoder passwordEncoder;
 
 	@Autowired
-	private AuthAccountService authAccountService;
-
-	@Autowired
-	private PasswordEncoder passwordEncoder;
+	public PasswordController(TokenStore tokenStore, AuthAccountService authAccountService, PasswordEncoder passwordEncoder) {
+		this.tokenStore = tokenStore;
+		this.authAccountService = authAccountService;
+		this.passwordEncoder = passwordEncoder;
+	}
 
 	@PutMapping("/update_password")
 	@Operation(summary = "更新密码", description = "更新当前用户的密码, 更新密码之后要退出登录，清理token")

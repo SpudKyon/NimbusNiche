@@ -33,17 +33,21 @@ import java.util.Objects;
 @RestController
 public class AccountFeignController implements AccountFeignClient {
 
-	@Autowired
-	private AuthAccountMapper authAccountMapper;
+	private final AuthAccountMapper authAccountMapper;
+
+	private final PasswordEncoder passwordEncoder;
+
+	private final TokenStore tokenStore;
+
+	private final SegmentFeignClient segmentFeignClient;
 
 	@Autowired
-	private PasswordEncoder passwordEncoder;
-
-	@Autowired
-	private TokenStore tokenStore;
-
-	@Autowired
-	private SegmentFeignClient segmentFeignClient;
+	public AccountFeignController(AuthAccountMapper authAccountMapper, PasswordEncoder passwordEncoder, TokenStore tokenStore, SegmentFeignClient segmentFeignClient) {
+		this.authAccountMapper = authAccountMapper;
+		this.passwordEncoder = passwordEncoder;
+		this.tokenStore = tokenStore;
+		this.segmentFeignClient = segmentFeignClient;
+	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)

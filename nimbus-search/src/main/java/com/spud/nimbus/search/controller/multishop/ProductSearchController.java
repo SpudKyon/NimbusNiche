@@ -25,8 +25,12 @@ import org.springframework.web.bind.annotation.RestController;
 @Tag(name = "multishop-spu管理列表接口")
 public class ProductSearchController {
 
+	private final ProductSearchManager productSearchManager;
+
 	@Autowired
-	private ProductSearchManager productSearchManager;
+	public ProductSearchController(ProductSearchManager productSearchManager) {
+		this.productSearchManager = productSearchManager;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "商品信息列表", description = "商品信息列表")

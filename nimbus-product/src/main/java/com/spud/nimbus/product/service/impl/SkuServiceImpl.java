@@ -42,14 +42,18 @@ import java.util.stream.Collectors;
 @Service
 public class SkuServiceImpl extends ServiceImpl<SkuMapper, Sku> implements SkuService {
 
-	@Autowired
-	private SkuMapper skuMapper;
+	private final SkuMapper skuMapper;
+
+	private final SpuSkuAttrValueService spuSkuAttrValueService;
+
+	private final SkuStockService skuStockService;
 
 	@Autowired
-	private SpuSkuAttrValueService spuSkuAttrValueService;
-
-	@Autowired
-	private SkuStockService skuStockService;
+	public SkuServiceImpl(SkuMapper skuMapper, SpuSkuAttrValueService spuSkuAttrValueService, SkuStockService skuStockService) {
+		this.skuMapper = skuMapper;
+		this.spuSkuAttrValueService = spuSkuAttrValueService;
+		this.skuStockService = skuStockService;
+	}
 
 	@Override
 	public void save(Long spuId, List<SkuDTO> skuList) {

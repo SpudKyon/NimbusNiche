@@ -43,20 +43,24 @@ import java.util.stream.Collectors;
 public class SkuStockLockServiceImpl extends ServiceImpl<SkuStockLockMapper, SkuStockLock>
 		implements SkuStockLockService {
 
-	@Autowired
-	private SkuStockLockMapper skuStockLockMapper;
+	private final SkuStockLockMapper skuStockLockMapper;
+
+	private final SpuExtensionMapper spuExtensionMapper;
+
+	private final SkuStockMapper skuStockMapper;
+
+	private final OrderFeignClient orderFeignClient;
+
+	private final RocketMQTemplate stockMqTemplate;
 
 	@Autowired
-	private SpuExtensionMapper spuExtensionMapper;
-
-	@Autowired
-	private SkuStockMapper skuStockMapper;
-
-	@Autowired
-	private OrderFeignClient orderFeignClient;
-
-	@Autowired
-	private RocketMQTemplate stockMqTemplate;
+	public SkuStockLockServiceImpl(SkuStockLockMapper skuStockLockMapper, SpuExtensionMapper spuExtensionMapper, SkuStockMapper skuStockMapper, OrderFeignClient orderFeignClient, RocketMQTemplate stockMqTemplate) {
+		this.skuStockLockMapper = skuStockLockMapper;
+		this.spuExtensionMapper = spuExtensionMapper;
+		this.skuStockMapper = skuStockMapper;
+		this.orderFeignClient = orderFeignClient;
+		this.stockMqTemplate = stockMqTemplate;
+	}
 
 	@Override
 	public PageVO<SkuStockLock> page(PageDTO pageDTO) {

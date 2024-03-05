@@ -29,11 +29,15 @@ import java.util.Objects;
 @Tag(name = "admin-轮播图")
 public class IndexImgController {
 
-	@Autowired
-	private IndexImgService indexImgService;
+	private final IndexImgService indexImgService;
+
+	private final SpuFeignClient spuFeignClient;
 
 	@Autowired
-	private SpuFeignClient spuFeignClient;
+	public IndexImgController(IndexImgService indexImgService, SpuFeignClient spuFeignClient) {
+		this.indexImgService = indexImgService;
+		this.spuFeignClient = spuFeignClient;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "获取轮播图列表", description = "分页获取轮播图列表")

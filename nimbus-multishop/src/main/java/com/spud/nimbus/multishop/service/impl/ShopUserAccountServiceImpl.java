@@ -29,8 +29,12 @@ public class ShopUserAccountServiceImpl extends ServiceImpl<ShopUserMapper, Shop
 	@Resource
 	private ShopUserMapper shopUserMapper;
 
+	private final AccountFeignClient accountFeignClient;
+
 	@Autowired
-	private AccountFeignClient accountFeignClient;
+	public ShopUserAccountServiceImpl(AccountFeignClient accountFeignClient) {
+		this.accountFeignClient = accountFeignClient;
+	}
 
 	@Override
 	@GlobalTransactional(rollbackFor = Exception.class)

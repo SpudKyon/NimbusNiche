@@ -32,11 +32,15 @@ import java.io.IOException;
 @Component
 public class SpuCanalListener extends BaseCanalBinlogEventProcessor<SpuBO> {
 
-	@Autowired
-	private ProductFeignClient productFeignClient;
+	private final ProductFeignClient productFeignClient;
+
+	private final RestHighLevelClient restHighLevelClient;
 
 	@Autowired
-	private RestHighLevelClient restHighLevelClient;
+	public SpuCanalListener(ProductFeignClient productFeignClient, RestHighLevelClient restHighLevelClient) {
+		this.productFeignClient = productFeignClient;
+		this.restHighLevelClient = restHighLevelClient;
+	}
 
 	/**
 	 * 插入商品，此时插入es

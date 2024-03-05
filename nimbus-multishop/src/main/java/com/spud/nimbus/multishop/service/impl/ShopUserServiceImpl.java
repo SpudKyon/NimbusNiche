@@ -34,14 +34,18 @@ public class ShopUserServiceImpl extends ServiceImpl<ShopUserMapper, ShopUser> i
 	@Resource
 	private ShopUserMapper shopUserMapper;
 
-	@Autowired
-	private AccountFeignClient accountFeignClient;
+	private final AccountFeignClient accountFeignClient;
+
+	private final UserRoleFeignClient userRoleFeignClient;
+
+	private final SegmentFeignClient segmentFeignClient;
 
 	@Autowired
-	private UserRoleFeignClient userRoleFeignClient;
-
-	@Autowired
-	private SegmentFeignClient segmentFeignClient;
+	public ShopUserServiceImpl(AccountFeignClient accountFeignClient, UserRoleFeignClient userRoleFeignClient, SegmentFeignClient segmentFeignClient) {
+		this.accountFeignClient = accountFeignClient;
+		this.userRoleFeignClient = userRoleFeignClient;
+		this.segmentFeignClient = segmentFeignClient;
+	}
 
 	@Override
 	public PageVO<ShopUserVO> pageByShopId(PageDTO pageDTO, Long shopId, String nickName) {

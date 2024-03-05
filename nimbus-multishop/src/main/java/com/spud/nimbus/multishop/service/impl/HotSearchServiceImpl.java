@@ -24,8 +24,12 @@ import java.util.List;
 @Service
 public class HotSearchServiceImpl extends ServiceImpl<HotSearchMapper, HotSearch> implements HotSearchService {
 
+	private final HotSearchMapper hotSearchMapper;
+
 	@Autowired
-	private HotSearchMapper hotSearchMapper;
+	public HotSearchServiceImpl(HotSearchMapper hotSearchMapper) {
+		this.hotSearchMapper = hotSearchMapper;
+	}
 
 	@Override
 	public PageVO<HotSearchVO> page(PageDTO pageDTO, HotSearchDTO hotSearchDTO) {

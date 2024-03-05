@@ -22,8 +22,12 @@ import java.util.List;
 @RequestMapping("/notice/pay")
 public class PayNoticeController {
 
+	private final PayInfoService payInfoService;
+
 	@Autowired
-	private PayInfoService payInfoService;
+	public PayNoticeController(PayInfoService payInfoService) {
+		this.payInfoService = payInfoService;
+	}
 
 	/**
 	 * 支付异步回调

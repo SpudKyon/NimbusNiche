@@ -34,8 +34,12 @@ import java.util.Objects;
 @Tag(name = "admin-属性信息")
 public class AttrController {
 
+	private final AttrService attrService;
+
 	@Autowired
-	private AttrService attrService;
+	public AttrController(AttrService attrService) {
+		this.attrService = attrService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "获取属性信息列表", description = "分页获取属性信息列表")

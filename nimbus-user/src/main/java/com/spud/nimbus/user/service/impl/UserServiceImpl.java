@@ -38,14 +38,18 @@ import java.util.Objects;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements UserService {
 
-	@Autowired
-	private UserMapper userMapper;
+	private final UserMapper userMapper;
+
+	private final AccountFeignClient accountFeignClient;
+
+	private final SegmentFeignClient segmentFeignClient;
 
 	@Autowired
-	private AccountFeignClient accountFeignClient;
-
-	@Autowired
-	private SegmentFeignClient segmentFeignClient;
+	public UserServiceImpl(UserMapper userMapper, AccountFeignClient accountFeignClient, SegmentFeignClient segmentFeignClient) {
+		this.userMapper = userMapper;
+		this.accountFeignClient = accountFeignClient;
+		this.segmentFeignClient = segmentFeignClient;
+	}
 
 	@Override
 	public PageVO<UserApiVO> page(PageDTO pageDTO) {

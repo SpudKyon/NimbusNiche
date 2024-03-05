@@ -40,17 +40,21 @@ import java.util.Objects;
 @Service
 public class PayInfoServiceImpl extends ServiceImpl<PayInfoMapper, PayInfo> implements PayInfoService {
 
-	@Autowired
-	private PayInfoMapper payInfoMapper;
+	private final PayInfoMapper payInfoMapper;
+
+	private final SegmentFeignClient segmentFeignClient;
+
+	private final OrderFeignClient orderFeignClient;
+
+	private final RocketMQTemplate orderNotifyTemplate;
 
 	@Autowired
-	private SegmentFeignClient segmentFeignClient;
-
-	@Autowired
-	private OrderFeignClient orderFeignClient;
-
-	@Autowired
-	private RocketMQTemplate orderNotifyTemplate;
+	public PayInfoServiceImpl(PayInfoMapper payInfoMapper, SegmentFeignClient segmentFeignClient, OrderFeignClient orderFeignClient, RocketMQTemplate orderNotifyTemplate) {
+		this.payInfoMapper = payInfoMapper;
+		this.segmentFeignClient = segmentFeignClient;
+		this.orderFeignClient = orderFeignClient;
+		this.orderNotifyTemplate = orderNotifyTemplate;
+	}
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)

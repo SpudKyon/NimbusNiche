@@ -23,8 +23,12 @@ import java.util.List;
 @Tag(name = "app-热搜")
 public class HotSearchController {
 
+	private final HotSearchService hotSearchService;
+
 	@Autowired
-	private HotSearchService hotSearchService;
+	public HotSearchController(HotSearchService hotSearchService) {
+		this.hotSearchService = hotSearchService;
+	}
 
 	@GetMapping("/list")
 	@Operation(summary = "获取热搜列表", description = "获取热搜列表")

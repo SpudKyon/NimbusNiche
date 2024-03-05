@@ -24,8 +24,12 @@ import java.util.Objects;
 @Slf4j
 public class PermissionFeignController implements PermissionFeignClient {
 
+	private final MenuPermissionService menuPermissionService;
+
 	@Autowired
-	private MenuPermissionService menuPermissionService;
+	public PermissionFeignController(MenuPermissionService menuPermissionService) {
+		this.menuPermissionService = menuPermissionService;
+	}
 
 	@Override
 	public Result<Boolean> checkPermission(@RequestParam("userId") Long userId,

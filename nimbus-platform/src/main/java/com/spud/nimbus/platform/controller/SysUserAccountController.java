@@ -10,6 +10,7 @@ import com.spud.nimbus.platform.vo.SysUserVO;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Objects;
@@ -27,6 +28,7 @@ public class SysUserAccountController {
 
 	private final SysUserService SysUserService;
 
+	@Autowired
 	public SysUserAccountController(SysUserAccountService sysUserAccountService, SysUserService sysUserService) {
 		this.SysUserAccountService = sysUserAccountService;
 		this.SysUserService = sysUserService;

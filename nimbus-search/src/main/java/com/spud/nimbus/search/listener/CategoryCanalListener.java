@@ -27,14 +27,18 @@ import java.util.Objects;
 @Component
 public class CategoryCanalListener extends BaseCanalBinlogEventProcessor<CategoryBO> {
 
-	@Autowired
-	private CategoryFeignClient categoryFeignClient;
+	private final CategoryFeignClient categoryFeignClient;
+
+	private final ProductUpdateManager productUpdateManager;
+
+	private final ProductFeignClient productFeignClient;
 
 	@Autowired
-	private ProductUpdateManager productUpdateManager;
-
-	@Autowired
-	private ProductFeignClient productFeignClient;
+	public CategoryCanalListener(CategoryFeignClient categoryFeignClient, ProductUpdateManager productUpdateManager, ProductFeignClient productFeignClient) {
+		this.categoryFeignClient = categoryFeignClient;
+		this.productUpdateManager = productUpdateManager;
+		this.productFeignClient = productFeignClient;
+	}
 
 	/**
 	 * 插入商品，此时插入es

@@ -31,14 +31,18 @@ import java.util.Objects;
 @Tag(name = "platform-品牌信息")
 public class BrandController {
 
-	@Autowired
-	private BrandService brandService;
+	private final BrandService brandService;
+
+	private final CategoryService categoryService;
+
+	private final CategoryBrandService categoryBrandService;
 
 	@Autowired
-	private CategoryService categoryService;
-
-	@Autowired
-	private CategoryBrandService categoryBrandService;
+	public BrandController(BrandService brandService, CategoryService categoryService, CategoryBrandService categoryBrandService) {
+		this.brandService = brandService;
+		this.categoryService = categoryService;
+		this.categoryBrandService = categoryBrandService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "获取品牌信息列表", description = "分页获取品牌信息列表")

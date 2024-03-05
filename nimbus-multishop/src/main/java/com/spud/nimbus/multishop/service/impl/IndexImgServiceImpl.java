@@ -27,8 +27,12 @@ import java.util.List;
 @Service
 public class IndexImgServiceImpl extends ServiceImpl<IndexImgMapper, IndexImg> implements IndexImgService {
 
+	private final IndexImgMapper indexImgMapper;
+
 	@Autowired
-	private IndexImgMapper indexImgMapper;
+	public IndexImgServiceImpl(IndexImgMapper indexImgMapper) {
+		this.indexImgMapper = indexImgMapper;
+	}
 
 	@Override
 	public PageVO<IndexImgVO> page(PageDTO pageDTO, IndexImgDTO indexImgDTO) {

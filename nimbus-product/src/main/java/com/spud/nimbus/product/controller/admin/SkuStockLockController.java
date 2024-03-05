@@ -22,8 +22,12 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "库存锁定信息")
 public class SkuStockLockController {
 
+	private final SkuStockLockService skuStockLockService;
+
 	@Autowired
-	private SkuStockLockService skuStockLockService;
+	public SkuStockLockController(SkuStockLockService skuStockLockService) {
+		this.skuStockLockService = skuStockLockService;
+	}
 
 	@GetMapping("/page")
 	@Operation(summary = "获取库存锁定信息列表", description = "分页获取库存锁定信息列表")

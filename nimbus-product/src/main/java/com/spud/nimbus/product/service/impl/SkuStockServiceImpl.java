@@ -26,8 +26,12 @@ import java.util.Objects;
 @Service
 public class SkuStockServiceImpl extends ServiceImpl<SkuStockMapper, SkuStock> implements SkuStockService {
 
+	private final SkuStockMapper skuStockMapper;
+
 	@Autowired
-	private SkuStockMapper skuStockMapper;
+	public SkuStockServiceImpl(SkuStockMapper skuStockMapper) {
+		this.skuStockMapper = skuStockMapper;
+	}
 
 	@Override
 	public boolean save(SkuStock skuStock) {

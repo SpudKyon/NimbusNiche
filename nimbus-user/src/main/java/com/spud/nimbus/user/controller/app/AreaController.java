@@ -1,4 +1,4 @@
-package com.spud.nimbus.user.controller;
+package com.spud.nimbus.user.controller.app;
 
 import com.spud.nimbus.api.user.vo.AreaVO;
 import com.spud.nimbus.common.response.Result;
@@ -17,12 +17,16 @@ import java.util.List;
  * @date 2024/2/1
  */
 @RestController("AreaController")
-@RequestMapping("/v1/area")
+@RequestMapping("/area")
 @Tag(name = "地区信息")
 public class AreaController {
 
+	private final AreaService areaService;
+
 	@Autowired
-	private AreaService areaService;
+	public AreaController(AreaService areaService) {
+		this.areaService = areaService;
+	}
 
 	@GetMapping("/list")
 	@Operation(summary = "获取省市区地区信息列表", description = "获取省市区地区信息列表")

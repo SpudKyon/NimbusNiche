@@ -21,8 +21,12 @@ import com.spud.nimbus.order.model.OrderAddr;
 @Service
 public class OrderAddrServiceImpl extends ServiceImpl<OrderAddrMapper, OrderAddr> implements OrderAddrService {
 
+	private final OrderAddrMapper orderAddrMapper;
+
 	@Autowired
-	private OrderAddrMapper orderAddrMapper;
+	public OrderAddrServiceImpl(OrderAddrMapper orderAddrMapper) {
+		this.orderAddrMapper = orderAddrMapper;
+	}
 
 	@Override
 	public PageVO<OrderAddr> page(PageDTO pageDTO) {

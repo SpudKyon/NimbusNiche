@@ -1,5 +1,6 @@
 package com.spud.nimbus.api.product.dto;
 
+import com.spud.nimbus.common.dto.BaseDTO;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -12,7 +13,7 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class ShopCartItemDTO {
+public class ShopCartItemDTO extends BaseDTO {
 
 	@NotNull(message = "产品ID不能为空")
 	@Schema(description = "产品ID", requiredMode = Schema.RequiredMode.REQUIRED)

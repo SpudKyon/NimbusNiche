@@ -1,4 +1,4 @@
-package com.spud.nimbus.user.controller;
+package com.spud.nimbus.user.controller.app;
 
 import com.spud.nimbus.api.auth.bo.UserInfoInTokenBO;
 import com.spud.nimbus.api.user.vo.UserApiVO;
@@ -20,7 +20,7 @@ import java.util.Objects;
  * @date 2024/2/1
  */
 @RestController("appUserController")
-@RequestMapping("/v1/user")
+@RequestMapping("/a/user")
 @Tag(name = "app-用户信息")
 public class UserController {
 

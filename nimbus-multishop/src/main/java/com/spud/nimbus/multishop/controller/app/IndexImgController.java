@@ -23,8 +23,12 @@ import java.util.List;
 @Tag(name = "app-轮播图")
 public class IndexImgController {
 
+	private final IndexImgService indexImgService;
+
 	@Autowired
-	private IndexImgService indexImgService;
+	public IndexImgController(IndexImgService indexImgService) {
+		this.indexImgService = indexImgService;
+	}
 
 	@GetMapping("/list")
 	@Operation(summary = "获取轮播图列表", description = "分页获取轮播图列表")
